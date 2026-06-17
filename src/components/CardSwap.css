@@ -1,0 +1,197 @@
+.card-swap-container {
+  position: absolute;
+  right: clamp(1rem, 2.4vw, 1.75rem);
+  bottom: clamp(1rem, 2.4vw, 1.75rem);
+  z-index: 2;
+  overflow: visible;
+  perspective: 900px;
+  transform: translate(0, 0);
+  transform-origin: bottom right;
+}
+
+.card-swap-container .card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(237, 255, 240, 0.9);
+  background: #000;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 20px 46px rgba(0, 0, 0, 0.38);
+  transform: translate(-50%, -50%) skewY(3.5deg);
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-swap-container .card[role="button"] {
+  cursor: pointer;
+}
+
+.card-swap-container .card[role="button"]:focus-visible {
+  outline: 2px solid rgba(159, 245, 143, 0.9);
+  outline-offset: 4px;
+}
+
+.card-swap-container .card:nth-child(1) {
+  z-index: 4;
+}
+
+.card-swap-container .card:nth-child(2) {
+  z-index: 3;
+  transform: translate(calc(-50% + 42px), calc(-50% - 46px)) skewY(3.5deg);
+}
+
+.card-swap-container .card:nth-child(3) {
+  z-index: 2;
+  transform: translate(calc(-50% + 84px), calc(-50% - 92px)) skewY(3.5deg);
+}
+
+.card-swap-container .card:nth-child(4) {
+  z-index: 1;
+  transform: translate(calc(-50% + 126px), calc(-50% - 138px)) skewY(3.5deg);
+}
+
+.process-swap-stage {
+  position: relative;
+  min-height: clamp(29rem, 48vw, 34rem);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(23, 107, 77, 0.22);
+  background:
+    radial-gradient(circle at 10% 12%, rgba(159, 245, 143, 0.16), transparent 18rem),
+    linear-gradient(135deg, rgba(10, 34, 24, 0.98), rgba(3, 10, 7, 0.96));
+}
+
+.process-swap-stage::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(159, 245, 143, 0.08), transparent 20rem),
+    linear-gradient(90deg, rgba(6, 17, 12, 0.42), rgba(6, 17, 12, 0.02) 62%, transparent);
+}
+
+.process-swap-card {
+  display: block;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.process-swap-photo {
+  position: absolute;
+  inset: 0.8rem 0.8rem auto;
+  height: 58%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.55rem;
+  border: 1px solid rgba(223, 242, 230, 0.2);
+  background: rgba(5, 14, 10, 0.92);
+}
+
+.process-swap-photo::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.54)),
+    linear-gradient(90deg, rgba(6, 43, 31, 0.5), transparent 62%);
+}
+
+.process-swap-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92) contrast(1.08) brightness(0.78);
+}
+
+.process-swap-badge {
+  position: absolute;
+  left: 1.2rem;
+  top: calc(58% + 1.1rem);
+  display: inline-flex;
+  min-height: 2.2rem;
+  align-items: center;
+  border: 1px solid rgba(223, 242, 230, 0.18);
+  background: rgba(10, 10, 12, 0.7);
+  padding: 0 1rem;
+  color: rgba(223, 242, 230, 0.88);
+  font-size: clamp(0.88rem, 1.2vw, 1rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.process-swap-index {
+  position: absolute;
+  right: 1.1rem;
+  top: 1rem;
+  color: rgba(223, 242, 230, 0.1);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 0.85;
+}
+
+.process-swap-copy {
+  position: absolute;
+  left: clamp(1.25rem, 2vw, 1.75rem);
+  right: clamp(1.25rem, 2vw, 1.75rem);
+  bottom: clamp(0.9rem, 1.5vw, 1.15rem);
+  color: rgba(223, 242, 230, 0.74);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  font-weight: 650;
+  line-height: 1.6;
+}
+
+@media (max-width: 920px) {
+  .process-swap-stage {
+    min-height: 29rem;
+  }
+
+  .card-swap-container {
+    right: 1rem;
+    bottom: 1rem;
+    transform: scale(0.82);
+  }
+}
+
+@media (max-width: 640px) {
+  .process-swap-stage {
+    min-height: 25rem;
+  }
+
+  .card-swap-container {
+    right: 0.5rem;
+    bottom: 0.75rem;
+    transform: scale(0.66);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-swap-container {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    display: grid;
+    gap: 1rem;
+    width: 100% !important;
+    height: auto !important;
+    padding: 1rem;
+    transform: none;
+  }
+
+  .card-swap-container .card {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,141 @@
+---
+import "../../styles/global.css";
+import { ArrowLeft, ArrowRight, CircleCheck } from "@lucide/astro";
+import { portfolioDemos } from "../../features/portfolio/data/portfolioDemos";
+
+const packageFilters = ["All", "Starter Website", "Business Website", "Custom Build"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sample landing page concepts created by Mavora Labs for local businesses." />
+    <link rel="canonical" href="https://mavoralabs.com/portfolio/" />
+    <meta name="theme-color" content="#fbf7ef" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mavoralabs.com/portfolio/" />
+    <meta property="og:title" content="Portfolio Demos | Mavora Labs" />
+    <meta property="og:description" content="Sample landing page concepts created by Mavora Labs for local businesses." />
+    <meta property="og:image" content="https://mavoralabs.com/social-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mavora Labs Portfolio — Website demos for local businesses" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Portfolio Demos | Mavora Labs" />
+    <meta name="twitter:description" content="Sample landing page concepts created by Mavora Labs for local businesses." />
+    <meta name="twitter:image" content="https://mavoralabs.com/social-preview.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="icon" href="/logo-transparent.png" />
+    <title>Portfolio Demos | Mavora Labs</title>
+  </head>
+  <body class="bg-paper text-ink antialiased">
+    <header class="border-b border-line bg-white px-5 py-5 sm:px-6 lg:px-8">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4" aria-label="Portfolio navigation">
+        <a href="/" class="flex h-11 w-48 items-center rounded-full bg-white px-4 shadow-[0_8px_20px_rgba(17,24,39,0.06)]" aria-label="Mavora Labs home">
+          <img src="/logo-transparent.png" alt="Mavora Labs" class="h-auto w-full object-contain" width="980" height="313" />
+        </a>
+        <a href="/" class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold transition hover:border-ember hover:text-ember">
+          <ArrowLeft class="h-4 w-4" aria-hidden="true" />
+          Home
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="px-5 py-16 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-6xl">
+          <p class="topic-label text-ember">Portfolio concepts</p>
+          <h1 class="mt-4 max-w-3xl text-5xl font-semibold leading-tight tracking-normal text-ink sm:text-6xl">Package-mapped website demos for local business niches.</h1>
+          <p class="mt-5 max-w-2xl text-lg leading-8 text-ink/68">
+            These sample pages show how Mavora Labs can shape industry-specific design, copy, sections, and conversion paths before real client work is available.
+          </p>
+        </div>
+      </section>
+
+      <section class="px-5 pb-20 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-6xl">
+          <div class="portfolio-filter-bar" aria-label="Filter portfolio demos by package">
+            {packageFilters.map((filter) => (
+              <button class="portfolio-filter-button" type="button" data-filter={filter} aria-pressed={filter === "All" ? "true" : "false"}>
+                {filter}
+              </button>
+            ))}
+          </div>
+
+          <div class="portfolio-index-grid mt-8">
+          {portfolioDemos.map((demo) => (
+            <article class="portfolio-index-card overflow-hidden rounded-lg border border-line bg-white shadow-[0_10px_28px_rgba(17,24,39,0.06)]" data-package={demo.packageFit}>
+              <img src={demo.image} alt={`${demo.businessType} landing page concept`} class="h-56 w-full object-cover" width="900" height="600" loading="lazy" />
+              <div class="p-6">
+                <p class="topic-label topic-label--small text-ember">{demo.businessType}</p>
+                <h2 class="mt-3 text-2xl font-semibold text-ink">{demo.name}</h2>
+                <div class="portfolio-card__package portfolio-card__package--light mt-4" data-package={demo.packageFit}>
+                  <span>{demo.packageFit} - {demo.tier}</span>
+                  <strong>{demo.packagePrice}</strong>
+                </div>
+                <p class="mt-3 leading-7 text-ink/66">{demo.summary}</p>
+                <ul class="portfolio-index-value-list mt-5" aria-label={`${demo.name} package value proof`}>
+                  {demo.valueProof.slice(0, 3).map((proof) => (
+                    <li>
+                      <CircleCheck class="h-4 w-4 shrink-0 text-moss" aria-hidden="true" />
+                      <span>{proof}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a href={`/portfolio/${demo.slug}/`} class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-moss">
+                  <span aria-hidden="true">View package demo</span>
+                  <span class="sr-only">View {demo.name} package demo</span>
+                  <ArrowRight class="h-4 w-4" aria-hidden="true" />
+                </a>
+              </div>
+            </article>
+          ))}
+          </div>
+
+          <div class="portfolio-empty-state mt-8 hidden rounded-lg border border-line bg-white p-8 text-center" aria-live="polite">
+            <p class="topic-label topic-label--small text-ember">More examples coming soon</p>
+            <h2 class="mt-3 text-2xl font-semibold text-ink">No demos match this package yet.</h2>
+            <p class="mx-auto mt-3 max-w-xl leading-7 text-ink/66">Send a custom scope request and we can shape a package around your business flow.</p>
+            <a href="/#project-request" class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-moss">
+              Request a custom scope
+              <ArrowRight class="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>(".portfolio-filter-button"));
+      const portfolioCards = Array.from(document.querySelectorAll<HTMLElement>(".portfolio-index-card"));
+      const emptyState = document.querySelector<HTMLElement>(".portfolio-empty-state");
+
+      const applyPortfolioFilter = (filter: string) => {
+        let visibleCount = 0;
+
+        portfolioCards.forEach((card) => {
+          const isVisible = filter === "All" || card.dataset.package === filter;
+          card.hidden = !isVisible;
+          if (isVisible) visibleCount += 1;
+        });
+
+        filterButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
+        });
+
+        emptyState?.classList.toggle("hidden", visibleCount > 0);
+      };
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          applyPortfolioFilter(button.dataset.filter || "All");
+        });
+      });
+    </script>
+  </body>
+</html>

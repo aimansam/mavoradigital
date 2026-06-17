@@ -1,0 +1,40 @@
+{
+  "name": "mavora-labs-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.12.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "check": "astro check",
+    "preview": "astro preview --host 0.0.0.0",
+    "lint": "astro check",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui --ui-host 0.0.0.0 --ui-port 9323",
+    "test:e2e:headed": "playwright test --headed"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/tailwind": "^6.0.2",
+    "@lucide/astro": "latest",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "astro": "^5.0.0",
+    "framer-motion": "^12.40.0",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.13",
+    "lucide-react": "^0.511.0",
+    "ogl": "^1.0.11",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^3.4.17",
+    "three": "^0.177.0",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1"
+  }
+}

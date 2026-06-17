@@ -1,0 +1,242 @@
+---
+import { ChevronLeft, ChevronRight, Flame, MessageCircle, MessageSquareText, PackageCheck, Phone, Plus, ShoppingCart, User, Utensils } from "@lucide/astro";
+import type { BurgerBusiness, BurgerMenuItem } from "../data";
+import "../styles/menu.css";
+
+interface Props {
+  menu: BurgerMenuItem[];
+  business: BurgerBusiness;
+  lang?: "en" | "bm";
+}
+
+const { menu, business, lang = "en" } = Astro.props;
+const isBm = lang === "bm";
+const whatsappOrderBase = business.whatsappHref.split("?")[0];
+const getMenuPriceAmount = (item: BurgerMenuItem) => Number(item.price.replace(/[^0-9.]/g, ""));
+type BurgerMenuGroupId = BurgerMenuItem["group"] | "top-seller";
+
+const topSellerMenuNames = new Set(["Angus Morning Stack", "Salted Egg Crunch", "Beef Cheese Loaded Fries"]);
+const menuGroupDefinitions: Array<{ id: BurgerMenuGroupId; title: string; description: string }> = isBm
+  ? [
+      { id: "top-seller", title: "Terlaris", description: "Kegemaran pelanggan yang paling banyak dipesan: burger panas, ayam rangup, dan loaded fries." },
+      { id: "beef", title: "Burger daging", description: "Pati Angus, tindanan brisket, dan smash burger manis pedas." },
+      { id: "chicken", title: "Burger ayam", description: "Tindanan ayam rangup dengan telur masin, mayo cili, dan salsa segar." },
+      { id: "veggie", title: "Burger veggie", description: "Portobello, nanas panggang, sayuran, dan honey mustard." },
+      { id: "sides", title: "Sides", description: "Loaded fries dan gigitan rangup untuk dikongsi." },
+      { id: "shakes", title: "Shakes", description: "Pilihan thick shake untuk pasangan burger combo." },
+    ]
+  : [
+      { id: "top-seller", title: "Top Seller", description: "The crowd favorites customers reach for first: hot stacks, crispy crunch, and loaded fries." },
+      { id: "beef", title: "Beef burgers", description: "Angus patties, brisket stacks, and sweet-heat smash burgers." },
+      { id: "chicken", title: "Chicken burgers", description: "Crunchy chicken stacks with salted egg, chili mayo, and bright salsa." },
+      { id: "veggie", title: "Veggie burger", description: "Portobello, grilled pineapple, greens, and honey mustard." },
+      { id: "sides", title: "Sides", description: "Loaded fries and crispy bites made for sharing." },
+      { id: "shakes", title: "Shakes", description: "Thick shake pairings for burger combos." },
+    ];
+
+const menuGroups: Array<{ id: BurgerMenuGroupId; title: string; description: string; items: BurgerMenuItem[] }> = menuGroupDefinitions
+  .map((group) => ({ ...group, items: group.id === "top-seller" ? menu.filter((item) => topSellerMenuNames.has(item.name)) : menu.filter((item) => item.group === group.id) }))
+  .filter((group) => group.items.length > 0);
+
+const menuCategoryButtons = menuGroups.map((group) => ({ id: group.id, title: group.title.replace(" burgers", "").replace(" daging", "") }));
+const getMenuPhotoTag = (item: BurgerMenuItem) => {
+  if (item.group === "shakes") return isBm ? "Shake" : "Shake match";
+  if (item.group === "sides") return isBm ? "Side" : "Side hero";
+  if (item.group === "chicken") return isBm ? "Pilihan rangup" : "Crispy pick";
+  if (item.group === "veggie") return isBm ? "Pilihan segar" : "Fresh pick";
+  return isBm ? "Pilihan grill" : "Grill pick";
+};
+
+const t = {
+  menuHeading: isBm
+    ? { focus: "Pilih tindanan", rest: ", tambah side, hantar order." }
+    : { focus: "Choose a stack", rest: ", add a side, send the order." },
+  menuCopy: isBm
+    ? "Layari <strong>tindanan Angus</strong>, ayam rangup, gigitan portobello, loaded fries,<br>dan thick shakes sebelum WhatsApp order."
+    : "Browse <strong>Angus stacks</strong>, crispy chicken, portobello bites, loaded fries,<br>and thick shakes before you WhatsApp the order.",
+  menuTabAria: isBm ? "Pilih kategori menu" : "Choose menu category",
+  prevCategory: isBm ? "Kategori sebelumnya" : "Show previous menu category",
+  nextCategory: isBm ? "Kategori seterusnya" : "Show next menu category",
+  inCart: isBm ? "Dalam troli: " : "In cart: ",
+  addToCart: isBm ? "Tambah ke troli" : "Add to cart",
+  addToCartAria: (name: string) => isBm ? `Tambah ${name} ke troli` : `Add ${name} to cart`,
+  cartSummaryAria: isBm ? "Ringkasan troli burger" : "Burger cart summary",
+  orderDetails: isBm ? "Butiran order" : "Order details",
+  cartHeading: isBm ? "Tambah item, kemudian order via WhatsApp." : "Add items, then order on WhatsApp.",
+  cartEmpty: isBm ? "Pilih dari menu di atas. Ringkasan order anda akan muncul di sini." : "Choose from the menu above. Your order summary will appear here.",
+  howToServe: isBm ? "Pilih cara hidangan" : "Choose how to serve it",
+  dineOrTakeaway: isBm ? "Makan di sini atau bawa balik" : "Dine in or takeaway",
+  takeaway: isBm ? "Bawa balik" : "Takeaway",
+  dineIn: isBm ? "Makan di sini" : "Dine in",
+  nameLabel: isBm ? "Nama" : "Name",
+  namePlaceholder: isBm ? "Nama anda" : "Your name",
+  contactLabel: isBm ? "Nombor telefon" : "Contact number",
+  noteLabel: isBm ? "Mesej tambahan" : "Custom / add-on message",
+  notePlaceholder: isBm ? "Sos extra, tanpa bawang, nota hari jadi..." : "Extra sauce, no onion, birthday note...",
+  orderTotal: isBm ? "Jumlah Order" : "Order Total",
+  inclTax: isBm ? "termasuk cukai" : "incl. tax",
+  clearCart: isBm ? "Kosongkan troli" : "Clear cart",
+  orderWhatsApp: isBm ? "Order via WhatsApp" : "Order on WhatsApp",
+  cartEmptyToast: isBm ? "Troli kosong" : "Cart empty",
+  browseMenu: isBm ? "Lihat menu" : "Browse menu",
+  addedToCart: isBm ? "Ditambah ke troli" : "Added to cart",
+};
+---
+
+<section id="burger-menu" class="burger-menu-section px-5 py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="mx-auto flex max-w-3xl flex-col items-center gap-5 text-center">
+      <div>
+        <h2 class="text-4xl font-semibold tracking-normal text-white sm:text-5xl"><span class="burger-focus-word burger-focus-word--gold">{t.menuHeading.focus}</span>{t.menuHeading.rest}</h2>
+      </div>
+      <p class="burger-section-copy max-w-xl" set:html={t.menuCopy} />
+    </div>
+    <div class="burger-menu-browser mt-8">
+      <div class="burger-menu-tabs" data-burger-menu-tabs aria-label={t.menuTabAria}>
+        {menuCategoryButtons.map((category, index) => (
+          <button
+            type="button"
+            class={index === 0 ? "is-active" : ""}
+            data-burger-menu-tab={category.id}
+            aria-pressed={index === 0 ? "true" : "false"}
+          >
+            {category.title}
+          </button>
+        ))}
+      </div>
+      <div class="mt-8 space-y-8" id="burger-menu-groups">
+        {menuGroups.map((group, index) => (
+          <section class="burger-menu-group text-center" data-burger-menu-panel={group.id} data-burger-menu-index={index} id={`burger-menu-${group.id}`} aria-labelledby={`burger-menu-${group.id}-title`} hidden={index !== 0}>
+            <div class="burger-menu-group__header">
+              <div class="burger-menu-group__title-row">
+                <button type="button" class="burger-menu-group__arrow" data-burger-menu-step="previous" aria-label={t.prevCategory}>
+                  <ChevronLeft class="h-5 w-5" aria-hidden="true" />
+                </button>
+                <h3 id={`burger-menu-${group.id}-title`} class="burger-menu-group__title">{group.title}</h3>
+                <button type="button" class="burger-menu-group__arrow" data-burger-menu-step="next" aria-label={t.nextCategory}>
+                  <ChevronRight class="h-5 w-5" aria-hidden="true" />
+                </button>
+              </div>
+              <p class="burger-group-copy">{group.description}</p>
+            </div>
+            <div class="burger-menu-items mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3" data-menu-count={group.items.length}>
+              {group.items.map((item) => (
+                <article class="burger-menu-card rounded-lg border border-white/14 p-5 text-center">
+                  <figure class="burger-menu-photo">
+                    <img src={item.image} alt={item.alt} loading={index === 0 ? "eager" : "lazy"} decoding="async" width="900" height="680" style={`object-position: ${item.focus};`} onerror="this.closest('.burger-menu-photo')?.classList.add('burger-menu-photo--fallback'); this.remove();" />
+                    <span class="burger-menu-photo__tag"><Flame class="h-3.5 w-3.5" aria-hidden="true" /> {getMenuPhotoTag(item)}</span>
+                  </figure>
+                  <div class="burger-menu-card__badge-row">
+                    <span class={`burger-badge burger-badge--${item.tone}`}>{item.badge}</span>
+                  </div>
+                  <div class="burger-menu-card__title-row">
+                    <h4 class="text-2xl font-semibold text-white">{item.name}</h4>
+                    <span>{item.price}</span>
+                  </div>
+                  <p class="burger-card-copy burger-menu-card__description mt-3">{item.description}</p>
+                  <div class="burger-menu-card__actions mt-auto pt-5">
+                    <span class="burger-menu-card__state" data-burger-cart-card-count hidden>{t.inCart}0</span>
+                    <button
+                      type="button"
+                      class="burger-menu-card__cta"
+                      data-burger-cart-add
+                      data-name={item.name}
+                      data-price={item.price}
+                      data-price-amount={getMenuPriceAmount(item)}
+                      aria-label={t.addToCartAria(item.name)}
+                    >
+                      <span data-burger-cart-add-label>{t.addToCart}</span>
+                      <Plus class="h-4 w-4" aria-hidden="true" />
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+    <aside id="burger-cart" class="burger-cart-panel mt-10" data-burger-cart data-whatsapp-base={whatsappOrderBase} data-business-name={business.name} aria-label={t.cartSummaryAria}>
+      <div class="burger-cart-panel__header">
+        <div>
+          <span class="burger-cart-panel__eyebrow">{t.orderDetails}</span>
+          <h3 data-burger-cart-heading>{t.cartHeading}</h3>
+        </div>
+        <div class="burger-cart-panel__count" aria-live="polite"><ShoppingCart class="h-4 w-4" aria-hidden="true" /> <span data-burger-cart-count>0 {isBm ? "item" : "items"}</span></div>
+      </div>
+      <p class="burger-cart-panel__empty" data-burger-cart-empty>{t.cartEmpty}</p>
+      <ul class="burger-cart-list" data-burger-cart-items></ul>
+      <div class="burger-cart-options" aria-label={t.orderDetails}>
+        <div class="burger-cart-options__topline">
+          <strong>{t.howToServe}</strong>
+        </div>
+        <div class="burger-cart-mode" role="radiogroup" aria-label={t.dineOrTakeaway}>
+          <label>
+            <input type="radio" name="burger-order-mode" value="Takeaway" data-burger-cart-mode checked />
+            <span>
+              <PackageCheck class="h-4 w-4" aria-hidden="true" />
+              {t.takeaway}
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="burger-order-mode" value="Dine in" data-burger-cart-mode />
+            <span>
+              <Utensils class="h-4 w-4" aria-hidden="true" />
+              {t.dineIn}
+            </span>
+          </label>
+        </div>
+        <div class="burger-cart-contact-grid">
+          <label class="burger-cart-field" for="burger-cart-name">
+            <span>
+              <User class="h-4 w-4" aria-hidden="true" />
+              {t.nameLabel}
+            </span>
+            <input id="burger-cart-name" type="text" maxlength="80" autocomplete="name" data-burger-cart-name placeholder={t.namePlaceholder} />
+          </label>
+          <label class="burger-cart-field" for="burger-cart-contact">
+            <span>
+              <Phone class="h-4 w-4" aria-hidden="true" />
+              {t.contactLabel}
+            </span>
+            <input id="burger-cart-contact" type="tel" maxlength="24" inputmode="tel" autocomplete="tel" data-burger-cart-contact placeholder="012-345 6789" />
+          </label>
+        </div>
+        <label class="burger-cart-note" for="burger-cart-note">
+          <span>
+            <MessageSquareText class="h-4 w-4" aria-hidden="true" />
+            {t.noteLabel}
+          </span>
+          <textarea id="burger-cart-note" rows="2" maxlength="180" data-burger-cart-note placeholder={t.notePlaceholder}></textarea>
+        </label>
+      </div>
+      <div class="burger-cart-checkout" data-burger-cart-checkout hidden>
+        <div class="burger-cart-total">
+          <div class="burger-cart-total__label">
+            <span>{t.orderTotal}</span>
+            <small data-burger-cart-count-inline>0 {isBm ? "item" : "items"}</small>
+          </div>
+          <div class="burger-cart-total__price">
+            <strong data-burger-cart-total>RM0.00</strong>
+            <span class="burger-cart-total__vat">{t.inclTax}</span>
+          </div>
+        </div>
+        <div class="burger-cart-actions">
+          <button type="button" data-burger-cart-clear>{t.clearCart}</button>
+          <a href={business.whatsappHref} class="burger-whatsapp-cta" target="_blank" rel="noreferrer" data-burger-cart-submit>
+            {t.orderWhatsApp}
+            <MessageCircle class="h-4 w-4" aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </aside>
+    <a href="#burger-menu" class="burger-cart-toast is-empty" data-burger-cart-toast aria-live="polite" aria-label={isBm ? "Troli kosong. Lihat menu" : "Cart empty. Browse menu"}>
+      <span><ShoppingCart class="h-4 w-4" aria-hidden="true" /> <strong data-burger-cart-toast-count>{t.cartEmptyToast}</strong></span>
+      <span data-burger-cart-toast-total>{t.browseMenu}</span>
+    </a>
+    <div class="burger-add-toast" data-burger-add-toast hidden role="status" aria-live="polite">
+      <span>{t.addedToCart}</span>
+      <strong data-burger-add-toast-item>Menu item</strong>
+    </div>
+  </div>
+</section>

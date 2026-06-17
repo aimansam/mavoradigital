@@ -1,0 +1,414 @@
+---
+import type { BurgerBusiness } from "../data";
+
+interface Props {
+  business: BurgerBusiness;
+  lang?: "en" | "bm";
+}
+
+const { business, lang = "en" } = Astro.props;
+const isBm = lang === "bm";
+const cartErrName = isBm ? "Sila masukkan nama anda" : "Please enter your name";
+const cartErrPhone = isBm ? "Sila masukkan nombor telefon" : "Please enter your contact number";
+const locale = {
+  openNow:        isBm ? "Buka sekarang"         : "Open now",
+  closedNow:      isBm ? "Ditutup sekarang"      : "Closed now",
+  openNowAria:    isBm ? "Mavora Burgers buka sekarang"    : "Mavora Burgers is open now",
+  closedNowAria:  isBm ? "Mavora Burgers ditutup sekarang" : "Mavora Burgers is closed now",
+  inCart:         isBm ? "Dalam troli: "         : "In cart: ",
+  addToCart:      isBm ? "Tambah ke troli"       : "Add to cart",
+  added:          isBm ? "Ditambah"              : "Added",
+  addAria:        isBm ? "Tambah %s ke troli"    : "Add %s to cart",
+  addMoreAria:    isBm ? "Tambah satu lagi %s ke troli. Dalam troli: " : "Add one more %s to cart. In cart: ",
+  removeAria:     isBm ? "Buang satu %s"         : "Remove one %s",
+  increaseAria:   isBm ? "Tambah satu lagi %s"   : "Add one more %s",
+  reviewOrder:    isBm ? "Semak order anda."      : "Review your order.",
+  addItemsFirst:  isBm ? "Tambah item, kemudian order via WhatsApp." : "Add items, then order on WhatsApp.",
+  item:           isBm ? "item"                  : "item",
+  items:          isBm ? "item"                  : "items",
+  cartEmpty:      isBm ? "Troli kosong"          : "Cart empty",
+  reviewOrder2:   isBm ? "Semak order"           : "Review order",
+  browseMenu:     isBm ? "Lihat menu"            : "Browse menu",
+  orderOnWa:      isBm ? "Order via WhatsApp"    : "Order on WhatsApp",
+  exploreMenu:    isBm ? "Lihat Menu"            : "Explore Our Menu",
+  readyFor:       isBm ? "sedia untuk"            : "ready for",
+  totalConfirmed: isBm ? ". Jumlah disahkan di WhatsApp." : ". Total confirmed on WhatsApp.",
+  cartEmptyFinal: isBm ? "Troli kosong. Tambah kegemaran anda dari menu dahulu." : "Cart empty. Add your favorites from the menu first.",
+  viewCartAria:   isBm ? "Lihat troli, "         : "View cart, ",
+  cartEmptyAria:  isBm ? "Troli kosong. Lihat menu" : "Cart empty. Browse menu",
+  waHi:           isBm ? "Hi %s, saya nak order:"  : "Hi %s, I want to order:",
+  waOrderType:    isBm ? "Jenis order"           : "Order type",
+  waName:         isBm ? "Nama"                  : "Name",
+  waContact:      isBm ? "Telefon"               : "Contact",
+  waNote:         isBm ? "Nota / tambahan"       : "Note / add-ons",
+  waConfirm:      isBm ? "Sila sahkan jumlah."   : "Please confirm the total.",
+  takeaway:       isBm ? "bawa balik"            : "takeaway",
+  dineIn:         isBm ? "makan di sini"         : "dine in",
+};
+---
+
+<script define:vars={{ burgerHoursByDay: business.hoursByDay, burgerTimeZone: business.timeZone, cartErrName, cartErrPhone, locale }}>
+  const burgerStatus = document.querySelector("[data-burger-status]");
+  const burgerStatusLabel = burgerStatus?.querySelector("[data-burger-status-label]");
+  const burgerMenuTabs = Array.from(document.querySelectorAll("[data-burger-menu-tabs]"));
+  const burgerCart = document.querySelector("[data-burger-cart]");
+  const getBurgerBusinessTime = () => {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: burgerTimeZone,
+      weekday: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).formatToParts(new Date());
+    const valueByType = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+    const dayIndexByShortName = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+
+    return {
+      day: dayIndexByShortName[valueByType.weekday] ?? new Date().getDay(),
+      minutes: Number(valueByType.hour) * 60 + Number(valueByType.minute),
+    };
+  };
+
+  const updateBurgerStatus = () => {
+    if (!burgerStatus) return;
+    const { day, minutes } = getBurgerBusinessTime();
+    const todayHours = burgerHoursByDay[day];
+    const isOpen = minutes >= todayHours.open && minutes < todayHours.close;
+
+    if (burgerStatusLabel) burgerStatusLabel.textContent = isOpen ? locale.openNow : locale.closedNow;
+    burgerStatus.dataset.status = isOpen ? "open" : "closed";
+    burgerStatus.setAttribute("aria-label", isOpen ? locale.openNowAria : locale.closedNowAria);
+  };
+
+  updateBurgerStatus();
+  window.setInterval(updateBurgerStatus, 60 * 1000);
+
+  burgerMenuTabs.forEach((tabGroup) => {
+    const tabs = Array.from(tabGroup.querySelectorAll("[data-burger-menu-tab]"));
+    const panels = Array.from(document.querySelectorAll("[data-burger-menu-panel]"));
+    const stepButtons = Array.from(document.querySelectorAll("[data-burger-menu-step]"));
+    if (tabs.length === 0 || panels.length === 0) return;
+
+    const setActiveCategory = (category) => {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.burgerMenuTab === category;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      panels.forEach((panel) => {
+        const shouldShow = panel.dataset.burgerMenuPanel === category;
+        panel.hidden = !shouldShow;
+      });
+    };
+
+    const getActivePanelIndex = () => {
+      const activeIndex = panels.findIndex((panel) => !panel.hidden);
+      return activeIndex >= 0 ? activeIndex : 0;
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => setActiveCategory(tab.dataset.burgerMenuTab ?? tabs[0]?.dataset.burgerMenuTab ?? ""));
+    });
+
+    stepButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const direction = button.dataset.burgerMenuStep === "previous" ? -1 : 1;
+        const nextIndex = (getActivePanelIndex() + direction + panels.length) % panels.length;
+        const nextCategory = panels[nextIndex]?.dataset.burgerMenuPanel;
+        if (nextCategory) setActiveCategory(nextCategory);
+      });
+    });
+
+    setActiveCategory(tabs[0]?.dataset.burgerMenuTab ?? panels[0]?.dataset.burgerMenuPanel ?? "");
+  });
+
+  if (burgerCart) {
+    const addButtons = Array.from(document.querySelectorAll("[data-burger-cart-add]"));
+    const itemList = burgerCart.querySelector("[data-burger-cart-items]");
+    const emptyState = burgerCart.querySelector("[data-burger-cart-empty]");
+    const checkout = burgerCart.querySelector("[data-burger-cart-checkout]");
+    const cartHeading = burgerCart.querySelector("[data-burger-cart-heading]");
+    const countLabel = burgerCart.querySelector("[data-burger-cart-count]");
+    const totalLabel = burgerCart.querySelector("[data-burger-cart-total]");
+    const clearButton = burgerCart.querySelector("[data-burger-cart-clear]");
+    const submitLink = burgerCart.querySelector("[data-burger-cart-submit]");
+    const modeInputs = Array.from(burgerCart.querySelectorAll("[data-burger-cart-mode]"));
+    const customerNameInput = burgerCart.querySelector("[data-burger-cart-name]");
+    const customerContactInput = burgerCart.querySelector("[data-burger-cart-contact]");
+    const noteInput = burgerCart.querySelector("[data-burger-cart-note]");
+    const finalSubmitLink = document.querySelector("[data-burger-final-cart-submit]");
+    const finalSubmitLabel = document.querySelector("[data-burger-final-cart-label]");
+    const finalStatus = document.querySelector("[data-burger-final-cart-status]");
+    const mobileCartLink = document.querySelector("[data-burger-mobile-cart-link]");
+    const mobileCartLabel = document.querySelector("[data-burger-mobile-cart-label]");
+    const cartToast = document.querySelector("[data-burger-cart-toast]");
+    const cartToastCount = document.querySelector("[data-burger-cart-toast-count]");
+    const cartToastTotal = document.querySelector("[data-burger-cart-toast-total]");
+    const addToast = document.querySelector("[data-burger-add-toast]");
+    const addToastItem = document.querySelector("[data-burger-add-toast-item]");
+    const heroSection = document.querySelector("#top");
+    const menuSection = document.querySelector("#burger-menu");
+    const cartItems = new Map();
+    let addToastTimer;
+    const currencyFormatter = new Intl.NumberFormat("en-MY", { style: "currency", currency: "MYR" });
+
+    const formatCartPrice = (amount) => currencyFormatter.format(amount).replace("MYR", "RM");
+
+    const syncMenuCardCounts = () => {
+      addButtons.forEach((button) => {
+        const name = button.dataset.name ?? "";
+        const item = cartItems.get(name);
+        const card = button.closest(".burger-menu-card");
+        const state = card?.querySelector("[data-burger-cart-card-count]");
+        if (!state) return;
+        if (!item) {
+          state.hidden = true;
+          state.textContent = locale.inCart + '0';
+          button.setAttribute("aria-label", locale.addAria.replace('%s', name));
+          return;
+        }
+        state.hidden = false;
+        state.textContent = locale.inCart + item.quantity;
+        button.setAttribute("aria-label", locale.addMoreAria.replace('%s', name) + item.quantity);
+      });
+    };
+
+    const getCartTotals = () => {
+      const items = Array.from(cartItems.values());
+      return {
+        itemCount: items.reduce((total, item) => total + item.quantity, 0),
+        totalAmount: items.reduce((total, item) => total + item.amount * item.quantity, 0),
+      };
+    };
+
+    const buildWhatsAppCartHref = () => {
+      const businessName = burgerCart.dataset.businessName ?? "Mavora Burgers";
+      const whatsappBase = burgerCart.dataset.whatsappBase ?? "";
+      const items = Array.from(cartItems.values());
+      const orderLines = items.map((item) => `- ${item.quantity}x ${item.name}`).join("\n");
+      const selectedMode = modeInputs.find((input) => input.checked)?.value ?? "Takeaway";
+      const selectedModeLabel = selectedMode.toLowerCase() === "takeaway" ? locale.takeaway : locale.dineIn;
+      const customerName = customerNameInput?.value.trim();
+      const customerContact = customerContactInput?.value.trim();
+      const customerLines = [customerName ? `${locale.waName}: ${customerName}` : "", customerContact ? `${locale.waContact}: ${customerContact}` : ""].filter(Boolean).join("\n");
+      const customerBlock = customerLines ? `\n${customerLines}` : "";
+      const orderNote = noteInput?.value.trim();
+      const noteLine = orderNote ? `\n${locale.waNote}: ${orderNote}` : "";
+      const message = `${locale.waHi.replace('%s', businessName)}\n${orderLines}\n\n${locale.waOrderType}: ${selectedModeLabel}${customerBlock}${noteLine}\n${locale.waConfirm}`;
+      return `${whatsappBase}?text=${encodeURIComponent(message)}`;
+    };
+
+    const showAddToast = (name) => {
+      if (!addToast) return;
+      if (addToastItem) addToastItem.textContent = name;
+      addToast.hidden = false;
+      addToast.classList.add("is-visible");
+      if (addToastTimer) window.clearTimeout(addToastTimer);
+      addToastTimer = window.setTimeout(() => {
+        addToast.classList.remove("is-visible");
+        window.setTimeout(() => {
+          addToast.hidden = true;
+        }, 180);
+      }, 1800);
+    };
+
+    const renderCart = () => {
+      if (!itemList || !emptyState || !checkout || !countLabel || !totalLabel || !submitLink) return;
+      const items = Array.from(cartItems.values());
+      const { itemCount, totalAmount } = getCartTotals();
+
+      itemList.replaceChildren();
+      items.forEach((item) => {
+        const cartItem = document.createElement("li");
+        cartItem.className = "burger-cart-item";
+
+        const itemCopy = document.createElement("div");
+        const itemName = document.createElement("strong");
+        itemName.textContent = item.name;
+        const itemPrice = document.createElement("span");
+        itemPrice.textContent = `${item.quantity} x ${item.price} = ${formatCartPrice(item.amount * item.quantity)}`;
+        itemCopy.append(itemName, itemPrice);
+
+        const controls = document.createElement("div");
+        controls.className = "burger-cart-item__controls";
+        const decreaseButton = document.createElement("button");
+        decreaseButton.type = "button";
+        decreaseButton.textContent = "-";
+        decreaseButton.setAttribute("aria-label", locale.removeAria.replace('%s', item.name));
+        decreaseButton.addEventListener("click", () => {
+          if (item.quantity <= 1) cartItems.delete(item.name);
+          else cartItems.set(item.name, { ...item, quantity: item.quantity - 1 });
+          renderCart();
+        });
+        const quantity = document.createElement("span");
+        quantity.textContent = String(item.quantity);
+        const increaseButton = document.createElement("button");
+        increaseButton.type = "button";
+        increaseButton.textContent = "+";
+        increaseButton.setAttribute("aria-label", locale.increaseAria.replace('%s', item.name));
+        increaseButton.addEventListener("click", () => {
+          cartItems.set(item.name, { ...item, quantity: item.quantity + 1 });
+          renderCart();
+        });
+        controls.append(decreaseButton, quantity, increaseButton);
+
+        cartItem.append(itemCopy, controls);
+        itemList.append(cartItem);
+      });
+
+      emptyState.hidden = itemCount > 0;
+      checkout.hidden = itemCount === 0;
+      if (cartHeading) cartHeading.textContent = itemCount > 0 ? locale.reviewOrder : locale.addItemsFirst;
+      const itemWord = itemCount === 1 ? locale.item : locale.items;
+      countLabel.textContent = `${itemCount} ${itemWord}`;
+      const countInline = burgerCart.querySelector("[data-burger-cart-count-inline]");
+      if (countInline) countInline.textContent = `${itemCount} ${itemWord}`;
+      totalLabel.textContent = formatCartPrice(totalAmount);
+      const whatsappCartHref = itemCount > 0 ? buildWhatsAppCartHref() : "#burger-menu";
+      submitLink.setAttribute("href", whatsappCartHref);
+      if (finalSubmitLink) {
+        finalSubmitLink.setAttribute("href", "#burger-menu");
+        finalSubmitLink.classList.remove("is-whatsapp-ready");
+        finalSubmitLink.removeAttribute("target");
+        finalSubmitLink.removeAttribute("rel");
+      }
+      if (finalSubmitLabel) finalSubmitLabel.textContent = locale.exploreMenu;
+      const selectedMode = modeInputs.find((input) => input.checked)?.value.toLowerCase() ?? "takeaway";
+      const modeLabel = selectedMode === "takeaway" ? locale.takeaway : locale.dineIn;
+      const itemWord2 = itemCount === 1 ? locale.item : locale.items;
+      if (finalStatus) finalStatus.textContent = itemCount > 0 ? `${itemCount} ${itemWord2} ${locale.readyFor} ${modeLabel}${locale.totalConfirmed}` : locale.cartEmptyFinal;
+      if (mobileCartLink) {
+        mobileCartLink.setAttribute("href", itemCount > 0 ? whatsappCartHref : "#burger-menu");
+        mobileCartLink.classList.toggle("is-whatsapp-ready", itemCount > 0);
+        if (itemCount > 0) {
+          mobileCartLink.setAttribute("target", "_blank");
+          mobileCartLink.setAttribute("rel", "noreferrer");
+        } else {
+          mobileCartLink.removeAttribute("target");
+          mobileCartLink.removeAttribute("rel");
+        }
+      }
+      if (mobileCartLabel) mobileCartLabel.textContent = itemCount > 0 ? locale.orderOnWa : locale.browseMenu;
+      if (cartToast) {
+        cartToast.hidden = false;
+        cartToast.classList.toggle("is-empty", itemCount === 0);
+        cartToast.setAttribute("href", itemCount > 0 ? "#burger-cart" : "#burger-menu");
+        cartToast.setAttribute("aria-label", itemCount > 0 ? `${locale.viewCartAria}${itemCount} ${itemCount === 1 ? locale.item : locale.items}${locale.totalConfirmed}` : locale.cartEmptyAria);
+      }
+      const toastItemWord = itemCount === 1 ? locale.item : locale.items;
+      if (cartToastCount) cartToastCount.textContent = itemCount > 0 ? `${itemCount} ${toastItemWord}` : locale.cartEmpty;
+      if (cartToastTotal) cartToastTotal.textContent = itemCount > 0 ? locale.reviewOrder2 : locale.browseMenu;
+      syncMenuCardCounts();
+    };
+
+    addButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const buttonLabel = button.querySelector("[data-burger-cart-add-label]");
+        const name = button.dataset.name ?? "Menu item";
+        const price = button.dataset.price ?? "RM0.00";
+        const amount = Number(button.dataset.priceAmount ?? "0");
+        const existingItem = cartItems.get(name);
+        cartItems.set(name, {
+          name,
+          price,
+          amount,
+          quantity: existingItem ? existingItem.quantity + 1 : 1,
+        });
+        button.classList.add("is-added");
+        if (buttonLabel) buttonLabel.textContent = locale.added;
+        window.setTimeout(() => {
+          button.classList.remove("is-added");
+          if (buttonLabel) buttonLabel.textContent = locale.addToCart;
+        }, 900);
+        showAddToast(name);
+        renderCart();
+      });
+    });
+
+    clearButton?.addEventListener("click", () => {
+      cartItems.clear();
+      renderCart();
+    });
+
+    const showFieldError = (input, msg) => {
+      input.classList.add('is-error');
+      input.setAttribute('aria-invalid', 'true');
+      let err = input.parentElement.querySelector('.burger-field-error');
+      if (!err) {
+        err = document.createElement('span');
+        err.className = 'burger-field-error';
+        err.setAttribute('role', 'alert');
+        input.parentElement.appendChild(err);
+      }
+      err.textContent = msg;
+    };
+
+    const clearFieldError = (input) => {
+      input.classList.remove('is-error');
+      input.removeAttribute('aria-invalid');
+      const err = input.parentElement.querySelector('.burger-field-error');
+      if (err) err.remove();
+    };
+
+    [customerNameInput, customerContactInput].forEach(input => {
+      input?.addEventListener('input', () => clearFieldError(input));
+    });
+
+    submitLink?.addEventListener('click', (e) => {
+      let firstInvalid = null;
+      if (!customerNameInput?.value.trim()) {
+        e.preventDefault();
+        showFieldError(customerNameInput, cartErrName);
+        firstInvalid = firstInvalid || customerNameInput;
+      }
+      if (!customerContactInput?.value.trim()) {
+        e.preventDefault();
+        showFieldError(customerContactInput, cartErrPhone);
+        firstInvalid = firstInvalid || customerContactInput;
+      }
+      if (firstInvalid) {
+        firstInvalid.focus();
+        firstInvalid.closest('.burger-cart-options, .burger-cart-checkout')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+
+    modeInputs.forEach((input) => input.addEventListener("change", renderCart));
+    customerNameInput?.addEventListener("input", renderCart);
+    customerContactInput?.addEventListener("input", renderCart);
+    noteInput?.addEventListener("input", renderCart);
+
+    if (mobileCartLink && menuSection && "IntersectionObserver" in window) {
+      const coveredTargets = new Set();
+      let heroInView = true;
+      const updateMobileCtaVisibility = () => {
+        mobileCartLink.classList.toggle("is-hidden", heroInView || coveredTargets.size > 0);
+      };
+      const mobileCtaObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) coveredTargets.add(entry.target);
+            else coveredTargets.delete(entry.target);
+          });
+          updateMobileCtaVisibility();
+        },
+        { threshold: 0.08 },
+      );
+      const heroObserver = new IntersectionObserver(
+        (entries) => {
+          const heroEntry = entries[0];
+          heroInView = Boolean(heroEntry?.isIntersecting);
+          updateMobileCtaVisibility();
+        },
+        { threshold: 0.12 },
+      );
+
+      updateMobileCtaVisibility();
+      if (heroSection) heroObserver.observe(heroSection);
+      mobileCtaObserver.observe(menuSection);
+      mobileCtaObserver.observe(burgerCart);
+    }
+
+    renderCart();
+  }
+</script>

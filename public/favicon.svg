@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mavora Labs mark">
+  <rect width="64" height="64" rx="14" fill="#111827" />
+  <path d="M14 46V18h9l9 14 9-14h9v28h-8V30L34 43h-4l-8-13v16h-8Z" fill="#fbfaf7" />
+  <path d="M48 46H36l4-7h8v7Z" fill="#c2573d" />
+</svg>

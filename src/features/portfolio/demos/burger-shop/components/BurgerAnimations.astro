@@ -1,0 +1,248 @@
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  const initBurgerLoader = () => {
+    const loader = document.querySelector("[data-burger-loader]");
+    if (!(loader instanceof HTMLElement) || loader.dataset.burgerLoaderReady === "true") return;
+    loader.dataset.burgerLoaderReady = "true";
+
+    const hideLoader = () => {
+      window.setTimeout(() => {
+        loader.classList.add("is-leaving");
+        window.setTimeout(() => {
+          loader.hidden = true;
+        }, 520);
+      }, 560);
+    };
+
+    if (document.readyState === "complete") hideLoader();
+    else window.addEventListener("load", hideLoader, { once: true });
+  };
+
+  const initBurgerAnimations = () => {
+    const page = document.querySelector("[data-burger-demo-page]");
+    if (!(page instanceof HTMLElement) || page.dataset.burgerAnimationReady === "true") return;
+    page.dataset.burgerAnimationReady = "true";
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const interactions = new AbortController();
+    const context = gsap.context(() => {
+      const getTargets = (selector: string) => Array.from(page.querySelectorAll<HTMLElement>(selector));
+      const hero = page.querySelector(".burger-hero");
+      const heroImage = page.querySelector(".burger-hero__image");
+      const heroTitle = page.querySelector("[data-burger-hero-title]");
+      const heroCopy = page.querySelector("[data-burger-hero-copy]");
+      const heroFocusWords = getTargets(".burger-hero .burger-focus-word");
+      const heroFacts = getTargets("[data-burger-hero-fact]");
+      const heroActions = getTargets("[data-burger-hero-action]");
+      const offerCard = page.querySelector(".burger-offer-card");
+      const offerDetails = getTargets(".burger-offer-card h2, .burger-offer-card p, .burger-offer-combo__item, .burger-ticket-list span, .burger-ticket-action");
+      const offerComboMedia = getTargets(".burger-offer-combo__item img");
+      const supportsFinePointer = window.matchMedia("(pointer: fine)").matches;
+
+      if (hero) {
+        if (heroImage) gsap.set(heroImage, { animation: "none" });
+
+        gsap.timeline({ defaults: { ease: "expo.out" } })
+          .fromTo(
+            heroImage,
+            { autoAlpha: 0.28, scale: 1.5, xPercent: -8, rotate: -1.4, filter: "brightness(0.42) saturate(1.7) blur(9px)" },
+            { autoAlpha: 1, scale: 1.04, xPercent: 0, rotate: 0, filter: "brightness(1) saturate(1.12) blur(0px)", duration: 0.82 },
+            0,
+          )
+          .fromTo(
+            heroTitle,
+            { autoAlpha: 0, x: -36, y: 78, rotateZ: -1.8, scale: 0.9 },
+            { autoAlpha: 1, x: 0, y: 0, rotateZ: 0, scale: 1, duration: 0.62, ease: "back.out(1.65)" },
+            0.04,
+          )
+          .fromTo(
+            heroFocusWords,
+            { scale: 0.76, y: 18, rotateZ: -3 },
+            { scale: 1, y: 0, rotateZ: 0, duration: 0.34, ease: "back.out(2.25)", stagger: 0.045 },
+            0.34,
+          )
+          .fromTo(heroCopy, { autoAlpha: 0, x: -18, y: 30, scale: 0.96 }, { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: 0.42 }, 0.28)
+          .fromTo(heroFacts, { autoAlpha: 0, x: -24, y: 20, rotateZ: -2.5, scale: 0.88 }, { autoAlpha: 1, x: 0, y: 0, rotateZ: 0, scale: 1, duration: 0.34, ease: "back.out(1.95)", stagger: 0.045 }, 0.44)
+          .fromTo(heroActions, { autoAlpha: 0, y: 28, rotateZ: -1.8, scale: 0.84 }, { autoAlpha: 1, y: 0, rotateZ: 0, scale: 1, duration: 0.34, ease: "back.out(2.2)", stagger: 0.065 }, 0.56)
+          .fromTo(
+            offerCard,
+            { autoAlpha: 0, x: 108, y: 54, rotateZ: 5, scale: 0.82 },
+            { autoAlpha: 1, x: 0, y: 0, rotateZ: 0, scale: 1, duration: 0.58, ease: "back.out(1.9)" },
+            0.18,
+          )
+          .fromTo(offerDetails, { autoAlpha: 0, y: 24, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(1.75)", stagger: 0.035 }, 0.62)
+          .fromTo(offerComboMedia, { scale: 1.26, filter: "brightness(0.72) saturate(1.55)" }, { scale: 1, filter: "brightness(1) saturate(1.1)", duration: 0.42, ease: "power3.out", stagger: 0.04 }, 0.72);
+
+        const pulseTargets = getTargets(".burger-primary-cta, .burger-ticket-action");
+        gsap.to(pulseTargets, {
+          filter: "brightness(1.2) drop-shadow(0 0 28px rgba(255, 176, 0, 0.48))",
+          scale: 1.035,
+          duration: 0.32,
+          repeat: 5,
+          yoyo: true,
+          delay: 0.9,
+          ease: "power2.inOut",
+          stagger: 0.12,
+          onComplete: () => gsap.set(pulseTargets, { clearProps: "filter,scale" }),
+        });
+
+        if (heroImage) {
+          gsap.to(heroImage, {
+            y: 72,
+            scale: 1.14,
+            rotate: 0.85,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+      }
+
+      page.querySelectorAll<HTMLElement>("#burger-why, #burger-menu, #burger-location, #burger-reviews, #burger-order").forEach((section, index) => {
+        const introTargets = section.querySelectorAll("h2, .burger-section-copy, .burger-rating-summary");
+        if (introTargets.length === 0) return;
+
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top 78%",
+          once: true,
+          onEnter: () => {
+            gsap.fromTo(
+              introTargets,
+              { autoAlpha: 0, x: index % 2 === 0 ? -46 : 46, y: 46, rotateZ: index % 2 === 0 ? -1.8 : 1.8, scale: 0.92 },
+              { autoAlpha: 1, x: 0, y: 0, rotateZ: 0, scale: 1, duration: 0.46, ease: "back.out(1.75)", stagger: 0.055 },
+            );
+          },
+        });
+      });
+
+      ScrollTrigger.batch(getTargets(".burger-order-step-card, .burger-map-card, .burger-contact-card, .burger-final-cta > div"), {
+        start: "top 86%",
+        once: true,
+        onEnter: (items) => {
+          gsap.fromTo(
+            items,
+            { autoAlpha: 0, y: 62, x: (itemIndex) => (itemIndex % 2 === 0 ? -34 : 34), rotateZ: (itemIndex) => (itemIndex % 2 === 0 ? -2.2 : 2.2), scale: 0.88 },
+            { autoAlpha: 1, y: 0, x: 0, rotateZ: 0, scale: 1, duration: 0.48, ease: "back.out(1.85)", stagger: 0.052, overwrite: true },
+          );
+        },
+      });
+
+      ScrollTrigger.batch(getTargets(".burger-review-card"), {
+        start: "top 82%",
+        once: true,
+        onEnter: (cards) => {
+          gsap.fromTo(
+            cards,
+            {
+              autoAlpha: 0,
+              y: 72,
+              rotateZ: (cardIndex) => (cardIndex % 2 === 0 ? -5.5 : 5.5),
+              scale: 0.54,
+              transformOrigin: "50% 50%",
+            },
+            {
+              autoAlpha: 1,
+              y: 0,
+              rotateZ: 0,
+              scale: 1,
+              duration: 0.54,
+              ease: "back.out(2.75)",
+              stagger: 0.075,
+              overwrite: true,
+            },
+          );
+        },
+      });
+
+      const cartPanel = page.querySelector(".burger-cart-panel");
+      if (cartPanel) {
+        ScrollTrigger.create({
+          trigger: cartPanel,
+          start: "top 86%",
+          once: true,
+          onEnter: () => {
+            gsap.fromTo(cartPanel, { autoAlpha: 0, y: 52, rotateZ: -1.4, scale: 0.9 }, { autoAlpha: 1, y: 0, rotateZ: 0, scale: 1, duration: 0.48, ease: "back.out(1.95)" });
+          },
+        });
+      }
+
+      if (supportsFinePointer) getTargets(".burger-order-step-card, .burger-contact-card").forEach((card) => {
+        gsap.set(card, { transformPerspective: 900, transformStyle: "preserve-3d" });
+        const quickY = gsap.quickTo(card, "y", { duration: 0.22, ease: "power2.out" });
+        const quickScale = gsap.quickTo(card, "scale", { duration: 0.22, ease: "power2.out" });
+        const quickRotateX = gsap.quickTo(card, "rotateX", { duration: 0.22, ease: "power2.out" });
+        const quickRotateY = gsap.quickTo(card, "rotateY", { duration: 0.22, ease: "power2.out" });
+
+        card.addEventListener(
+          "pointermove",
+          (event) => {
+            const eventTarget = event.target as Element | null;
+            if (eventTarget?.closest("a, button, input, select, textarea")) return;
+            const pointerEvent = event as PointerEvent;
+            const bounds = card.getBoundingClientRect();
+            const xRatio = (pointerEvent.clientX - bounds.left) / bounds.width;
+            const yRatio = (pointerEvent.clientY - bounds.top) / bounds.height;
+            quickY(-10);
+            quickScale(1.024);
+            quickRotateX((0.5 - yRatio) * 8);
+            quickRotateY((xRatio - 0.5) * 9);
+          },
+          { signal: interactions.signal },
+        );
+
+        card.addEventListener(
+          "pointerleave",
+          () => {
+            quickY(0);
+            quickScale(1);
+            quickRotateX(0);
+            quickRotateY(0);
+          },
+          { signal: interactions.signal },
+        );
+      });
+
+      getTargets("[data-burger-cart-add], .burger-menu-tabs button, .burger-final-button").forEach((control) => {
+        control.addEventListener(
+          "click",
+          () => {
+            gsap.fromTo(control, { scale: 0.86, rotateZ: -1.2 }, { scale: 1, rotateZ: 0, duration: 0.24, ease: "back.out(2.4)", overwrite: true });
+            const card = control.closest(".burger-menu-card");
+            if (card) gsap.fromTo(card, { boxShadow: "0 0 0 rgba(255, 176, 0, 0)", scale: 0.985 }, { boxShadow: "0 0 46px rgba(255, 176, 0, 0.48)", scale: 1, duration: 0.16, yoyo: true, repeat: 1, overwrite: true });
+          },
+          { signal: interactions.signal },
+        );
+      });
+    }, page);
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        interactions.abort();
+        context.revert();
+      },
+      { once: true },
+    );
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      initBurgerLoader();
+      initBurgerAnimations();
+    }, { once: true });
+  } else {
+    initBurgerLoader();
+    initBurgerAnimations();
+  }
+</script>

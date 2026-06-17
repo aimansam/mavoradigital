@@ -1,0 +1,29 @@
+---
+import "../../../styles/global.css";
+import { portfolioDemos } from "../../../features/portfolio/data/portfolioDemos";
+import BurgerDemo from "../../../features/portfolio/demos/burger-shop/BurgerDemo.astro";
+
+const demo = portfolioDemos.find((d: { slug: string }) => d.slug === "burger-shop")!;
+---
+
+<!doctype html>
+<html lang="ms-MY">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Demo tapak burger jalanan Mavora – pilih combo, hantar via WhatsApp, ambil dalam 25 minit." />
+    <link rel="canonical" href="https://mavoralabs.com/portfolio/burger-shop/bm/" />
+    <meta name="robots" content="noindex" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mavoralabs.com/portfolio/burger-shop/bm/" />
+    <meta property="og:title" content="Mavora Burgers Demo (BM) | Mavora Labs" />
+    <meta property="og:description" content="Demo tapak burger jalanan Mavora – pilih combo, hantar via WhatsApp, ambil dalam 25 minit." />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=switzer@300&f[]=gambarino@400&display=swap" rel="stylesheet" />
+    <link rel="icon" href="/logo-transparent.png" />
+    <title>Mavora Burgers Demo (BM) | Mavora Labs</title>
+  </head>
+  <body class="bg-white text-ink antialiased" style={`--demo-primary: ${demo.primary}; --demo-secondary: ${demo.secondary}; --demo-dark: ${demo.dark}; --demo-light: ${demo.light};`}>
+    <BurgerDemo demo={demo} lang="bm" />
+  </body>
+</html>

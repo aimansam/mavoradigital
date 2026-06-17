@@ -1,0 +1,22 @@
+<svg width="128" height="144" viewBox="0 0 128 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64 4C82 24 80 40 93 55C106 70 116 85 116 105C116 128 97 143 73 143C77 132 72 121 62 112C60 126 50 138 36 142C22 135 12 121 12 103C12 85 25 72 36 58C47 45 48 26 64 4Z" fill="url(#outerFlame)"/>
+  <path d="M64 21C74 36 72 47 82 59C91 70 99 82 99 99C99 115 88 127 72 132C74 122 70 114 62 107C60 118 53 128 43 132C33 126 28 115 28 101C28 88 38 78 46 67C54 56 54 40 64 21Z" fill="url(#middleGlow)" opacity="0.92"/>
+  <path d="M64 48C70 58 70 66 76 75C82 83 87 91 87 102C87 114 78 123 66 126C68 118 65 111 59 106C57 115 52 122 44 125C38 120 34 112 34 102C34 92 41 85 47 77C54 68 55 57 64 48Z" fill="url(#innerFlame)"/>
+  <defs>
+    <linearGradient id="outerFlame" x1="36" y1="10" x2="98" y2="132" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF5A1F"/>
+      <stop offset="0.48" stop-color="#E82712"/>
+      <stop offset="1" stop-color="#9F1207"/>
+    </linearGradient>
+    <linearGradient id="middleGlow" x1="48" y1="28" x2="80" y2="130" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE76B"/>
+      <stop offset="0.45" stop-color="#FFB02E"/>
+      <stop offset="1" stop-color="#FF6F19"/>
+    </linearGradient>
+    <linearGradient id="innerFlame" x1="53" y1="48" x2="72" y2="126" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF6A8"/>
+      <stop offset="0.52" stop-color="#FFD047"/>
+      <stop offset="1" stop-color="#FF8A1E"/>
+    </linearGradient>
+  </defs>
+</svg>

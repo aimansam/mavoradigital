@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Mavora Labs social preview</title>
+  <desc id="desc">A branded preview card for Mavora Labs website design and development services.</desc>
+  <rect width="1200" height="630" fill="#111827" />
+  <rect x="64" y="64" width="1072" height="502" rx="28" fill="#f7f4ed" />
+  <rect x="96" y="96" width="1008" height="438" rx="20" fill="#ffffff" />
+  <circle cx="1018" cy="170" r="58" fill="#d65f45" opacity="0.18" />
+  <circle cx="948" cy="484" r="82" fill="#56705a" opacity="0.16" />
+  <text x="128" y="164" fill="#d65f45" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="4">MAVORA LABS</text>
+  <text x="128" y="270" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="800">Websites built for</text>
+  <text x="128" y="352" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="800">businesses that</text>
+  <text x="128" y="434" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="800">need to look ready.</text>
+  <text x="128" y="500" fill="#53605a" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="500">Freelance web design, development, and launch support.</text>
+  <rect x="812" y="122" width="238" height="56" rx="28" fill="#111827" />
+  <text x="848" y="159" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">mavoralabs.com</text>
+</svg>

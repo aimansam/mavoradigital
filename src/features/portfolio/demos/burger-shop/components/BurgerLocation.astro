@@ -1,0 +1,57 @@
+---
+import { MapPin, Navigation, Phone, Truck } from "@lucide/astro";
+import type { BurgerBusiness } from "../data";
+
+interface Props {
+  business: BurgerBusiness;
+  lang?: "en" | "bm";
+}
+
+const { business, lang = "en" } = Astro.props;
+const isBm = lang === "bm";
+const t = {
+  heading: isBm
+    ? { pre: "Jumpa kami, ", gold: "hubungi dahulu", post: ", atau order untuk ambil sendiri." }
+    : { pre: "Find us, ", gold: "call ahead", post: ", or order for pickup." },
+  copy: isBm
+    ? "Singgah ke Jalan Alor, hubungi sebelum gerak,<br>atau hantar order WhatsApp supaya grill mula lebih awal."
+    : "Drop by Jalan Alor, call before you leave,<br>or send a WhatsApp order so the grill starts early.",
+  callStore: isBm ? "Hubungi kedai" : "Call store",
+  getDirections: isBm ? "Dapatkan arah" : "Get directions",
+};
+---
+
+<section id="burger-location" class="burger-location-section px-5 py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
+    <div class="burger-map-card rounded-lg border border-white/14 p-3">
+      <iframe
+        title="Map to Mavora Burgers"
+        src={business.mapEmbedSrc}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+    <div class="burger-contact-card rounded-lg border border-white/14 p-8 text-white">
+      <h2 class="mt-4 text-4xl font-semibold tracking-normal text-white sm:text-5xl">{t.heading.pre}<span class="burger-focus-word burger-focus-word--gold">{t.heading.gold}</span>{t.heading.post}</h2>
+      <p class="burger-section-copy mt-5 max-w-xl" set:html={t.copy} />
+      <ul class="burger-location-list mt-6">
+        <li><MapPin class="h-4 w-4" aria-hidden="true" /> {business.address}</li>
+        <li><Phone class="h-4 w-4" aria-hidden="true" /> {business.phoneDisplay}</li>
+        <li><Truck class="h-4 w-4" aria-hidden="true" /> {business.orderChannels}</li>
+      </ul>
+      <div class="burger-hours mt-6">
+        {business.hoursRows.map((row) => <div><span>{row.days}</span><strong>{row.hours}</strong></div>)}
+      </div>
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+        <a href={business.phoneHref} class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--demo-primary)] px-5 text-sm font-semibold text-white transition hover:brightness-95">
+          {t.callStore}
+          <Phone class="h-4 w-4" aria-hidden="true" />
+        </a>
+        <a href={business.mapHref} target="_blank" rel="noreferrer" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/24 px-5 text-sm font-semibold text-white transition hover:bg-white hover:text-ink">
+          {t.getDirections}
+          <Navigation class="h-4 w-4" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

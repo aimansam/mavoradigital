@@ -1,0 +1,29 @@
+---
+import type { BurgerBusiness, BurgerMenuItem, BurgerReview, BurgerValueSlide } from "../data";
+import BurgerFinalCta from "./BurgerFinalCta.astro";
+import BurgerHero from "./BurgerHero.astro";
+import BurgerLocation from "./BurgerLocation.astro";
+import BurgerMenu from "./BurgerMenu.astro";
+import BurgerReviews from "./BurgerReviews.astro";
+import BurgerValueCarousel from "./BurgerValueCarousel.astro";
+
+interface Props {
+  demo: {
+    image: string;
+  };
+  business: BurgerBusiness;
+  menu: BurgerMenuItem[];
+  slides: BurgerValueSlide[];
+  reviews: BurgerReview[];
+  lang?: "en" | "bm";
+}
+
+const { demo, business, menu, slides, reviews, lang = "en" } = Astro.props;
+---
+
+<BurgerHero demo={demo} business={business} lang={lang} />
+<BurgerValueCarousel slides={slides} lang={lang} />
+<BurgerMenu menu={menu} business={business} lang={lang} />
+<BurgerLocation business={business} lang={lang} />
+<BurgerReviews reviews={reviews} lang={lang} />
+<BurgerFinalCta business={business} lang={lang} />

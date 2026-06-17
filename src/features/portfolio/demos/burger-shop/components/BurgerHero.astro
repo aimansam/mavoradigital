@@ -1,0 +1,187 @@
+---
+import { ArrowRight, Clock, MapPin, MessageCircle, ShoppingBag, Star, Truck } from "@lucide/astro";
+import type { BurgerBusiness } from "../data";
+
+interface Props {
+  demo: {
+    image: string;
+  };
+  business: BurgerBusiness;
+  lang?: "en" | "bm";
+}
+
+const { business, lang = "en" } = Astro.props;
+const isBm = lang === "bm";
+const heroBackground = "/images/portfolio/burger-shop/hero-background.png";
+const offerBackground = "/images/portfolio/burger-shop/offer-background.png";
+
+const comboItems = isBm
+  ? [
+      { label: "1. Daging Angus", image: "/images/portfolio/burger-shop/angus-morning-stack.jpg" },
+      { label: "2. Loaded fries", image: "/images/portfolio/burger-shop/beef-cheese-loaded-fries.jpg" },
+      { label: "3. Thick shake", image: "/images/portfolio/burger-shop/thick-shake-pairing.jpg" },
+    ]
+  : [
+      { label: "1. Angus beef", image: "/images/portfolio/burger-shop/angus-morning-stack.jpg" },
+      { label: "2. Loaded fries", image: "/images/portfolio/burger-shop/beef-cheese-loaded-fries.jpg" },
+      { label: "3. Thick shake", image: "/images/portfolio/burger-shop/thick-shake-pairing.jpg" },
+    ];
+
+const dealOrderLines = comboItems.map((item) => `- 1x ${item.label.replace(/^\d+\.\s*/, "")}`).join("\n");
+const dealWhatsAppHref = isBm
+  ? `${business.whatsappHref.split("?")[0]}?text=${encodeURIComponent(`Hi ${business.name}, saya nak lunch combo:\n${dealOrderLines}\n\nJenis order: Ambil sendiri\nSila sahkan jumlah.`)}`
+  : `${business.whatsappHref.split("?")[0]}?text=${encodeURIComponent(`Hi ${business.name}, I want the lunch combo:\n${dealOrderLines}\n\nOrder type: Takeaway\nPlease confirm the total.`)}`;
+
+const t = {
+  heroTitle: isBm
+    ? { focus: "Lapar sekarang?", rest: "Dapatkan smash burger panas dalam ", gold: "25 min", end: "." }
+    : { focus: "Hungry now?", rest: "Get a hot smash burger in ", gold: "25 min", end: "." },
+  heroCopy: isBm
+    ? { pre: "Pilih combo anda, hantar ", strong1: "order WhatsApp", mid: ",", br: true, post: "dan ambil ", strong2: "burger panas", end: " sebelum selera hilang." }
+    : { pre: "Choose your combo, send the ", strong1: "WhatsApp order", mid: ",", br: true, post: "and pick up ", strong2: "hot burgers", end: " before the craving cools." },
+  ratingLabel: isBm ? `${business.rating} penilaian` : `${business.rating} rating`,
+  ctaPrimary: isBm ? "Lihat Menu" : "Explore Our Menu",
+  ctaSecondary: isBm ? "Cari Lokasi Kami" : "Find Our Location",
+  storeHighlights: isBm ? "Maklumat kedai" : "Store highlights",
+  checkingHours: isBm ? "Memeriksa waktu" : "Checking hours",
+  offerTitle: isBm ? "Lunch combo" : "Lunch combo",
+  offerFrom: isBm ? "dari RM19.90" : "from RM19.90",
+  offerCopy1: isBm ? "Pilih " : "Pick the ",
+  offerStrong1: isBm ? "combo" : "combo",
+  offerCopy2: isBm ? ", hantar via WhatsApp," : ", send it on WhatsApp,",
+  offerCopy3: isBm ? "dan kami akan siapkan " : "and we will have it ",
+  offerStrong2: isBm ? "panas" : "hot",
+  offerCopy4: isBm ? " untuk diambil sebelum" : " for pickup before",
+  offerCopy5: isBm ? "waktu " : "the ",
+  offerStrong3: isBm ? "lunch rush" : "lunch rush",
+  offerCopy6: isBm ? " berlalu." : " gets away.",
+  comboAria: isBm ? "Lunch combo termasuk daging Angus, loaded fries, dan thick shake" : "Lunch combo includes Angus beef, loaded fries, and thick shake",
+  whatsappAccepted: isBm ? "Order WhatsApp diterima" : "WhatsApp orders accepted",
+  orderDetailsAria: isBm ? "Butiran order anda" : "Your order details",
+  namePlaceholder: isBm ? "Nama anda" : "Your name",
+  phonePlaceholder: isBm ? "Nombor telefon" : "Contact number",
+  grabCombo: isBm ? "Ambil Combo Ini" : "Grab This Combo",
+  errName: isBm ? "Sila masukkan nama anda" : "Please enter your name",
+  errPhone: isBm ? "Sila masukkan nombor telefon" : "Please enter your contact number",
+  nameLabel: isBm ? "Nama: " : "Name: ",
+  phoneLabel: isBm ? "Telefon: " : "Contact: ",
+};
+---
+
+<section id="top" class="burger-hero relative isolate min-h-[92svh] overflow-hidden text-white">
+  <img src={heroBackground} alt="" class="burger-hero__image absolute inset-0 -z-20 h-full w-full object-cover" width="2752" height="1536" aria-hidden="true" />
+  <div class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(35,19,18,0.92),rgba(35,19,18,0.68),rgba(35,19,18,0.18))]"></div>
+  <div class="burger-hero__layout mx-auto grid min-h-[92svh] max-w-6xl gap-10 px-5 pb-12 pt-28 sm:px-6 lg:grid-cols-[0.95fr_0.72fr] lg:items-center lg:px-8 lg:pb-20">
+    <div class="max-w-3xl">
+      <h1 class="text-5xl font-semibold leading-[0.94] tracking-normal sm:text-6xl lg:text-7xl" data-burger-hero-title><span class="burger-focus-word">{t.heroTitle.focus}</span><br>{t.heroTitle.rest}<span class="burger-focus-word burger-focus-word--gold">{t.heroTitle.gold}</span>{t.heroTitle.end}</h1>
+      <p class="burger-hero-copy mt-6 max-w-2xl" data-burger-hero-copy>{t.heroCopy.pre}<strong>{t.heroCopy.strong1}</strong>{t.heroCopy.mid}<br>{t.heroCopy.post}<strong>{t.heroCopy.strong2}</strong>{t.heroCopy.end}</p>
+      <div class="burger-hero-facts mt-6" aria-label={t.storeHighlights}>
+        <span data-burger-hero-fact><Clock class="h-4 w-4" aria-hidden="true" /> {business.openUntilLabel}</span>
+        <span data-burger-hero-fact><Truck class="h-4 w-4" aria-hidden="true" /> {business.pickupTime}</span>
+        <span data-burger-hero-fact><Star class="h-4 w-4" aria-hidden="true" /> {t.ratingLabel}</span>
+      </div>
+      <div class="burger-hero-actions mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="#burger-menu" class="burger-primary-cta burger-whatsapp-cta inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-semibold text-white shadow-soft transition" data-burger-hero-action>
+          {t.ctaPrimary}
+          <ArrowRight class="h-5 w-5" aria-hidden="true" />
+        </a>
+        <a href="#burger-location" class="burger-secondary-cta inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-semibold transition" data-burger-hero-action>
+          {t.ctaSecondary}
+          <MapPin class="h-5 w-5" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+    <aside class="burger-offer-card burger-hero-offer rounded-lg border border-white/18 p-6 text-white">
+      <img src={offerBackground} alt="" class="burger-offer-card__background" width="2752" height="1536" aria-hidden="true" loading="eager" decoding="async" />
+      <div class="burger-ticket-top">
+        <span data-burger-status aria-live="polite">
+          <Clock class="h-4 w-4" aria-hidden="true" />
+          <strong data-burger-status-label>{t.checkingHours}</strong>
+        </span>
+      </div>
+      <h2 class="mt-4 text-3xl font-semibold tracking-normal"><span class="burger-focus-word burger-focus-word--gold">{t.offerTitle}</span> {t.offerFrom}</h2>
+      <p class="burger-card-copy mt-4">{t.offerCopy1}<strong>{t.offerStrong1}</strong>{t.offerCopy2}<br>{t.offerCopy3}<strong>{t.offerStrong2}</strong>{t.offerCopy4}<br>{t.offerCopy5}<strong>{t.offerStrong3}</strong>{t.offerCopy6}</p>
+      <div class="burger-offer-combo mt-5" aria-label={t.comboAria}>
+        {comboItems.map((item, index) => (
+          <>
+            <span class="burger-offer-combo__item">
+              <img src={item.image} alt="" width="72" height="72" loading={index === 0 ? "eager" : "lazy"} decoding="async" aria-hidden="true" />
+              <span>{item.label}</span>
+            </span>
+          </>
+        ))}
+      </div>
+      <div class="burger-ticket-list mt-6">
+        <span><Clock class="h-4 w-4 text-[var(--demo-secondary)]" aria-hidden="true" /> {business.hoursLine}</span>
+        <span><Truck class="h-4 w-4 text-[var(--demo-secondary)]" aria-hidden="true" /> {business.pickupTime}</span>
+        <span><MessageCircle class="h-4 w-4 text-[var(--demo-secondary)]" aria-hidden="true" /> {t.whatsappAccepted}</span>
+      </div>
+      <div class="burger-combo-fields" role="group" aria-label={t.orderDetailsAria}>
+        <input class="burger-combo-input" type="text" id="burger-combo-name" name="name" placeholder={t.namePlaceholder} autocomplete="name" maxlength="60" />
+        <input class="burger-combo-input" type="tel" id="burger-combo-phone" name="phone" placeholder={t.phonePlaceholder} autocomplete="tel" maxlength="20" />
+      </div>
+      <a href={dealWhatsAppHref} target="_blank" rel="noreferrer" class="burger-ticket-action mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-base font-black text-white" id="burger-combo-cta">
+        {t.grabCombo}
+        <ShoppingBag class="h-5 w-5" aria-hidden="true" />
+      </a>
+      <script define:vars={{ baseHref: dealWhatsAppHref, baseErrName: t.errName, baseErrPhone: t.errPhone, baseNameLabel: t.nameLabel, basePhoneLabel: t.phoneLabel }}>
+        (function () {
+          const nameEl = document.getElementById('burger-combo-name');
+          const phoneEl = document.getElementById('burger-combo-phone');
+          const cta = document.getElementById('burger-combo-cta');
+          if (!nameEl || !phoneEl || !cta) return;
+
+          function showError(input, msg) {
+            input.classList.add('is-error');
+            input.setAttribute('aria-invalid', 'true');
+            let err = input.parentElement.querySelector('.burger-field-error');
+            if (!err) {
+              err = document.createElement('span');
+              err.className = 'burger-field-error';
+              err.setAttribute('role', 'alert');
+              input.parentElement.appendChild(err);
+            }
+            err.textContent = msg;
+          }
+
+          function clearError(input) {
+            input.classList.remove('is-error');
+            input.removeAttribute('aria-invalid');
+            const err = input.parentElement.querySelector('.burger-field-error');
+            if (err) err.remove();
+          }
+
+          nameEl.addEventListener('input', () => { clearError(nameEl); updateHref(); });
+          phoneEl.addEventListener('input', () => { clearError(phoneEl); updateHref(); });
+
+          function updateHref() {
+            const name = nameEl.value.trim();
+            const phone = phoneEl.value.trim();
+            const base = decodeURIComponent(baseHref.split('?text=')[1] || '');
+            const suffix = (name || phone)
+              ? '\n\n' + baseNameLabel + (name || '\u2014') + '\n' + basePhoneLabel + (phone || '\u2014')
+              : '';
+            cta.href = baseHref.split('?text=')[0] + '?text=' + encodeURIComponent(base + suffix);
+          }
+
+          cta.addEventListener('click', (e) => {
+            let firstInvalid = null;
+            if (!nameEl.value.trim()) {
+              e.preventDefault();
+              showError(nameEl, baseErrName);
+              firstInvalid = firstInvalid || nameEl;
+            }
+            if (!phoneEl.value.trim()) {
+              e.preventDefault();
+              showError(phoneEl, baseErrPhone);
+              firstInvalid = firstInvalid || phoneEl;
+            }
+            if (firstInvalid) firstInvalid.focus();
+          });
+
+          updateHref();
+        })();
+      </script>
+    </aside>
+  </div>
+</section>

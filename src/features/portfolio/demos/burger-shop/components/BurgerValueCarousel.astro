@@ -1,0 +1,111 @@
+---
+import type { BurgerValueSlide } from "../data";
+
+interface Props {
+  slides: BurgerValueSlide[];
+  lang?: "en" | "bm";
+}
+
+const { slides, lang = "en" } = Astro.props;
+const isBm = lang === "bm";
+const fallbackImage = slides[0] ?? {
+  image: "/images/portfolio/burger-shop/built-boxed-pickup.jpg",
+  alt: isBm ? "Burger segar dan kentang goreng sedia untuk diambil" : "Fresh burger and fries ready for pickup",
+  focus: "center 62%",
+};
+const orderSteps = isBm
+  ? [
+      {
+        number: "01",
+        label: "1.Pilih",
+        title: "Pilih burger anda",
+        detail: "Mulakan dengan pilihan daging, ayam, veggie, side, atau shake kegemaran dari menu.",
+        image: slides[1]?.image ?? fallbackImage.image,
+        alt: slides[1]?.alt ?? fallbackImage.alt,
+        focus: slides[1]?.focus ?? fallbackImage.focus,
+      },
+      {
+        number: "02",
+        label: "2.Bina",
+        title: "Tambah side dan sos",
+        detail: "Jadikan lebih lengkap dengan loaded fries, shake, dan profil sos yang anda mahu.",
+        image: slides[2]?.image ?? fallbackImage.image,
+        alt: slides[2]?.alt ?? fallbackImage.alt,
+        focus: slides[2]?.focus ?? fallbackImage.focus,
+      },
+      {
+        number: "03",
+        label: "3.Hantar",
+        title: "Checkout via WhatsApp",
+        detail: "Troli anda jadi mesej siap hantar, supaya butiran ambil jelas sebelum grill dimulakan.",
+        image: slides[3]?.image ?? fallbackImage.image,
+        alt: slides[3]?.alt ?? fallbackImage.alt,
+        focus: slides[3]?.focus ?? fallbackImage.focus,
+      },
+    ]
+  : [
+      {
+        number: "01",
+        label: "1.Choose",
+        title: "Pick your burger",
+        detail: "Start with a beef, chicken, veggie, side, or shake favorite from the menu.",
+        image: slides[1]?.image ?? fallbackImage.image,
+        alt: slides[1]?.alt ?? fallbackImage.alt,
+        focus: slides[1]?.focus ?? fallbackImage.focus,
+      },
+      {
+        number: "02",
+        label: "2.Build",
+        title: "Add sides and sauce",
+        detail: "Make it a fuller meal with loaded fries, a shake, and the sauce profile you want.",
+        image: slides[2]?.image ?? fallbackImage.image,
+        alt: slides[2]?.alt ?? fallbackImage.alt,
+        focus: slides[2]?.focus ?? fallbackImage.focus,
+      },
+      {
+        number: "03",
+        label: "3.Send",
+        title: "Checkout on WhatsApp",
+        detail: "Your cart becomes a ready message, so pickup details stay clear before the grill starts.",
+        image: slides[3]?.image ?? fallbackImage.image,
+        alt: slides[3]?.alt ?? fallbackImage.alt,
+        focus: slides[3]?.focus ?? fallbackImage.focus,
+      },
+    ];
+
+const t = {
+  heading: isBm ? { pre: "Order dalam ", gold: "3 langkah mudah", end: "." } : { pre: "Order in ", gold: "3 easy steps", end: "." },
+  copy: isBm
+    ? "Pilih <strong>stack</strong> anda, bina <strong>combo</strong>, kemudian hantar <strong>troli</strong> terus ke WhatsApp untuk order ambil yang jelas."
+    : "Choose your <strong>stack</strong>, build the <strong>combo</strong>, then send the <strong>cart</strong> straight to WhatsApp for a clear pickup order.",
+  howToOrder: isBm ? "Cara order dari Mavora Burgers" : "How to order from Mavora Burgers",
+};
+---
+
+<section id="burger-why" class="burger-value-section px-5 py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="mx-auto max-w-3xl text-center">
+      <div>
+        <h2 class="text-4xl font-semibold tracking-normal text-white sm:text-5xl">{t.heading.pre}<span class="burger-focus-word burger-focus-word--gold">{t.heading.gold}</span>{t.heading.end}</h2>
+      </div>
+      <p class="burger-section-copy mx-auto mt-5 max-w-2xl" set:html={t.copy} />
+    </div>
+    <div class="burger-order-steps mt-10" aria-label={t.howToOrder}>
+      {orderSteps.map((step) => (
+        <article class="burger-order-step-card rounded-lg p-4">
+          <figure class="burger-order-step-card__media">
+            <img src={step.image} alt={step.alt} loading="lazy" width="900" height="620" style={`object-position: ${step.focus};`} onerror="this.closest('.burger-order-step-card__media')?.classList.add('burger-order-step-card__media--fallback'); this.remove();" />
+            <span>{step.label}</span>
+          </figure>
+          <div class="burger-order-step-card__body">
+            <span class="burger-order-step-card__number">{step.number}</span>
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.detail}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

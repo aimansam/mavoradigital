@@ -1,0 +1,24 @@
+---
+interface Props {
+  currentLocale: "en" | "bm";
+}
+
+const { currentLocale } = Astro.props;
+const links = [
+  { locale: "en", label: "EN", href: "/" },
+  { locale: "bm", label: "BM", href: "/bm/" },
+] as const;
+---
+
+<div class="inline-flex items-center rounded-full border border-white/18 bg-white/10 p-1 text-xs font-black text-white/76" aria-label="Language switcher">
+  {links.map((link) => (
+    <a
+      href={link.href}
+      class={`inline-flex min-h-8 min-w-9 items-center justify-center rounded-full px-3 transition hover:bg-white hover:text-ink ${currentLocale === link.locale ? "bg-white text-ink" : ""}`}
+      aria-current={currentLocale === link.locale ? "page" : undefined}
+      lang={link.locale === "bm" ? "ms-MY" : "en"}
+    >
+      {link.label}
+    </a>
+  ))}
+</div>

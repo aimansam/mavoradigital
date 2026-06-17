@@ -1,0 +1,70 @@
+---
+import { Star } from "@lucide/astro";
+import type { BurgerReview } from "../data";
+
+interface Props {
+  reviews: BurgerReview[];
+  lang?: "en" | "bm";
+}
+
+const { reviews, lang = "en" } = Astro.props;
+const isBm = lang === "bm";
+const t = {
+  heading: isBm
+    ? { focus: "Burger panas", rest: ", ambil mudah, pelanggan setia." }
+    : { focus: "Hot burgers", rest: ", easy pickup, happy regulars." },
+  copy: isBm
+    ? "Dari ambil tengah hari hingga penghantaran malam,<br>pelanggan balik semula untuk burger panas, order yang jelas, dan fries tahan perjalanan."
+    : "From lunch pickup to weekend delivery,<br>customers come back for hot stacks, clear ordering, and fries that travel well.",
+  ratingAria: isBm ? "Penilaian tempatan purata 4.9" : "4.9 average local rating",
+  ratingLabel: isBm ? "Penilaian tempatan purata" : "Average local rating",
+  starsOf: (r: number) => isBm ? `${r.toFixed(1)} daripada 5 bintang` : `${r.toFixed(1)} out of 5 stars`,
+};
+---
+
+<section id="burger-reviews" class="burger-reviews-section px-5 py-20 text-center text-white sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="burger-reviews-intro mx-auto flex max-w-3xl flex-col items-center gap-4">
+      <div>
+        <h2 class="text-4xl font-semibold tracking-normal sm:text-5xl"><span class="burger-focus-word">{t.heading.focus}</span>{t.heading.rest}</h2>
+      </div>
+      <p class="burger-section-copy max-w-2xl" set:html={t.copy} />
+      <div class="burger-rating-summary" aria-label={t.ratingAria}>
+        <div class="burger-rating-summary__score">
+          <strong>4.9</strong>
+          <span class="burger-rating-summary__max">/&thinsp;5</span>
+        </div>
+        <div class="burger-rating-summary__divider" aria-hidden="true"></div>
+        <div class="burger-rating-summary__body">
+          <span class="burger-rating-summary__stars" aria-hidden="true">
+            {Array.from({ length: 5 }).map(() => <Star class="h-4 w-4" fill="currentColor" />)}
+          </span>
+          <span>{t.ratingLabel}</span>
+        </div>
+      </div>
+    </div>
+    <div class="burger-reviews-grid mt-10">
+      {reviews.map((review) => (
+        <article class={`burger-review-card${review.rating >= 5 ? ' burger-review-card--featured' : ''}`}>
+          <span class="burger-review-card__deco" aria-hidden="true">&ldquo;</span>
+          <blockquote class="burger-quote">&ldquo;{review.quote}&rdquo;</blockquote>
+          <footer class="burger-review-footer">
+            <span class="burger-review-avatar" aria-hidden="true">{review.name.charAt(0)}</span>
+            <div class="burger-review-person">
+              <p class="burger-review-name">{review.name}</p>
+              <span class="burger-review-context">{review.context}</span>
+            </div>
+            <div class="burger-review-stars" aria-label={t.starsOf(review.rating)}>
+              <span class="burger-review-stars__icons" aria-hidden="true">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star class="h-4 w-4" fill={i < Math.round(review.rating) ? "currentColor" : "none"} style={i < Math.round(review.rating) ? "" : "opacity: 0.28"} />
+                ))}
+              </span>
+              <span class="burger-review-stars__value">{review.rating.toFixed(1)}</span>
+            </div>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

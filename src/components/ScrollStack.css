@@ -1,0 +1,74 @@
+.scroll-stack-scroller {
+  position: relative;
+  width: 100%;
+  overflow-x: visible;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+.scroll-stack-inner {
+  min-height: 100vh;
+  padding: clamp(8rem, 16vh, 12rem) 0 clamp(18rem, 36vh, 28rem);
+}
+
+.scroll-stack-card-wrapper {
+  position: relative;
+}
+
+.scroll-stack-card {
+  position: relative;
+  width: 100%;
+  min-height: clamp(22rem, 44vw, 31rem);
+  box-sizing: border-box;
+  transform: translateZ(0);
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, filter;
+}
+
+.scroll-stack-card > .portfolio-card {
+  min-height: 100%;
+}
+
+.scroll-stack-end {
+  width: 100%;
+  height: 1px;
+}
+
+.portfolio-scroll-stack {
+  margin-top: clamp(1.8rem, 4vw, 3rem);
+}
+
+.portfolio-scroll-stack .scroll-stack-inner {
+  display: grid;
+  gap: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-stack-inner {
+    min-height: auto;
+    padding: 2rem 0 0;
+  }
+
+  .scroll-stack-card {
+    min-height: auto;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .scroll-stack-inner {
+    padding-top: 4rem;
+    padding-bottom: 12rem;
+  }
+
+  .scroll-stack-card {
+    min-height: 30rem;
+  }
+}

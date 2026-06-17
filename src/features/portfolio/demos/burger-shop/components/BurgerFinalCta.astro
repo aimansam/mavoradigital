@@ -1,0 +1,49 @@
+---
+import { Menu, ShoppingBag, ShoppingCart } from "@lucide/astro";
+import type { BurgerBusiness } from "../data";
+
+interface Props {
+  business: BurgerBusiness;
+  lang?: "en" | "bm";
+}
+
+const { business, lang = "en" } = Astro.props;
+const isBm = lang === "bm";
+const t = {
+  heading: isBm ? { pre: "Burger anda ", gold: "satu ketik sahaja", end: "." } : { pre: "Your burger is ", gold: "one tap away", end: "." },
+  copy: isBm
+    ? "Semak troli anda, hantar via WhatsApp,<br>dan kami akan mulakan grill semasa anda dalam perjalanan."
+    : "Review your cart, send it on WhatsApp,<br>and we will start the grill while you are on the way.",
+  cartEmpty: isBm ? "Troli kosong. Tambah kegemaran anda dari menu dahulu." : "Cart empty. Add your favorites from the menu first.",
+  exploreCta: isBm ? "Lihat Menu" : "Explore Our Menu",
+  callLabel: isBm ? `Hubungi ${business.phoneDisplay}` : `Call ${business.phoneDisplay}`,
+  mobileBrowse: isBm ? "Lihat menu" : "Browse menu",
+};
+---
+
+<section id="burger-order" class="burger-final-cta px-5 py-20 text-white sm:px-6 lg:px-8">
+  <div class="mx-auto grid max-w-6xl gap-8 rounded-lg p-8 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
+    <div>
+      <h2 class="text-4xl font-semibold tracking-normal sm:text-5xl">{t.heading.pre}<span class="burger-focus-word burger-focus-word--gold">{t.heading.gold}</span>{t.heading.end}</h2>
+      <p class="burger-section-copy mt-5 max-w-2xl" set:html={t.copy} />
+      <p class="burger-final-cart-note mt-4" aria-live="polite">
+        <ShoppingCart class="h-4 w-4" aria-hidden="true" />
+        <span data-burger-final-cart-status>{t.cartEmpty}</span>
+      </p>
+    </div>
+    <div class="grid gap-3 sm:grid-cols-2 lg:min-w-72 lg:grid-cols-1">
+      <a href="#burger-menu" class="burger-final-button inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-black text-white transition" data-burger-final-cart-submit>
+        <span data-burger-final-cart-label>{t.exploreCta}</span>
+        <Menu class="h-4 w-4" aria-hidden="true" />
+      </a>
+      <a href={business.phoneHref} class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/24 px-6 text-sm font-black text-white transition hover:bg-white hover:text-ink">
+        {t.callLabel}
+      </a>
+    </div>
+  </div>
+</section>
+
+<a href="#burger-menu" class="burger-mobile-cta fixed bottom-4 left-4 right-4 z-30 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--demo-primary)] px-5 text-sm font-black text-white shadow-[0_18px_44px_rgba(35,19,18,0.28)] md:hidden" data-burger-mobile-cart-link>
+  <span data-burger-mobile-cart-label>{t.mobileBrowse}</span>
+  <ShoppingBag class="h-4 w-4" aria-hidden="true" />
+</a>

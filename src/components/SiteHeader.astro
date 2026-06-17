@@ -1,0 +1,121 @@
+---
+import { FileText, Menu, X } from "@lucide/astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
+export interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  navigation: NavItem[];
+  ctaHref: string;
+  currentLocale: "en" | "bm";
+  navAriaLabel: string;
+  homeAriaLabel: string;
+  menuOpenLabel: string;
+  menuCloseLabel: string;
+  ctaLabel: string;
+  ctaLabelShort: string;
+}
+
+const {
+  navigation,
+  ctaHref,
+  currentLocale,
+  navAriaLabel,
+  homeAriaLabel,
+  menuOpenLabel,
+  menuCloseLabel,
+  ctaLabel,
+  ctaLabelShort,
+} = Astro.props;
+---
+
+<header id="site-header" class="site-header fixed left-0 right-0 top-0 z-30 text-white">
+  <nav class="site-header__nav relative mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 sm:gap-3 sm:px-6 lg:px-8" aria-label={navAriaLabel}>
+    <a href="#top" class="site-header__logo flex h-9 w-36 shrink-0 items-center rounded-full bg-white px-3 sm:w-40" aria-label={homeAriaLabel}>
+      <img src="/logo-transparent.png" alt="Mavora Labs" class="h-auto w-full object-contain" width="980" height="313" />
+    </a>
+
+    <div class="site-header__links hidden items-center rounded-full border border-white/10 bg-white/5 p-1 text-sm font-medium backdrop-blur-xl md:flex">
+      {navigation.map((item) => (
+        <a href={item.href} class="nav-link rounded-full px-4 py-2 text-white/90 transition-all hover:bg-white/10 hover:text-white">
+          {item.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="flex shrink-0 items-center gap-1.5 sm:gap-2">
+      <button
+        type="button"
+        class="site-header__menu-btn ui-button inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-xl transition hover:bg-white/10 md:hidden"
+        id="site-menu-toggle"
+        aria-expanded="false"
+        aria-controls="site-mobile-nav"
+        aria-label={menuOpenLabel}
+        data-open-label={menuOpenLabel}
+        data-close-label={menuCloseLabel}
+      >
+        <Menu class="site-header__menu-icon-open h-5 w-5" aria-hidden="true" />
+        <X class="site-header__menu-icon-close hidden h-5 w-5" aria-hidden="true" />
+      </button>
+      <LanguageSwitcher currentLocale={currentLocale} />
+      <a
+        href={ctaHref}
+        class="site-header__cta ui-button inline-flex h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 text-sm font-semibold text-gray-900 transition hover:bg-white/90 sm:px-5"
+      >
+        <FileText class="h-4 w-4" aria-hidden="true" />
+        <span class="hidden sm:inline">{ctaLabel}</span>
+        <span class="sm:hidden">{ctaLabelShort}</span>
+      </a>
+    </div>
+  </nav>
+
+  <div id="site-mobile-nav" class="site-header__mobile-panel hidden border-t border-white/12 bg-ink/94 md:hidden" hidden>
+    <div class="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:px-6 lg:px-8">
+      {navigation.map((item) => (
+        <a href={item.href} class="site-header__mobile-link rounded-lg px-3 py-3 text-sm font-semibold text-white/82 transition hover:bg-white/10 hover:text-white">
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById("site-header");
+  const toggle = document.getElementById("site-menu-toggle");
+  const panel = document.getElementById("site-mobile-nav");
+  const openIcon = header?.querySelector(".site-header__menu-icon-open");
+  const closeIcon = header?.querySelector(".site-header__menu-icon-close");
+
+  const setMenuOpen = (open: boolean) => {
+    if (!toggle || !panel) return;
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-label", open ? toggle.dataset.closeLabel || "Close menu" : toggle.dataset.openLabel || "Open menu");
+    panel.hidden = !open;
+    panel.classList.toggle("hidden", !open);
+    header?.classList.toggle("is-menu-open", open);
+    openIcon?.classList.toggle("hidden", open);
+    closeIcon?.classList.toggle("hidden", !open);
+    document.body.classList.toggle("site-menu-open", open);
+  };
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    setMenuOpen(!isOpen);
+  });
+
+  panel?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenuOpen(false);
+  });
+
+  window.matchMedia("(min-width: 768px)").addEventListener("change", (event) => {
+    if (event.matches) setMenuOpen(false);
+  });
+</script>

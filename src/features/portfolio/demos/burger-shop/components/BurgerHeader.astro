@@ -1,0 +1,47 @@
+---
+import { ArrowLeft } from "@lucide/astro";
+
+interface Props {
+  lang?: "en" | "bm";
+}
+
+const { lang = "en" } = Astro.props;
+const isBm = lang === "bm";
+const t = {
+  navAria: isBm ? "Navigasi Mavora Burgers" : "Mavora Burgers navigation",
+  homeAria: isBm ? "Laman utama Mavora Burgers" : "Mavora Burgers home",
+  sectionsAria: isBm ? "Bahagian halaman burger" : "Burger page sections",
+  menu: isBm ? "Menu" : "Menu",
+  hours: isBm ? "Waktu" : "Hours",
+  reviews: isBm ? "Ulasan" : "Reviews",
+  startOrder: isBm ? "Mula order" : "Start order",
+  switchLang: isBm ? "English" : "Melayu",
+  switchHref: isBm ? "/portfolio/burger-shop/" : "/portfolio/burger-shop/bm/",
+  demoLib: isBm ? "Galeri demo" : "Demo library",
+};
+---
+
+<header class="burger-site-header fixed left-0 right-0 top-0 z-30 border-b border-white/12 text-white backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-6 lg:px-8" aria-label={t.navAria}>
+    <a href="#top" class="burger-brand" aria-label={t.homeAria}>
+      <span class="burger-brand__logo" aria-hidden="true">
+        <img src="/images/portfolio/burger-shop/logo.png" alt="" width="2734" height="1536" loading="eager" decoding="async" />
+      </span>
+      <span class="burger-brand__text">
+        <span>Mavora</span>
+        <strong>Burgers</strong>
+      </span>
+    </a>
+    <div class="burger-site-nav" aria-label={t.sectionsAria}>
+      <a href="#burger-menu">{t.menu}</a>
+      <a href="#burger-location">{t.hours}</a>
+      <a href="#burger-reviews">{t.reviews}</a>
+      <a href={t.switchHref} class="burger-nav-lang">{t.switchLang}</a>
+      <a href="#burger-menu" class="burger-nav-order">{t.startOrder}</a>
+    </div>
+    <a href="/portfolio/" class="burger-demo-back inline-flex items-center gap-2 text-xs font-black uppercase tracking-normal text-white/70 transition hover:text-white">
+      <ArrowLeft class="h-4 w-4" aria-hidden="true" />
+      {t.demoLib}
+    </a>
+  </nav>
+</header>

@@ -1,0 +1,1298 @@
+---
+import "../styles/global.css";
+import { ArrowRight, CircleCheck, MessageCircle, PanelsTopLeft, Sparkles, Wrench } from "@lucide/astro";
+import FloatingLines from "../components/FloatingLines.jsx";
+import SiteHeader from "../components/SiteHeader.astro";
+import LightRays from "../components/LightRays.jsx";
+import LiquidEther from "../components/LiquidEther.jsx";
+import ScrollStack, { ScrollStackItem } from "../components/ScrollStack.jsx";
+import ProcessCardStack from "../components/ProcessCardStack.jsx";
+import { portfolioDemos } from "../features/portfolio/data/portfolioDemos";
+import { HeroParallax } from "../components/HeroParallax";
+import { bmSiteUrl, ctaHref, header, hero, metadata, navigation, siteUrl } from "../data/site/home.en";
+
+const pageTitle = metadata.title;
+const pageDescription = metadata.description;
+const socialPreview = metadata.socialPreview;
+
+const services = [
+  {
+    title: "Landing pages",
+    description: "A focused page for one offer, built to explain value fast and guide visitors toward an inquiry.",
+    points: ["Offer clarity", "CTA flow", "Mobile speed"],
+    icon: Sparkles,
+  },
+  {
+    title: "Business websites",
+    description: "A polished site that presents your services clearly, builds confidence, and makes contacting you easy.",
+    points: ["Service structure", "Trust signals", "Contact paths"],
+    icon: PanelsTopLeft,
+  },
+  {
+    title: "Redesigns and support",
+    description: "Cleaner messaging, stronger structure, and technical fixes that turn an underperforming site into a better sales asset.",
+    points: ["Copy cleanup", "UX fixes", "Launch support"],
+    icon: Wrench,
+  },
+];
+
+const packages = [
+  {
+    name: "Starter Website",
+    price: "From RM800",
+    detail: "A lean sales page for one clear offer, built to explain value fast and move visitors toward an inquiry.",
+    points: ["Sales-focused one-page build", "Mobile buying path", "SEO and speed basics"],
+    freeFeatures: ["WhatsApp CTA setup", "Basic on-page SEO", "Mobile responsive check"],
+    tiers: [
+      { name: "Basic", price: "RM800", scope: "One landing page, WhatsApp CTA, basic SEO", meta: "1 revision / 3-5 working days" },
+      { name: "Plus", price: "RM1,200", scope: "Stronger copy flow, basic motion, extra polish", meta: "2 revisions / 5-7 working days" },
+      { name: "Pro", price: "RM1,600", scope: "Premium landing page with deeper sections", meta: "3 revisions / 7-10 working days" },
+    ],
+    note: "Client provides logo, content, images, domain, and hosting access.",
+  },
+  {
+    name: "Business Website",
+    price: "From RM1,800",
+    detail: "A conversion-minded website for service businesses that need credibility, proof, and steady inquiry paths.",
+    points: ["Service sections that sell", "Trust-building copy", "Inquiry-ready handoff"],
+    freeFeatures: ["Contact path setup", "Basic analytics setup", "Launch checklist"],
+    tiers: [
+      { name: "Basic", price: "RM1,800", scope: "Three-page business website with clear contact paths", meta: "1 revision / 7-10 working days" },
+      { name: "Plus", price: "RM2,500", scope: "Five-page site with stronger service structure", meta: "2 revisions / 10-14 working days", recommended: true },
+      { name: "Pro", price: "RM3,500", scope: "Five to seven pages with proof and portfolio sections", meta: "3 revisions / 14-18 working days" },
+    ],
+    note: "Client provides brand assets, service content, and images. Copywriting support available on request.",
+  },
+  {
+    name: "Custom Build",
+    price: "From RM4,000",
+    detail: "A tailored sales flow for offers that need richer content, integrations, or room to scale.",
+    points: ["Custom buyer journey", "Integration planning", "Post-launch sales notes"],
+    freeFeatures: ["Discovery call", "Integration plan", "Post-launch handoff notes"],
+    tiers: [
+      { name: "Basic", price: "RM4,000", scope: "Custom layout or special sales flow", meta: "2 revisions / 2-3 weeks" },
+      { name: "Plus", price: "RM5,500", scope: "Custom website with booking or integration planning", meta: "3 revisions / 3-4 weeks" },
+      { name: "Pro", price: "RM7,500+", scope: "Larger custom project with deeper launch support", meta: "Scoped after discovery" },
+    ],
+    note: "Final scope is confirmed after reviewing pages, features, integrations, and content readiness.",
+  },
+];
+
+const packageTierOptions = packages.flatMap((item) =>
+  item.tiers.map((tier) => ({
+    group: item.name,
+    value: `${item.name} - ${tier.name} (${tier.price})`,
+    label: `${tier.name} - ${tier.price}`,
+    summary: tier.scope,
+    meta: tier.meta,
+    freeFeatures: item.freeFeatures.join(", "),
+  })),
+);
+
+const websiteTypes = [
+  {
+    name: "Landing Page",
+    detail: "Best when one offer needs a sharper pitch, fast trust, and a direct path to inquiry.",
+  },
+  {
+    name: "Business Website",
+    detail: "Best when buyers need to understand your services before they reach out.",
+  },
+  {
+    name: "Custom Website",
+    detail: "Best for custom sales flows, richer content, integrations, or a bigger launch plan.",
+  },
+];
+
+const pageOptions = ["Home", "Services", "Portfolio", "About", "Contact", "Pricing", "Blog", "Privacy"];
+
+const featureOptions = ["Contact form", "Booking link", "Map/location", "Gallery", "Testimonials", "Analytics", "SEO setup", "Basic animations"];
+
+const businessTypes = ["Restaurant / cafe", "Beauty / personal care", "Automotive", "Retail / shop", "Professional service", "Freelancer / creator", "Other local business", "Online business"];
+
+const contentReadinessOptions = ["Logo, text, and images are ready", "I have logo only", "Need help with text", "Need help with images/content"];
+
+const domainOwnershipOptions = ["Yes, I already own a domain", "No, I need domain help"];
+
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#181512" />
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={siteUrl} />
+    <link rel="alternate" hreflang="en" href={siteUrl} />
+    <link rel="alternate" hreflang="ms-MY" href={bmSiteUrl} />
+    <link rel="alternate" hreflang="x-default" href={siteUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={socialPreview} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mavora Labs — Websites that help businesses generate sales" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={socialPreview} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IM+Fell+French+Canon:ital@0;1&family=Cormorant+Infant:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="icon" href="/logo-transparent.png" />
+    <title>{pageTitle}</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Mavora Labs",
+      "url": "https://mavoralabs.com",
+      "logo": "https://mavoralabs.com/logo.png",
+      "description": "Mavora Labs builds polished, fast-loading websites that help businesses earn trust, capture qualified inquiries, and generate more sales.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Malaysia"
+      },
+      "serviceType": ["Web Design", "Web Development", "Landing Page Design", "Business Website Design"],
+      "priceRange": "RM800–RM5500+",
+      "availableLanguage": ["English", "Malay"],
+      "sameAs": []
+    }
+    </script>
+  </head>
+  <body class="text-ink antialiased">
+    <a href="#services" class="skip-nav">Skip to content</a>
+    <SiteHeader
+      navigation={navigation}
+      ctaHref={ctaHref}
+      currentLocale="en"
+      navAriaLabel={header.navAriaLabel}
+      homeAriaLabel={header.homeAriaLabel}
+      menuOpenLabel={header.menuOpenLabel}
+      menuCloseLabel={header.menuCloseLabel}
+      ctaLabel={header.ctaLabel}
+      ctaLabelShort={header.ctaLabelShort}
+    />
+
+    <main id="top">
+      <HeroParallax
+        client:load
+        heading={hero.title}
+        subheading={hero.copy}
+        kicker={hero.kicker}
+        ctaHref={ctaHref}
+        ctaLabel={hero.primaryCta}
+        ctaSecondaryHref="#services"
+        ctaSecondaryLabel={hero.secondaryCta}
+        proofLine={hero.proofLine}
+        products={[
+          { title: "Web design in progress", link: "#packages", thumbnail: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80" },
+          { title: "Business website", link: "#packages", thumbnail: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" },
+          { title: "Service page", link: "#services", thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" },
+          { title: "Portfolio site", link: "#portfolio", thumbnail: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&q=80" },
+          { title: "Ecommerce page", link: "#packages", thumbnail: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80" },
+          { title: "Restaurant website", link: "#portfolio", thumbnail: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" },
+          { title: "Beauty studio site", link: "#portfolio", thumbnail: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" },
+          { title: "Freelancer portfolio", link: "#portfolio", thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80" },
+          { title: "Agency website", link: "#services", thumbnail: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80" },
+          { title: "Consulting site", link: "#services", thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" },
+          { title: "Product launch page", link: "#packages", thumbnail: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&q=80" },
+          { title: "Automotive business", link: "#portfolio", thumbnail: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80" },
+          { title: "Retail shop page", link: "#packages", thumbnail: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80" },
+          { title: "Professional service", link: "#services", thumbnail: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80" },
+          { title: "Local business site", link: "#packages", thumbnail: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" },
+        ]}
+      />
+
+      <section class="studio-statement story-section bg-ink px-5 py-20 text-white sm:px-6 lg:px-8">
+        <div class="liquid-section-bg liquid-section-bg--statement" aria-hidden="true">
+          <LiquidEther
+            client:visible
+            colors={["#9ff58f", "#176b4d", "#063b2c"]}
+            mouseForce={18}
+            cursorSize={116}
+            resolution={0.5}
+            autoSpeed={0.46}
+            autoIntensity={2.05}
+            autoResumeDelay={1600}
+            autoRampDuration={0.8}
+          />
+        </div>
+        <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+          <div class="studio-motion studio-motion--headline">
+            <p class="topic-label text-white/68">Mavora Labs</p>
+            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal sm:text-5xl">Small studio focus. Websites built to sell.</h2>
+          </div>
+          <div class="studio-statement__copy studio-motion studio-motion--copy">
+            <p class="studio-statement__intro text-lg leading-8 text-white/74">
+              Mavora Labs builds for founders and local service businesses that need a site visitors understand, trust, and act on — without the overhead of a large agency.
+            </p>
+            <ul class="studio-principles" aria-label="Mavora Labs website principles">
+              <li>
+                <span class="studio-principles__index">01</span>
+                <div>
+                  <h3>Offer clarity</h3>
+                  <p>Your page explains what you offer, who it's for, and why it matters — before attention runs out.</p>
+                </div>
+              </li>
+              <li>
+                <span class="studio-principles__index">02</span>
+                <div>
+                  <h3>Buyer confidence</h3>
+                  <p>Copy, proof, and structure guide visitors from first glance to ready to contact.</p>
+                </div>
+              </li>
+              <li>
+                <span class="studio-principles__index">03</span>
+                <div>
+                  <h3>Launch focus</h3>
+                  <p>Lean, fast builds with clean handoff — and a direct path from the site to WhatsApp.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="story-section bg-paper px-5 py-20 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-6xl">
+          <div class="text-center">
+            <p class="topic-label text-ember">Our services</p>
+            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">We solve business pipelines problem.</h2>
+          </div>
+          <div class="svc3d-stage">
+            <div class="svc3d-scene" id="svc3d-scene">
+              {services.map((service, i) => {
+                const Icon = service.icon;
+                return (
+                  <article class="svc3d-card service-card" data-index={i}>
+                    <div class="service-card__top">
+                      <span class="service-card__icon inline-flex h-11 w-11 items-center justify-center rounded-full">
+                        <Icon class="h-5 w-5" aria-hidden="true" />
+                      </span>
+                      <h3 class="service-card__title text-xl font-semibold">{service.title}</h3>
+                    </div>
+                    <p class="service-card__desc mt-6 leading-7">{service.description}</p>
+                    <ul class="service-card__points mt-6">
+                      {service.points.map((point) => <li>{point}</li>)}
+                    </ul>
+                  </article>
+                );
+              })}
+              <button class="pkg3d-btn" id="svc3d-prev" aria-label="Previous service" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button class="pkg3d-btn" id="svc3d-next" aria-label="Next service" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+            <div class="pkg3d-controls">
+              <div class="pkg3d-dots" role="tablist" aria-label="Service selector">
+                {services.map((svc, i) => (
+                  <button class={`pkg3d-dot svc3d-dot${i === 0 ? " is-active" : ""}`} type="button" role="tab" aria-label={svc.title}></button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" class="portfolio-section story-section" aria-label="Portfolio demos">
+        <div class="light-rays-section-bg light-rays-section-bg--portfolio" aria-hidden="true">
+          <LightRays
+            client:visible
+            raysOrigin="top-center"
+            raysColor="#9ff58f"
+            raysSpeed={3.2}
+            lightSpread={2.35}
+            rayLength={2.6}
+            followMouse={true}
+            mouseInfluence={0.48}
+            noiseAmount={0.18}
+            distortion={0.16}
+            fadeDistance={2.7}
+            saturation={1.0}
+            pulsating={true}
+          />
+        </div>
+        <ul class="pf-slider" id="pf-slider">
+          {portfolioDemos.map((demo) => (
+            <li class="pf-item" style={`background-image: url('${demo.image}')`} data-slug={demo.slug}>
+              <div class="pf-content">
+                <p class="pf-eyebrow">{demo.businessType}</p>
+                <h2 class="pf-title">{demo.name}</h2>
+                <p class="pf-desc">{demo.headline}</p>
+                <a href={`/portfolio/${demo.slug}/`} class="pf-cta">View demo</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <nav class="pf-nav">
+          <button class="pf-btn pf-prev" id="pf-prev" aria-label="Previous demo" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="pf-btn pf-next" id="pf-next" aria-label="Next demo" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </nav>
+        <div class="pf-view-all">
+          <a href="/portfolio/" class="ui-button inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:bg-mist">
+            View all demos
+            <ArrowRight class="h-4 w-4" aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+
+      <section id="packages" class="story-section bg-paper px-5 py-12 sm:px-6 lg:px-8" style="--section-bg: #fbf7ef">
+        <div class="mx-auto max-w-6xl">
+          <div class="text-center">
+            <p class="topic-label text-ember">Our packages</p>
+            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">Build your dream website with us</h2>
+          </div>
+          <div class="pkg3d-stage">
+            <div class="pkg3d-scene" id="pkg3d-scene">
+              {packages.map((item, index) => (
+                <article class="pkg3d-card package-card" data-index={index}>
+                  <div class="card-summary">
+                    <span class="card-index">0{index + 1}</span>
+                    <h3 class="text-2xl font-semibold">{item.name}</h3>
+                    <p class="package-price"><span class="price-label">{item.price.split(' ')[0]}</span><span class="price-amount">{item.price.split(' ').slice(1).join(' ')}</span></p>
+                  </div>
+                  <ul class="card-pill-list">
+                    {item.points.map((point) => (
+                      <li>
+                        <CircleCheck class="h-4 w-4 shrink-0 text-moss" aria-hidden="true" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div class="package-freebies">
+                    <p>Free included</p>
+                    <ul>
+                      {item.freeFeatures.map((feature) => (
+                        <li>
+                          <CircleCheck class="h-4 w-4 shrink-0 text-moss" aria-hidden="true" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="package-tier-carousel" aria-label={`${item.name} package tiers`}>
+                    <div class="package-tier-track">
+                      {item.tiers.map((tier) => (
+                        <div class={`package-tier ${tier.recommended ? "package-tier--featured" : ""}`}>
+                          <div class="package-tier__top">
+                            <span class="package-tier__name">{tier.name}</span>
+                            {tier.recommended && <span class="package-tier__badge">Recommended</span>}
+                          </div>
+                          <strong>{tier.price}</strong>
+                          <p>{tier.scope}</p>
+                          <small>{tier.meta}</small>
+                        </div>
+                      ))}
+                    </div>
+                    <div class="package-tier-dots" aria-hidden="true">
+                      {item.tiers.map((tier, ti) => (
+                        <button class={`package-tier-dot${ti === 0 ? " is-active" : ""}`} type="button" tabindex="-1"></button>
+                      ))}
+                    </div>
+                  </div>
+                  <p class="package-note">{item.note}</p>
+                  <a href="#project-request" data-package={item.name} class="ui-button package-card__cta mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ember px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#6f2119]">
+                    Request this package
+                    <ArrowRight class="h-4 w-4" aria-hidden="true" />
+                  </a>
+                </article>
+              ))}
+              <button class="pkg3d-btn" id="pkg3d-prev" aria-label="Previous package" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button class="pkg3d-btn" id="pkg3d-next" aria-label="Next package" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+            <div class="pkg3d-controls">
+              <div class="pkg3d-dots" role="tablist" aria-label="Package selector">
+                {packages.map((item, i) => (
+                  <button class={`pkg3d-dot${i === 0 ? " is-active" : ""}`} type="button" role="tab" aria-label={item.name}></button>
+                ))}
+              </div>
+            </div>
+          </div>
+          <p class="package-footnote">Final pricing depends on page count, content readiness, features, integrations, copywriting needs, and launch support. Payment is 50% deposit to start and 50% before launch.</p>
+        </div>
+      </section>
+
+      <section id="process" class="process-section story-section relative overflow-hidden bg-mist px-5 py-20 sm:px-6 lg:px-8">
+        <div class="light-rays-section-bg light-rays-section-bg--process" aria-hidden="true">
+          <LightRays
+            client:visible
+            raysOrigin="left"
+            raysColor="#176b4d"
+            raysSpeed={2.3}
+            lightSpread={1.55}
+            rayLength={2.0}
+            followMouse={true}
+            mouseInfluence={0.34}
+            noiseAmount={0.12}
+            distortion={0.1}
+            fadeDistance={2.2}
+            saturation={1.0}
+            pulsating={true}
+          />
+        </div>
+        <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+          <div>
+            <p class="topic-label text-moss">Our process</p>
+            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">From rough idea to a website ready to sell.</h2>
+            <p class="mt-5 leading-8 text-ink/68">
+              A focused process that turns your offer into clear copy, polished design, fast pages, and a confident launch path.
+            </p>
+          </div>
+          <ProcessCardStack client:visible />
+        </div>
+      </section>
+
+      <section id="faq" class="faq-section story-section px-5 py-20 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-6xl">
+          <div class="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+            <div class="lg:sticky lg:top-28">
+              <p class="topic-label text-ember">Common questions</p>
+              <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">Things people usually ask before reaching out.</h2>
+              <p class="mt-5 leading-8 text-ink/66">If your question isn't here, send it directly via WhatsApp when you submit the request form.</p>
+            </div>
+            <ul class="faq-list mt-2 bg-white">
+              <li class="faq-item">
+                <details>
+                  <summary>Do I need to have all my content ready before reaching out?</summary>
+                  <p class="faq-answer">No. You only need a rough idea of what your business does and who it serves. Content readiness is one of the questions in the request form, and the scope can be adjusted to include copywriting support if needed.</p>
+                </details>
+              </li>
+              <li class="faq-item">
+                <details>
+                  <summary>What happens after I send the WhatsApp request?</summary>
+                  <p class="faq-answer">You'll get a reply confirming the scope summary, proposed package, timeline, and next steps. From there, we agree on the scope, and you pay the 50% deposit to start. The remaining 50% is paid before launch.</p>
+                </details>
+              </li>
+              <li class="faq-item">
+                <details>
+                  <summary>Do I need to handle my own hosting and domain?</summary>
+                  <p class="faq-answer">Yes. You'll need to own your domain and have a hosting account. If you don't have these yet, the process is straightforward and guidance is included. This keeps you in control of your own website after launch.</p>
+                </details>
+              </li>
+              <li class="faq-item">
+                <details>
+                  <summary>How long does a typical project take?</summary>
+                  <p class="faq-answer">Starter pages typically take 3–10 working days depending on the tier. Business websites run 7–18 working days. Custom builds are scoped individually. Timeline starts once the deposit is paid and content is provided.</p>
+                </details>
+              </li>
+              <li class="faq-item">
+                <details>
+                  <summary>Can I request edits after the site is launched?</summary>
+                  <p class="faq-answer">Revisions are included in every package (1–3 depending on tier), all used during the build. Post-launch edits are handled as separate support requests and quoted based on scope.</p>
+                </details>
+              </li>
+              <li class="faq-item">
+                <details>
+                  <summary>Is the starting price the final price?</summary>
+                  <p class="faq-answer">Starting prices reflect the base tier. Final pricing depends on page count, content readiness, extra features, integrations, copywriting, and launch support needs. The full breakdown is confirmed before any payment is made.</p>
+                </details>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="project-request" class="request-section story-section bg-paper px-5 py-20 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-6xl">
+          <div class="grid gap-8 lg:grid-cols-[0.68fr_1.32fr] lg:items-start">
+            <div class="lg:sticky lg:top-28">
+              <p class="topic-label text-ember">Project request</p>
+              <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">Share the scope. Get a clear quote.</h2>
+              <p class="mt-5 leading-8 text-ink/68">
+                Send the quote details through WhatsApp, then confirm scope, timeline, and next steps there.
+              </p>
+            </div>
+
+            <form id="project-request-form" data-whatsapp-number={whatsappNumber} novalidate class="project-form-card rounded-2xl border border-line overflow-hidden">
+
+              <!-- Step indicator -->
+              <div class="form-steps-bar">
+                <ol class="form-steps-track" aria-label="Form progress">
+                  {["Business", "Package", "Details", "Notes"].map((label, i) => (
+                    <li class={`form-step-node${i === 0 ? " is-active" : ""}`} data-step-node={i}>
+                      <span class="form-step-node__circle">{i + 1}</span>
+                      <span class="form-step-node__label">{label}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              <!-- Step 1: Business -->
+              <div class="form-step-panel is-active" data-step="0">
+                <p class="form-step-heading">Tell us about your business.</p>
+                <div class="space-y-6">
+                  <label class="block">
+                    <span class="text-sm font-semibold text-ink">Business name</span>
+                    <input name="businessName" type="text" required autocomplete="organization" maxlength="120" class="mt-2 h-12 w-full rounded-lg border border-line bg-white px-4 text-ink outline-none transition focus:border-ember" placeholder="Business or brand" />
+                  </label>
+                  <fieldset>
+                    <legend class="text-sm font-semibold text-ink">Website type</legend>
+                    <div class="mt-3 grid gap-3 md:grid-cols-3">
+                      {websiteTypes.map((websiteType) => (
+                        <label class="choice-card flex cursor-pointer gap-3 rounded-lg border border-line bg-paper p-4 transition focus-within:border-ember hover:border-ember">
+                          <input name="websiteType" type="radio" value={websiteType.name} required class="mt-1 h-4 w-4 accent-ember" />
+                          <span>
+                            <span class="block font-semibold text-ink">{websiteType.name}</span>
+                            <span class="mt-2 block text-sm leading-6 text-ink/64">{websiteType.detail}</span>
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+
+              <!-- Step 2: Package -->
+              <div class="form-step-panel" data-step="1">
+                <p class="form-step-heading">Choose your package.</p>
+                <div class="space-y-6">
+                  <fieldset class="package-interest-block">
+                    <legend class="text-sm font-semibold text-ink">Package interest</legend>
+                    <div class="mt-3">
+                      <label class="block">
+                        <span class="sr-only">Package interest</span>
+                        <select id="package-interest-select" name="packageInterest" required class="h-12 w-full rounded-lg border border-line bg-white px-4 text-ink outline-none transition focus:border-ember">
+                          <option value="">Select package tier</option>
+                          {packages.map((item) => (
+                            <optgroup label={item.name} data-website-type={item.name}>
+                              {packageTierOptions.filter((option) => option.group === item.name).map((option) => <option value={option.value} data-summary={option.summary} data-meta={option.meta} data-free-features={option.freeFeatures}>{option.label}</option>)}
+                            </optgroup>
+                          ))}
+                        </select>
+                        <div id="package-interest-summary" class="package-selected-summary" aria-live="polite">
+                          <p class="package-selected-summary__title">Pick a package to preview the quote basis.</p>
+                          <p class="package-selected-summary__text">The final quote can still be adjusted after checking pages, content, and extras.</p>
+                        </div>
+                      </label>
+                    </div>
+                  </fieldset>
+                  <label class="block">
+                    <span class="text-sm font-semibold text-ink">Business type</span>
+                    <select name="businessType" required class="mt-2 h-12 w-full rounded-lg border border-line bg-white px-4 text-ink outline-none transition focus:border-ember">
+                      <option value="">Select type</option>
+                      {businessTypes.map((businessType) => <option>{businessType}</option>)}
+                    </select>
+                  </label>
+                  <fieldset>
+                    <legend class="text-sm font-semibold text-ink">Pages or sections needed</legend>
+                    <div class="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                      {pageOptions.map((option) => (
+                        <label class="choice-card request-check-card flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-line bg-white px-4 text-sm font-semibold text-ink/76 transition hover:border-ember">
+                          <input name="pages" type="checkbox" value={option} class="h-4 w-4 shrink-0 accent-ember" />
+                          <span>{option}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <legend class="text-sm font-semibold text-ink">Extra features or setup needed</legend>
+                    <div class="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                      {featureOptions.map((option) => (
+                        <label class="choice-card request-check-card flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-line bg-white px-4 text-sm font-semibold text-ink/76 transition hover:border-ember">
+                          <input name="features" type="checkbox" value={option} class="h-4 w-4 shrink-0 accent-ember" />
+                          <span>{option}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+
+              <!-- Step 3: Details -->
+              <div class="form-step-panel" data-step="2">
+                <p class="form-step-heading">A few more details.</p>
+                <div class="space-y-6">
+                  <div class="grid gap-4 md:grid-cols-2">
+                    <label class="block">
+                      <span class="text-sm font-semibold text-ink">Timeline</span>
+                      <select name="timeline" required class="mt-2 h-12 w-full rounded-lg border border-line bg-white px-4 text-ink outline-none transition focus:border-ember">
+                        <option value="">Select timeline</option>
+                        <option>As soon as possible</option>
+                        <option>1-2 weeks</option>
+                        <option>3-4 weeks</option>
+                        <option>1-2 months</option>
+                        <option>Flexible</option>
+                      </select>
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-semibold text-ink">Budget flexibility</span>
+                      <select name="budget" class="mt-2 h-12 w-full rounded-lg border border-line bg-white px-4 text-ink outline-none transition focus:border-ember">
+                        <option value="">Optional</option>
+                        <option>Stay close to selected package</option>
+                        <option>Can add budget for stronger content or features</option>
+                        <option>Need guidance</option>
+                      </select>
+                    </label>
+                  </div>
+                  <fieldset>
+                    <legend class="text-sm font-semibold text-ink">Do you already own a domain?</legend>
+                    <div class="mt-3 grid gap-3 md:grid-cols-2">
+                      {domainOwnershipOptions.map((option) => (
+                        <label class="choice-card flex cursor-pointer gap-3 rounded-lg border border-line bg-paper p-4 text-sm font-semibold text-ink/76 transition hover:border-ember">
+                          <input name="domainStatus" type="radio" value={option} required class="mt-0.5 h-4 w-4 accent-ember" />
+                          <span>{option}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <legend class="text-sm font-semibold text-ink">Content readiness</legend>
+                    <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                      {contentReadinessOptions.map((option) => (
+                        <label class="choice-card flex cursor-pointer gap-3 rounded-lg border border-line bg-paper p-4 text-sm font-semibold text-ink/76 transition hover:border-ember">
+                          <input name="contentReadiness" type="radio" value={option} required class="mt-0.5 h-4 w-4 accent-ember" />
+                          <span>{option}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                  <div class="grid gap-4 md:grid-cols-2">
+                    <label class="block">
+                      <span class="text-sm font-semibold text-ink">Current website or social</span>
+                      <input name="currentPresence" type="text" autocomplete="url" maxlength="200" class="mt-2 h-12 w-full rounded-lg border border-line bg-white px-4 text-ink outline-none transition focus:border-ember" placeholder="Website, Instagram, Facebook, or TikTok" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-semibold text-ink">Main website goal</span>
+                      <input name="mainGoal" type="text" autocomplete="off" maxlength="200" class="mt-2 h-12 w-full rounded-lg border border-line bg-white px-4 text-ink outline-none transition focus:border-ember" placeholder="More bookings or inquiries" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Notes + Submit -->
+              <div class="form-step-panel" data-step="3">
+                <p class="form-step-heading">Anything important to add?</p>
+                <div class="space-y-6">
+                  <label class="block">
+                    <span class="text-sm font-semibold text-ink">Project notes</span>
+                    <textarea name="projectNotes" rows="5" autocomplete="off" maxlength="1200" class="mt-2 w-full rounded-lg border border-line bg-white px-4 py-3 text-ink outline-none transition focus:border-ember" placeholder="Must-have details, examples, or concerns."></textarea>
+                  </label>
+                  <div class="submit-panel flex flex-col gap-4 rounded-lg border border-line bg-paper p-5 md:flex-row md:items-center md:justify-between">
+                    <div class="space-y-2">
+                      <p id="project-request-status" class="leading-7 text-ink/68">Your request opens in WhatsApp before sending. No payment is required from this form.</p>
+                      <p class="text-sm leading-6 text-ink/58">Contact details can be confirmed after the quote.</p>
+                      <p class="text-sm leading-6"><a href="/privacy/" class="font-semibold text-ember transition hover:text-ink">View privacy note</a></p>
+                    </div>
+                    <button id="project-request-submit" type="submit" class="ui-button submit-button inline-flex min-h-12 min-w-44 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-ember px-6 text-base font-semibold text-white transition hover:bg-[#6f2119]">
+                      <MessageCircle class="submit-icon h-5 w-5" aria-hidden="true" />
+                      <span class="submit-label">Send to WhatsApp</span>
+                    </button>
+                  </div>
+                  <p class="text-center text-sm text-ink/58">Not ready to fill the form yet? <a href={`https://wa.me/${whatsappNumber.replace(/\D/g,"")}?text=${encodeURIComponent("Hi, I'd like to book a quick consultation before submitting a project request.")}`} target="_blank" rel="noopener noreferrer" class="font-semibold text-ember transition hover:text-ink">Book a free consultation →</a></p>
+                </div>
+              </div>
+
+              <!-- Step navigation -->
+              <div class="form-step-nav">
+                <button type="button" id="form-step-back" class="form-step-nav__back">← Back</button>
+                <button type="button" id="form-step-next" class="form-step-nav__next">Next →</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <a href="#project-request" class="floating-wa" id="floating-wa-btn" aria-label="Request a project">
+      <svg class="floating-wa__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.285 7.041L.787 23.41a.75.75 0 0 0 .916.916l4.37-1.498A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.716 9.716 0 0 1-4.94-1.348l-.355-.21-3.676 1.26 1.26-3.676-.21-.355A9.716 9.716 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+      Request a project
+    </a>
+    <script>
+      (() => {
+        const btn = document.getElementById('floating-wa-btn');
+        if (!btn) return;
+        const hero = document.querySelector('main > section:first-child');
+        if (!hero) return;
+        const observer = new IntersectionObserver(
+          ([entry]) => btn.classList.toggle('is-visible', !entry.isIntersecting),
+          { threshold: 0.1 }
+        );
+        observer.observe(hero);
+      })();
+    </script>
+
+    <footer class="site-footer border-t border-line bg-paper px-5 py-8 sm:px-6 lg:px-8">
+      <div class="mx-auto grid max-w-6xl gap-6 text-sm text-ink/62 md:grid-cols-[1fr_auto] md:items-center">
+        <div class="site-footer__brand">
+          <a href="#top" class="site-footer__logo" aria-label="Mavora Labs home">
+          <img src="/logo-transparent.png" alt="Mavora Labs" class="h-auto w-full object-contain" width="980" height="313" loading="lazy" />
+          </a>
+          <p>Sales-focused websites for founders and local businesses that need clear offers, buyer trust, and a direct inquiry path.</p>
+        </div>
+        <div class="site-footer__actions">
+          <nav class="site-footer__links" aria-label="Footer navigation">
+            <a href={ctaHref}>Project request</a>
+            <a href="/privacy/">Privacy</a>
+          </nav>
+          <p>WhatsApp is used for project requests and active support.</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const header = document.querySelector<HTMLElement>("#site-header");
+      let lastScrollY = window.scrollY;
+      let headerTicking = false;
+
+      const updateHeader = () => {
+        if (!header) return;
+
+        const currentScrollY = window.scrollY;
+        header.classList.toggle("is-scrolled", currentScrollY > 24);
+        header.classList.toggle("is-hidden", currentScrollY > lastScrollY && currentScrollY > 140);
+        lastScrollY = currentScrollY;
+        headerTicking = false;
+      };
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (!headerTicking) {
+            window.requestAnimationFrame(updateHeader);
+            headerTicking = true;
+          }
+        },
+        { passive: true },
+      );
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("main > section:not(:first-child), form"));
+      const storySections = Array.from(document.querySelectorAll<HTMLElement>(".story-section"));
+      const studioStatement = document.querySelector<HTMLElement>(".studio-statement");
+      const heroMedia = document.querySelector<HTMLElement>(".hero-media");
+      const storyLine = document.querySelector<SVGElement>(".story-line");
+
+      if (!prefersReducedMotion) {
+        gsap.timeline({ defaults: { ease: "power3.out" } })
+          .fromTo(".hero-word", { y: 34, rotateX: 48, scale: 0.94, autoAlpha: 0, transformOrigin: "left bottom" }, { y: 0, rotateX: 0, scale: 1, autoAlpha: 1, duration: 0.72, stagger: 0.055 })
+          .fromTo(".hero-proof-line", { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.48 }, ">-0.1")
+          .fromTo(".hero-actions", { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.58 }, "<0.14");
+
+        revealTargets.forEach((target, index) => {
+          gsap.fromTo(
+            target,
+            { y: 56, scale: 0.96, opacity: 0 },
+            {
+              y: 0,
+              scale: 1,
+              opacity: 1,
+              duration: 0.72,
+              delay: Math.min(index % 4, 3) * 0.05,
+              ease: "power3.out",
+              scrollTrigger: { trigger: target, start: "top 88%", once: true },
+              onComplete: () => target.classList.add("is-visible"),
+            },
+          );
+        });
+
+        storySections.forEach((section) => {
+          gsap.fromTo(
+            section,
+            { "--story-progress": 0 },
+            { "--story-progress": 1, ease: "none", scrollTrigger: { trigger: section, start: "top 88%", end: "bottom 42%", scrub: true } },
+          );
+        });
+
+        if (studioStatement) {
+          const studioItems = studioStatement.querySelectorAll<HTMLElement>(".studio-motion, .studio-principles li");
+          gsap.fromTo(
+            studioItems,
+            { y: 34, opacity: 0, filter: "blur(8px)" },
+            {
+              y: 0,
+              opacity: 1,
+              filter: "blur(0px)",
+              duration: 0.78,
+              stagger: 0.09,
+              ease: "power3.out",
+              scrollTrigger: { trigger: studioStatement, start: "top 72%", once: true },
+            },
+          );
+        }
+
+        if (storyLine) {
+          const path = storyLine.querySelector("path");
+          if (path) {
+            gsap.fromTo(path, { strokeDashoffset: 940 }, { strokeDashoffset: 0, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: storyLine, start: "top 82%", once: true } });
+          }
+        }
+      }
+
+      if (studioStatement && !prefersReducedMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        studioStatement.addEventListener("pointermove", (event) => {
+          const rect = studioStatement.getBoundingClientRect();
+          const x = ((event.clientX - rect.left) / rect.width) * 100;
+          const y = ((event.clientY - rect.top) / rect.height) * 100;
+          studioStatement.style.setProperty("--studio-x", `${x}%`);
+          studioStatement.style.setProperty("--studio-y", `${y}%`);
+          studioStatement.classList.add("is-pointer-active");
+        });
+
+        studioStatement.addEventListener("pointerleave", () => {
+          studioStatement.classList.remove("is-pointer-active");
+        });
+      }
+
+      const canUsePointerTilt = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches;
+
+      if (canUsePointerTilt) {
+        document.querySelectorAll<HTMLElement>(".ui-button").forEach((button) => {
+          button.addEventListener("pointerenter", () => gsap.to(button, { y: -2, duration: 0.18, ease: "power2.out" }));
+          button.addEventListener("pointerleave", () => gsap.to(button, { y: 0, scale: 1, duration: 0.22, ease: "power2.out" }));
+          button.addEventListener("pointerdown", () => gsap.to(button, { scale: 0.98, duration: 0.08, ease: "power2.out" }));
+          button.addEventListener("pointerup", () => gsap.to(button, { scale: 1, duration: 0.16, ease: "back.out(1.8)" }));
+        });
+
+        document.querySelectorAll<HTMLElement>(".tilt-card").forEach((card) => {
+          card.addEventListener("pointermove", (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width;
+            const y = (event.clientY - rect.top) / rect.height;
+            card.style.setProperty("--tilt-x", `${x * 100}%`);
+            card.style.setProperty("--tilt-y", `${y * 100}%`);
+            gsap.to(card, { y: -4, rotateX: (0.5 - y) * 7, rotateY: (x - 0.5) * 9, transformPerspective: 900, duration: 0.22, ease: "power2.out", overwrite: true });
+          });
+
+          card.addEventListener("pointerleave", () => {
+            card.style.removeProperty("--tilt-x");
+            card.style.removeProperty("--tilt-y");
+            gsap.to(card, { y: 0, rotateX: 0, rotateY: 0, duration: 0.34, ease: "elastic.out(1, 0.55)", overwrite: true });
+          });
+        });
+      }
+
+      document.addEventListener("click", (event) => {
+        const link = (event.target as Element | null)?.closest<HTMLAnchorElement>("a[href]");
+        if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        const url = new URL(link.href, window.location.href);
+        const isSamePageHash = url.pathname === window.location.pathname && url.hash;
+        const isExternal = url.origin !== window.location.origin;
+
+        if (link.target || link.hasAttribute("download") || isExternal || isSamePageHash) return;
+
+        event.preventDefault();
+        gsap.to(document.body, { opacity: 0.88, scale: 0.992, duration: 0.18, ease: "power2.inOut" });
+        document.body.classList.add("page-exit");
+        window.setTimeout(() => {
+          window.location.href = url.href;
+        }, 180);
+      });
+
+      const resetSubmitButton = (submitButton: HTMLButtonElement | null, submitLabel: HTMLElement | null) => {
+        submitButton?.classList.remove("is-loading", "is-success");
+        if (submitLabel) submitLabel.textContent = "Send to WhatsApp";
+      }
+
+      const form = document.querySelector<HTMLFormElement>("#project-request-form");
+      const status = document.querySelector<HTMLElement>("#project-request-status");
+      const submitButton = document.querySelector<HTMLButtonElement>("#project-request-submit");
+      const submitLabel = submitButton?.querySelector<HTMLElement>(".submit-label") || null;
+      const packageSelect = document.querySelector<HTMLSelectElement>("#package-interest-select");
+      const packageSummary = document.querySelector<HTMLElement>("#package-interest-summary");
+
+      const updatePackageSummary = () => {
+        if (!packageSelect) return;
+        const selectedOption = packageSelect.selectedOptions[0];
+        if (!packageSummary || !selectedOption?.value) {
+          if (packageSummary) {
+            packageSummary.innerHTML = '<p class="package-selected-summary__title">Pick a package to preview the quote basis.</p><p class="package-selected-summary__text">The final quote can still be adjusted after checking pages, content, and extras.</p>';
+          }
+          return;
+        }
+
+        packageSummary.innerHTML = [
+          `<p class="package-selected-summary__title">${selectedOption.value}</p>`,
+          `<p class="package-selected-summary__text">${selectedOption.dataset.summary || "Scope to be confirmed"}</p>`,
+          `<p class="package-selected-summary__meta">${selectedOption.dataset.meta || "Timeline to be confirmed"}</p>`,
+          `<p class="package-selected-summary__free">Free included: ${selectedOption.dataset.freeFeatures || "Confirmed after scope review"}</p>`,
+        ].join("");
+      };
+
+      packageSelect?.addEventListener("change", () => {
+        updatePackageSummary();
+        // Reverse-sync: auto-select the matching website type radio
+        const selectedOpt = packageSelect?.selectedOptions[0];
+        const group = selectedOpt?.closest("optgroup") as HTMLOptGroupElement | null;
+        const groupType = group?.dataset.websiteType;
+        if (groupType) {
+          const groupToWebsiteType: Record<string, string> = {
+            "Starter Website": "Landing Page",
+            "Business Website": "Business Website",
+            "Custom Build": "Custom Website",
+          };
+          const radioValue = groupToWebsiteType[groupType];
+          const radio = document.querySelector<HTMLInputElement>(`input[name="websiteType"][value="${radioValue}"]`);
+          if (radio && !radio.checked) {
+            radio.checked = true;
+            radio.dispatchEvent(new Event("change", { bubbles: true }));
+          }
+        }
+      });
+
+      // Map website type radio value → package optgroup label
+      const websiteTypeToGroup: Record<string, string> = {
+        "Landing Page": "Starter Website",
+        "Business Website": "Business Website",
+        "Custom Website": "Custom Build",
+      };
+
+      const filterPackagesByWebsiteType = (websiteType: string) => {
+        if (!packageSelect) return;
+        const targetGroup = websiteTypeToGroup[websiteType];
+        const optgroups = packageSelect.querySelectorAll<HTMLOptGroupElement>("optgroup");
+
+        optgroups.forEach((group) => {
+          const matches = !targetGroup || group.dataset.websiteType === targetGroup;
+          // Hide/show by disabling options and the group itself
+          Array.from(group.querySelectorAll("option")).forEach((opt) => {
+            opt.hidden = !matches;
+            opt.disabled = !matches;
+          });
+          group.hidden = !matches;
+        });
+
+        // Reset selection if current value is now hidden
+        const currentOption = packageSelect.selectedOptions[0];
+        if (currentOption?.hidden) {
+          packageSelect.value = "";
+          updatePackageSummary();
+        }
+      };
+
+      document.querySelectorAll<HTMLInputElement>('input[name="websiteType"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          if (radio.checked) filterPackagesByWebsiteType(radio.value);
+        });
+      });
+
+      // Apply on page load if a radio is already checked (e.g. back-navigation or URL param)
+      const checkedType = document.querySelector<HTMLInputElement>('input[name="websiteType"]:checked');
+      if (checkedType) filterPackagesByWebsiteType(checkedType.value);
+
+      const requestedPackage = new URLSearchParams(window.location.search).get("package");
+      if (packageSelect && requestedPackage) {
+        const matchingOption = Array.from(packageSelect.options).find((option) => option.value.startsWith(requestedPackage));
+        if (matchingOption?.value) {
+          packageSelect.value = matchingOption.value;
+          updatePackageSummary();
+        }
+      }
+
+      document.querySelectorAll<HTMLAnchorElement>("a[data-package]").forEach((cta) => {
+        cta.addEventListener("click", () => {
+          const pkg = cta.dataset.package;
+          if (!packageSelect || !pkg) return;
+          const match = Array.from(packageSelect.options).find((o) => o.value.startsWith(pkg));
+          if (match?.value) {
+            packageSelect.value = match.value;
+            updatePackageSummary();
+          }
+        });
+      });
+
+      form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        submitButton?.classList.remove("is-success");
+        submitButton?.classList.add("is-loading");
+        if (submitButton && !prefersReducedMotion) gsap.to(submitButton, { scale: 0.98, duration: 0.12, ease: "power2.out" });
+        if (submitLabel) submitLabel.textContent = "Preparing...";
+
+        const formData = new FormData(form);
+        const value = (name: string) => String(formData.get(name) || "Not provided");
+        const list = (name: string) => {
+          const values = formData.getAll(name).map((item) => String(item));
+          return values.length > 0 ? values.join(", ") : "Not selected";
+        };
+
+        const body = [
+          "Website project request",
+          "",
+          `Business name: ${value("businessName")}`,
+          `Website type: ${value("websiteType")}`,
+          `Package interest: ${value("packageInterest")}`,
+          `Business type: ${value("businessType")}`,
+          `Timeline: ${value("timeline")}`,
+          `Budget flexibility: ${value("budget")}`,
+          `Domain status: ${value("domainStatus")}`,
+          `Pages/sections: ${list("pages")}`,
+          `Features/setup: ${list("features")}`,
+          `Content readiness: ${value("contentReadiness")}`,
+          `Current website/social: ${value("currentPresence")}`,
+          `Main website goal: ${value("mainGoal")}`,
+          "",
+          "Anything important:",
+          value("projectNotes"),
+        ].join("\n");
+
+        const whatsappNumber = (form.dataset.whatsappNumber || "").replace(/\D/g, "");
+
+        if (!whatsappNumber) {
+          if (status) {
+            status.textContent = "WhatsApp number is not configured yet. Add PUBLIC_WHATSAPP_NUMBER in .env before launch.";
+          }
+          resetSubmitButton(submitButton || null, submitLabel);
+          return;
+        }
+
+        if (status) {
+          status.textContent = "WhatsApp message prepared. Send it there to submit the project request.";
+        }
+
+        submitButton?.classList.remove("is-loading");
+        submitButton?.classList.add("is-success");
+        if (submitButton && !prefersReducedMotion) gsap.to(submitButton, { scale: 1, duration: 0.28, ease: "back.out(1.8)" });
+        if (submitLabel) submitLabel.textContent = "Ready in WhatsApp";
+
+        window.setTimeout(() => {
+          window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(body)}`;
+        }, 180);
+      });
+
+      // Multi-step form wizard
+      (() => {
+        const panels = Array.from(document.querySelectorAll<HTMLElement>(".form-step-panel"));
+        const nodes = Array.from(document.querySelectorAll<HTMLElement>(".form-step-node"));
+        const backBtn = document.getElementById("form-step-back") as HTMLButtonElement | null;
+        const nextBtn = document.getElementById("form-step-next") as HTMLButtonElement | null;
+        const navBar = document.querySelector<HTMLElement>(".form-step-nav");
+        let step = 0;
+
+        const show = (i: number) => {
+          panels.forEach((p, idx) => p.classList.toggle("is-active", idx === i));
+          nodes.forEach((n, idx) => {
+            n.classList.toggle("is-active", idx === i);
+            n.classList.toggle("is-done", idx < i);
+          });
+          if (backBtn) backBtn.style.visibility = i === 0 ? "hidden" : "visible";
+          const isLast = i === panels.length - 1;
+          if (navBar) navBar.style.display = isLast ? "none" : "flex";
+          step = i;
+        };
+
+        const validate = (i: number): boolean => {
+          const panel = panels[i];
+          const required = Array.from(panel.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[required]"));
+          const radioNames = new Set(required.filter(el => (el as HTMLInputElement).type === "radio").map(el => el.name));
+          let ok = true;
+          let firstBad: HTMLElement | null = null;
+
+          required.forEach(el => {
+            if ((el as HTMLInputElement).type === "radio") return;
+            if (!el.value.trim()) { ok = false; if (!firstBad) firstBad = el as HTMLElement; }
+          });
+          radioNames.forEach(name => {
+            if (!panel.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`)) ok = false;
+          });
+
+          if (!ok) {
+            if (firstBad) (firstBad as HTMLElement).focus();
+            nextBtn?.classList.add("is-error");
+            setTimeout(() => nextBtn?.classList.remove("is-error"), 500);
+          }
+          return ok;
+        };
+
+        nextBtn?.addEventListener("click", () => { if (validate(step)) show(step + 1); });
+        backBtn?.addEventListener("click", () => { if (step > 0) show(step - 1); });
+
+        show(0);
+      })();
+
+      // 3D Package Carousel
+      const pkg3dScene = document.getElementById("pkg3d-scene");
+      if (pkg3dScene) {
+        const pkg3dCards = Array.from(pkg3dScene.querySelectorAll<HTMLElement>(".pkg3d-card"));
+        const pkg3dDots = Array.from(document.querySelectorAll<HTMLButtonElement>(".pkg3d-dot"));
+        const pkg3dN = pkg3dCards.length;
+        let pkg3dActive = 0;
+        const pkg3dSyncHeight = () => {
+          let maxH = 0;
+          pkg3dCards.forEach(c => { const h = c.offsetHeight; if (h > maxH) maxH = h; });
+          if (maxH > 0) { pkg3dScene.style.minHeight = maxH + "px"; pkg3dScene.style.height = maxH + "px"; }
+        };
+        const pkg3dRender = () => {
+          pkg3dCards.forEach((card, i) => {
+            const offset = ((i - pkg3dActive) % pkg3dN + pkg3dN) % pkg3dN;
+            card.classList.remove("is-center", "is-left", "is-right");
+            if (offset === 0) card.classList.add("is-center");
+            else if (offset === 1) card.classList.add("is-right");
+            else card.classList.add("is-left");
+          });
+          pkg3dDots.forEach((d, i) => d.classList.toggle("is-active", i === pkg3dActive));
+        };
+        // Auto-rotate
+        let pkg3dAuto: ReturnType<typeof setInterval> | null = null;
+        let pkg3dUserActed = false;
+        const pkg3dStartAuto = () => { if (!pkg3dUserActed) { pkg3dAuto = setInterval(() => { pkg3dActive = (pkg3dActive + 1) % pkg3dN; pkg3dRender(); }, 3000); } };
+        const pkg3dStopAuto = () => { if (pkg3dAuto !== null) { clearInterval(pkg3dAuto); pkg3dAuto = null; } };
+        const pkg3dHandleInteract = () => { pkg3dUserActed = true; pkg3dStopAuto(); };
+        pkg3dCards.forEach((card, i) => {
+          card.addEventListener("click", (e) => {
+            if (!card.classList.contains("is-center")) {
+              e.preventDefault();
+              pkg3dActive = i;
+              pkg3dRender();
+              pkg3dHandleInteract();
+            }
+          });
+        });
+        document.getElementById("pkg3d-prev")?.addEventListener("click", () => {
+          pkg3dActive = (pkg3dActive - 1 + pkg3dN) % pkg3dN;
+          pkg3dRender();
+          pkg3dHandleInteract();
+        });
+        document.getElementById("pkg3d-next")?.addEventListener("click", () => {
+          pkg3dActive = (pkg3dActive + 1) % pkg3dN;
+          pkg3dRender();
+          pkg3dHandleInteract();
+        });
+        pkg3dDots.forEach((dot, i) => {
+          dot.addEventListener("click", () => { pkg3dActive = i; pkg3dRender(); pkg3dHandleInteract(); });
+        });
+        let pkg3dTouchX = 0;
+        pkg3dScene.addEventListener("touchstart", (e) => { pkg3dTouchX = e.touches[0].clientX; }, { passive: true });
+        pkg3dScene.addEventListener("touchend", (e) => {
+          const dx = e.changedTouches[0].clientX - pkg3dTouchX;
+          if (Math.abs(dx) > 40) {
+            pkg3dActive = dx < 0 ? (pkg3dActive + 1) % pkg3dN : (pkg3dActive - 1 + pkg3dN) % pkg3dN;
+            pkg3dRender();
+            pkg3dHandleInteract();
+          }
+        }, { passive: true });
+        const pkg3dStage = pkg3dScene.closest<HTMLElement>(".pkg3d-stage");
+        if (pkg3dStage) {
+          pkg3dStage.addEventListener("mouseenter", pkg3dStopAuto);
+          pkg3dStage.addEventListener("mouseleave", pkg3dStartAuto);
+        }
+        const pkg3dRO = new ResizeObserver(pkg3dSyncHeight);
+        pkg3dCards.forEach(c => pkg3dRO.observe(c));
+        pkg3dRender();
+        pkg3dStartAuto();
+        window.addEventListener("load", pkg3dSyncHeight, { once: true });
+      }
+
+      // 3D Service Carousel
+      const svc3dScene = document.getElementById("svc3d-scene");
+      if (svc3dScene) {
+        const svc3dCards = Array.from(svc3dScene.querySelectorAll<HTMLElement>(".svc3d-card"));
+        const svc3dDots = Array.from(document.querySelectorAll<HTMLButtonElement>(".svc3d-dot"));
+        const svc3dN = svc3dCards.length;
+        let svc3dActive = 0;
+        const svc3dSyncHeight = () => {
+          let maxH = 0;
+          svc3dCards.forEach(c => { const h = c.offsetHeight; if (h > maxH) maxH = h; });
+          if (maxH > 0) { svc3dScene.style.minHeight = maxH + "px"; svc3dScene.style.height = maxH + "px"; }
+        };
+        const svc3dRender = () => {
+          svc3dCards.forEach((card, i) => {
+            const offset = ((i - svc3dActive) % svc3dN + svc3dN) % svc3dN;
+            card.classList.remove("is-center", "is-left", "is-right");
+            if (offset === 0) card.classList.add("is-center");
+            else if (offset === 1) card.classList.add("is-right");
+            else card.classList.add("is-left");
+          });
+          svc3dDots.forEach((d, i) => d.classList.toggle("is-active", i === svc3dActive));
+        };
+        let svc3dAuto: ReturnType<typeof setInterval> | null = null;
+        let svc3dUserActed = false;
+        const svc3dStartAuto = () => { if (!svc3dUserActed) { svc3dAuto = setInterval(() => { svc3dActive = (svc3dActive + 1) % svc3dN; svc3dRender(); }, 3200); } };
+        const svc3dStopAuto = () => { if (svc3dAuto !== null) { clearInterval(svc3dAuto); svc3dAuto = null; } };
+        const svc3dHandleInteract = () => { svc3dUserActed = true; svc3dStopAuto(); };
+        svc3dCards.forEach((card, i) => {
+          card.addEventListener("click", () => {
+            if (!card.classList.contains("is-center")) {
+              svc3dActive = i;
+              svc3dRender();
+              svc3dHandleInteract();
+            }
+          });
+        });
+        document.getElementById("svc3d-prev")?.addEventListener("click", () => {
+          svc3dActive = (svc3dActive - 1 + svc3dN) % svc3dN;
+          svc3dRender();
+          svc3dHandleInteract();
+        });
+        document.getElementById("svc3d-next")?.addEventListener("click", () => {
+          svc3dActive = (svc3dActive + 1) % svc3dN;
+          svc3dRender();
+          svc3dHandleInteract();
+        });
+        svc3dDots.forEach((dot, i) => {
+          dot.addEventListener("click", () => { svc3dActive = i; svc3dRender(); svc3dHandleInteract(); });
+        });
+        let svc3dTouchX = 0;
+        svc3dScene.addEventListener("touchstart", (e) => { svc3dTouchX = e.touches[0].clientX; }, { passive: true });
+        svc3dScene.addEventListener("touchend", (e) => {
+          const dx = e.changedTouches[0].clientX - svc3dTouchX;
+          if (Math.abs(dx) > 40) {
+            svc3dActive = dx < 0 ? (svc3dActive + 1) % svc3dN : (svc3dActive - 1 + svc3dN) % svc3dN;
+            svc3dRender();
+            svc3dHandleInteract();
+          }
+        }, { passive: true });
+        const svc3dStage = svc3dScene.closest<HTMLElement>(".svc3d-stage");
+        if (svc3dStage) {
+          svc3dStage.addEventListener("mouseenter", svc3dStopAuto);
+          svc3dStage.addEventListener("mouseleave", svc3dStartAuto);
+        }
+        const svc3dRO = new ResizeObserver(svc3dSyncHeight);
+        svc3dCards.forEach(c => svc3dRO.observe(c));
+        svc3dRender();
+        svc3dStartAuto();
+        window.addEventListener("load", svc3dSyncHeight, { once: true });
+      }
+
+      // Portfolio slider
+      const pfSlider = document.getElementById("pf-slider");
+      if (pfSlider) {
+        document.getElementById("pf-next")?.addEventListener("click", () => {
+          const items = pfSlider.querySelectorAll(".pf-item");
+          pfSlider.append(items[0]);
+        });
+        document.getElementById("pf-prev")?.addEventListener("click", () => {
+          const items = pfSlider.querySelectorAll(".pf-item");
+          pfSlider.prepend(items[items.length - 1]);
+        });
+      }
+
+      // Tier carousels
+      document.querySelectorAll<HTMLElement>(".package-tier-carousel").forEach((carousel) => {
+        const track = carousel.querySelector<HTMLElement>(".package-tier-track");
+        const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>(".package-tier-dot"));
+        if (!track || !dots.length) return;
+        const updateDots = () => {
+          const idx = Math.round(track.scrollLeft / track.offsetWidth);
+          dots.forEach((d, i) => d.classList.toggle("is-active", i === idx));
+        };
+        dots.forEach((dot, i) => {
+          dot.addEventListener("click", () => track.scrollTo({ left: i * track.offsetWidth, behavior: "smooth" }));
+        });
+        track.addEventListener("scroll", updateDots, { passive: true });
+        updateDots();
+      });
+    </script>
+  </body>
+</html>
