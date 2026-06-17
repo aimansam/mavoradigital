@@ -1,0 +1,163 @@
+const coffeePhone = import.meta.env.PUBLIC_COFFEE_PHONE_DIGITS || "60198765432";
+const coffeePhoneDisplay = import.meta.env.PUBLIC_COFFEE_PHONE_DISPLAY || "+60 19-876 5432";
+
+export const coffeeBusiness = {
+  name: "Mavora Coffee",
+  address: "Jalan SS15, Subang Jaya, Selangor",
+  phoneDisplay: coffeePhoneDisplay,
+  phoneHref: `tel:+${coffeePhone}`,
+  whatsappHref: `https://wa.me/${coffeePhone}?text=Hi%20Mavora%20Coffee%2C%20I%27d%20like%20to%20reserve%20a%20table`,
+  whatsappPreorderHref: `https://wa.me/${coffeePhone}?text=Hi%20Mavora%20Coffee%2C%20I%27d%20like%20to%20preorder`,
+  mapQuery: "Jalan SS15 Subang Jaya Selangor Malaysia",
+  mapEmbedSrc: "https://maps.google.com/maps?q=Jalan%20SS15%20Subang%20Jaya%20Selangor%20Malaysia&t=&z=15&ie=UTF8&iwloc=&output=embed",
+  mapHref: "https://maps.google.com/?q=Jalan%20SS15%20Subang%20Jaya%20Selangor%20Malaysia",
+  rating: "4.8",
+  ratingLabel: "Average rating",
+  openFromLabel: "Open from 8 AM",
+  wifiLabel: "Free wifi",
+  hoursLine: "Open daily, 8 AM – 9 PM",
+  hoursRows: [
+    { days: "Mon – Fri", hours: "8 AM – 9 PM" },
+    { days: "Saturday",  hours: "8 AM – 10 PM" },
+    { days: "Sunday",    hours: "9 AM – 8 PM" },
+  ],
+  hoursByDay: [
+    { open: 9 * 60,  close: 20 * 60 },
+    { open: 8 * 60,  close: 21 * 60 },
+    { open: 8 * 60,  close: 21 * 60 },
+    { open: 8 * 60,  close: 21 * 60 },
+    { open: 8 * 60,  close: 21 * 60 },
+    { open: 8 * 60,  close: 21 * 60 },
+    { open: 8 * 60,  close: 22 * 60 },
+  ],
+  timeZone: "Asia/Kuala_Lumpur",
+};
+
+export type CoffeeBusiness = typeof coffeeBusiness;
+
+export const coffeeMenu = [
+  {
+    category: "coffee" as const,
+    name: "Signature Latte",
+    description: "Double espresso pulled slow, steamed full-cream milk, light foam crown. Our most-ordered morning drink.",
+    price: "RM14.00",
+    badge: "Our best",
+    tone: "signature" as const,
+    image: "https://images.unsplash.com/photo-1561047029-3000c68339ca?auto=format&fit=crop&w=800&q=80",
+    alt: "Signature latte with latte art in a white ceramic cup",
+    focus: "center 40%",
+  },
+  {
+    category: "coffee" as const,
+    name: "Long Black",
+    description: "Two shots of rich espresso over hot water. Bold, clean, no milk — for the purists.",
+    price: "RM10.00",
+    badge: "Bold",
+    tone: "bold" as const,
+    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
+    alt: "Espresso shot crema in a small ceramic glass",
+    focus: "center 50%",
+  },
+  {
+    category: "coffee" as const,
+    name: "Flat White",
+    description: "Microfoam steamed milk over a ristretto base. Stronger milk-to-coffee ratio than a latte.",
+    price: "RM13.00",
+    badge: "Daily pick",
+    tone: "popular" as const,
+    image: "https://images.unsplash.com/photo-1485808191679-5f86510bd9d4?auto=format&fit=crop&w=800&q=80",
+    alt: "Flat white with silky microfoam in a ceramic cup",
+    focus: "center 45%",
+  },
+  {
+    category: "cold" as const,
+    name: "Cold Brew",
+    description: "Steeped 18 hours, filtered clean, served over ice. Smooth and low-acid with a long finish.",
+    price: "RM15.00",
+    badge: "Smooth",
+    tone: "cold" as const,
+    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80",
+    alt: "Glass of cold brew coffee over ice",
+    focus: "center 50%",
+  },
+  {
+    category: "cold" as const,
+    name: "Iced Caramel Latte",
+    description: "Chilled espresso, fresh milk, and house caramel syrup over ice. Sweet, balanced, refreshing.",
+    price: "RM16.00",
+    badge: "Sweet",
+    tone: "sweet" as const,
+    image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80",
+    alt: "Iced caramel latte with layers of milk and coffee",
+    focus: "center 35%",
+  },
+  {
+    category: "cold" as const,
+    name: "Dirty Matcha",
+    description: "Japanese ceremonial matcha over a single espresso shot, chilled milk, light ice.",
+    price: "RM17.00",
+    badge: "Fan fave",
+    tone: "matcha" as const,
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
+    alt: "Iced matcha drink with espresso layer",
+    focus: "center 40%",
+  },
+  {
+    category: "pastry" as const,
+    name: "Butter Croissant",
+    description: "Laminated dough, baked fresh each morning. Flaky outside, soft pull inside.",
+    price: "RM8.50",
+    badge: "Fresh daily",
+    tone: "baked" as const,
+    image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80",
+    alt: "Golden butter croissant on a plate",
+    focus: "center 50%",
+  },
+  {
+    category: "pastry" as const,
+    name: "Banana Bread",
+    description: "House-recipe banana bread, toasted to order, served with light honey butter.",
+    price: "RM9.00",
+    badge: "House recipe",
+    tone: "baked" as const,
+    image: "https://images.unsplash.com/photo-1587727679416-a6e2daa3b93e?auto=format&fit=crop&w=800&q=80",
+    alt: "Sliced banana bread with a golden crust",
+    focus: "center 48%",
+  },
+  {
+    category: "pastry" as const,
+    name: "Cinnamon Roll",
+    description: "Soft dough, dark brown sugar swirl, cream cheese glaze. Best on a slow morning.",
+    price: "RM11.00",
+    badge: "Weekend",
+    tone: "sweet" as const,
+    image: "https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=800&q=80",
+    alt: "Cinnamon roll with cream cheese drizzle",
+    focus: "center 45%",
+  },
+] as const;
+
+export type CoffeeMenuItem = (typeof coffeeMenu)[number];
+
+export const coffeeReviews = [
+  {
+    name: "Hazirah M.",
+    quote: "I have tried a lot of specialty cafes around PJ and Subang, and Mavora Coffee is still the one I come back to every week. The latte is consistent every time.",
+    rating: 5.0,
+    context: "Regular, visits weekly",
+  },
+  {
+    name: "Luqman A.",
+    quote: "Best cold brew I have had in this area. Clean, not too bitter, and the space is comfortable enough to work for a full afternoon.",
+    rating: 5.0,
+    context: "Remote worker, regular",
+  },
+  {
+    name: "Siew Lin T.",
+    quote: "Friendly staff and a really calm atmosphere. The banana bread and flat white pairing on weekends is something I look forward to every time.",
+    rating: 4.8,
+    context: "Weekend regular",
+  },
+] as const;
+
+export type CoffeeReview = (typeof coffeeReviews)[number];

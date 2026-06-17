@@ -1,0 +1,38 @@
+---
+import { Star } from "@lucide/astro";
+import type { CoffeeReview } from "../data";
+interface Props { reviews: readonly CoffeeReview[]; rating: string; }
+const { reviews, rating } = Astro.props;
+---
+<section id="coffee-reviews" class="coffee-reviews-section px-5 py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-4xl font-semibold tracking-tight sm:text-5xl"><span class="coffee-focus-word">Regulars come back.</span> Here's why.</h2>
+      <p class="coffee-section-copy mt-4">From early morning laptops to weekend slow mornings — customers keep returning for the consistency, the calm, and the coffee.</p>
+      <div class="coffee-rating-summary mt-6" aria-label={`${rating} average rating`}>
+        <div class="coffee-rating-summary__score"><strong>{rating}</strong><span class="coffee-rating-summary__max">&thinsp;/ 5</span></div>
+        <div class="coffee-rating-summary__divider" aria-hidden="true"></div>
+        <div class="coffee-rating-summary__text">
+          <span class="coffee-rating-summary__stars" aria-hidden="true">{Array.from({ length: 5 }).map(() => (<Star class="h-4 w-4" fill="currentColor" />))}</span>
+          <span class="coffee-rating-label">Average rating</span>
+        </div>
+      </div>
+    </div>
+    <div class="coffee-reviews-grid">
+      {reviews.map((review) => (
+        <article class={`coffee-review-card${review.rating >= 5 ? " coffee-review-card--featured" : ""}`}>
+          <span class="coffee-quote-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="coffee-review-quote">&ldquo;{review.quote}&rdquo;</blockquote>
+          <footer class="coffee-review-footer">
+            <span class="coffee-review-avatar" aria-hidden="true">{review.name.charAt(0)}</span>
+            <div><p class="coffee-review-name">{review.name}</p><span class="coffee-review-context">{review.context}</span></div>
+            <div class="coffee-review-stars" aria-label={`${review.rating.toFixed(1)} out of 5 stars`}>
+              <span class="coffee-review-stars__icons" aria-hidden="true">{Array.from({ length: 5 }).map((_, i) => (<Star class="h-3.5 w-3.5" fill={i < Math.round(review.rating) ? "currentColor" : "none"} style={i < Math.round(review.rating) ? "" : "opacity: 0.25"} />))}</span>
+              <span class="coffee-review-stars__value">{review.rating.toFixed(1)}</span>
+            </div>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

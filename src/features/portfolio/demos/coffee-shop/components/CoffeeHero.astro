@@ -1,0 +1,63 @@
+---
+import { ArrowRight, Clock, Coffee, MessageCircle, Star, Wifi } from "@lucide/astro";
+import type { CoffeeBusiness } from "../data";
+interface Props { business: CoffeeBusiness; heroImage: string; }
+const { business, heroImage } = Astro.props;
+const specialItems = [
+  { label: "Signature Latte", price: "RM14.00", image: "https://images.unsplash.com/photo-1561047029-3000c68339ca?auto=format&fit=crop&w=120&q=80" },
+  { label: "Butter Croissant", price: "RM8.50",  image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=120&q=80" },
+];
+const comboTotal = "RM22.50";
+const preorderText = encodeURIComponent(`Hi Mavora Coffee, I'd like to preorder the Morning Set:\n- 1x Signature Latte (RM14.00)\n- 1x Butter Croissant (RM8.50)\n\nTotal: ${comboTotal}\n\nPickup time: `);
+const preorderHref = `${business.whatsappHref.split("?")[0]}?text=${preorderText}`;
+---
+<section id="coffee-top" class="coffee-hero min-h-[92svh] text-white">
+  <img src={heroImage} alt="" class="coffee-hero__image" width="1800" height="1200" loading="eager" decoding="async" aria-hidden="true" />
+  <div class="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgba(33,22,18,0.94)_0%,rgba(33,22,18,0.72)_55%,rgba(33,22,18,0.25)_100%)]"></div>
+  <div class="mx-auto grid min-h-[92svh] max-w-6xl gap-10 px-5 pb-14 pt-28 sm:px-6 lg:grid-cols-[1fr_0.72fr] lg:items-center lg:px-8 lg:pb-20">
+    <div class="max-w-2xl">
+      <p class="mb-4 text-sm font-semibold uppercase tracking-widest text-white/55">Neighborhood cafe · Subang Jaya</p>
+      <h1 class="text-5xl font-semibold leading-[0.96] tracking-tight sm:text-6xl lg:text-7xl">
+        <span class="coffee-focus-word">Good coffee</span>,<br />a quiet seat,<br />and no rush.
+      </h1>
+      <p class="coffee-section-copy mt-6 max-w-xl text-lg">Specialty espresso drinks, house-baked pastries, and a calm space to slow down — open every morning in Subang Jaya.</p>
+      <div class="coffee-hero-facts" aria-label="Cafe highlights">
+        <span><Clock class="h-4 w-4" aria-hidden="true" /> {business.openFromLabel}</span>
+        <span><Wifi class="h-4 w-4" aria-hidden="true" /> {business.wifiLabel}</span>
+        <span><Star class="h-4 w-4" aria-hidden="true" /> {business.rating} rating</span>
+      </div>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="#coffee-menu" class="coffee-primary-cta inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-semibold text-white shadow-md">
+          See today's menu<ArrowRight class="h-5 w-5" aria-hidden="true" />
+        </a>
+        <a href="#coffee-location" class="coffee-secondary-cta inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-semibold">
+          Find us<Coffee class="h-5 w-5" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+    <aside class="coffee-special-card" aria-label="Morning set special">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=75" alt="" class="coffee-special-card__bg" width="800" height="533" loading="eager" decoding="async" aria-hidden="true" />
+      <span class="coffee-status-badge" data-coffee-status aria-live="polite">
+        <Clock class="h-3.5 w-3.5" aria-hidden="true" /><strong data-coffee-status-label>Checking hours</strong>
+      </span>
+      <h2 class="mt-4 text-2xl font-semibold">Morning set · <span class="coffee-focus-word">{comboTotal}</span></h2>
+      <p class="mt-2 text-sm text-white/60">Start your morning right — latte and a fresh pastry, ready to pick up.</p>
+      <div class="coffee-special-items" aria-label="Morning set items">
+        {specialItems.map((item, i) => (
+          <div class="coffee-special-item">
+            <img src={item.image} alt="" width="60" height="60" loading={i === 0 ? "eager" : "lazy"} decoding="async" aria-hidden="true" />
+            <span class="coffee-special-item__name">{item.label}</span>
+            <span class="coffee-special-item__price">{item.price}</span>
+          </div>
+        ))}
+      </div>
+      <div class="mt-4 flex flex-col gap-2 text-xs text-white/50">
+        <span class="flex items-center gap-1.5"><Clock class="h-3.5 w-3.5 text-white/40" aria-hidden="true" /> {business.hoursLine}</span>
+        <span class="flex items-center gap-1.5"><MessageCircle class="h-3.5 w-3.5 text-white/40" aria-hidden="true" /> WhatsApp preorders accepted</span>
+      </div>
+      <a href={preorderHref} target="_blank" rel="noreferrer" class="coffee-special-cta" aria-label="Preorder morning set on WhatsApp">
+        Preorder on WhatsApp<MessageCircle class="h-4 w-4" aria-hidden="true" />
+      </a>
+    </aside>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+---
+import { Coffee, MapPin, MessageCircle } from "@lucide/astro";
+import type { CoffeeBusiness } from "../data";
+interface Props { business: CoffeeBusiness; }
+const { business } = Astro.props;
+---
+<section id="coffee-order" class="coffee-final-cta px-5 py-20 text-white sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="coffee-final-cta__inner grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+      <div>
+        <h2 class="text-4xl font-semibold tracking-tight sm:text-5xl">Your next good morning<br />starts <span class="coffee-focus-word">here.</span></h2>
+        <p class="coffee-section-copy mt-5 max-w-xl">Drop by for your regular, preorder on WhatsApp before you leave home, or bring someone new. We are open every day and always happy to see you.</p>
+      </div>
+      <div class="flex flex-col gap-3 sm:min-w-60">
+        <a href={business.whatsappPreorderHref} target="_blank" rel="noreferrer" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--coffee-secondary)] px-6 text-sm font-bold text-[var(--coffee-dark)] transition hover:brightness-90">Preorder on WhatsApp<MessageCircle class="h-4 w-4" aria-hidden="true" /></a>
+        <a href={business.mapHref} target="_blank" rel="noreferrer" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/24 px-6 text-sm font-semibold text-white transition hover:bg-white/10">Find us on maps<MapPin class="h-4 w-4" aria-hidden="true" /></a>
+      </div>
+    </div>
+  </div>
+</section>
+<a href="#coffee-location" class="coffee-mobile-cta fixed bottom-4 left-4 right-4 z-30 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--coffee-primary)] px-5 text-sm font-bold text-white shadow-lg md:hidden" data-coffee-mobile-cta aria-label="Find Mavora Coffee location">Visit us today<Coffee class="h-4 w-4" aria-hidden="true" /></a>

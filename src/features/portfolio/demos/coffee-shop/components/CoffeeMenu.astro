@@ -1,0 +1,61 @@
+---
+import type { CoffeeMenuItem } from "../data";
+interface Props { menu: readonly CoffeeMenuItem[]; }
+const { menu } = Astro.props;
+type CategoryId = "coffee" | "cold" | "pastry";
+const categories: Array<{ id: CategoryId; label: string; description: string }> = [
+  { id: "coffee", label: "Hot Coffee",  description: "Espresso-based drinks made fresh on order — latte, long black, and flat white." },
+  { id: "cold",   label: "Cold Drinks", description: "Cold brew, iced lattes, and specialty cold beverages for warmer days." },
+  { id: "pastry", label: "Pastries",    description: "House-baked every morning. Croissants, rolls, and banana bread best enjoyed fresh." },
+];
+const grouped = categories.map((cat) => ({ ...cat, items: menu.filter((item) => item.category === cat.id) }));
+---
+<section id="coffee-menu" class="coffee-menu-section px-5 py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl"><span class="coffee-focus-word">What's brewing</span> today.</h2>
+      <p class="coffee-section-copy mx-auto mt-4 max-w-lg">Specialty coffee, cold drinks, and fresh-baked pastries. Everything made in-house, served daily from 8 AM.</p>
+    </div>
+    <div class="coffee-menu-tabs mt-8" role="tablist" aria-label="Menu categories" data-coffee-menu-tabs>
+      {categories.map((cat, i) => (
+        <button type="button" role="tab" class={i === 0 ? "is-active" : ""} data-coffee-tab={cat.id} aria-selected={i === 0 ? "true" : "false"} aria-controls={`coffee-menu-panel-${cat.id}`} id={`coffee-menu-tab-${cat.id}`}>
+          {cat.label}
+        </button>
+      ))}
+    </div>
+    {grouped.map((cat, i) => (
+      <div id={`coffee-menu-panel-${cat.id}`} role="tabpanel" aria-labelledby={`coffee-menu-tab-${cat.id}`} data-coffee-panel={cat.id} hidden={i !== 0}>
+        <p class="mt-4 text-center text-sm text-white/50">{cat.description}</p>
+        <div class="coffee-menu-grid">
+          {cat.items.map((item) => (
+            <article class="coffee-menu-card">
+              <figure class="coffee-menu-photo">
+                <img src={item.image} alt={item.alt} loading="lazy" decoding="async" width="800" height="600" style={`object-position: ${item.focus};`} onerror="this.closest('.coffee-menu-photo')?.classList.add('coffee-menu-photo--fallback'); this.remove();" />
+              </figure>
+              <div class="coffee-menu-card__body">
+                <span class={`coffee-badge coffee-badge--${item.tone}`}>{item.badge}</span>
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="coffee-menu-card__name">{item.name}</h3>
+                  <span class="coffee-menu-card__price">{item.price}</span>
+                </div>
+                <p class="coffee-menu-card__desc">{item.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+<script>
+  const tabGroup = document.querySelector("[data-coffee-menu-tabs]");
+  if (tabGroup) {
+    const tabs = Array.from(tabGroup.querySelectorAll<HTMLButtonElement>("[data-coffee-tab]"));
+    const panels = Array.from(document.querySelectorAll<HTMLElement>("[data-coffee-panel]"));
+    const activate = (id: string) => {
+      tabs.forEach((tab) => { const active = tab.dataset.coffeeTab === id; tab.classList.toggle("is-active", active); tab.setAttribute("aria-selected", active ? "true" : "false"); });
+      panels.forEach((panel) => { panel.hidden = panel.dataset.coffeePanel !== id; });
+    };
+    tabs.forEach((tab) => { tab.addEventListener("click", () => activate(tab.dataset.coffeeTab ?? "")); });
+  }
+</script>

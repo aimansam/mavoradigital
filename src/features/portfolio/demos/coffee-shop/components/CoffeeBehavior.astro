@@ -1,0 +1,33 @@
+---
+import type { CoffeeBusiness } from "../data";
+interface Props { business: CoffeeBusiness; }
+const { business } = Astro.props;
+---
+<script define:vars={{ coffeeHoursByDay: business.hoursByDay, coffeeTimeZone: business.timeZone }}>
+  const statusEl = document.querySelector("[data-coffee-status]");
+  const statusLabel = statusEl?.querySelector("[data-coffee-status-label]");
+  const getCoffeeTime = () => {
+    const parts = new Intl.DateTimeFormat("en-US", { timeZone: coffeeTimeZone, weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date());
+    const byType = Object.fromEntries(parts.map((p) => [p.type, p.value]));
+    const dayMap = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    return { day: dayMap[byType.weekday] ?? new Date().getDay(), minutes: Number(byType.hour) * 60 + Number(byType.minute) };
+  };
+  const updateStatus = () => {
+    if (!statusEl) return;
+    const { day, minutes } = getCoffeeTime();
+    const todayHours = coffeeHoursByDay[day];
+    const isOpen = minutes >= todayHours.open && minutes < todayHours.close;
+    if (statusLabel) statusLabel.textContent = isOpen ? "Open now" : "Closed now";
+    statusEl.dataset.status = isOpen ? "open" : "closed";
+    statusEl.setAttribute("aria-label", isOpen ? "Mavora Coffee is open now" : "Mavora Coffee is closed now");
+  };
+  updateStatus();
+  window.setInterval(updateStatus, 60_000);
+  const mobileCta = document.querySelector("[data-coffee-mobile-cta]");
+  const heroSection = document.querySelector("#coffee-top");
+  if (mobileCta && heroSection && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(([entry]) => { mobileCta.classList.toggle("is-hidden", Boolean(entry?.isIntersecting)); }, { threshold: 0.1 });
+    observer.observe(heroSection);
+    mobileCta.classList.add("is-hidden");
+  }
+</script>

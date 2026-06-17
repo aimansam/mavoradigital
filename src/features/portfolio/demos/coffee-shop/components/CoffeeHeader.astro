@@ -1,0 +1,20 @@
+---
+import { ArrowLeft, Coffee } from "@lucide/astro";
+---
+<header class="coffee-site-header fixed left-0 right-0 top-0 z-30">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-6 lg:px-8" aria-label="Mavora Coffee navigation">
+    <a href="#coffee-top" class="coffee-brand" aria-label="Mavora Coffee home">
+      <span class="coffee-brand__icon" aria-hidden="true"><Coffee class="h-4 w-4 text-white" /></span>
+      <span class="coffee-brand__text"><span>Mavora</span><strong>Coffee</strong></span>
+    </a>
+    <div class="coffee-site-nav" aria-label="Cafe page sections">
+      <a href="#coffee-menu">Menu</a>
+      <a href="#coffee-location">Hours</a>
+      <a href="#coffee-reviews">Reviews</a>
+      <a href="#coffee-location" class="coffee-nav-visit">Visit us</a>
+    </div>
+    <a href="/portfolio/" class="coffee-demo-back" aria-label="Back to demo library">
+      <ArrowLeft class="h-4 w-4" aria-hidden="true" />Demo library
+    </a>
+  </nav>
+</header>

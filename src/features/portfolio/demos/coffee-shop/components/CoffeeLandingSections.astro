@@ -1,0 +1,20 @@
+---
+import type { CoffeeBusiness, CoffeeMenuItem, CoffeeReview } from "../data";
+import CoffeeFinalCta from "./CoffeeFinalCta.astro";
+import CoffeeHero from "./CoffeeHero.astro";
+import CoffeeLocation from "./CoffeeLocation.astro";
+import CoffeeMenu from "./CoffeeMenu.astro";
+import CoffeeReviews from "./CoffeeReviews.astro";
+interface Props {
+  heroImage: string;
+  business: CoffeeBusiness;
+  menu: readonly CoffeeMenuItem[];
+  reviews: readonly CoffeeReview[];
+}
+const { heroImage, business, menu, reviews } = Astro.props;
+---
+<CoffeeHero heroImage={heroImage} business={business} />
+<CoffeeMenu menu={menu} />
+<CoffeeReviews reviews={reviews} rating={business.rating} />
+<CoffeeLocation business={business} />
+<CoffeeFinalCta business={business} />

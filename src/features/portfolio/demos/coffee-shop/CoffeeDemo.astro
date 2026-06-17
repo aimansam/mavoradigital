@@ -1,0 +1,17 @@
+---
+import { coffeeBusiness, coffeeMenu, coffeeReviews } from "./data";
+import CoffeeBehavior from "./components/CoffeeBehavior.astro";
+import CoffeeHeader from "./components/CoffeeHeader.astro";
+import CoffeeLandingSections from "./components/CoffeeLandingSections.astro";
+import "./styles/coffee.css";
+interface Props { demo: { image: string; }; }
+const { demo } = Astro.props;
+---
+<div class="coffee-page">
+  <CoffeeHeader />
+  <main>
+    <CoffeeLandingSections heroImage={demo.image} business={coffeeBusiness} menu={coffeeMenu} reviews={coffeeReviews} />
+  </main>
+  <footer class="coffee-footer"><p>&copy; 2026 Mavora Coffee &middot; <a href="#">Privacy</a></p></footer>
+  <CoffeeBehavior business={coffeeBusiness} />
+</div>
