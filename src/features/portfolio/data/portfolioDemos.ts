@@ -166,7 +166,7 @@ export const portfolioDemos = [
     valueProof: ["Full-stack SaaS built from scratch", "PWA — installable on all devices", "Live and actively used at optimaz.app"],
     includedScope: ["Next.js app with Google & GitHub auth", "Tasks / Goals / Projects / Routines", "Kanban board, calendar, and analytics", "Stripe billing and multi-theme UI"],
     bestFor: "Entrepreneurs who need a fully custom SaaS product — your own brand, user accounts, feature set, and subscription model.",
-    upgradePath: "Discuss your SaaS scope directly with Mavora Labs — product planning, architecture, full-stack build, and deployment all included.",
+    upgradePath: "Discuss your SaaS scope directly with Mavora Digital — product planning, architecture, full-stack build, and deployment all included.",
   },
 ] as const;
 

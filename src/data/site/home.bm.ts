@@ -5,8 +5,8 @@ export const siteUrl = "https://mavoralabs.com";
 export const bmSiteUrl = `${siteUrl}/bm/`;
 
 export const metadata = {
-  title: "Mavora Labs | Website yang bantu bisnes dapat lebih banyak jualan",
-  description: "Mavora Labs membina website yang kemas, laju, dan meyakinkan supaya bisnes anda lebih mudah dipercayai, menerima pertanyaan berkualiti, dan menjana jualan.",
+  title: "Mavora Digital | Website yang bantu bisnes dapat lebih banyak jualan",
+  description: "Mavora Digital membina website yang kemas, laju, dan meyakinkan supaya bisnes anda lebih mudah dipercayai, menerima pertanyaan berkualiti, dan menjana jualan.",
   socialPreview: `${siteUrl}/social-preview.png`,
 };
 
@@ -20,7 +20,7 @@ export const navigation = [
 
 export const header = {
   navAriaLabel: "Navigasi utama",
-  homeAriaLabel: "Mavora Labs home",
+  homeAriaLabel: "Mavora Digital home",
   menuOpenLabel: "Buka menu",
   menuCloseLabel: "Tutup menu",
   ctaLabel: "Permintaan Projek",
@@ -30,7 +30,7 @@ export const header = {
 export const hero = {
   kicker: "Website freelance untuk bisnes yang fokus pada jualan",
   title: ["Website", "yang", "bantu", "bisnes", "jana", "jualan."],
-  copy: "Website anda perlu buat tawaran mudah difahami, mudah dipercayai, dan mudah untuk pelanggan ambil tindakan. Mavora Labs membina halaman yang kemas supaya pelawat berminat menjadi pertanyaan sebenar.",
+  copy: "Website anda perlu buat tawaran mudah difahami, mudah dipercayai, dan mudah untuk pelanggan ambil tindakan. Mavora Digital membina halaman yang kemas supaya pelawat berminat menjadi pertanyaan sebenar.",
   proof: "Tawaran jelas / Kepercayaan pembeli / Paparan laju / Laluan pertanyaan terus",
   primaryCta: "Hantar Permintaan Projek",
   secondaryCta: "Lihat Servis",
@@ -45,9 +45,9 @@ export const motionBand = [
 ];
 
 export const studioStatement = {
-  kicker: "Mavora Labs",
+  kicker: "Mavora Digital",
   title: "Fokus studio kecil. Website dibina untuk menjual.",
-  intro: "Mavora Labs bekerja dengan founder dan bisnes servis yang perlukan website yang orang boleh faham, percaya, dan terus bertindak tanpa proses agensi yang panjang.",
+  intro: "Mavora Digital bekerja dengan founder dan bisnes servis yang perlukan website yang orang boleh faham, percaya, dan terus bertindak tanpa proses agensi yang panjang.",
   principles: [
     {
       title: "Tawaran jelas",

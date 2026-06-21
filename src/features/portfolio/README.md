@@ -1,6 +1,6 @@
 # Portfolio Feature
 
-This folder owns the Mavora Labs portfolio demo system.
+This folder owns the Mavora Digital portfolio demo system.
 
 Keep portfolio route data, demo registry code, generic portfolio pages, and demo-specific implementations here. Route files in `src/pages/portfolio/` should stay thin and delegate to this feature.
 
