@@ -106,9 +106,9 @@ export const packages = [
     points: ["Section servis yang menjual", "Copy yang bina kepercayaan", "Handoff sedia inquiry"],
     freeFeatures: ["Setup laluan contact", "Setup analytics asas", "Checklist launch"],
     tiers: [
-      { name: "Basic", price: "RM1,800", scope: "Website bisnes tiga halaman dengan laluan contact jelas", meta: "1 semakan / 7-10 hari bekerja" },
-      { name: "Plus", price: "RM2,500", scope: "Website lima halaman dengan struktur servis lebih kuat", meta: "2 semakan / 10-14 hari bekerja", recommended: true },
-      { name: "Pro", price: "RM3,500", scope: "Lima hingga tujuh halaman dengan bukti dan portfolio section", meta: "3 semakan / 14-18 hari bekerja" },
+      { name: "Basic", price: "RM1,800", scope: "Website bisnes lima halaman dengan struktur servis dan laluan contact jelas", meta: "1 semakan / 7-10 hari bekerja" },
+      { name: "Plus", price: "RM2,500", scope: "Website tujuh halaman dengan section servis, pasukan, dan bukti lebih kuat", meta: "2 semakan / 10-14 hari bekerja", recommended: true },
+      { name: "Pro", price: "RM3,500", scope: "Sehingga sepuluh halaman dengan perincian servis mendalam, portfolio, dan kajian kes", meta: "3 semakan / 14-18 hari bekerja" },
     ],
     note: "Client sediakan aset jenama, content servis, dan gambar. Bantuan copywriting boleh diminta jika perlu.",
   },
