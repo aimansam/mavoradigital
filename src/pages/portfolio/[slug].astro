@@ -5,7 +5,9 @@ import { portfolioDemos } from "../../features/portfolio/data/portfolioDemos";
 import { getPortfolioDemoEntry } from "../../features/portfolio/registry";
 
 export function getStaticPaths() {
-  return portfolioDemos.map((demo) => ({ params: { slug: demo.slug }, props: { demo } }));
+  return portfolioDemos
+    .filter((demo) => !("externalHref" in demo))
+    .map((demo) => ({ params: { slug: demo.slug }, props: { demo } }));
 }
 
 const { demo } = Astro.props;

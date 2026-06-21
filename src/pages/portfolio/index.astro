@@ -87,9 +87,14 @@ const packageFilters = ["All", "Starter Website", "Business Website", "Custom Bu
                     </li>
                   ))}
                 </ul>
-                <a href={`/portfolio/${demo.slug}/`} class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-moss">
-                  <span aria-hidden="true">View package demo</span>
-                  <span class="sr-only">View {demo.name} package demo</span>
+                <a
+                  href={"externalHref" in demo ? (demo as {externalHref: string}).externalHref : `/portfolio/${demo.slug}/`}
+                  target={"externalHref" in demo ? "_blank" : undefined}
+                  rel={"externalHref" in demo ? "noreferrer noopener" : undefined}
+                  class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-moss"
+                >
+                  <span aria-hidden="true">{"externalHref" in demo ? "Visit live app" : "View package demo"}</span>
+                  <span class="sr-only">{"externalHref" in demo ? `Visit ${demo.name}` : `View ${demo.name} package demo`}</span>
                   <ArrowRight class="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
