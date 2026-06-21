@@ -27,10 +27,10 @@ export const header = {
 };
 
 export const hero = {
-  kicker: "A freelance web studio for businesses",
+  kicker: "A web studio for businesses",
   title: "Turning clicks into revenue",
   copy: "Mavora Labs builds polished, fast-loading sites that earn trust, capture qualified inquiries, and guide visitors toward sales.",
   primaryCta: "Build your site",
   secondaryCta: "View Services",
-  proofLine: "Live in 2 weeks · Free analystics · Free CMS · Malaysia-based",
+  proofLine: "Live in 2 weeks · Free analystics · Free Consultation · Malaysia-based",
 };
