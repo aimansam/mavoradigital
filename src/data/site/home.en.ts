@@ -1,5 +1,5 @@
 export const ctaHref = "#project-request";
-export const siteUrl = "https://mavoralabs.com";
+export const siteUrl = "https://mavoradigital.com";
 export const bmSiteUrl = `${siteUrl}/bm/`;
 
 export const metadata = {
