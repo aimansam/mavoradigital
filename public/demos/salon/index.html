@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAHKOTA Signature | Hair & Scalp Sanctuary Kuala Lumpur</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond (Premium Serif) & Plus Jakarta Sans (Clean Modern Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Style & Smooth Transition for Luxury Theme -->
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF8F5;
+        }
+        .font-serif-lux {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        /* Luxury smooth gold pulse */
+        @keyframes gold-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 178, 140, 0.4); }
+            50% { box-shadow: 0 0 15px 4px rgba(212, 178, 140, 0.2); }
+        }
+        .gold-pulse {
+            animation: gold-glow 4s infinite ease-in-out;
+        }
+        /* Custom styled range input alternative for slider */
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4B28C 0%, #A37F55 100%);
+        }
+    </style>
+</head>
+<body class="text-stone-800 antialiased overflow-x-hidden">
+
+    <!-- Navigasi Utama Premium -->
+    <header class="sticky top-0 z-50 bg-[#FAF8F5]/90 backdrop-blur-md border-b border-stone-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo Eksklusif -->
+                <div class="flex items-center space-x-3">
+                    <div class="flex flex-col">
+                        <span class="text-2xl sm:text-3xl font-serif-lux font-light tracking-widest text-stone-900 leading-none">MAHKOTA</span>
+                        <span class="text-[9px] tracking-[0.25em] text-[#A37F55] uppercase font-semibold mt-1">Signature Sanctuary</span>
+                    </div>
+                </div>
+                
+                <!-- Nav Desktop (Minimalis & Elegan) -->
+                <nav class="hidden md:flex space-x-8 text-xs font-semibold uppercase tracking-widest text-stone-600">
+                    <a href="#masalah" class="hover:text-[#A37F55] transition-colors py-2">Dilema Rambut</a>
+                    <a href="#kelebihan" class="hover:text-[#A37F55] transition-colors py-2">Eksklusiviti Kami</a>
+                    <a href="#perkhidmatan" class="hover:text-[#A37F55] transition-colors py-2">Rawatan</a>
+                    <a href="#testimoni" class="hover:text-[#A37F55] transition-colors py-2">Testimoni</a>
+                    <a href="#faqs" class="hover:text-[#A37F55] transition-colors py-2">Soalan</a>
+                </nav>
+
+                <!-- CTA Utama Desktop -->
+                <div class="hidden sm:block">
+                    <a href="#tempah" class="inline-flex items-center justify-center px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white gold-gradient hover:opacity-95 transition-opacity shadow-lg shadow-stone-900/10 rounded-sm gold-pulse">
+                        <i data-lucide="calendar" class="w-4 h-4 mr-2"></i> Tempah Slot Eksklusif
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-stone-800 hover:text-[#A37F55] focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#FAF8F5] border-b border-stone-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#masalah" class="block py-2.5 text-xs font-semibold uppercase tracking-widest text-stone-600 hover:text-[#A37F55] transition-colors">Dilema Rambut</a>
+            <a href="#kelebihan" class="block py-2.5 text-xs font-semibold uppercase tracking-widest text-stone-600 hover:text-[#A37F55] transition-colors">Eksklusiviti Kami</a>
+            <a href="#perkhidmatan" class="block py-2.5 text-xs font-semibold uppercase tracking-widest text-stone-600 hover:text-[#A37F55] transition-colors">Rawatan</a>
+            <a href="#testimoni" class="block py-2.5 text-xs font-semibold uppercase tracking-widest text-stone-600 hover:text-[#A37F55] transition-colors">Testimoni</a>
+            <a href="#faqs" class="block py-2.5 text-xs font-semibold uppercase tracking-widest text-stone-600 hover:text-[#A37F55] transition-colors">Soalan</a>
+            <a href="#tempah" class="block w-full text-center py-3 text-xs font-semibold uppercase tracking-widest text-white gold-gradient">Tempah Slot Eksklusif</a>
+        </div>
+    </header>
+
+    <!-- Hero Section (ATTENTION) -->
+    <section class="relative bg-gradient-to-b from-[#FAF8F5] to-[#F3ECE5] py-16 lg:py-28 overflow-hidden border-b border-stone-200/40">
+        <!-- Minimalist Luxury Grid Background -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#A37F55" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                
+                <!-- Kiri: Kandungan Teks (Premium Copywriting) -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <span class="inline-flex items-center px-4 py-1 rounded-none text-[10px] font-semibold uppercase tracking-[0.2em] bg-stone-900 text-stone-100">
+                        Sesi Terhad Minggu Ini: 7 Slot VIP Tersisa
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif-lux font-light tracking-wide text-stone-900 leading-[1.1]">
+                        Kembalikan <span class="italic text-[#A37F55]">Keanggunan & Kilauan</span> Rambut Anda Bersama Kami.
+                    </h1>
+                    <p class="text-sm sm:text-base text-stone-600 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Suhu lembap, kepanasan melampau, dan pemakaian hijab harian sering merosakkan kelembapan semula jadi mahkota anda. Alami keajaiban restoratif bertaraf sains kesihatan rambut di dalam ruang peribadi yang sangat eksklusif.
+                    </p>
+
+                    <!-- Luxury Trust Badges -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs text-stone-700 tracking-wider uppercase font-semibold">
+                        <div class="flex items-center justify-center lg:justify-start space-x-3">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-[#A37F55] stroke-[1.5]"></i>
+                            <span>Bilik VIP Muslimah</span>
+                        </div>
+                        <div class="flex items-center justify-center lg:justify-start space-x-3">
+                            <i data-lucide="activity" class="w-5 h-5 text-[#A37F55] stroke-[1.5]"></i>
+                            <span>Analisis Mikro Digital</span>
+                        </div>
+                        <div class="flex items-center justify-center lg:justify-start space-x-3">
+                            <i data-lucide="leaf" class="w-5 h-5 text-[#A37F55] stroke-[1.5]"></i>
+                            <span>Formulasi Organik Halal</span>
+                        </div>
+                    </div>
+
+                    <!-- Call To Action Group -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#tempah" class="w-full sm:w-auto text-center px-8 py-4 bg-stone-900 hover:bg-stone-800 text-white font-medium text-xs uppercase tracking-widest transition-all duration-300">
+                            Diskaun 30% Terapi Pertama
+                        </a>
+                        <a href="#kuiz" class="w-full sm:w-auto text-center px-8 py-4 bg-transparent hover:bg-stone-900/5 border border-stone-900/60 text-stone-900 font-medium text-xs uppercase tracking-widest transition-all duration-300">
+                            Mula Diagnosa Rambut (1 Minit)
+                        </a>
+                    </div>
+
+                    <!-- Social Proof / Stars -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <div class="flex -space-x-2">
+                            <img class="w-10 h-10 rounded-full border-2 border-[#FAF8F5] object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" alt="Client 1" onerror="this.src='https://placehold.co/100x100/1A1715/D4B28C?text=C1'">
+                            <img class="w-10 h-10 rounded-full border-2 border-[#FAF8F5] object-cover" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150" alt="Client 2" onerror="this.src='https://placehold.co/100x100/1A1715/D4B28C?text=C2'">
+                            <img class="w-10 h-10 rounded-full border-2 border-[#FAF8F5] object-cover" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=150" alt="Client 3" onerror="this.src='https://placehold.co/100x100/1A1715/D4B28C?text=C3'">
+                        </div>
+                        <div class="text-stone-600 text-xs tracking-wide text-center sm:text-left">
+                            <div class="flex items-center justify-center sm:justify-start space-x-1 text-[#A37F55] mb-1">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="ml-1 font-semibold text-stone-900">4.9/5 Rating</span>
+                            </div>
+                            <span>Dipercayai oleh 4,200+ pelanggan premium di Kuala Lumpur</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kanan: Interaktif Slider Sebelum/Selepas (Clean & Sharp) -->
+                <div class="lg:col-span-5 relative mt-8 lg:mt-0">
+                    <div class="bg-white p-4 border border-stone-200 shadow-xl rounded-none">
+                        <span class="text-[10px] text-stone-500 font-semibold tracking-widest uppercase block text-center mb-3">Imbas ke kiri & kanan untuk melihat hasil rawatan</span>
+                        
+                        <!-- Slider Container -->
+                        <div class="relative h-96 w-full overflow-hidden select-none border border-stone-100" id="slider-container">
+                            <!-- After Image (Beautiful glossy shiny hair) -->
+                            <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&q=80&w=600" alt="Rambut Berkilau Sihat" class="absolute inset-0 w-full h-full object-cover" onerror="this.src='https://placehold.co/600x600/FAF8F5/D4B28C?text=Rawatan+Signature'">
+                            <div class="absolute bottom-4 right-4 bg-stone-900/90 text-stone-100 text-[10px] tracking-widest uppercase px-3 py-1.5 font-semibold z-20">SELEPAS</div>
+                            
+                            <!-- Before Image (Clipped - Frizzy Messy Damaged Hair) -->
+                            <div class="absolute inset-0 w-full h-full overflow-hidden" id="before-image-wrap" style="width: 50%;">
+                                <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=600" alt="Rambut Kusut Kering" class="absolute inset-0 w-full h-full object-cover filter saturate-50 contrast-125 max-w-none" id="before-img-el" onerror="this.src='https://placehold.co/600x600/FAF8F5/3A3330?text=Rambut+Kusut'">
+                                <div class="absolute bottom-4 left-4 bg-[#A37F55]/95 text-white text-[10px] tracking-widest uppercase px-3 py-1.5 font-semibold z-20">SEBELUM (KUSUT)</div>
+                            </div>
+
+                            <!-- Slider Bar & Elegant Handle -->
+                            <div class="absolute inset-y-0 left-1/2 w-[1px] bg-white cursor-ew-resize z-30 flex items-center justify-center" id="slider-handle" style="left: 50%;">
+                                <div class="w-8 h-8 bg-stone-900 rounded-none flex items-center justify-center shadow-lg text-white border border-stone-700 hover:bg-[#A37F55] transition-colors">
+                                    <i data-lucide="arrow-left-right" class="w-3.5 h-3.5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] text-stone-400 text-center mt-3 tracking-wide">Hasil klinikal sebenar selepas 1 sesi Keratin Glow Therapy kami.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section (INTEREST) -->
+    <section id="masalah" class="py-24 bg-stone-900 text-stone-100 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-[11px] font-bold tracking-[0.25em] text-[#D4B28C] uppercase">Dilema & Cabaran Mahkota</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-lux font-light tracking-wide mt-3 text-white">Adakah Rambut Anda Mengalami Gejala Ini?</h2>
+                <div class="w-12 h-[1px] bg-[#D4B28C] mx-auto mt-6"></div>
+                <p class="text-stone-400 mt-6 text-sm sm:text-base font-light max-w-2xl mx-auto leading-relaxed">Pendedahan berterusan kepada cuaca khatulistiwa di Malaysia, debu bandar, serta persekitaran bertutup bagi wanita berhijab boleh membawa kerosakan struktur dalaman helaian rambut.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Masalah 1 -->
+                <div class="border border-stone-800 p-8 hover:border-stone-700 transition-all duration-300 bg-stone-950/40">
+                    <div class="w-10 h-10 border border-[#D4B28C] flex items-center justify-center text-stone-100 mb-8 font-serif-lux text-xl">
+                        01
+                    </div>
+                    <h3 class="text-lg font-semibold tracking-wide text-white mb-4">Keguguran Rambut Merisaukan</h3>
+                    <p class="text-stone-400 text-sm font-light leading-relaxed">Berpunca daripada liang sebum yang tersumbat dan ketandusan mikronutrisi pada folikel akar rambut, menyebabkan akar mudah reput dan gugur melampau.</p>
+                </div>
+
+                <!-- Masalah 2 -->
+                <div class="border border-stone-800 p-8 hover:border-stone-700 transition-all duration-300 bg-stone-950/40">
+                    <div class="w-10 h-10 border border-[#D4B28C] flex items-center justify-center text-stone-100 mb-8 font-serif-lux text-xl">
+                        02
+                    </div>
+                    <h3 class="text-lg font-semibold tracking-wide text-white mb-4">Kemusnahan Kutikel & Kering</h3>
+                    <p class="text-stone-400 text-sm font-light leading-relaxed">Hujung rambut terbelah kasar seperti jerami akibat kekurangan keratin pelindung. Rambut kembang tidak lagi terurus dan kelihatan kusam hilang serinya.</p>
+                </div>
+
+                <!-- Masalah 3 -->
+                <div class="border border-stone-800 p-8 hover:border-stone-700 transition-all duration-300 bg-stone-950/40">
+                    <div class="w-10 h-10 border border-[#D4B28C] flex items-center justify-center text-stone-100 mb-8 font-serif-lux text-xl">
+                        03
+                    </div>
+                    <h3 class="text-lg font-semibold tracking-wide text-white mb-4">Kelemumur & Kegatalan Kulit Kepala</h3>
+                    <p class="text-stone-400 text-sm font-light leading-relaxed">Pengumpulan peluh berlebihan di sebalik tudung atau di bawah terik matahari mencetuskan masalah mikrobial dan pengelupasan kulit kepala yang memedihkan.</p>
+                </div>
+            </div>
+
+            <!-- Urgent Message Banner -->
+            <div class="mt-16 border border-stone-850 bg-stone-950 p-8 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="flex items-center space-x-6">
+                    <div class="p-3 border border-stone-800 text-[#D4B28C] hidden sm:block">
+                        <i data-lucide="help-circle" class="w-6 h-6 stroke-[1.2]"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-semibold tracking-wide text-white">Jangan biarkan kerosakan kekal merampas keyakinan diri anda</h4>
+                        <p class="text-xs text-stone-400 mt-1 font-light">Lebih awal diagnosis dikesan, lebih tinggi peratusan rambut dapat dipulihkan dengan jayanya.</p>
+                    </div>
+                </div>
+                <a href="#kuiz" class="whitespace-nowrap bg-white text-stone-950 hover:bg-stone-100 text-xs uppercase tracking-widest font-semibold px-6 py-3.5 transition-colors">
+                    Analisis Kulit Kepala Percuma
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unique Selling Proposition Section (DESIRE) -->
+    <section id="kelebihan" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Kiri: Penjelasan USP -->
+                <div class="space-y-8">
+                    <span class="text-[11px] font-bold tracking-[0.25em] text-[#A37F55] uppercase">Piawaian Eksklusiviti Kami</span>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-lux font-light tracking-wide text-stone-900 leading-[1.1]">Satu-Satunya Sanctuary Berkelas Privasi Penuh.</h2>
+                    <p class="text-stone-600 text-sm font-light leading-relaxed">Kami bukan sekadar salon kecantikan biasa. Kami mementingkan keselamatan, kepakaran klinikal trichology, serta keselesaan premium tanpa sebarang kompromi.</p>
+                    
+                    <div class="space-y-6 pt-4">
+                        <!-- USP 1 -->
+                        <div class="flex items-start space-x-5">
+                            <div class="mt-1 flex-shrink-0 w-8 h-8 border border-[#A37F55] flex items-center justify-center text-stone-800">
+                                <i data-lucide="lock" class="w-4 h-4 text-[#A37F55] stroke-[1.5]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-stone-900 text-base tracking-wide">Suis VIP Peribadi Muslimah</h4>
+                                <p class="text-stone-600 text-xs sm:text-sm font-light mt-1.5 leading-relaxed">Selesa melepaskan hijab di dalam suite individu khas yang tidak dapat diakses dari pandangan luar. Dilengkapi aromaterapi herba lavender premium yang mententeramkan minda.</p>
+                            </div>
+                        </div>
+
+                        <!-- USP 2 -->
+                        <div class="flex items-start space-x-5">
+                            <div class="mt-1 flex-shrink-0 w-8 h-8 border border-[#A37F55] flex items-center justify-center text-stone-800">
+                                <i data-lucide="scan" class="w-4 h-4 text-[#A37F55] stroke-[1.5]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-stone-900 text-base tracking-wide">Pencerapan Mikroskopik Digital (500x)</h4>
+                                <p class="text-stone-600 text-xs sm:text-sm font-light mt-1.5 leading-relaxed">Sesi bermula dengan kajian terperinci struktur kutikel dan kulit kepala. Menentukan keperluan kepekatan cecair rawatan yang sesuai dengan data fizikal anda.</p>
+                            </div>
+                        </div>
+
+                        <!-- USP 3 -->
+                        <div class="flex items-start space-x-5">
+                            <div class="mt-1 flex-shrink-0 w-8 h-8 border border-[#A37F55] flex items-center justify-center text-stone-800">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-[#A37F55] stroke-[1.5]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-stone-900 text-base tracking-wide">Jaminan Kepuasan Bereksternal</h4>
+                                <p class="text-stone-600 text-xs sm:text-sm font-light mt-1.5 leading-relaxed">Sekiranya anda merasa sebarang ketidakpuasan hati atau hasil yang kurang sempurna dalam tempoh 7 hari selepas rawatan, kami tawarkan rawatan penambahbaikan percuma tanpa soal.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kanan: Visual Comel & Ulasan Pendek -->
+                <div class="relative">
+                    <div class="relative z-10 border border-stone-200 p-2 bg-white">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=600" alt="Exclusive VIP Suite" class="w-full h-96 object-cover" onerror="this.src='https://placehold.co/600x400/FAF8F5/1A1715?text=Suite+Privasi'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-transparent to-transparent flex items-end p-8">
+                            <div>
+                                <span class="bg-stone-100/90 text-stone-900 text-[9px] tracking-widest font-semibold uppercase px-3.5 py-1 mb-2 inline-block">100% Selesa</span>
+                                <h3 class="text-xl font-serif-lux text-white tracking-wide">Ruang Rawatan Eksklusif Wanita</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Minimalist Review Floating Card -->
+                    <div class="absolute -bottom-8 -left-8 bg-stone-950 text-white p-6 rounded-none max-w-xs hidden sm:block z-20 border border-stone-850">
+                        <div class="flex text-[#D4B28C] mb-2">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        </div>
+                        <p class="text-stone-300 text-xs font-light leading-relaxed">"Sangat tenang. Sesi rawatan terasa sangat terhormat dalam suite muslimah peribadi, kakitangan sangat mahir dan peramah."</p>
+                        <span class="text-[9px] text-[#D4B28C] tracking-wider uppercase font-semibold block mt-3">— Farah H., Pegawai Eksekutif</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Diagnosis Quiz (FUN & ENGAGING) -->
+    <section id="kuiz" class="py-24 bg-stone-50 border-y border-stone-200/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-none shadow-md border border-stone-200/60 overflow-hidden">
+                <!-- Kepala Kuiz -->
+                <div class="bg-stone-900 text-stone-100 p-8 text-center relative border-b border-stone-800">
+                    <span class="text-[10px] font-semibold text-[#D4B28C] uppercase tracking-[0.2em] bg-stone-950 px-3 py-1">Kalkulator Diagnosa</span>
+                    <h3 class="text-2xl sm:text-3xl font-serif-lux font-light tracking-wide mt-3 text-white">Saranan Terapi Peribadi Anda</h3>
+                    <p class="text-stone-400 text-xs mt-2 font-light">Ketahui status kesihatan rambut anda dalam 1 minit untuk menebus baucar bernilai RM50.</p>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-stone-150 h-1">
+                    <div class="bg-[#A37F55] h-1 transition-all duration-300" id="quiz-progress" style="width: 33.33%;"></div>
+                </div>
+
+                <!-- Tubuh Kuiz -->
+                <div class="p-8 sm:p-12">
+                    <!-- Step 1 -->
+                    <div id="step-1" class="space-y-6">
+                        <h4 class="text-lg font-semibold tracking-wide text-stone-900 text-center">Apakah kerosakan utama yang kerap anda alami ketika ini?</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="selectOption(1, 'Gugur / Nipis')" class="quiz-opt border border-stone-200 p-4 text-left font-medium transition-all duration-200 hover:bg-stone-50 hover:border-stone-400 flex items-center justify-between text-stone-700 text-sm">
+                                <span>Gugur & Kurang Lebat</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+                            </button>
+                            <button onclick="selectOption(1, 'Kering / Kasar')" class="quiz-opt border border-stone-200 p-4 text-left font-medium transition-all duration-200 hover:bg-stone-50 hover:border-stone-400 flex items-center justify-between text-stone-700 text-sm">
+                                <span>Kusut, Kembang & Kering</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+                            </button>
+                            <button onclick="selectOption(1, 'Gatal / Kelemumur')" class="quiz-opt border border-stone-200 p-4 text-left font-medium transition-all duration-200 hover:bg-stone-50 hover:border-stone-400 flex items-center justify-between text-stone-700 text-sm">
+                                <span>Gatal & Kelemumur Berminyak</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+                            </button>
+                            <button onclick="selectOption(1, 'Mewarna / Tukar Gaya')" class="quiz-opt border border-stone-200 p-4 text-left font-medium transition-all duration-200 hover:bg-stone-50 hover:border-stone-400 flex items-center justify-between text-stone-700 text-sm">
+                                <span>Rosak Akibat Mewarna / Kimia</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-400"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div id="step-2" class="hidden space-y-6">
+                        <h4 class="text-lg font-semibold tracking-wide text-stone-900 text-center">Apakah anggaran panjang rambut anda sekarang?</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <button onclick="selectOption(2, 'Pendek (Atas Bahu)')" class="quiz-opt border border-stone-200 p-6 text-center font-medium transition-all duration-200 hover:bg-stone-50 hover:border-stone-400 text-stone-700 text-sm">
+                                <span class="block text-stone-400 text-xs tracking-widest uppercase mb-2">Tahap 1</span>
+                                <span class="font-semibold block">Pendek</span>
+                                <span class="text-xs text-stone-500 block mt-1">(Melebihi Telinga / Atas Bahu)</span>
+                            </button>
+                            <button onclick="selectOption(2, 'Sederhana (Dada)')" class="quiz-opt border border-stone-200 p-6 text-center font-medium transition-all duration-200 hover:bg-stone-50 hover:border-stone-400 text-stone-700 text-sm">
+                                <span class="block text-stone-400 text-xs tracking-widest uppercase mb-2">Tahap 2</span>
+                                <span class="font-semibold block">Sederhana</span>
+                                <span class="text-xs text-stone-500 block mt-1">(Paras Bahu / Bahagian Dada)</span>
+                            </button>
+                            <button onclick="selectOption(2, 'Panjang (Bawah Dada)')" class="quiz-opt border border-stone-200 p-6 text-center font-medium transition-all duration-200 hover:bg-stone-50 hover:border-stone-400 text-stone-700 text-sm">
+                                <span class="block text-stone-400 text-xs tracking-widest uppercase mb-2">Tahap 3</span>
+                                <span class="font-semibold block">Panjang</span>
+                                <span class="text-xs text-stone-500 block mt-1">(Melebihi Garisan Dada)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div id="step-3" class="hidden space-y-6">
+                        <h4 class="text-lg font-semibold tracking-wide text-stone-900 text-center">Adakah anda memerlukan bilik VIP peribadi?</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="selectOption(3, 'Ya, Bilik Muslimah')" class="quiz-opt border border-stone-200 p-6 text-center font-medium transition-all duration-200 hover:bg-stone-50 hover:border-stone-400 text-stone-700 text-sm">
+                                <span class="font-semibold block text-base mb-1">Mahu Bilik VIP Bertutup</span>
+                                <span class="text-xs text-stone-500 font-light block">Selesa untuk Muslimah dan hijabis</span>
+                            </button>
+                            <button onclick="selectOption(3, 'Bilik Terbuka Biasa')" class="quiz-opt border border-stone-200 p-6 text-center font-medium transition-all duration-200 hover:bg-stone-50 hover:border-stone-400 text-stone-700 text-sm">
+                                <span class="font-semibold block text-base mb-1">Ruang Salon Terbuka</span>
+                                <span class="text-xs text-stone-500 font-light block">Bilik salon berkonsepkan moden</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hasil Kuiz -->
+                    <div id="step-result" class="hidden text-center space-y-6">
+                        <div class="w-12 h-12 border border-[#A37F55] flex items-center justify-center mx-auto text-[#A37F55] mb-2">
+                            <i data-lucide="award" class="w-6 h-6 stroke-[1.2]"></i>
+                        </div>
+                        <h4 class="text-2xl font-serif-lux text-stone-900 tracking-wide">Analisis Diagnosa Selesai</h4>
+                        
+                        <div class="bg-[#FAF8F5] p-6 max-w-md mx-auto border border-stone-200">
+                            <span class="text-[9px] font-bold text-stone-500 uppercase tracking-widest block mb-1">Syor Pilihan Terapi:</span>
+                            <span id="quiz-recommended-treatment" class="text-lg font-semibold text-stone-900 block">Keratin Infusion & Anti-Frizz Therapy</span>
+                            <p class="text-xs text-stone-500 mt-2">Disesuaikan mengikut parameter masalah: <span id="quiz-selected-problem" class="font-semibold text-stone-700">Kering & Kasar</span></p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <p class="text-xs sm:text-sm text-stone-600 max-w-md mx-auto font-light leading-relaxed">
+                                Baucar diskaun eksklusif <strong class="text-stone-900 font-semibold">RM50</strong> serta slot <strong class="text-stone-900 font-semibold">Analisis Kulit Kepala (Percuma)</strong> telah dikunci di bawah nama anda.
+                            </p>
+                            <a href="#tempah" onclick="autoFillQuizData()" class="inline-block px-8 py-4 bg-stone-900 hover:bg-stone-800 text-white font-medium text-xs uppercase tracking-widest transition-all duration-300">
+                                Tebus Baucar & Jadualkan Rawatan
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="perkhidmatan" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-[11px] font-bold tracking-[0.25em] text-[#A37F55] uppercase">Koleksi Terapi Restoratif</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-lux font-light tracking-wide mt-3 text-stone-900">Menu Rawatan Signature</h2>
+                <div class="w-12 h-[1px] bg-[#A37F55] mx-auto mt-6"></div>
+                <p class="text-stone-500 mt-6 text-sm font-light max-w-2xl mx-auto leading-relaxed">Nikmati kombinasi herba berkualiti tinggi dan kejuruteraan bahan kimia molekul terbaik untuk rawatan kesegaran berpanjangan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Servis 1 -->
+                <div class="bg-white border border-stone-200/85 hover:border-stone-400 transition-all duration-300 flex flex-col h-full">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=400" alt="Keratin Treatment" class="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-500" onerror="this.src='https://placehold.co/400x300/FAF8F5/1A1715?text=Keratin+Glow'">
+                        <span class="absolute top-4 right-4 bg-stone-900 text-white text-[9px] font-bold tracking-widest uppercase px-3 py-1">UTAMA</span>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold tracking-wide text-stone-900 mb-2">Keratin Glow Therapy</h3>
+                            <p class="text-stone-500 text-xs sm:text-sm font-light leading-relaxed mb-6">Membina semula kutikel rosak dengan lapisan keratin semula jadi. Melindungi rambut daripada kembang melampau akibat kelembapan tinggi cuaca tropika.</p>
+                        </div>
+                        <div class="border-t border-stone-150 pt-6 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-stone-400 line-through tracking-wider">RM350</span>
+                                <div class="text-base font-semibold text-stone-950">Dari RM245</div>
+                            </div>
+                            <a href="#tempah" onclick="setServiceField('Keratin Glow Therapy')" class="text-[11px] font-semibold uppercase tracking-widest text-[#A37F55] hover:text-stone-900 flex items-center">
+                                Tempah <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Servis 2 -->
+                <div class="bg-white border border-stone-200/85 hover:border-stone-400 transition-all duration-300 flex flex-col h-full">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&q=80&w=400" alt="Organic Scalp Detox" class="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-500" onerror="this.src='https://placehold.co/400x300/FAF8F5/1A1715?text=Scalp+Detox'">
+                        <span class="absolute top-4 right-4 bg-stone-900 text-white text-[9px] font-bold tracking-widest uppercase px-3 py-1">ORGANIK</span>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold tracking-wide text-stone-900 mb-2">Organic Scalp Detox & Cleanse</h3>
+                            <p class="text-stone-500 text-xs sm:text-sm font-light leading-relaxed mb-6">Penyingkiran sisa sebum terkumpul menggunakan ramuan pudina dan teh hijau organik. Melegakan gatal-gatal serta kelemumur terutamanya bagi wanita berhijab.</p>
+                        </div>
+                        <div class="border-t border-stone-150 pt-6 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-stone-400 line-through tracking-wider">RM280</span>
+                                <div class="text-base font-semibold text-stone-950">Dari RM190</div>
+                            </div>
+                            <a href="#tempah" onclick="setServiceField('Organic Scalp Detox')" class="text-[11px] font-semibold uppercase tracking-widest text-[#A37F55] hover:text-stone-900 flex items-center">
+                                Tempah <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Servis 3 -->
+                <div class="bg-white border border-stone-200/85 hover:border-stone-400 transition-all duration-300 flex flex-col h-full">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1620331702289-448a6ebc7856?auto=format&fit=crop&q=80&w=400" alt="Soft Balayage" class="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-500" onerror="this.src='https://placehold.co/400x300/FAF8F5/1A1715?text=Signature+Coloring'">
+                        <span class="absolute top-4 right-4 bg-stone-900 text-white text-[9px] font-bold tracking-widest uppercase px-3 py-1">KOLORIS</span>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold tracking-wide text-stone-900 mb-2">Signature Soft Balayage</h3>
+                            <p class="text-stone-500 text-xs sm:text-sm font-light leading-relaxed mb-6">Pewarnaan bergradasi eksklusif bebas ammonia yang tidak merosakkan helai rambut. Memberi dimensi cahaya dinamik mengikut gaya potong terkini.</p>
+                        </div>
+                        <div class="border-t border-stone-150 pt-6 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-stone-400 line-through tracking-wider">RM490</span>
+                                <div class="text-base font-semibold text-stone-950">Dari RM340</div>
+                            </div>
+                            <a href="#tempah" onclick="setServiceField('Signature Balayage')" class="text-[11px] font-semibold uppercase tracking-widest text-[#A37F55] hover:text-stone-900 flex items-center">
+                                Tempah <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimoni" class="py-24 bg-[#F3ECE5] border-y border-stone-250/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-[11px] font-bold tracking-[0.25em] text-[#A37F55] uppercase">Pengalaman Luar Biasa</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-lux font-light tracking-wide mt-3 text-stone-900">Ulasan Pelanggan Setia</h2>
+                <div class="w-12 h-[1px] bg-[#A37F55] mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimoni 1 -->
+                <div class="bg-white p-8 border border-stone-200/60 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-[#A37F55] mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-stone-600 italic text-xs sm:text-sm font-light leading-relaxed">"Kebimbangan terbesar saya adalah rambut gugur bertaburan di bilik mandi. Selesai sesi imbasan mikro dan menjalani rawatan Scalp Detox di sini, kegatalan lenyap dan rambut mula terasa kuat dalam tempoh beberapa minggu."</p>
+                    </div>
+                    <div class="flex items-center space-x-4 mt-8 pt-6 border-t border-stone-100">
+                        <img class="w-12 h-12 rounded-full object-cover grayscale-[20%]" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" alt="Siti Sarah" onerror="this.src='https://placehold.co/100x100/FAF8F5/1A1715?text=Siti'">
+                        <div>
+                            <h4 class="font-semibold text-stone-900 text-xs sm:text-sm tracking-wide">Siti Sarah, 26</h4>
+                            <span class="text-[10px] text-stone-400 font-semibold uppercase tracking-wider block">Pengurus Perbankan (Kuala Lumpur)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimoni 2 -->
+                <div class="bg-white p-8 border border-stone-200/60 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-[#A37F55] mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-stone-600 italic text-xs sm:text-sm font-light leading-relaxed">"Saya skeptikal pada awalnya. Tetapi rawatan Keratin Glow Therapy mereka mengubah tekstur rambut saya yang kasar selepas berpuluh kali diwarnakan sebelum ini. Sungguh selembut sutera."</p>
+                    </div>
+                    <div class="flex items-center space-x-4 mt-8 pt-6 border-t border-stone-100">
+                        <img class="w-12 h-12 rounded-full object-cover grayscale-[20%]" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=100" alt="Ashley Liew" onerror="this.src='https://placehold.co/100x100/FAF8F5/1A1715?text=Ashley'">
+                        <div>
+                            <h4 class="font-semibold text-stone-900 text-xs sm:text-sm tracking-wide">Ashley Liew, 29</h4>
+                            <span class="text-[10px] text-stone-400 font-semibold uppercase tracking-wider block">Pereka Pakaian (Petaling Jaya)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimoni 3 -->
+                <div class="bg-white p-8 border border-stone-200/60 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-[#A37F55] mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-stone-600 italic text-xs sm:text-sm font-light leading-relaxed">"Khidmat pelanggan luar biasa. Kakitangan profesional yang melayan kita secara hormat. Ruang basuh rambut juga tenang dan dilengkapi urutan kepala santai terbaik."</p>
+                    </div>
+                    <div class="flex items-center space-x-4 mt-8 pt-6 border-t border-stone-100">
+                        <img class="w-12 h-12 rounded-full object-cover grayscale-[20%]" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100" alt="Khairul Azri" onerror="this.src='https://placehold.co/100x100/FAF8F5/1A1715?text=Khairul'">
+                        <div>
+                            <h4 class="font-semibold text-stone-900 text-xs sm:text-sm tracking-wide">Khairul Azri, 32</h4>
+                            <span class="text-[10px] text-stone-400 font-semibold uppercase tracking-wider block">Ahli Perniagaan (Damansara)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section (ACTION) -->
+    <section id="tempah" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-stone-950 border border-stone-850 overflow-hidden grid grid-cols-1 lg:grid-cols-12 rounded-none shadow-2xl">
+                
+                <!-- Kiri: Penjelasan Bonus & Sifar Risiko -->
+                <div class="lg:col-span-5 bg-stone-900 text-stone-100 p-8 sm:p-12 flex flex-col justify-between relative border-r border-stone-800">
+                    <div class="space-y-6">
+                        <span class="text-[9px] font-bold text-[#D4B28C] uppercase tracking-[0.25em] bg-stone-950 px-3.5 py-1.5 inline-block">Tempahan Sifar Risiko</span>
+                        <h3 class="text-3xl font-serif-lux font-light tracking-wide text-white leading-tight">Dapatkan Diskaun 30% & Hadiah Eksklusif</h3>
+                        <p class="text-stone-400 text-xs sm:text-sm font-light leading-relaxed">
+                            Meterai tempahan awal anda secara digital hari ini demi jaminan pulangan kerosakan tanpa bayaran pendahuluan:
+                        </p>
+
+                        <div class="space-y-4 pt-2 text-xs font-semibold tracking-wider uppercase text-stone-300">
+                            <div class="flex items-center space-x-3 bg-stone-950 p-3 border border-stone-800">
+                                <i data-lucide="percent" class="w-4 h-4 text-[#D4B28C]"></i>
+                                <span>Diskaun 30% Rawatan Pertama</span>
+                            </div>
+                            <div class="flex items-center space-x-3 bg-stone-950 p-3 border border-stone-800">
+                                <i data-lucide="scan" class="w-4 h-4 text-[#D4B28C]"></i>
+                                <span>PERCUMA Imbasan Kulit Kepala (RM150)</span>
+                            </div>
+                            <div class="flex items-center space-x-3 bg-stone-950 p-3 border border-stone-800">
+                                <i data-lucide="scissors" class="w-4 h-4 text-[#D4B28C]"></i>
+                                <span>PERCUMA Analisis Gaya Gunting Rambut</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 pt-6 border-t border-stone-800">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 border border-stone-800 flex items-center justify-center text-[#D4B28C]">
+                                <i data-lucide="credit-card" class="w-5 h-5 stroke-[1.2]"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold uppercase tracking-wider text-white">Selesa Bayar Di Kaunter</h4>
+                                <p class="text-[10px] text-stone-400 font-light mt-0.5">Tiada bayaran pendahuluan diperlukan hari ini. Batalkan bila-bila masa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kanan: Borang Tempahan Sebenar -->
+                <div class="lg:col-span-7 p-8 sm:p-12 bg-stone-950 text-stone-100">
+                    <h4 class="text-xl font-serif-lux font-light text-white tracking-widest mb-6">BORANG TEMPAHAN DIGITAL</h4>
+                    
+                    <form id="booking-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Nama -->
+                            <div>
+                                <label for="name" class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Nama Penuh Anda</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 bg-stone-900 border border-stone-800 focus:outline-none focus:border-[#D4B28C] text-stone-100 placeholder-stone-600 text-xs tracking-wider" placeholder="cth. Sarah Azman">
+                            </div>
+                            <!-- Telefon -->
+                            <div>
+                                <label for="phone" class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">No. Telefon WhatsApp</label>
+                                <input type="tel" id="phone" required class="w-full px-4 py-3 bg-stone-900 border border-stone-800 focus:outline-none focus:border-[#D4B28C] text-stone-100 placeholder-stone-600 text-xs tracking-wider" placeholder="cth. 0123456789">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Pilihan Servis -->
+                            <div>
+                                <label for="service" class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Pilihan Sesi Rawatan</label>
+                                <select id="service" class="w-full px-4 py-3 bg-stone-900 border border-stone-800 focus:outline-none focus:border-[#D4B28C] text-stone-100 text-xs tracking-wider">
+                                    <option value="Keratin Glow Therapy">Keratin Glow Therapy (Dari RM245)</option>
+                                    <option value="Organic Scalp Detox">Organic Scalp Detox (Dari RM190)</option>
+                                    <option value="Signature Balayage">Signature Balayage (Dari RM340)</option>
+                                    <option value="Perlu khidmat nasihat dulu">Perundingan Percuma Trichology Dahulu</option>
+                                </select>
+                            </div>
+                            <!-- Jenis Bilik -->
+                            <div>
+                                <label for="room" class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Pilihan Keselesaan Bilik</label>
+                                <select id="room" class="w-full px-4 py-3 bg-stone-900 border border-stone-800 focus:outline-none focus:border-[#D4B28C] text-stone-100 text-xs tracking-wider">
+                                    <option value="Bilik Khas Muslimah">Ya, Mahukan Bilik Khas Muslimah VIP</option>
+                                    <option value="Bilik Biasa Selesa">Bilik Salon Terbuka Eksklusif</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Tarikh -->
+                            <div>
+                                <label for="booking-date" class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Tarikh Rawatan</label>
+                                <input type="date" id="booking-date" required class="w-full px-4 py-3 bg-stone-900 border border-stone-800 focus:outline-none focus:border-[#D4B28C] text-stone-100 text-xs tracking-wider">
+                            </div>
+                            <!-- Sesi Waktu -->
+                            <div>
+                                <label for="booking-time" class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Pilihan Sesi Waktu</label>
+                                <select id="booking-time" class="w-full px-4 py-3 bg-stone-900 border border-stone-800 focus:outline-none focus:border-[#D4B28C] text-stone-100 text-xs tracking-wider">
+                                    <option value="Pagi (10:00 AM - 1:00 PM)">Sesi Pagi (10:00 AM - 1:00 PM)</option>
+                                    <option value="Petang (1:00 PM - 5:00 PM)">Sesi Petang (1:00 PM - 5:00 PM)</option>
+                                    <option value="Malam (5:00 PM - 8:00 PM)">Sesi Malam (5:00 PM - 8:00 PM)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Butang Hantar -->
+                        <button type="submit" class="w-full px-8 py-4 bg-white text-stone-950 font-bold text-xs uppercase tracking-widest transition-all duration-300 hover:bg-[#D4B28C] hover:text-stone-950 flex items-center justify-center">
+                            <i data-lucide="lock" class="w-4 h-4 mr-2"></i> Jadualkan Janji Temu & Lock Diskaun
+                        </button>
+
+                        <p class="text-[10px] text-stone-500 text-center tracking-wide mt-2">
+                            * Pengurus tempahan kami akan menghantar maklum balas pengesahan slot melalui WhatsApp dalam masa 1 jam waktu beroperasi.
+                        </p>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faqs" class="py-24 bg-stone-50 border-t border-stone-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-[11px] font-bold tracking-[0.25em] text-[#A37F55] uppercase">Keterangan Terperinci</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-lux font-light tracking-wide mt-3 text-stone-900">Ulasan & Jawapan Soalan Lazim</h2>
+                <div class="w-12 h-[1px] bg-[#A37F55] mx-auto mt-6"></div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="bg-white border border-stone-200 overflow-hidden transition-all duration-200">
+                    <button class="w-full px-6 py-5 text-left font-semibold flex items-center justify-between text-stone-900 focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="text-xs sm:text-sm uppercase tracking-wider">Adakah Bilik Muslimah Dikenakan Caj Tambahan?</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-stone-500 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-stone-600 text-xs sm:text-sm leading-relaxed font-light">
+                        Sama sekali tidak. Penyediaan suite VIP bertutup lengkap dengan sink basuh peribadi dan surau eksklusif adalah sebahagian daripada piawaian perkhidmatan Signature kami secara percuma.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-white border border-stone-200 overflow-hidden transition-all duration-200">
+                    <button class="w-full px-6 py-5 text-left font-semibold flex items-center justify-between text-stone-900 focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="text-xs sm:text-sm uppercase tracking-wider">Apakah Yang Dimaksudkan Dengan Imbasan Digital 500x?</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-stone-500 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-stone-600 text-xs sm:text-sm leading-relaxed font-light">
+                        Kami menggunakan sensor trichology pembesaran mikroskopik terkini. Sesi pencerapan ini membolehkan kami mengenal pasti punca pengumpulan sebum, kekeringan batang rambut, atau pengelupasan kulit kepala secara langsung di skrin komputer bagi memberikan rawatan yang tepat.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-white border border-stone-200 overflow-hidden transition-all duration-200">
+                    <button class="w-full px-6 py-5 text-left font-semibold flex items-center justify-between text-stone-900 focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="text-xs sm:text-sm uppercase tracking-wider">Berapa Lama Keberkesanan Keratin Glow Therapy Bertahan?</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-stone-500 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-stone-600 text-xs sm:text-sm leading-relaxed font-light">
+                        Dengan amalan penjagaan syampu bebas sulfat yang disyorkan oleh pakar terapi kami di rumah, kesan kelembutan dan struktur lurus semula jadi boleh bertahan lama antara 3 hingga 5 bulan.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-white border border-stone-200 overflow-hidden transition-all duration-200">
+                    <button class="w-full px-6 py-5 text-left font-semibold flex items-center justify-between text-stone-900 focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="text-xs sm:text-sm uppercase tracking-wider">Adakah Bahan Rawatan Safe Bagi Ibu Mengandung / Menyusu?</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-stone-500 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-stone-600 text-xs sm:text-sm leading-relaxed font-light">
+                        Sangat selamat. Formulasi kami berteraskan herba semula jadi bertaraf organik, bebas daripada bahan kimia berbahaya seperti formaldehid keras, paraben, dan telah mendapat kelulusan keselamatan serta patuh standard halal.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redesigned Floating Luxury Demo Web Sign (Minimalist, Gold Accented, No Dot) -->
+    <div id="demo-badge" class="fixed bottom-6 left-6 z-40 bg-stone-950/90 backdrop-blur-md border border-[#D4B28C]/30 pl-5 pr-4 py-3.5 shadow-2xl flex items-center gap-5 rounded-none transition-all duration-300 hover:border-[#D4B28C]/60 group">
+        <div class="text-left">
+            <span class="text-[9px] text-[#D4B28C] tracking-[0.25em] font-bold uppercase block">Pusat Kawalan</span>
+            <span class="text-[11px] text-stone-300 font-medium tracking-wide block mt-0.5">Sistem Leads Demo</span>
+        </div>
+        <button onclick="toggleDemoModal(true)" class="bg-transparent border border-[#D4B28C]/40 text-[#D4B28C] hover:bg-[#D4B28C] hover:text-stone-950 font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 transition-all duration-300 flex items-center gap-2">
+            <i data-lucide="database" class="w-3.5 h-3.5"></i> Urus Leads
+        </button>
+    </div>
+
+    <!-- Demo Web Leads Manager Modal -->
+    <div id="demo-modal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-none p-8 max-w-2xl w-full shadow-2xl border border-stone-200 max-h-[85vh] overflow-y-auto">
+            <div class="flex items-center justify-between pb-4 border-b border-stone-200 mb-6">
+                <div>
+                    <span class="text-[9px] text-[#A37F55] tracking-[0.2em] font-bold uppercase">Pusat Data Simulasi</span>
+                    <h3 class="text-xl font-serif-lux text-stone-900 tracking-wide mt-1">Sistem Pengurusan Lead Jualan</h3>
+                </div>
+                <button onclick="toggleDemoModal(false)" class="text-stone-400 hover:text-stone-950">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <p class="text-stone-600 text-xs font-light leading-relaxed mb-6">
+                Ini adalah simulasi pangkalan data (*database*) untuk ejen admin salon anda. Apabila pengguna mengisi borang penukaran jualan (*conversion form*) atau kalkulator kuiz di web ini, maklumat mereka akan ditangkap dan disimpan di bawah secara masa nyata (*real-time*).
+            </p>
+
+            <div class="overflow-x-auto border border-stone-200 bg-[#FAF8F5]">
+                <table class="min-w-full text-xs text-left">
+                    <thead class="bg-stone-900 text-stone-100 uppercase text-[9px] tracking-wider">
+                        <tr>
+                            <th class="px-4 py-3">Nama Pelanggan</th>
+                            <th class="px-4 py-3">No. Telefon (WhatsApp)</th>
+                            <th class="px-4 py-3">Jenis Rawatan</th>
+                            <th class="px-4 py-3">Keselesaan Ruang</th>
+                            <th class="px-4 py-3">Tarikh / Slot</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-table-body" class="divide-y divide-stone-200 text-stone-700">
+                        <!-- Mock Data Row -->
+                        <tr class="italic text-stone-400">
+                            <td colspan="5" class="px-4 py-6 text-center">Tiada rekod tempahan lagi. Sila cuba hantar borang digital atau kuiz di atas!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-end">
+                <button onclick="clearDemoLeads()" class="px-4 py-2.5 border border-stone-300 hover:bg-stone-50 text-stone-600 text-xs uppercase tracking-wider font-semibold transition-colors">
+                    Kosongkan Semua Data
+                </button>
+                <button onclick="toggleDemoModal(false)" class="px-6 py-2.5 bg-stone-900 hover:bg-stone-800 text-white text-xs uppercase tracking-wider font-semibold transition-colors">
+                    Selesai & Kembali
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Success Modal (Luxury Minimalist design) -->
+    <div id="success-modal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-none p-10 max-w-md w-full text-center shadow-2xl border border-stone-200 transform transition-all scale-95 duration-300">
+            <div class="w-16 h-16 border border-[#A37F55] flex items-center justify-center mx-auto text-[#A37F55] mb-6">
+                <i data-lucide="check" class="w-8 h-8 stroke-[1.2]"></i>
+            </div>
+            <h3 class="text-2xl font-serif-lux text-stone-900 tracking-wide">Tempahan Diperakui</h3>
+            <p class="text-stone-600 text-xs sm:text-sm mt-4 font-light leading-relaxed">
+                Terima kasih, Puan/Cik <strong id="success-modal-name" class="text-stone-900 font-semibold">Sarah</strong>. Kami telah mengunci kuota diskaun 30% serta slot imbasan kesihatan kulit kepala bernilai RM150 secara rasmi.
+            </p>
+            <p class="text-stone-500 text-xs mt-3 font-light leading-relaxed">
+                Pegawai tempahan Signature kami akan menghubungi anda melalui WhatsApp sebentar lagi untuk pengesahan jadual akhir. Alami layanan terbaik kami.
+            </p>
+            <button onclick="closeSuccessModal()" class="w-full mt-8 py-3.5 bg-stone-900 text-white font-medium text-xs uppercase tracking-widest hover:bg-stone-800 transition-colors">
+                Tutup Makluman
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-stone-950 text-stone-400 border-t border-stone-900 pt-20 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 pb-16 border-b border-stone-900">
+                <!-- Info Salon -->
+                <div class="space-y-6">
+                    <span class="text-2xl font-serif-lux font-light tracking-widest text-white block">MAHKOTA</span>
+                    <p class="text-xs leading-relaxed font-light text-stone-500">
+                        Pusat rawatan restoratif rambut, kesihatan kulit kepala, dan kolorisasi butik bertaraf premium di Malaysia. Menjamin keselesaan privasi peribadi mutlak.
+                    </p>
+                    <div class="flex space-x-4 pt-2">
+                        <a href="#" class="text-stone-500 hover:text-white transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="text-stone-500 hover:text-white transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" class="text-stone-500 hover:text-white transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- Waktu Operasi -->
+                <div>
+                    <h5 class="text-white font-semibold text-xs uppercase tracking-widest mb-6">Waktu Beroperasi</h5>
+                    <ul class="space-y-3 text-xs font-light text-stone-500">
+                        <li>Isnin - Jumaat: 10:00 AM - 8:00 PM</li>
+                        <li>Sabtu - Ahad: 10:00 AM - 7:00 PM</li>
+                        <li class="text-[#D4B28C]">* Dibuka setiap hari kecuali Cuti Hari Raya</li>
+                    </ul>
+                </div>
+
+                <!-- Hubungi Kami -->
+                <div>
+                    <h5 class="text-white font-semibold text-xs uppercase tracking-widest mb-6">Lokasi & Hubungi</h5>
+                    <ul class="space-y-4 text-xs font-light text-stone-500">
+                        <li class="flex items-start">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-[#D4B28C] mr-3 flex-shrink-0 stroke-[1.5]"></i>
+                            <span>No. 12-G, Jalan Telawi 3, Bangsar Baru, 59100 Kuala Lumpur, Malaysia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="phone" class="w-4 h-4 text-[#D4B28C] mr-3 stroke-[1.5]"></i>
+                            <span>+60 3-2284 9000</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="mail" class="w-4 h-4 text-[#D4B28C] mr-3 stroke-[1.5]"></i>
+                            <span>hello@mahkotasalon.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Jaminan Syarikat -->
+                <div>
+                    <h5 class="text-white font-semibold text-xs uppercase tracking-widest mb-6">Sains & Sanitasi</h5>
+                    <div class="bg-stone-900/60 p-5 border border-stone-850">
+                        <div class="flex items-center space-x-2 text-[#D4B28C] mb-3">
+                            <i data-lucide="shield" class="w-4 h-4"></i>
+                            <span class="font-bold text-[9px] uppercase tracking-wider">Sanitasi Pensteril UV</span>
+                        </div>
+                        <p class="text-[11px] text-stone-500 font-light leading-relaxed">
+                            Semua peralatan, sikat rambut, jubah, serta ruang basuhan disanitasi menyeluruh menggunakan teknologi sinar pensteril UV-C selepas setiap sesi tamat.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[10px] text-stone-600 font-light tracking-wider">
+                <p>© 2026 Mahkota Signature Group Sdn Bhd. Hak Cipta Terpelihara.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:underline hover:text-white">Polisi Privasi</a>
+                    <a href="#" class="hover:underline hover:text-white">Terma Perkhidmatan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        });
+
+        // Interactive Before/After Slider Logic
+        const sliderContainer = document.getElementById('slider-container');
+        const beforeImageWrap = document.getElementById('before-image-wrap');
+        const sliderHandle = document.getElementById('slider-handle');
+        const beforeImgEl = document.getElementById('before-img-el');
+
+        // Prevent layout distortions on size change
+        function updateSliderDimensions() {
+            const containerWidth = sliderContainer.offsetWidth;
+            beforeImgEl.style.width = containerWidth + 'px';
+        }
+        window.addEventListener('resize', updateSliderDimensions);
+        updateSliderDimensions();
+
+        function moveSlider(clientX) {
+            const rect = sliderContainer.getBoundingClientRect();
+            let position = ((clientX - rect.left) / rect.width) * 100;
+            if (position < 0) position = 0;
+            if (position > 100) position = 100;
+
+            beforeImageWrap.style.width = position + '%';
+            sliderHandle.style.left = position + '%';
+        }
+
+        // Mouse Events
+        let isDragging = false;
+        sliderContainer.addEventListener('mousedown', () => { isDragging = true; });
+        window.addEventListener('mouseup', () => { isDragging = false; });
+        sliderContainer.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            moveSlider(e.clientX);
+        });
+
+        // Touch Events for Mobile compatibility
+        sliderContainer.addEventListener('touchstart', () => { isDragging = true; });
+        window.addEventListener('touchend', () => { isDragging = false; });
+        sliderContainer.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            moveSlider(e.touches[0].clientX);
+        });
+
+        // Quiz Logic
+        let currentStep = 1;
+        const quizResponses = {
+            step1: '',
+            step2: '',
+            step3: ''
+        };
+
+        function selectOption(step, value) {
+            if (step === 1) {
+                quizResponses.step1 = value;
+                document.getElementById('step-1').classList.add('hidden');
+                document.getElementById('step-2').classList.remove('hidden');
+                document.getElementById('quiz-progress').style.width = '66.66%';
+                currentStep = 2;
+            } else if (step === 2) {
+                quizResponses.step2 = value;
+                document.getElementById('step-2').classList.add('hidden');
+                document.getElementById('step-3').classList.remove('hidden');
+                document.getElementById('quiz-progress').style.width = '100%';
+                currentStep = 3;
+            } else if (step === 3) {
+                quizResponses.step3 = value;
+                document.getElementById('step-3').classList.add('hidden');
+                document.getElementById('step-result').classList.remove('hidden');
+                
+                // Mapped luxury suggestions based on selection
+                let recommendation = 'Keratin Glow Therapy';
+                if (quizResponses.step1.includes('Gugur') || quizResponses.step1.includes('Gatal')) {
+                    recommendation = 'Organic Scalp Detox & Cleanse';
+                } else if (quizResponses.step1.includes('Mewarna')) {
+                    recommendation = 'Signature Soft Balayage';
+                }
+
+                document.getElementById('quiz-recommended-treatment').innerText = recommendation;
+                document.getElementById('quiz-selected-problem').innerText = quizResponses.step1;
+            }
+        }
+
+        // Auto fill form fields with selected quiz answers
+        function autoFillQuizData() {
+            let mappedService = 'Keratin Glow Therapy';
+            if (quizResponses.step1.includes('Gugur') || quizResponses.step1.includes('Gatal')) {
+                mappedService = 'Organic Scalp Detox';
+            } else if (quizResponses.step1.includes('Mewarna')) {
+                mappedService = 'Signature Balayage';
+            }
+
+            document.getElementById('service').value = mappedService;
+            
+            if (quizResponses.step3.includes('Ya')) {
+                document.getElementById('room').value = 'Bilik Khas Muslimah';
+            } else {
+                document.getElementById('room').value = 'Bilik Biasa Selesa';
+            }
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFaq(btn) {
+            const faqContent = btn.nextElementSibling;
+            const icon = btn.querySelector('[data-lucide="chevron-down"]');
+            
+            const isHidden = faqContent.classList.contains('hidden');
+            
+            // Close others first for nice toggle feel
+            document.querySelectorAll('.faq-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('[data-lucide="chevron-down"]').forEach(el => el.classList.remove('rotate-180'));
+
+            if (isHidden) {
+                faqContent.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-180');
+            }
+        }
+
+        // Quick set service from buttons
+        function setServiceField(serviceName) {
+            const serviceSelect = document.getElementById('service');
+            serviceSelect.value = serviceName;
+        }
+
+        // Demo Leads Storage and Handler
+        let demoLeads = JSON.parse(localStorage.getItem('mahkotasalon_leads')) || [];
+
+        function renderLeadsTable() {
+            const tableBody = document.getElementById('leads-table-body');
+            if (demoLeads.length === 0) {
+                tableBody.innerHTML = `
+                    <tr class="italic text-stone-400">
+                        <td colspan="5" class="px-4 py-6 text-center">Tiada rekod tempahan lagi. Sila cuba hantar borang digital atau kuiz di atas!</td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tableBody.innerHTML = demoLeads.map(lead => `
+                <tr class="hover:bg-stone-100/50 transition-colors">
+                    <td class="px-4 py-3 font-semibold text-stone-900">${lead.name}</td>
+                    <td class="px-4 py-3 font-mono text-stone-600">${lead.phone}</td>
+                    <td class="px-4 py-3"><span class="bg-[#FAF8F5] border border-stone-200 px-2.5 py-1 text-stone-800">${lead.service}</span></td>
+                    <td class="px-4 py-3 text-stone-600">${lead.room}</td>
+                    <td class="px-4 py-3 text-[#A37F55] font-medium">${lead.date} (${lead.time})</td>
+                </tr>
+            `).join('');
+        }
+
+        function toggleDemoModal(show) {
+            const modal = document.getElementById('demo-modal');
+            if (show) {
+                renderLeadsTable();
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function clearDemoLeads() {
+            if (confirm('Adakah anda pasti mahu memadamkan rekod leads pameran ini?')) {
+                demoLeads = [];
+                localStorage.removeItem('mahkotasalon_leads');
+                renderLeadsTable();
+            }
+        }
+
+        // Handle Form Submission (With beautiful success modal and demo data capturing)
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const room = document.getElementById('room').value;
+            const date = document.getElementById('booking-date').value;
+            const time = document.getElementById('booking-time').value;
+
+            // Save captured lead for the demo systems
+            const newLead = { name, phone, service, room, date, time };
+            demoLeads.unshift(newLead); // Add new lead to the beginning
+            localStorage.setItem('mahkotasalon_leads', JSON.stringify(demoLeads));
+
+            // Set modal custom greeting
+            document.getElementById('success-modal-name').innerText = name;
+            
+            // Reveal success modal
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('hidden');
+            
+            console.log('Lead Captured Successfully:', newLead);
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            document.getElementById('booking-form').reset();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KilatPro Detailing & Car Wash - Studio Penjagaan Kereta Premium No.1 Malaysia</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Plus Jakarta Sans & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        carbon: {
+                            50: '#f4f5f6',
+                            100: '#e9ebed',
+                            800: '#1e2229',
+                            900: '#12141c',
+                            950: '#090a0f',
+                        },
+                        cyber: {
+                            400: '#38bdf8', /* Cyan */
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                        },
+                        gold: {
+                            400: '#fbbf24', /* Gold Accents */
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 25px rgba(14, 165, 233, 0.15)',
+                        'neon-gold': '0 0 25px rgba(245, 158, 11, 0.15)',
+                        'inner-glow': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Premium Aesthetics */
+        .premium-border-gradient {
+            background: linear-gradient(135deg, rgba(14,165,233,0.3) 0%, rgba(245,158,11,0.1) 50%, rgba(18,20,28,0.8) 100%);
+        }
+        .text-gradient-cyan-gold {
+            background: linear-gradient(135deg, #38bdf8 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Interactive Before/After Slider Styling */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.7);
+        }
+        @media (min-width: 768px) {
+            .slider-container {
+                height: 400px;
+            }
+        }
+        .slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        .image-before {
+            background: linear-gradient(135deg, #2a2d34 0%, #1a1c20 100%);
+        }
+        .image-after {
+            background: linear-gradient(135deg, #090a0f 0%, #0c1c38 100%);
+        }
+        .slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .resize-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background-color: #fbbf24;
+            cursor: ew-resize;
+            z-index: 30;
+            box-shadow: 0 0 10px #fbbf24;
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #090a0f;
+            border: 2px solid #fbbf24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fbbf24;
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+            z-index: 40;
+            cursor: ew-resize;
+        }
+    </style>
+</head>
+<body class="bg-carbon-950 text-slate-200 font-sans antialiased overflow-x-hidden">
+
+    <!-- Demo Web Sign / Disclaimer Banner -->
+    <div class="bg-gradient-to-r from-gold-600 via-amber-500 to-gold-600 text-carbon-950 text-[10px] sm:text-xs font-black py-2.5 px-4 text-center tracking-widest uppercase shadow-md relative z-[100] flex items-center justify-center gap-2">
+        <i class="fa-solid fa-circle-info animate-pulse text-sm"></i>
+        <span>Laman Web Demo & Simulasi Sahaja — Rekaan Premium Studio Penjagaan Kereta</span>
+    </div>
+
+    <!-- Sticky Glassmorphism Header -->
+    <header class="sticky top-0 z-50 bg-carbon-950/80 backdrop-blur-xl border-b border-carbon-900 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-cyber-500 to-gold-500 text-carbon-950 p-2.5 rounded-xl font-black text-xl shadow-neon-blue">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-display font-black tracking-wider text-white">KILAT<span class="text-gradient-gold">PRO</span></span>
+                    <span class="text-[9px] uppercase tracking-widest text-cyber-400 font-bold -mt-1">Detailing Studio</span>
+                </div>
+            </div>
+            
+            <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <a href="#masalah" class="hover:text-white transition-colors">Analisis Cat</a>
+                <a href="#kelebihan" class="hover:text-white transition-colors">Servis VIP</a>
+                <a href="#sebelum-selepas" class="hover:text-white transition-colors">Demo Impak</a>
+                <a href="#pakej" class="hover:text-white transition-colors">Pakej</a>
+                <a href="#kalkulator" class="hover:text-white transition-colors">Kira Harga</a>
+                <a href="#testimoni" class="hover:text-white transition-colors">Komen VIP</a>
+            </nav>
+
+            <div class="hidden sm:block">
+                <a href="#pakej" class="bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-400 hover:to-amber-500 text-carbon-950 font-extrabold px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-neon-gold text-center text-xs uppercase tracking-wider">
+                    Dapatkan Rawatan VIP
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden text-slate-300 hover:text-white focus:outline-none">
+                <i class="fa-solid fa-bars-staggered text-2xl" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-carbon-900 border-b border-carbon-800 px-6 pt-4 pb-8 space-y-4 shadow-2xl transition-all duration-300">
+            <a href="#masalah" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white py-2 font-medium">Analisis Cat</a>
+            <a href="#kelebihan" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white py-2 font-medium">Servis VIP</a>
+            <a href="#sebelum-selepas" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white py-2 font-medium">Demo Impak</a>
+            <a href="#pakej" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white py-2 font-medium">Pakej & Harga</a>
+            <a href="#kalkulator" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white py-2 font-medium">Kira Harga</a>
+            <a href="#testimoni" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white py-2 font-medium">Komen VIP</a>
+            <a href="#pakej" onclick="toggleMobileMenu()" class="block w-full text-center bg-gradient-to-r from-gold-500 to-amber-600 text-carbon-950 font-bold py-3 rounded-xl text-xs uppercase tracking-wider">Dapatkan Rawatan VIP</a>
+        </div>
+    </header>
+
+    <!-- Hero Section (Luxury detaling focus) -->
+    <section class="relative overflow-hidden pt-12 pb-24 md:pt-24 md:pb-36 bg-[radial-gradient(ellipse_at_top,rgba(14,165,233,0.08),transparent_50%)]">
+        <!-- Structural Background Grids -->
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                
+                <!-- Left Content: High Converting Copywriting -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="flex items-center gap-2 justify-center lg:justify-start">
+                        <span class="text-gold-400 text-xs sm:text-sm font-bold uppercase tracking-widest">
+                            Slot Promo Minggu Ini Tinggal 17 Sahaja!
+                        </span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight leading-none text-white">
+                        Restorasi Cat Kereta Hingga Berkilat Macam <span class="text-gradient-cyan-gold">Showroom Mewah</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Lindungi pelaburan berharga anda daripada sinaran UV terik Malaysia, hujan asid, dan kotoran degil menggunakan teknologi <strong class="text-white">Ultra Hydrophobic Nano-Ceramic Shield</strong>. Siap dalam masa rekod.
+                    </p>
+
+                    <!-- Trust Indicators -->
+                    <div class="grid grid-cols-3 gap-6 pt-4 max-w-lg mx-auto lg:mx-0 text-left">
+                        <div class="flex flex-col gap-1">
+                            <span class="text-2xl font-display font-bold text-white">100%</span>
+                            <span class="text-xs text-slate-500">Bebas Calar (Swirl-Free)</span>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <span class="text-2xl font-display font-bold text-white">20 Minit</span>
+                            <span class="text-xs text-slate-500">Masa Menunggu Purata</span>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <span class="text-2xl font-display font-bold text-white">9,800+</span>
+                            <span class="text-xs text-slate-500">Kereta Puas Hati</span>
+                        </div>
+                    </div>
+
+                    <!-- Direct Action Buttons -->
+                    <div class="space-y-4 pt-4">
+                        <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                            <a href="#pakej" class="w-full sm:w-auto bg-gradient-to-r from-cyber-500 to-cyber-600 hover:from-cyber-400 hover:to-cyber-500 text-white text-sm font-bold uppercase tracking-wider px-8 py-4 rounded-xl shadow-neon-blue transform hover:-translate-y-1 transition-all text-center">
+                                <i class="fa-regular fa-calendar-check mr-2"></i> Booking Diskaun 50%
+                            </a>
+                            <a href="#kalkulator" class="w-full sm:w-auto border border-carbon-800 hover:border-gold-500/50 bg-carbon-900/60 hover:bg-carbon-900 text-slate-300 hover:text-white px-8 py-4 rounded-xl text-sm font-bold uppercase tracking-wider text-center transition-all">
+                                Hitung Kos Kereta Saya
+                            </a>
+                        </div>
+                        <p class="text-xs text-slate-500 flex items-center justify-center lg:justify-start gap-2">
+                            <i class="fa-solid fa-umbrella text-gold-500"></i> Jaminan Kalis Air Hujan 24-Jam: Ditimpa hujan? Kami cuci semula PERCUMA!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Content: The Interactive Slider Box -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-carbon-900/40 p-[1px] rounded-3xl premium-border-gradient">
+                        <div class="bg-carbon-950/90 rounded-3xl p-6 space-y-6">
+                            
+                            <!-- Slider Header -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Simulasi Kilatan Fizikal</span>
+                                </div>
+                                <span class="text-[11px] text-gold-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded">CUBA SERET</span>
+                            </div>
+
+                            <!-- Interactive Before After Slider Container -->
+                            <div class="slider-container" id="before-after-slider">
+                                <!-- Background Image (Before - Dull/Dirty/Water-spotted) -->
+                                <div class="slider-image image-before">
+                                    <!-- Decorative Mock Dull Car Visual Grid -->
+                                    <div class="absolute inset-0 flex flex-col justify-center items-center opacity-40">
+                                        <svg class="w-48 h-auto text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12.5V16c0 .6.4 1 1 1h2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <circle cx="7" cy="17" r="2" fill="currentColor"/>
+                                            <circle cx="17" cy="17" r="2" fill="currentColor"/>
+                                        </svg>
+                                        <span class="text-xs font-bold text-slate-500 uppercase tracking-widest mt-4">SEBELUM: CAT PUDAR & KOTOR</span>
+                                    </div>
+                                </div>
+
+                                <!-- Overlay Image (After - Ultra-Glossy Neon Dynamic Style) -->
+                                <div class="resize-container" id="resize-layer">
+                                    <div class="slider-image image-after" style="width: 100vw;">
+                                        <!-- Decorative Mock Shiny Car Visual Grid -->
+                                        <div class="absolute inset-0 flex flex-col justify-center items-center bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.3),transparent_70%)]">
+                                            <svg class="w-48 h-auto text-cyber-400 drop-shadow-[0_0_15px_rgba(56,189,248,0.6)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12.5V16c0 .6.4 1 1 1h2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <circle cx="7" cy="17" r="2" fill="currentColor"/>
+                                                <circle cx="17" cy="17" r="2" fill="currentColor"/>
+                                            </svg>
+                                            <span class="text-xs font-bold text-cyber-400 uppercase tracking-widest mt-4 drop-shadow-md">KILATPRO: MIRROR COATING ACTIVE</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Slider Divider/Handle Controls -->
+                                <div class="slider-handle" id="slider-drag-handle">
+                                    <div class="slider-button">
+                                        <i class="fa-solid fa-arrows-left-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Floating Micro details -->
+                            <div class="flex items-center justify-between text-xs text-slate-500">
+                                <span><i class="fa-solid fa-water-dust mr-1"></i> Kalis Air Serta Merta</span>
+                                <span><i class="fa-solid fa-sparkles text-gold-500 mr-1"></i> Perlindungan 12 Bulan</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section (Agitating the Paint Damage Pain) -->
+    <section id="masalah" class="bg-carbon-900/30 py-24 border-y border-carbon-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+                <span class="text-red-500 font-bold uppercase tracking-widest text-xs bg-red-950/40 border border-red-500/20 px-4 py-1">Ancaman Cat Kereta</span>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tight text-white">
+                    Adakah Kereta Anda Perlahan-lahan <span class="text-red-500">Hilang Nilai Jualan?</span>
+                </h2>
+                <p class="text-slate-400 leading-relaxed">
+                    Suhu melampau, kualiti air basuhan kotor, dan hujan asid tropika di Malaysia adalah musuh senyap yang merosakkan lapisan cat perlindungan (*clear coat*) kenderaan anda.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pain Card 1 -->
+                <div class="bg-carbon-900/50 p-1 rounded-2xl border border-carbon-800 hover:border-red-500/30 transition-all duration-300 group">
+                    <div class="bg-carbon-950 p-8 rounded-2xl h-full space-y-6">
+                        <div class="bg-red-500/10 text-red-400 w-12 h-12 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-cloud-showers-water text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-white group-hover:text-red-400 transition-colors">Watermark Mineral Keras</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Air hujan asid yang mengering cepat di bawah terik mentari meninggalkan tompokan asid kalsium keras yang tidak boleh ditanggalkan dengan cucian biasa.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pain Card 2 -->
+                <div class="bg-carbon-900/50 p-1 rounded-2xl border border-carbon-800 hover:border-red-500/30 transition-all duration-300 group">
+                    <div class="bg-carbon-950 p-8 rounded-2xl h-full space-y-6">
+                        <div class="bg-red-500/10 text-red-400 w-12 h-12 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-temperature-arrow-up text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-white group-hover:text-red-400 transition-colors">Cat Pudar & Rekah UV</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Kereta yang tidak dilindungi lapisan pelindung lilin (wax) atau coating premium akan pudar, kusam, dan hilang nilai estetik asalnya dalam masa 2 tahun sahaja.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pain Card 3 -->
+                <div class="bg-carbon-900/50 p-1 rounded-2xl border border-carbon-800 hover:border-red-500/30 transition-all duration-300 group">
+                    <div class="bg-carbon-950 p-8 rounded-2xl h-full space-y-6">
+                        <div class="bg-red-500/10 text-red-400 w-12 h-12 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-hourglass-end text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-white group-hover:text-red-400 transition-colors">Calar Halus Akibat Kain Kotor</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Pusat cuci biasa sering menggunakan semula kain yang telah jatuh ke lantai pasir. Kesannya? Garis calar halus (*swirl marks*) yang memburukkan imej kereta anda.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features & Benefits Section -->
+    <section id="kelebihan" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                
+                <div class="lg:col-span-6 space-y-8">
+                    <span class="text-cyber-400 font-bold uppercase tracking-widest text-xs bg-cyber-500/10 border border-cyber-500/20 px-4 py-1 rounded">Kenapa Kami Berbeza</span>
+                    <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tight text-white">
+                        Standard Cucian <span class="text-gradient-cyan-gold">Detailing Kelas Pertama</span>
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed">
+                        Kami bukan pusat cuci kereta biasa. Setiap kenderaan diuruskan dengan perhatian teliti menggunakan peralatan bertaraf studio detailing antarabangsa dan kru terlatih yang berdedikasi.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="bg-cyber-500/10 text-cyber-400 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-neon-blue">
+                                <i class="fa-solid fa-spray-can-sparkles text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-display font-bold text-white text-base">Nano-Ceramic Spray Wax</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed">Menyediakan lapisan pelindung hydrophobic kalis kotoran, air, dan minyak secara aktif.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="bg-gold-500/10 text-gold-400 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-neon-gold">
+                                <i class="fa-solid fa-shield-cat text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-display font-bold text-white text-base">Kain Microfibre Dual-Sided Gred Premium</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed">Kami hanya menggunakan fabrik ultra-lembut berasingan untuk bahagian luar dan dalam kereta demi menghalang sebarang bentuk calar mikro.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="bg-cyber-500/10 text-cyber-400 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-neon-blue">
+                                <i class="fa-solid fa-wind-glow text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-display font-bold text-white text-base">Sanitasi Udara Nano-Mist</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed">Rawatan kabin dalaman yang meneutralkan bakteria, hama, serta bau hapak demi kesihatan pernafasan sekeluarga.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 bg-carbon-900/40 p-[1px] rounded-3xl premium-border-gradient">
+                    <div class="bg-carbon-950 p-8 md:p-12 rounded-3xl space-y-8 relative overflow-hidden">
+                        <div class="absolute -top-10 -right-10 w-48 h-48 bg-cyber-500/5 rounded-full blur-3xl"></div>
+                        
+                        <div class="space-y-2">
+                            <h3 class="text-2xl font-display font-bold text-white">Selesa Menanti di VIP Lounge</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Sambil kru pakar kami merawat kenderaan anda dengan pantas, anda boleh terus bekerja atau bersantai dengan selesa di ruang menunggu khas kami yang sejuk dan damai.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-carbon-900/60 p-5 rounded-2xl border border-carbon-800 hover:border-cyber-500/30 transition-colors">
+                                <i class="fa-solid fa-wifi text-cyber-400 text-xl mb-3"></i>
+                                <h5 class="font-bold text-white text-sm">WiFi Percuma 150Mbps</h5>
+                            </div>
+                            <div class="bg-carbon-900/60 p-5 rounded-2xl border border-carbon-800 hover:border-cyber-500/30 transition-colors">
+                                <i class="fa-solid fa-coffee text-cyber-400 text-xl mb-3"></i>
+                                <h5 class="font-bold text-white text-sm">Kopi Kapsul Premium</h5>
+                            </div>
+                            <div class="bg-carbon-900/60 p-5 rounded-2xl border border-carbon-800 hover:border-cyber-500/30 transition-colors">
+                                <i class="fa-solid fa-chair text-cyber-400 text-xl mb-3"></i>
+                                <h5 class="font-bold text-white text-sm">Kerusi Urut Pintar</h5>
+                            </div>
+                            <div class="bg-carbon-900/60 p-5 rounded-2xl border border-carbon-800 hover:border-cyber-500/30 transition-colors">
+                                <i class="fa-solid fa-battery-bolt text-cyber-400 text-xl mb-3"></i>
+                                <h5 class="font-bold text-white text-sm">Charging Station</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans (High Converting Sales Packages) -->
+    <section id="pakej" class="bg-carbon-900/30 py-24 border-t border-carbon-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-4 mb-20">
+                <span class="text-gold-400 font-bold uppercase tracking-widest text-xs bg-amber-500/10 border border-amber-500/20 px-4 py-1">Pakej Eksklusif</span>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">Pelan Pelaburan Kilatan Kereta Anda</h2>
+                <p class="text-slate-400 text-sm sm:text-base leading-relaxed">Tiada caj sulit. Hanya kualiti kerja terbaik. Tempah dalam talian hari ini untuk kunci slot diskaun 50%!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <!-- Package 1: Basic -->
+                <div class="bg-carbon-900/40 p-[1px] rounded-3xl border border-carbon-800/80 hover:border-carbon-700 transition-all flex flex-col">
+                    <div class="bg-carbon-950 p-8 rounded-3xl flex flex-col justify-between h-full">
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <h3 class="text-xl font-display font-bold text-white">Standard Executive Wash</h3>
+                                <p class="text-slate-400 text-xs">Pembersihan luar & dalam yang pantas dan berkualiti.</p>
+                            </div>
+                            
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-4xl font-display font-extrabold text-white">RM 15</span>
+                                <span class="text-xs text-slate-500 uppercase font-semibold">Bayar Selepas Siap</span>
+                            </div>
+
+                            <hr class="border-carbon-800">
+
+                            <ul class="space-y-4 text-sm text-slate-300">
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-cyber-400"></i> Cucian Luar Body & Rim Sempurna</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-cyber-400"></i> Vakum Sedutan Tinggi Kabin & But</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-cyber-400"></i> Kilatan Premium Tayar (Tyre Shine)</li>
+                                <li class="flex items-center gap-3 text-slate-600"><i class="fa-solid fa-circle-xmark"></i> Lapisan Nano Hydrophobic Rain-Shield</li>
+                                <li class="flex items-center gap-3 text-slate-600"><i class="fa-solid fa-circle-xmark"></i> Sanitasi Nano-Mist Kabin</li>
+                            </ul>
+                        </div>
+
+                        <button onclick="openBookingModal('Standard Executive Wash', 15)" class="mt-12 w-full bg-carbon-900 hover:bg-carbon-800 text-slate-200 hover:text-white font-bold py-3.5 px-4 rounded-xl transition-all border border-carbon-800 text-xs uppercase tracking-wider">
+                            Pilih Standard
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Package 2: Best Seller (VIP Highlighted Glow) -->
+                <div class="bg-gradient-to-b from-gold-500 via-amber-600 to-carbon-950 p-[1px] rounded-3xl relative shadow-neon-gold flex flex-col transform md:-translate-y-4">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold-500 to-amber-600 text-carbon-950 font-black text-[10px] uppercase tracking-widest px-6 py-2 rounded-full shadow-lg">
+                        SANGAT DISYORKAN
+                    </div>
+
+                    <div class="bg-carbon-950 p-8 rounded-[23px] flex flex-col justify-between h-full">
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <h3 class="text-2xl font-display font-black text-gradient-gold">KilatPro Signature Ceramic Wax</h3>
+                                <p class="text-slate-400 text-xs">Kemasan berkilat kilauan kaca dengan kesan hydrophobic tahan lama.</p>
+                            </div>
+                            
+                            <div class="space-y-1">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-xs text-slate-500 line-through">RM 90</span>
+                                    <span class="text-5xl font-display font-black text-gold-400">RM 45</span>
+                                    <span class="text-xs text-gold-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded-md">Jimat 50%</span>
+                                </div>
+                            </div>
+
+                            <hr class="border-carbon-800">
+
+                            <ul class="space-y-4 text-sm text-slate-200">
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i> Semua Ciri Standard Executive Wash</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i> Lapisan <strong class="text-white">Hydrophobic Rain-Shield</strong></li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i> Semburan Ceramic Spray Coating</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i> Cucian & Pembasuhan Karpet Kaki</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i> Jaminan Kalis Air Hujan 24-Jam</li>
+                            </ul>
+                        </div>
+
+                        <button onclick="openBookingModal('KilatPro Signature Ceramic Wax', 45)" class="mt-12 w-full bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-400 hover:to-amber-500 text-carbon-950 font-black py-4 px-4 rounded-xl transition-all shadow-lg text-xs uppercase tracking-wider">
+                            Tempah Slot VIP Diskaun 50%
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Package 3: Premium Detailing -->
+                <div class="bg-carbon-900/40 p-[1px] rounded-3xl border border-carbon-800/80 hover:border-carbon-700 transition-all flex flex-col">
+                    <div class="bg-carbon-950 p-8 rounded-3xl flex flex-col justify-between h-full">
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <h3 class="text-xl font-display font-bold text-white">Ultra Paint Detailing & Polish</h3>
+                                <p class="text-slate-400 text-xs">Penjagaan intensif bagi menghapuskan garis calar halus.</p>
+                            </div>
+                            
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-xs text-slate-500 line-through">RM 240</span>
+                                <span class="text-4xl font-display font-extrabold text-white">RM 119</span>
+                                <span class="text-xs text-cyber-400 font-bold bg-cyber-500/10 px-2.5 py-0.5 rounded-md">Promo</span>
+                            </div>
+
+                            <hr class="border-carbon-800">
+
+                            <ul class="space-y-4 text-sm text-slate-300">
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-cyber-400"></i> Semua Ciri Signature Ceramic Wax</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-cyber-400"></i> Penggilapan Menghapus Calar (Polish)</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-cyber-400"></i> Conditioning Kerusi Kulit / Rawatan Fabrik</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-cyber-400"></i> Perlindungan Ceramic Gred Detailing</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-cyber-400"></i> Rawatan Nyah-bakteria Nano-Mist</li>
+                            </ul>
+                        </div>
+
+                        <button onclick="openBookingModal('Ultra Paint Detailing & Polish', 119)" class="mt-12 w-full bg-carbon-900 hover:bg-carbon-800 text-slate-200 hover:text-white font-bold py-3.5 px-4 rounded-xl transition-all border border-carbon-800 text-xs uppercase tracking-wider">
+                            Pilih Premium Detailing
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Price Estimator & Booking Hook -->
+    <section id="kalkulator" class="py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-carbon-900/40 p-[1px] rounded-3xl premium-border-gradient shadow-neon-blue">
+                <div class="bg-carbon-950 p-8 md:p-12 rounded-3xl relative overflow-hidden">
+                    <div class="absolute -top-10 -left-10 w-48 h-48 bg-cyber-500/10 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-gold-500/10 rounded-full blur-3xl"></div>
+
+                    <div class="text-center max-w-xl mx-auto space-y-3 mb-12">
+                        <span class="text-cyber-400 font-bold uppercase tracking-widest text-xs bg-cyber-500/10 px-4 py-1 rounded">Estimasi Pintar</span>
+                        <h2 class="text-3xl font-display font-extrabold text-white">Hitung Anggaran Kos Bersih</h2>
+                        <p class="text-slate-400 text-sm leading-relaxed">Pilih kategori kenderaan dan pakej rawatan untuk melihat nilai pelaburan anda serta-merta tanpa kos tersembunyi.</p>
+                    </div>
+
+                    <!-- Calculator Form Layout -->
+                    <div class="space-y-8 relative z-10">
+                        
+                        <!-- Car Size Selection Cards -->
+                        <div class="space-y-4">
+                            <label class="block text-xs font-bold tracking-widest text-slate-400 uppercase">1. Pilih Saiz Kereta Anda</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <!-- Sedan / Hatchback -->
+                                <button onclick="setVehicleSize('sedan', 0)" id="btn-size-sedan" class="vehicle-size-btn p-5 bg-carbon-900/60 border-2 border-cyber-500 rounded-2xl text-left flex items-center gap-4 transition-all">
+                                    <div class="bg-cyber-500/10 text-cyber-400 p-3.5 rounded-xl">
+                                        <i class="fa-solid fa-car text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-white">Sedan / Hatchback</h4>
+                                        <p class="text-[11px] text-slate-500">Myvi, Vios, Persona, dsb</p>
+                                    </div>
+                                </button>
+
+                                <!-- SUV / Crossover -->
+                                <button onclick="setVehicleSize('suv', 10)" id="btn-size-suv" class="vehicle-size-btn p-5 bg-carbon-900/40 border border-carbon-800 rounded-2xl text-left flex items-center gap-4 transition-all hover:border-slate-700">
+                                    <div class="bg-carbon-800 text-slate-400 p-3.5 rounded-xl icon-box">
+                                        <i class="fa-solid fa-car-side text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-white">SUV / Crossover</h4>
+                                        <p class="text-[11px] text-slate-500">Ativa, X50, CRV, dsb</p>
+                                    </div>
+                                </button>
+
+                                <!-- MPV / 4x4 -->
+                                <button onclick="setVehicleSize('mpv', 20)" id="btn-size-mpv" class="vehicle-size-btn p-5 bg-carbon-900/40 border border-carbon-800 rounded-2xl text-left flex items-center gap-4 transition-all hover:border-slate-700">
+                                    <div class="bg-carbon-800 text-slate-400 p-3.5 rounded-xl icon-box">
+                                        <i class="fa-solid fa-truck-pickup text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-white">MPV / SUV Besar</h4>
+                                        <p class="text-[11px] text-slate-500">Alza, Alphard, Hilux, dsb</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Package Selection Dropdown -->
+                        <div class="space-y-4">
+                            <label class="block text-xs font-bold tracking-widest text-slate-400 uppercase">2. Pilih Pakej Rawatan</label>
+                            <select id="calc-package" onchange="calculateTotal()" class="w-full bg-carbon-900 border border-carbon-800 rounded-2xl p-4 text-white focus:outline-none focus:border-cyber-500 transition-all font-medium text-sm">
+                                <option value="15">Standard Executive Wash (Hanya RM15)</option>
+                                <option value="45" selected>KilatPro Signature Ceramic Wax (Hanya RM45 - Diskaun 50%)</option>
+                                <option value="119">Ultra Paint Detailing & Polish (Hanya RM119 - Diskaun Promo)</option>
+                            </select>
+                        </div>
+
+                        <!-- Display Calculated Cost Summary -->
+                        <div class="bg-carbon-950 p-6 md:p-8 rounded-2xl border border-carbon-800 flex flex-col sm:flex-row items-center justify-between gap-6">
+                            <div>
+                                <span class="text-[11px] text-slate-500 uppercase tracking-widest block mb-1">Anggaran Nilai Pelaburan</span>
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-4xl font-display font-black text-cyber-400" id="calc-price-display">RM 45</span>
+                                    <span class="text-xs text-slate-400" id="car-charge-addon">(Tiada surcaj saiz kereta)</span>
+                                </div>
+                            </div>
+                            <button onclick="bookCalculated()" class="w-full sm:w-auto bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-400 hover:to-amber-500 text-carbon-950 font-extrabold px-8 py-4 rounded-xl transition-all shadow-neon-gold text-xs uppercase tracking-widest">
+                                Tempah Slot Pakej Ini <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof & Risk Reversal (Testimonial & Guarantee) -->
+    <section id="testimoni" class="bg-carbon-900/30 py-24 border-y border-carbon-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-4 mb-20">
+                <span class="text-cyber-400 font-bold uppercase tracking-widest text-xs bg-cyber-500/10 px-4 py-1 rounded">Ulasan Pemilik VIP</span>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">Apa Kata Pelanggan Kami</h2>
+                <p class="text-slate-400 text-sm sm:text-base leading-relaxed">Nikmati jaminan kepuasan tinggi seperti ribuan pemilik kenderaan mewah lain di Lembah Klang.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <!-- Testimonial 1 -->
+                <div class="bg-carbon-900/40 p-[1px] rounded-3xl border border-carbon-800/80 hover:border-carbon-700 transition-all">
+                    <div class="bg-carbon-950 p-8 rounded-3xl space-y-6 h-full flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex text-amber-400 gap-1 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed italic">
+                                "Sangat berpuas hati! Selepas menggunakan Signature Ceramic Wax, air hujan meluncur laju tanpa meninggalkan sebarang tompokan air keras. Habuk pun kurang melekat!"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-4 border-t border-carbon-900">
+                            <div class="w-10 h-10 rounded-full bg-carbon-800 flex items-center justify-center font-bold text-cyber-400 text-xs">
+                                KA
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Khairul Azri</h4>
+                                <p class="text-xs text-slate-500">Proton X50 (Shah Alam)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-carbon-900/40 p-[1px] rounded-3xl border border-carbon-800/80 hover:border-carbon-700 transition-all">
+                    <div class="bg-carbon-950 p-8 rounded-3xl space-y-6 h-full flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex text-amber-400 gap-1 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed italic">
+                                "Biasanya sakit kepala tunggu giliran di car wash lain pada hujung minggu. Di KilatPro sangat pantas! Servis 25 minit tetapi hasilnya berkilauan dan rapi."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-4 border-t border-carbon-900">
+                            <div class="w-10 h-10 rounded-full bg-carbon-800 flex items-center justify-center font-bold text-cyber-400 text-xs">
+                                SL
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Sarah Loke</h4>
+                                <p class="text-xs text-slate-500">Honda Civic (Petaling Jaya)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-carbon-900/40 p-[1px] rounded-3xl border border-carbon-800/80 hover:border-carbon-700 transition-all">
+                    <div class="bg-carbon-950 p-8 rounded-3xl space-y-6 h-full flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex text-amber-400 gap-1 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed italic">
+                                "Pakej Ultra Paint Detailing memang berbaloi. Kesan calar kucing pada pintu pemandu hilang terus. Warna kelabu metalik kereta nampak pekat dan berkilat semula."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-4 border-t border-carbon-900">
+                            <div class="w-10 h-10 rounded-full bg-carbon-800 flex items-center justify-center font-bold text-cyber-400 text-xs">
+                                MF
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Firdaus</h4>
+                                <p class="text-xs text-slate-500">Toyota Alphard (Kuala Lumpur)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Absolute Risk Reversal Guarantee Banner -->
+            <div class="bg-gradient-to-r from-amber-950/20 via-carbon-900 to-amber-950/20 border-2 border-amber-500/20 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 justify-between relative overflow-hidden shadow-neon-gold">
+                <div class="flex items-center gap-6">
+                    <div class="bg-amber-500/10 text-gold-400 p-5 rounded-2xl shrink-0 border border-amber-500/20">
+                        <i class="fa-solid fa-umbrella text-4xl"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-gold-400 text-xs font-bold uppercase tracking-wider block">Jaminan Khas Iklim Tropika Malaysia</span>
+                        <h3 class="text-2xl font-display font-extrabold text-white">Perlindungan Kalis Hujan 24 Jam</h3>
+                        <p class="text-slate-400 text-sm max-w-xl leading-relaxed">
+                            Jika kenderaan anda ditimpa air hujan dalam tempoh 24 jam selepas basuh di studio kami, bawa resit digital anda kembali dan kami akan basuh semula luaran kenderaan anda secara <strong class="text-gold-400">PERCUMA!</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="shrink-0">
+                    <div class="border border-gold-500/20 text-gold-400 font-bold px-6 py-3 rounded-2xl bg-amber-950/20 text-center text-xs uppercase tracking-widest">
+                        <i class="fa-solid fa-shield-halved mr-1"></i> Risiko Sifar 100%
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Frequently Asked Questions -->
+    <section class="py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+                <span class="text-cyber-400 font-bold uppercase tracking-widest text-xs bg-cyber-500/10 px-4 py-1 rounded">Soalan Lazim</span>
+                <h2 class="text-3xl font-display font-extrabold text-white">Mungkin Anda Bertanya</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Ketahui butiran operasi kami sebelum anda hadir ke studio.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="bg-carbon-900/60 border border-carbon-800 rounded-2xl p-6 transition-all hover:border-carbon-700">
+                    <h4 class="font-display font-bold text-base text-white flex justify-between items-center cursor-pointer" onclick="toggleFaq(this)">
+                        <span>Adakah booking atas talian ini memerlukan deposit?</span>
+                        <i class="fa-solid fa-chevron-down text-sm text-cyber-400"></i>
+                    </h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mt-4 pt-4 border-t border-carbon-800/50">
+                        Tidak. Tempahan atas talian adalah PERCUMA dan bertujuan untuk mengunci slot promo diskaun 50% anda sahaja. Bayaran penuh hanya dilakukan secara tunai, kad, atau e-wallet di kaunter kami selepas anda berpuas hati dengan hasil kerja kami.
+                    </p>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-carbon-900/60 border border-carbon-800 rounded-2xl p-6 transition-all hover:border-carbon-700">
+                    <h4 class="font-display font-bold text-base text-white flex justify-between items-center cursor-pointer" onclick="toggleFaq(this)">
+                        <span>Bagaimanakah Jaminan Kalis Hujan 24-Jam berfungsi?</span>
+                        <i class="fa-solid fa-chevron-down text-sm text-cyber-400"></i>
+                    </h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mt-4 pt-4 border-t border-carbon-800/50">
+                        Sangat mudah. Sekiranya hujan turun selepas anda keluar dari studio kami dalam tempoh 24 jam, hubungi kami atau bawa kereta anda semula bersama invois WhatsApp yang kami berikan. Kami akan mencuci bahagian luar body kereta anda semula secara percuma tanpa soal.
+                    </p>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-carbon-900/60 border border-carbon-800 rounded-2xl p-6 transition-all hover:border-carbon-700">
+                    <h4 class="font-display font-bold text-base text-white flex justify-between items-center cursor-pointer" onclick="toggleFaq(this)">
+                        <span>Berapa lamakah tempoh cucian di studio?</span>
+                        <i class="fa-solid fa-chevron-down text-sm text-cyber-400"></i>
+                    </h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mt-4 pt-4 border-t border-carbon-800/50">
+                        Pakej Signature kami diselesaikan dalam tempoh 20 hingga 30 minit sahaja kerana setiap kenderaan diuruskan oleh sekumpulan 3 orang kru profesional terlatih secara serentak. Bagi pakej Detailing penuh, ia boleh mengambil masa antara 1.5 hingga 3 jam bergantung kepada keadaan cat kenderaan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Pop-Up Modal (Success Trigger) -->
+    <div id="booking-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-carbon-950/90 backdrop-blur-md" onclick="closeBookingModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="bg-carbon-900 border border-carbon-800 w-full max-w-lg rounded-3xl p-8 relative z-10 shadow-2xl overflow-y-auto max-h-[95vh]">
+            <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="space-y-6">
+                <div class="text-center space-y-2">
+                    <div class="bg-gold-500/10 text-gold-400 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold-500/20">
+                        <i class="fa-regular fa-calendar-check text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-white">Kunci Slot Rawatan VIP Anda</h3>
+                    <p class="text-slate-400 text-sm">Sila isi borang ringkas di bawah untuk mendapatkan harga promosi.</p>
+                </div>
+
+                <!-- Selected Package Tag -->
+                <div class="bg-carbon-950 border border-carbon-800 p-4 rounded-2xl flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-slate-500 block">Pakej Dipilih</span>
+                        <span id="modal-package-name" class="font-bold text-white text-sm">KilatPro Signature Ceramic Wax</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-slate-500 block">Pelaburan Anda</span>
+                        <span id="modal-package-price" class="font-extrabold text-cyber-400 text-lg">RM 45</span>
+                    </div>
+                </div>
+
+                <!-- Form Fields -->
+                <form id="booking-form" onsubmit="submitBooking(event)" class="space-y-4">
+                    <div class="space-y-1">
+                        <label class="text-xs text-slate-400 font-bold uppercase tracking-wider">Nama Penuh</label>
+                        <input type="text" required placeholder="Masukkan nama penuh anda" class="w-full bg-carbon-950 border border-carbon-800 rounded-xl p-3 text-white focus:outline-none focus:border-cyber-500 text-sm transition-all font-medium">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-xs text-slate-400 font-bold uppercase tracking-wider">No. WhatsApp</label>
+                        <input type="tel" required placeholder="Contoh: 0123456789" class="w-full bg-carbon-950 border border-carbon-800 rounded-xl p-3 text-white focus:outline-none focus:border-cyber-500 text-sm transition-all font-medium">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-400 font-bold uppercase tracking-wider">Pilihan Tarikh</label>
+                            <input type="date" required class="w-full bg-carbon-950 border border-carbon-800 rounded-xl p-3 text-white focus:outline-none focus:border-cyber-500 text-sm transition-all font-medium">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-400 font-bold uppercase tracking-wider">Pilihan Cawangan</label>
+                            <select required class="w-full bg-carbon-950 border border-carbon-800 rounded-xl p-3 text-white focus:outline-none focus:border-cyber-500 text-sm transition-all font-medium">
+                                <option value="shah-alam">Shah Alam, Seksyen 13</option>
+                                <option value="petaling-jaya">Petaling Jaya, SS2</option>
+                                <option value="cheras">Cheras, Balakong</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <p class="text-[10px] text-slate-500 leading-normal text-center pt-2">
+                        *Sistem kami akan menghantar resit jaminan digital berserta pengesahan slot masa melalui WhatsApp secara automatik. Tiada sebarang bayaran diperlukan sekarang.
+                    </p>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-400 hover:to-amber-500 text-carbon-950 text-xs uppercase tracking-widest font-black py-4 rounded-xl transition-all shadow-neon-gold">
+                        <i class="fa-solid fa-lock mr-2"></i> Kunci Slot Diskaun Sekarang
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal Box -->
+    <div id="success-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-carbon-950/90 backdrop-blur-md" onclick="closeSuccessModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="bg-carbon-900 border border-carbon-800 w-full max-w-md rounded-3xl p-8 relative z-10 shadow-2xl text-center space-y-6">
+            <div class="bg-emerald-500/10 text-emerald-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto border border-emerald-500/20 shadow-neon-blue">
+                <i class="fa-solid fa-circle-check text-4xl animate-bounce"></i>
+            </div>
+            
+            <div class="space-y-2">
+                <h3 class="text-2xl font-display font-bold text-white">Slot VIP Anda Berjaya Dihantar!</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Pengesahan slot diskaun 50% berserta resit jaminan perlindungan digital telah dihantar ke WhatsApp anda. Sila tunjukkan slip mesej tersebut semasa mendaftar masuk kenderaan di kaunter cawangan kami.
+                </p>
+            </div>
+
+            <div class="bg-carbon-950 border border-carbon-800 p-4 rounded-2xl flex items-center gap-3 text-left">
+                <div class="bg-cyber-500/10 text-cyber-400 p-2.5 rounded-lg shrink-0">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <div>
+                    <h5 class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Lokasi Cawangan Anda</h5>
+                    <p class="text-xs font-bold text-white leading-normal">Pautan Google Maps & Waze telah dikepilkan di dalam mesej WhatsApp.</p>
+                </div>
+            </div>
+
+            <button onclick="closeSuccessModal()" class="w-full bg-carbon-800 hover:bg-carbon-700 text-white font-bold py-3 rounded-xl transition-all text-xs uppercase tracking-widest">
+                Selesai & Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer Section with Brand Identity -->
+    <footer class="bg-carbon-950 border-t border-carbon-900 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <!-- Brand Info -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-gradient-to-tr from-cyber-500 to-gold-500 text-carbon-950 p-2 rounded-lg font-black text-lg">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <span class="text-lg font-display font-black tracking-wider text-white">KILAT<span class="text-gradient-gold">PRO</span></span>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Penyedia perkhidmatan cucian premium, restorasi cat, dan coating ceramic bertaraf studio profesional No.1 di Malaysia dengan reputasi sifar calar.
+                    </p>
+                    <div class="flex gap-4 text-slate-500">
+                        <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <!-- Locations -->
+                <div>
+                    <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Cawangan Detailing</h5>
+                    <ul class="space-y-3 text-xs text-slate-500 leading-relaxed">
+                        <li><strong>Shah Alam:</strong> Seksyen 13 (Berhadapan Stadium)</li>
+                        <li><strong>Petaling Jaya:</strong> SS2 (Sebelah McDonald's SS2)</li>
+                        <li><strong>Cheras:</strong> Balakong Detailing Center (Dekat AEON)</li>
+                    </ul>
+                </div>
+
+                <!-- Hours -->
+                <div>
+                    <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Waktu Operasi</h5>
+                    <ul class="space-y-2 text-xs text-slate-500">
+                        <li>Hari Operasi: <strong>Setiap Hari (Isnin - Ahad)</strong></li>
+                        <li>Jam Operasi: <strong>9.00 Pagi - 10.00 Malam</strong></li>
+                        <li>*Terbuka pada hari Kelepasan Am</li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Support -->
+                <div>
+                    <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Pusat Bantuan</h5>
+                    <ul class="space-y-3 text-xs text-slate-500">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-cyber-400"></i> +603-5512-XXXX (Shah Alam)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-cyber-400"></i> support@kilatpro.com.my</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="border-carbon-900 mb-8">
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
+                <p class="text-[10px] text-slate-600">
+                    &copy; 2026 KilatPro Detailing Studio Malaysia (Sdn Bhd). Hak Cipta Terpelihara.
+                </p>
+                <div class="flex gap-6 text-[10px] text-slate-600">
+                    <a href="#" class="hover:underline">Polisi Privasi</a>
+                    <a href="#" class="hover:underline">Terma & Syarat</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Demo Web Badge Sign -->
+    <div class="fixed bottom-6 left-6 z-[99] hidden sm:flex items-center gap-2 bg-carbon-900/90 backdrop-blur-md border border-amber-500/30 text-gold-400 px-4 py-2.5 rounded-full shadow-neon-gold text-xs font-bold uppercase tracking-widest">
+        <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+        <span>Demo Web Aktif</span>
+    </div>
+
+    <!-- Interactive Javascript Logic -->
+    <script>
+        // Toggle mobile hamburger menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = "fa-solid fa-xmark text-2xl";
+            } else {
+                menu.classList.add('hidden');
+                icon.className = "fa-solid fa-bars-staggered text-2xl";
+            }
+        }
+
+        // --- INTERACTIVE BEFORE/AFTER SLIDER CODE ---
+        const slider = document.getElementById('before-after-slider');
+        const resizeLayer = document.getElementById('resize-layer');
+        const dragHandle = document.getElementById('slider-drag-handle');
+
+        function moveSlider(clientX) {
+            const rect = slider.getBoundingClientRect();
+            const position = clientX - rect.left;
+            let percentage = (position / rect.width) * 100;
+
+            // Restrict movement within container bounds
+            if (percentage < 0) percentage = 0;
+            if (percentage > 100) percentage = 100;
+
+            resizeLayer.style.width = `${percentage}%`;
+            dragHandle.style.left = `${percentage}%`;
+        }
+
+        // Mouse Drag Events
+        let isDragging = false;
+        
+        dragHandle.addEventListener('mousedown', () => isDragging = true);
+        window.addEventListener('mouseup', () => isDragging = false);
+        
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            moveSlider(e.clientX);
+        });
+
+        // Touch Swipe Events for Mobile Devices
+        dragHandle.addEventListener('touchstart', () => isDragging = true);
+        window.addEventListener('touchend', () => isDragging = false);
+        
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            moveSlider(e.touches[0].clientX);
+        });
+
+        // Click directly on container to jump slider
+        slider.addEventListener('click', (e) => {
+            if (e.target !== dragHandle && !dragHandle.contains(e.target)) {
+                moveSlider(e.clientX);
+            }
+        });
+
+        // --- DYNAMIC CALCULATOR LOGIC ---
+        let selectedCarTypeSizeCharge = 0; // Default sedan charge is 0
+
+        function setVehicleSize(type, charge) {
+            // Remove active style from all size selection buttons
+            document.querySelectorAll('.vehicle-size-btn').forEach(btn => {
+                btn.classList.remove('border-cyber-500', 'bg-carbon-900/60');
+                btn.classList.add('border-carbon-800', 'bg-carbon-900/40');
+                
+                // Reset internal icon styling inside non-selected buttons
+                const iconBox = btn.querySelector('.bg-cyber-500\\/10') || btn.querySelector('.bg-carbon-800');
+                if (iconBox) {
+                    iconBox.className = "bg-carbon-800 text-slate-400 p-3.5 rounded-xl";
+                }
+            });
+
+            // Set active states on the selected button
+            const selectedBtn = document.getElementById('btn-size-' + type);
+            if (selectedBtn) {
+                selectedBtn.classList.remove('border-carbon-800', 'bg-carbon-900/40');
+                selectedBtn.classList.add('border-cyber-500', 'bg-carbon-900/60');
+                
+                const iconBox = selectedBtn.querySelector('.bg-carbon-800');
+                if (iconBox) {
+                    iconBox.className = "bg-cyber-500/10 text-cyber-400 p-3.5 rounded-xl";
+                }
+            }
+
+            selectedCarTypeSizeCharge = charge;
+            calculateTotal();
+        }
+
+        // Calculate and refresh total dynamically
+        function calculateTotal() {
+            const packageSelect = document.getElementById('calc-package');
+            const basePrice = parseInt(packageSelect.value);
+            const finalPrice = basePrice + selectedCarTypeSizeCharge;
+
+            document.getElementById('calc-price-display').innerText = "RM " + finalPrice;
+
+            const chargeAddonLabel = document.getElementById('car-charge-addon');
+            if (selectedCarTypeSizeCharge > 0) {
+                chargeAddonLabel.innerText = "(Termasuk caj tambahan saiz +RM" + selectedCarTypeSizeCharge + ")";
+                chargeAddonLabel.className = "text-xs text-gold-400 font-medium";
+            } else {
+                chargeAddonLabel.innerText = "(Tiada surcaj saiz kereta)";
+                chargeAddonLabel.className = "text-xs text-slate-500";
+            }
+        }
+
+        // Trigger Booking Modal Box
+        function openBookingModal(packageName, price) {
+            document.getElementById('modal-package-name').innerText = packageName;
+            document.getElementById('modal-package-price').innerText = "RM " + price;
+            document.getElementById('booking-modal').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Handle instant booking from computed widget estimates
+        function bookCalculated() {
+            const packageSelect = document.getElementById('calc-package');
+            const packageName = packageSelect.options[packageSelect.selectedIndex].text.split(' (')[0];
+            const basePrice = parseInt(packageSelect.value);
+            const finalPrice = basePrice + selectedCarTypeSizeCharge;
+
+            openBookingModal(packageName, finalPrice);
+        }
+
+        // Handle successful simulation submit
+        function submitBooking(event) {
+            event.preventDefault(); // Halt page refresh
+            
+            // Hide registration form modal
+            closeBookingModal();
+
+            // Display success notification popup
+            document.getElementById('success-modal').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+            document.getElementById('booking-form').reset();
+        }
+
+        // Simple Toggle FAQ Accordion logic
+        function toggleFaq(element) {
+            const paragraph = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            if (paragraph.classList.contains('hidden')) {
+                paragraph.classList.remove('hidden');
+                icon.className = "fa-solid fa-chevron-up text-sm text-cyber-400";
+            } else {
+                paragraph.classList.add('hidden');
+                icon.className = "fa-solid fa-chevron-down text-sm text-cyber-400";
+            }
+        }
+
+        // Initialize defaults upon page load
+        window.onload = function() {
+            // Setup accordion FAQ states (collapsing all besides first)
+            const faqs = document.querySelectorAll('section p.border-t');
+            faqs.forEach((faq, idx) => {
+                if (idx > 0) {
+                    faq.classList.add('hidden');
+                    const header = faq.previousElementSibling;
+                    const icon = header.querySelector('i');
+                    if (icon) {
+                        icon.className = "fa-solid fa-chevron-down text-sm text-cyber-400";
+                    }
+                }
+            });
+            calculateTotal();
+        }
+    </script>
+</body>
+</html>
