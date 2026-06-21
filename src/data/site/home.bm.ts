@@ -78,9 +78,9 @@ export const services = [
     icon: PanelsTopLeft,
   },
   {
-    title: "Redesign dan support",
-    description: "Messaging lebih jelas, struktur lebih kuat, dan technical fix untuk jadikan website lama lebih baik sebagai aset jualan.",
-    points: ["Copy cleanup", "UX fix", "Support launch"],
+    title: "Sistem dan automasi",
+    description: "Workflows, integrasi, dan proses automatik yang kurangkan kerja manual dan pastikan bisnes anda berjalan tanpa pengawasan berterusan.",
+    points: ["Automasi workflow", "Integrasi tools", "Setup auto-reporting"],
     icon: Wrench,
   },
 ];
