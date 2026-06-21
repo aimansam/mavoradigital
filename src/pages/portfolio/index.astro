@@ -11,35 +11,35 @@ const packageFilters = ["All", "Starter Website", "Business Website", "Custom Bu
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sample landing page concepts created by Mavora Labs for local businesses." />
+    <meta name="description" content="Real website demos built by Mavora Labs — explore every niche and package tier, then request yours." />
     <link rel="canonical" href="https://mavoralabs.com/portfolio/" />
-    <meta name="theme-color" content="#fbf7ef" />
+    <meta name="theme-color" content="#0e0e11" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mavoralabs.com/portfolio/" />
-    <meta property="og:title" content="Portfolio Demos | Mavora Labs" />
-    <meta property="og:description" content="Sample landing page concepts created by Mavora Labs for local businesses." />
+    <meta property="og:title" content="Portfolio | Mavora Labs" />
+    <meta property="og:description" content="Real website demos built by Mavora Labs — explore every niche and package tier, then request yours." />
     <meta property="og:image" content="https://mavoralabs.com/social-preview.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Mavora Labs Portfolio — Website demos for local businesses" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Portfolio Demos | Mavora Labs" />
-    <meta name="twitter:description" content="Sample landing page concepts created by Mavora Labs for local businesses." />
+    <meta name="twitter:title" content="Portfolio | Mavora Labs" />
+    <meta name="twitter:description" content="Real website demos built by Mavora Labs — explore every niche and package tier, then request yours." />
     <meta name="twitter:image" content="https://mavoralabs.com/social-preview.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="apple-touch-icon" href="/logo.png" />
     <link rel="icon" href="/logo-transparent.png" />
-    <title>Portfolio Demos | Mavora Labs</title>
+    <title>Portfolio | Mavora Labs</title>
   </head>
-  <body class="bg-paper text-ink antialiased">
-    <header class="border-b border-line bg-white px-5 py-5 sm:px-6 lg:px-8">
+  <body class="antialiased" style="background:#0e0e11;color:#f4f4f5;">
+    <header style="border-bottom:1px solid rgba(255,255,255,0.08);background:#0e0e11;" class="px-5 py-5 sm:px-6 lg:px-8">
       <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4" aria-label="Portfolio navigation">
-        <a href="/" class="flex h-11 w-48 items-center rounded-full bg-white px-4 shadow-[0_8px_20px_rgba(17,24,39,0.06)]" aria-label="Mavora Labs home">
+        <a href="/" class="flex h-11 w-48 items-center rounded-full bg-white px-4 shadow-[0_8px_20px_rgba(0,0,0,0.4)]" aria-label="Mavora Labs home">
           <img src="/logo-transparent.png" alt="Mavora Labs" class="h-auto w-full object-contain" width="980" height="313" />
         </a>
-        <a href="/" class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold transition hover:border-ember hover:text-ember">
+        <a href="/" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white/70 transition hover:text-white" style="border:1px solid rgba(255,255,255,0.14);">
           <ArrowLeft class="h-4 w-4" aria-hidden="true" />
           Home
         </a>
@@ -49,19 +49,19 @@ const packageFilters = ["All", "Starter Website", "Business Website", "Custom Bu
     <main>
       <section class="px-5 py-16 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-6xl">
-          <p class="topic-label text-ember">Portfolio concepts</p>
-          <h1 class="mt-4 max-w-3xl text-5xl font-semibold leading-tight tracking-normal text-ink sm:text-6xl">Package-mapped website demos for local business niches.</h1>
-          <p class="mt-5 max-w-2xl text-lg leading-8 text-ink/68">
-            These sample pages show how Mavora Labs can shape industry-specific design, copy, sections, and conversion paths before real client work is available.
+          <p class="topic-label text-ember">Our work</p>
+          <h1 class="mt-4 max-w-3xl text-5xl font-semibold leading-tight tracking-normal text-white sm:text-6xl">See the work. Then get yours built.</h1>
+          <p class="mt-5 max-w-2xl text-lg leading-8" style="color:rgba(244,244,245,0.6);">
+            Real demos across every niche and package tier. Explore the design, copy, and structure — then request yours.
           </p>
         </div>
       </section>
 
       <section class="px-5 pb-20 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-6xl">
-          <div class="portfolio-filter-bar" aria-label="Filter portfolio demos by package">
+          <div class="portfolio-filter-bar portfolio-filter-bar--dark" aria-label="Filter portfolio demos by package">
             {packageFilters.map((filter) => (
-              <button class="portfolio-filter-button" type="button" data-filter={filter} aria-pressed={filter === "All" ? "true" : "false"}>
+              <button class="portfolio-filter-button portfolio-filter-button--dark" type="button" data-filter={filter} aria-pressed={filter === "All" ? "true" : "false"}>
                 {filter}
               </button>
             ))}
@@ -69,20 +69,24 @@ const packageFilters = ["All", "Starter Website", "Business Website", "Custom Bu
 
           <div class="portfolio-index-grid mt-8">
           {portfolioDemos.map((demo) => (
-            <article class="portfolio-index-card overflow-hidden rounded-lg border border-line bg-white shadow-[0_10px_28px_rgba(17,24,39,0.06)]" data-package={demo.packageFit}>
+            <article
+              class="portfolio-index-card overflow-hidden rounded-xl"
+              style="background:#18181c;border:1px solid rgba(255,255,255,0.08);box-shadow:0 10px 40px rgba(0,0,0,0.4);"
+              data-package={demo.packageFit}
+            >
               <img src={demo.image} alt={`${demo.businessType} landing page concept`} class="h-56 w-full object-cover" width="900" height="600" loading="lazy" />
               <div class="p-6">
                 <p class="topic-label topic-label--small text-ember">{demo.businessType}</p>
-                <h2 class="mt-3 text-2xl font-semibold text-ink">{demo.name}</h2>
-                <div class="portfolio-card__package portfolio-card__package--light mt-4" data-package={demo.packageFit}>
-                  <span>{demo.packageFit} - {demo.tier}</span>
-                  <strong>{demo.packagePrice}</strong>
+                <h2 class="mt-3 text-2xl font-semibold text-white">{demo.name}</h2>
+                <div class="portfolio-card__package mt-4" data-package={demo.packageFit} style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                  <span style="font-size:0.75rem;font-weight:600;color:rgba(244,244,245,0.6);">{demo.packageFit} - {demo.tier}</span>
+                  <strong style="font-size:0.75rem;color:#f4f4f5;">{demo.packagePrice}</strong>
                 </div>
-                <p class="mt-3 leading-7 text-ink/66">{demo.summary}</p>
+                <p class="mt-3 leading-7" style="color:rgba(244,244,245,0.6);">{demo.summary}</p>
                 <ul class="portfolio-index-value-list mt-5" aria-label={`${demo.name} package value proof`}>
                   {demo.valueProof.slice(0, 3).map((proof) => (
-                    <li>
-                      <CircleCheck class="h-4 w-4 shrink-0 text-moss" aria-hidden="true" />
+                    <li style="color:rgba(244,244,245,0.75);">
+                      <CircleCheck class="h-4 w-4 shrink-0 text-ember" aria-hidden="true" />
                       <span>{proof}</span>
                     </li>
                   ))}
@@ -91,10 +95,11 @@ const packageFilters = ["All", "Starter Website", "Business Website", "Custom Bu
                   href={"externalHref" in demo ? (demo as {externalHref: string}).externalHref : `/portfolio/${demo.slug}/`}
                   target={"externalHref" in demo ? "_blank" : undefined}
                   rel={"externalHref" in demo ? "noreferrer noopener" : undefined}
-                  class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-moss"
+                  class="mt-6 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition"
+                  style="background:#f4f4f5;color:#0e0e11;"
                 >
-                  <span aria-hidden="true">{"externalHref" in demo ? "Visit live app" : "View package demo"}</span>
-                  <span class="sr-only">{"externalHref" in demo ? `Visit ${demo.name}` : `View ${demo.name} package demo`}</span>
+                  <span aria-hidden="true">{"externalHref" in demo ? "Visit live app" : "View demo"}</span>
+                  <span class="sr-only">{"externalHref" in demo ? `Visit ${demo.name}` : `View ${demo.name} demo`}</span>
                   <ArrowRight class="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
@@ -102,11 +107,11 @@ const packageFilters = ["All", "Starter Website", "Business Website", "Custom Bu
           ))}
           </div>
 
-          <div class="portfolio-empty-state mt-8 hidden rounded-lg border border-line bg-white p-8 text-center" aria-live="polite">
+          <div class="portfolio-empty-state mt-8 hidden rounded-xl p-8 text-center" style="border:1px solid rgba(255,255,255,0.08);background:#18181c;" aria-live="polite">
             <p class="topic-label topic-label--small text-ember">More examples coming soon</p>
-            <h2 class="mt-3 text-2xl font-semibold text-ink">No demos match this package yet.</h2>
-            <p class="mx-auto mt-3 max-w-xl leading-7 text-ink/66">Send a custom scope request and we can shape a package around your business flow.</p>
-            <a href="/#project-request" class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-moss">
+            <h2 class="mt-3 text-2xl font-semibold text-white">No demos match this package yet.</h2>
+            <p class="mx-auto mt-3 max-w-xl leading-7" style="color:rgba(244,244,245,0.6);">Send a custom scope request and we can shape a package around your business flow.</p>
+            <a href="/#project-request" class="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition" style="background:#f4f4f5;color:#0e0e11;">
               Request a custom scope
               <ArrowRight class="h-4 w-4" aria-hidden="true" />
             </a>
@@ -115,8 +120,43 @@ const packageFilters = ["All", "Starter Website", "Business Website", "Custom Bu
       </section>
     </main>
 
+    <footer class="px-5 py-8 sm:px-6 lg:px-8" style="border-top:1px solid rgba(255,255,255,0.06);">
+      <div class="mx-auto max-w-6xl flex items-center justify-between gap-4 flex-wrap">
+        <p class="text-xs" style="color:rgba(244,244,245,0.4);">&copy; 2026 Mavora Labs</p>
+        <a href="/" class="text-xs font-semibold text-ember transition hover:opacity-80">Request a build →</a>
+      </div>
+    </footer>
+
+    <style>
+      .portfolio-filter-bar--dark {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .portfolio-filter-button--dark {
+        border-radius: 9999px;
+        padding: 0.375rem 1rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        border: 1px solid rgba(255,255,255,0.14);
+        background: transparent;
+        color: rgba(244,244,245,0.6);
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .portfolio-filter-button--dark:hover {
+        color: #f4f4f5;
+        border-color: rgba(255,255,255,0.3);
+      }
+      .portfolio-filter-button--dark[aria-pressed="true"] {
+        background: #f4f4f5;
+        color: #0e0e11;
+        border-color: #f4f4f5;
+      }
+    </style>
+
     <script>
-      const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>(".portfolio-filter-button"));
+      const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>(".portfolio-filter-button--dark"));
       const portfolioCards = Array.from(document.querySelectorAll<HTMLElement>(".portfolio-index-card"));
       const emptyState = document.querySelector<HTMLElement>(".portfolio-empty-state");
 
