@@ -117,21 +117,25 @@ const packageMeta: Record<string, { label: string; description: string }> = {
                           loading="lazy"
                         />
                         {variants && (
-                          <div class="portfolio-card__variant-bar absolute bottom-0 left-0 right-0 flex items-center justify-center gap-2 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-4 pt-10">
-                            {variants.map((v, i) => (
-                              <button
-                                type="button"
-                                class={`portfolio-variant-btn inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-bold text-white shadow-lg transition hover:scale-105${i === 0 ? " is-active" : " border-white/40 bg-black/70 hover:bg-black/90"}`}
-                                data-variant-slug={v.slug}
-                                data-variant-primary={v.primary}
-                                data-variant-dark={v.dark}
-                                aria-label={`View ${v.label} theme`}
-                                style={i === 0 ? `background:${v.primary}44;border-color:${v.primary}` : ""}
-                              >
-                                <span class="portfolio-variant-swatch inline-block h-2 w-2 rounded-full ring-1 ring-white/60" style={`background:${v.primary}`} />
-                                <span>{v.label}</span>
-                              </button>
-                            ))}
+                          <div class="portfolio-card__variant-bar absolute bottom-0 left-0 right-0 flex flex-col items-center gap-2 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-4 pt-10">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-white/80">Choose theme</span>
+                            <div class="flex flex-wrap items-center justify-center gap-2">
+                              {variants.map((v, i) => (
+                                <button
+                                  type="button"
+                                  class={`portfolio-variant-btn inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-bold text-white shadow-lg transition hover:scale-105${i === 0 ? " is-active" : " border-white/40 bg-black/70 hover:bg-black/90"}`}
+                                  data-variant-slug={v.slug}
+                                  data-variant-primary={v.primary}
+                                  data-variant-dark={v.dark}
+                                  data-variant-label={v.label}
+                                  aria-label={`View ${v.label} theme`}
+                                  style={i === 0 ? `background:${v.primary}44;border-color:${v.primary};box-shadow:0 0 0 2px #fff,0 0 12px ${v.primary}` : "box-shadow:0 0 0 1px transparent"}
+                                >
+                                  <span class="portfolio-variant-swatch inline-block h-2 w-2 rounded-full ring-1 ring-white/60" style={`background:${v.primary}`} />
+                                  <span>{v.label}</span>
+                                </button>
+                              ))}
+                            </div>
                           </div>
                         )}
                       </div>
@@ -314,33 +318,52 @@ const packageMeta: Record<string, { label: string; description: string }> = {
 
       // Variant theme switcher on portfolio cards
       document.querySelectorAll<HTMLElement>(".portfolio-card--with-variants").forEach((card) => {
+        const media = card.querySelector<HTMLElement>(".portfolio-card__media");
         const img = card.querySelector<HTMLImageElement>(".portfolio-card__img");
         const cta = card.querySelector<HTMLAnchorElement>(".portfolio-card__cta");
+        const ctaVisible = cta?.querySelector("span[aria-hidden='true']");
         const variantButtons = Array.from(card.querySelectorAll<HTMLButtonElement>(".portfolio-variant-btn"));
         if (!variantButtons.length) return;
 
+        // Add overlay element once
+        if (media) {
+          const overlay = document.createElement("div");
+          overlay.className = "portfolio-card__overlay pointer-events-none absolute inset-0 mix-blend-overlay opacity-0 transition-opacity duration-300";
+          media.appendChild(overlay);
+        }
+        const overlay = media?.querySelector<HTMLElement>(".portfolio-card__overlay");
+
         const updateVariant = (activeBtn: HTMLButtonElement) => {
+          const slug = activeBtn.dataset.variantSlug;
+          const p = activeBtn.dataset.variantPrimary;
+          const label = activeBtn.dataset.variantLabel || activeBtn.textContent?.trim() || "";
+
           variantButtons.forEach((btn) => {
             const isActive = btn === activeBtn;
             btn.classList.toggle("is-active", isActive);
-            const p = btn.dataset.variantPrimary;
-            if (isActive && p) {
-              btn.style.background = `${p}33`;
-              btn.style.borderColor = `${p}88`;
+            const primary = btn.dataset.variantPrimary;
+            if (isActive && primary) {
+              btn.style.background = `${primary}55`;
+              btn.style.borderColor = primary;
+              btn.style.boxShadow = `0 0 0 2px #ffffff, 0 0 12px ${primary}`;
             } else {
               btn.style.background = "";
               btn.style.borderColor = "";
+              btn.style.boxShadow = "";
             }
           });
-          const slug = activeBtn.dataset.variantSlug;
-          const primary = activeBtn.dataset.variantPrimary;
-          const dark = activeBtn.dataset.variantDark;
+
           if (slug && cta) {
             cta.href = `/portfolio/${slug}/`;
-            cta.querySelector("span.sr-only")!.textContent = `View Kopi Jiran ${activeBtn.textContent?.trim() || ""} demo`;
+            const srText = cta.querySelector("span.sr-only");
+            if (srText) srText.textContent = `View Kopi Jiran ${label} demo`;
+            if (ctaVisible) ctaVisible.textContent = `View ${label} demo`;
           }
-          if (primary) card.style.borderColor = `${primary}33`;
-          if (dark) card.style.setProperty("--demo-accent", dark);
+          if (p) {
+            card.style.borderColor = `${p}66`;
+            if (overlay) overlay.style.background = p;
+          }
+          if (overlay) overlay.style.opacity = p ? "0.35" : "0";
         };
 
         variantButtons.forEach((btn) => {
