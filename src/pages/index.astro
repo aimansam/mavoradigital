@@ -9,7 +9,7 @@ import ScrollStack, { ScrollStackItem } from "../components/ScrollStack.jsx";
 import ProcessCardStack from "../components/ProcessCardStack.jsx";
 import { portfolioDemos } from "../features/portfolio/data/portfolioDemos";
 import { HeroParallax } from "../components/HeroParallax";
-import { bmSiteUrl, businessTypes, contentReadinessOptions, ctaHref, domainOwnershipOptions, featureOptions, footer, header, hero, metadata, navigation, packageTierOptions, packages, packagesSection, pageOptions, services, servicesSection, siteUrl, studioStatement, websiteTypes } from "../data/site/home.en";
+import { bmSiteUrl, businessTypes, contentReadinessOptions, ctaHref, domainOwnershipOptions, featureOptions, footer, header, hero, metadata, motionBand, navigation, packageTierOptions, packages, packagesSection, pageOptions, services, servicesSection, siteUrl, studioStatement, websiteTypes } from "../data/site/home.en";
 
 const pageTitle = metadata.title;
 const pageDescription = metadata.description;
@@ -110,6 +110,16 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "";
           { title: "Local business site", link: "#packages", thumbnail: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" },
         ]}
       />
+
+      <section class="motion-band border-y border-line bg-paper" aria-label="Delivery highlights">
+        <div class="motion-band__marquee py-5 sm:py-6">
+          {[0, 1].map((repeatIndex) => (
+            <div class="motion-band__group" aria-hidden={repeatIndex === 1 ? "true" : undefined}>
+              {motionBand.map((item) => <span>{item}</span>)}
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section class="studio-statement story-section bg-ink px-5 py-20 text-white sm:px-6 lg:px-8">
         <div class="liquid-section-bg liquid-section-bg--statement" aria-hidden="true">
