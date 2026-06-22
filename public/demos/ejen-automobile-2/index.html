@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haris Auto Premium | Penasihat Jualan & Kewangan Automotif Malaysia</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter (Sleek Sans), Lora (Elegant Serif for image_274244.png elements) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#11100f',          /* Obsidian Warm Black from image_276046.png */
+                            darkCard: '#1a1816',      /* Premium Charcoal Card Background */
+                            bronze: '#c6aa86',        /* Standard Elegant Bronze Accent */
+                            gold: '#dec3a1',          /* Light Champagne Gold Silk */
+                            goldDark: '#b3926d',      /* Deep Muted Gold for luxury borders */
+                            emerald: '#115e59',       /* Trust High-End Teal Green */
+                            platinum: '#fbfbfa',      /* Ultra Clean Warm Silk Light Gray */
+                            borderLight: '#e5e1db',   /* Razor-thin Border Light Warm */
+                            borderDark: '#2c241d'     /* Warm Bronze Border Dark for image_276046.png layout */
+                        }
+                    },
+                    boxShadow: {
+                        'sharp-sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                        'sharp-md': '0 4px 6px -1px rgba(21, 19, 17, 0.08)',
+                        'sharp-lg': '0 10px 15px -3px rgba(21, 19, 17, 0.1)',
+                        'gold-glow': '0 10px 25px -5px rgba(198, 170, 134, 0.25)'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .sharp-card {
+            background: #ffffff;
+            border: 1px solid #e5e1db;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .sharp-card:hover {
+            transform: translateY(-2px);
+            border-color: #c6aa86;
+            box-shadow: 0 12px 20px -8px rgba(26, 24, 22, 0.08);
+        }
+        
+        /* Modern range slider consistent theme styling */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            border-radius: 2px;
+            background: #e5e1db;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #c6aa86;
+            cursor: pointer;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 4px rgba(26, 24, 22, 0.2);
+            transition: all 0.1s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: #b3926d;
+            transform: scale(1.1);
+        }
+        
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fbfbfa;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dcd7cf;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c6aa86;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-neutral-850 font-sans antialiased overflow-x-hidden selection:bg-brand-goldDark selection:text-white pb-16 sm:pb-0">
+
+    <!-- DEMO PORTFOLIO WARNING BANNER -->
+    <div id="demoBanner" class="fixed top-0 left-0 w-full h-10 z-[100] bg-neutral-900 border-b border-neutral-800 text-white text-[11px] font-medium px-4 shadow-sm flex items-center justify-between transition-all duration-300">
+        <div class="flex items-center space-x-2 mx-auto tracking-tight">
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-brand-goldDark text-neutral-950 uppercase">PORTFOLIO DEMO</span>
+            <span class="text-neutral-300">Laman web jualan automotif ini adalah simulasi digital premium. Tiada urus niaga kewangan sebenar berlaku di sini.</span>
+        </div>
+        <button onclick="closeDemoBanner()" class="text-neutral-400 hover:text-white p-1 transition-colors" title="Tutup Makluman">
+            <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+    </div>
+
+    <!-- MAIN APP MODAL FOR NOTIFICATIONS -->
+    <div id="notificationModal" class="fixed inset-0 z-[110] bg-neutral-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg border border-neutral-200 max-w-md w-full shadow-sharp-lg overflow-hidden">
+            <div class="p-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-teal-50 text-brand-emerald flex items-center justify-center mx-auto mb-4 border border-teal-100">
+                    <i class="fa-solid fa-circle-check text-xl"></i>
+                </div>
+                <h3 class="text-base font-bold text-neutral-900 mb-2" id="modalTitle">Permohonan Diproses</h3>
+                <p class="text-xs text-neutral-500 mb-6 leading-relaxed" id="modalMessage">Maklumat anda telah sedia. Kami akan membimbing anda ke draf permohonan WhatsApp sekarang.</p>
+                <div class="flex space-x-3">
+                    <button id="modalPrimaryBtn" class="flex-1 bg-brand-dark hover:bg-brand-goldDark text-white font-bold py-2.5 rounded text-xs transition duration-150">Teruskan</button>
+                    <button onclick="closeNotificationModal()" class="flex-1 bg-stone-100 hover:bg-stone-200 text-neutral-700 font-bold py-2.5 rounded text-xs transition duration-150">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHARP FIXED HEADER -->
+    <header id="mainHeader" class="fixed left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-borderLight shadow-sharp-sm transition-all duration-300" style="top: 40px;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Logo Section -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-9 h-9 rounded bg-brand-dark flex items-center justify-center shadow-sharp-sm transition-transform group-hover:scale-[1.02] border border-brand-goldDark/30">
+                    <i class="fa-solid fa-shield-halved text-brand-gold text-sm"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-base font-extrabold text-brand-dark tracking-tight leading-none">HARIS<span class="text-brand-bronze font-medium">AUTO</span></span>
+                    <span class="text-[9px] font-bold text-neutral-400 uppercase tracking-widest mt-0.5">PREMIUM ADVISOR</span>
+                </div>
+            </a>
+            
+            <!-- Desktop Navigation Menu -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold uppercase tracking-wider text-neutral-600">
+                <a href="#katalog" class="hover:text-brand-bronze transition duration-150">Showroom</a>
+                <a href="#manfaat" class="hover:text-brand-bronze transition duration-150">Aksesori & Saguhati</a>
+                <a href="#kalkulator" class="hover:text-brand-bronze transition duration-150">Kalkulator</a>
+                <a href="#faq" class="hover:text-brand-bronze transition duration-150">FAQ</a>
+            </nav>
+            
+            <!-- Corporate CTA -->
+            <div class="hidden lg:block">
+                <a href="https://wa.me/60123456789?text=Salam%20Haris%20Azizan,%20saya%20berminat%20untuk%20semak%20kelayakan%20pembiayaan%20kereta%20premium%20saya." target="_blank" class="bg-brand-dark hover:bg-brand-goldDark hover:text-neutral-950 text-white text-xs font-bold uppercase tracking-wider py-2.5 px-5 rounded shadow-sharp-sm transition-all duration-150 border border-brand-goldDark/20 flex items-center space-x-2">
+                    <i class="fab fa-whatsapp text-sm text-emerald-400"></i>
+                    <span>Semak Kelayakan Kelulusan</span>
+                </a>
+            </div>
+
+            <!-- Mobile Drawer Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-neutral-700 hover:text-brand-dark p-2 focus:outline-none transition-colors">
+                <i class="fa-solid fa-bars-staggered text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-brand-borderLight px-4 py-4 space-y-3 shadow-sharp-lg">
+            <a href="#katalog" class="block py-2 text-xs font-bold uppercase tracking-wider text-neutral-700 hover:text-brand-bronze border-b border-stone-100">Showroom Model</a>
+            <a href="#manfaat" class="block py-2 text-xs font-bold uppercase tracking-wider text-neutral-700 hover:text-brand-bronze border-b border-stone-100">Aksesori Eksklusif</a>
+            <a href="#kalkulator" class="block py-2 text-xs font-bold uppercase tracking-wider text-neutral-700 hover:text-brand-bronze border-b border-stone-100">Kalkulator Kelayakan</a>
+            <a href="#faq" class="block py-2 text-xs font-bold uppercase tracking-wider text-neutral-700 hover:text-brand-bronze">FAQ</a>
+            <a href="https://wa.me/60123456789?text=Salam%20Haris%20Azizan,%20saya%20berminat%20untuk%20semak%20kelayakan%20pembiayaan%20kereta%20premium%20saya." target="_blank" class="w-full bg-brand-dark hover:bg-brand-goldDark hover:text-neutral-950 text-white text-center font-bold text-xs uppercase tracking-wider py-3.5 rounded flex items-center justify-center space-x-2 shadow-sharp-md transition-all duration-150">
+                <i class="fab fa-whatsapp text-sm text-emerald-400"></i>
+                <span>Semak Kelayakan Kelulusan</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- SHARP EDITORIAL HERO SECTION -->
+    <section class="pt-28 pb-16 lg:pt-40 lg:pb-24 bg-white relative overflow-hidden border-b border-brand-borderLight">
+        <!-- Technical Grid Underlay -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e1db_1px,transparent_1px),linear-gradient(to_bottom,#e5e1db_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Hero Left: High-Performance Copywriting -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <p class="text-brand-bronze text-xs font-bold uppercase tracking-widest block">
+                        KONSULTASI PERUNDINGAN PEMBIAYAAN KENDERAAN
+                    </p>
+                    
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-brand-dark">
+                        Sistem Pemilikan <br class="hidden sm:inline">
+                        Kereta Pintar, <span class="text-brand-goldDark">Lulus Pantas</span> & Telus.
+                    </h1>
+                    
+                    <p class="text-sm sm:text-base text-neutral-500 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal font-sans">
+                        Ketahui peluang kelulusan pembiayaan pinjaman sewa beli (Hire Purchase) anda dengan penilaian profesional bersandarkan panel bank utama Malaysia. Proses dokumentasi ringkas, telus sepenuhnya, tanpa kos tersembunyi.
+                    </p>
+
+                    <!-- Trust Checklist -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-left max-w-lg mx-auto lg:mx-0">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fa-solid fa-circle-check text-brand-emerald text-sm"></i>
+                            <span class="text-xs font-bold text-neutral-700">Analisis Gaji Sifar Caj</span>
+                        </div>
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fa-solid fa-circle-check text-brand-emerald text-sm"></i>
+                            <span class="text-xs font-bold text-neutral-700">Skim Graduan Tersedia</span>
+                        </div>
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fa-solid fa-circle-check text-brand-emerald text-sm"></i>
+                            <span class="text-xs font-bold text-neutral-700">Bantuan Kelayakan Lesen</span>
+                        </div>
+                    </div>
+
+                    <!-- Call to Actions -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#kelayakan" class="w-full sm:w-auto bg-brand-dark hover:bg-brand-goldDark hover:text-neutral-950 text-white font-bold text-xs uppercase tracking-wider px-8 py-4 rounded shadow-sharp-md hover:shadow-sharp-lg transition-all duration-150 flex items-center justify-center space-x-2.5">
+                            <i class="fab fa-whatsapp text-base text-emerald-400"></i>
+                            <span>Semak Profil Secara Percuma</span>
+                        </a>
+                        <a href="#katalog" class="w-full sm:w-auto bg-stone-100 hover:bg-stone-200 text-neutral-800 font-bold text-xs uppercase tracking-wider px-8 py-4 rounded text-center transition-all duration-150 border border-brand-borderLight">
+                            Teroka Showroom Model
+                        </a>
+                    </div>
+
+                    <!-- Performance Stats Grid -->
+                    <div class="pt-8 border-t border-brand-borderLight flex flex-wrap justify-center lg:justify-start gap-8 text-neutral-500">
+                        <div>
+                            <span class="block text-2xl font-extrabold text-brand-dark">500+</span>
+                            <span class="text-[9px] uppercase tracking-wider font-bold text-neutral-400">Unit Berjaya Diserah</span>
+                        </div>
+                        <div class="border-l border-brand-borderLight pl-8">
+                            <span class="block text-2xl font-extrabold text-brand-dark">99.4%</span>
+                            <span class="text-[9px] uppercase tracking-wider font-bold text-slate-400">Tahap Kepuasan Pelanggan</span>
+                        </div>
+                        <div class="border-l border-brand-borderLight pl-8">
+                            <span class="block text-2xl font-extrabold text-brand-dark">8 Tahun</span>
+                            <span class="text-[9px] uppercase tracking-wider font-bold text-slate-400">Pengalaman Industri</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right: Redesigned Executive Advisor Card based on image_274244.png -->
+                <div class="lg:col-span-6 relative mt-6 lg:mt-0">
+                    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-2xl max-w-xl mx-auto">
+                        
+                        <!-- Top Advisor Bio Block -->
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6">
+                            
+                            <!-- Avatar with Verified Badge -->
+                            <div class="relative w-32 h-36 flex-shrink-0">
+                                <img src="image_27b6a0.jpg" 
+                                     alt="Haris Azizan Sales Advisor" 
+                                     class="w-full h-full object-cover rounded-2xl border border-slate-100 shadow-sm"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/300x400/151311/ffffff?text=Haris'">
+                                <!-- Verified Badge overlay -->
+                                <div class="absolute bottom-2 left-2 bg-amber-50 border border-amber-200 text-amber-800 text-[9px] font-extrabold px-2 py-1 rounded-md shadow-sm flex items-center gap-1">
+                                    <i class="fa-solid fa-user-shield text-amber-600 text-[10px]"></i>
+                                    <span>VERIFIED</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Identity Text -->
+                            <div class="flex-1 text-center sm:text-left space-y-1.5">
+                                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                                    <h3 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-none">Haris Azizan</h3>
+                                    <span class="bg-amber-100/60 border border-amber-200/50 text-amber-800 text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">● REN AKTIF</span>
+                                </div>
+                                <p class="text-[11px] font-bold text-amber-800 uppercase tracking-wider">ID: PM-29104-HA | PROTON & PERODUA</p>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Senior Automotive Consultant</p>
+                                
+                                <!-- Star Rating -->
+                                <div class="inline-flex items-center space-x-1.5 bg-slate-50 border border-slate-100 rounded-full px-3 py-1 mt-1">
+                                    <div class="flex text-amber-400 text-[10px] space-x-0.5">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="text-[10px] text-slate-600 font-bold">5.0 (94 Reviu Premium)</span>
+                                </div>
+
+                                <!-- Quote -->
+                                <p class="text-[11px] italic text-slate-500 font-medium leading-relaxed pt-1.5">
+                                    "Membimbing anda dalam urusan pemilikan & jualan kenderaan dengan selamat, telus dan profesional."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Middle Stats Grid -->
+                        <div class="grid grid-cols-2 gap-4 py-5 border-t border-b border-slate-100 mb-6">
+                            <!-- Experience Box -->
+                            <div class="bg-slate-50/70 border border-slate-100 rounded-xl p-3 flex items-center space-x-3">
+                                <div class="w-9 h-9 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-700 flex-shrink-0">
+                                    <i class="fa-solid fa-award text-sm"></i>
+                                </div>
+                                <div class="flex flex-col min-w-0">
+                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">PENGALAMAN</span>
+                                    <span class="text-xs sm:text-sm font-extrabold text-slate-800 mt-1 truncate">8+ Tahun Aktif</span>
+                                </div>
+                            </div>
+                            <!-- Territory Box -->
+                            <div class="bg-slate-50/70 border border-slate-100 rounded-xl p-3 flex items-center space-x-3">
+                                <div class="w-9 h-9 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-700 flex-shrink-0">
+                                    <i class="fa-solid fa-map-location-dot text-sm"></i>
+                                </div>
+                                <div class="flex flex-col min-w-0">
+                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">KAWASAN</span>
+                                    <span class="text-xs sm:text-sm font-extrabold text-slate-800 mt-1 truncate">Semenanjung Malaysia</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Header (Serif Style from image_274244.png) -->
+                        <h4 class="font-serif text-sm sm:text-base text-slate-800 font-bold mb-4 flex items-center gap-2">
+                            <span class="text-amber-600"><i class="fa-solid fa-envelope"></i></span>
+                            HUBUNGI HARIS AZIZAN HARI INI:
+                        </h4>
+
+                        <!-- Fast Track Form -->
+                        <form onsubmit="submitHeroForm(event)" class="space-y-4">
+                            <!-- Two Column Inputs -->
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <!-- Name Field -->
+                                <div class="space-y-1">
+                                    <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Nama Penuh</label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                                            <i class="fa-regular fa-user text-xs"></i>
+                                        </span>
+                                        <input type="text" id="heroName" required placeholder="Nama anda" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all">
+                                    </div>
+                                </div>
+
+                                <!-- WhatsApp Field -->
+                                <div class="space-y-1">
+                                    <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Nombor WhatsApp</label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                                            <i class="fa-solid fa-phone text-xs"></i>
+                                        </span>
+                                        <input type="tel" id="heroPhone" required placeholder="0123456789" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Purpose / Target Selection -->
+                            <div class="space-y-1">
+                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Tujuan Rundingan:</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                                        <i class="fa-solid fa-compass text-xs"></i>
+                                    </span>
+                                    <select id="heroInterest" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-10 py-3 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all appearance-none">
+                                        <option value="Semak Kelayakan Pinjaman (Percuma)">Semak Kelayakan Pinjaman (Percuma)</option>
+                                        <option value="Skim Graduan (Beli Tanpa Wang Muka)">Skim Graduan (Beli Tanpa Wang Muka)</option>
+                                        <option value="Beli Kereta Baru (Stok Sedia Ada)">Beli Kereta Baru (Stok Sedia Ada)</option>
+                                        <option value="Trade-In Kereta Lama (Harga Tinggi)">Trade-In Kereta Lama (Harga Tinggi)</option>
+                                    </select>
+                                    <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 pointer-events-none">
+                                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Ochre Gold Button matching image_274244.png button exactly -->
+                            <div class="pt-2">
+                                <button type="submit" class="w-full bg-[#cca353] hover:bg-[#b58f42] active:scale-[0.99] text-white font-bold text-xs uppercase tracking-wider py-4 rounded-xl transition-all duration-150 flex items-center justify-center gap-2 shadow-md">
+                                    <span>Hantar Maklumat Rundingan</span>
+                                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND COLLABORATIONS CAROUSEL -->
+    <section class="py-8 bg-stone-100/50 border-b border-brand-borderLight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-[9px] font-bold tracking-[0.2em] text-neutral-400 uppercase mb-5">PENGEDAR SAH BAGI JENAMA AUTOMOTIF PILIHAN UTAMA MALAYSIA</p>
+            <div class="flex flex-wrap items-center justify-center gap-12 md:gap-24 opacity-40 grayscale hover:opacity-80 hover:grayscale-0 transition duration-300">
+                <span class="font-extrabold text-xl text-neutral-800 tracking-wider">PERODUA</span>
+                <span class="font-extrabold text-xl text-neutral-800 tracking-wider">PROTON</span>
+                <span class="font-extrabold text-xl text-neutral-800 tracking-wider">TOYOTA</span>
+                <span class="font-extrabold text-xl text-neutral-800 tracking-wider">HONDA</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE SHOWROOM (CATALOG) -->
+    <section id="katalog" class="py-16 lg:py-24 bg-white border-b border-brand-borderLight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                <span class="text-brand-bronze text-xs font-bold uppercase tracking-widest block">SHOWROOM PILIHAN 2026</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">Katalog Kenderaan & Ansuran Kasar</h2>
+                <p class="text-neutral-500 font-normal text-xs sm:text-sm">
+                    Pilih model kenderaan idaman anda. Kami sedia memandu anda mencari struktur pembiayaan yang serasi.
+                </p>
+                
+                <!-- Filter Buttons (Gold Theme) -->
+                <div class="flex flex-wrap justify-center gap-2 pt-4">
+                    <button onclick="filterCars('all')" class="car-filter-btn active bg-brand-dark text-white font-bold px-4 py-2 rounded text-xs uppercase tracking-wider shadow-sharp-sm transition-all duration-150">Semua Model</button>
+                    <button onclick="filterCars('perodua')" class="car-filter-btn bg-white hover:bg-stone-50 text-neutral-700 font-bold px-4 py-2 rounded text-xs uppercase tracking-wider border border-brand-borderLight transition-all duration-150">Perodua</button>
+                    <button onclick="filterCars('proton')" class="car-filter-btn bg-white hover:bg-stone-50 text-neutral-700 font-bold px-4 py-2 rounded text-xs uppercase tracking-wider border border-brand-borderLight transition-all duration-150">Proton</button>
+                    <button onclick="filterCars('sedan')" class="car-filter-btn bg-white hover:bg-stone-50 text-neutral-700 font-bold px-4 py-2 rounded text-xs uppercase tracking-wider border border-brand-borderLight transition-all duration-150">Sedan</button>
+                    <button onclick="filterCars('suv')" class="car-filter-btn bg-white hover:bg-stone-50 text-neutral-700 font-bold px-4 py-2 rounded text-xs uppercase tracking-wider border border-brand-borderLight transition-all duration-150">SUV & MPV</button>
+                </div>
+            </div>
+
+            <!-- Cars Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Car Card 1: Perodua Bezza -->
+                <div class="car-card sharp-card rounded-xl overflow-hidden bg-white hover:border-brand-bronze/40 transition-all duration-200 group" data-brand="perodua" data-type="sedan">
+                    <div class="relative overflow-hidden aspect-[16/10] bg-stone-100 border-b border-stone-100">
+                        <img id="car-img-bezza" src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&q=80&w=600" alt="Perodua Bezza" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f4c81/ffffff?text=Perodua+Bezza'">
+                        <span class="absolute top-3 left-3 bg-brand-dark text-white text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider">EKO-KOMPAK</span>
+                        <span class="absolute top-3 right-3 bg-brand-emerald text-white text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> Stok Sedia Ada
+                        </span>
+                    </div>
+                    <div class="p-5 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-sm font-bold text-brand-dark tracking-tight">Perodua Bezza 1.3 Premium</h3>
+                                <p class="text-[9px] text-neutral-400 font-semibold uppercase tracking-wider">Sedan Paling Cekap Bahan Api</p>
+                            </div>
+                            <!-- Swatches -->
+                            <div class="flex space-x-1.5 pt-1">
+                                <span onclick="changeCarColor('bezza', 'silver')" class="w-3.5 h-3.5 rounded-full bg-slate-300 border border-slate-400 cursor-pointer hover:scale-110 transition" title="Ocean Silver"></span>
+                                <span onclick="changeCarColor('bezza', 'blue')" class="w-3.5 h-3.5 rounded-full bg-blue-800 border border-slate-400 cursor-pointer hover:scale-110 transition" title="Royal Blue"></span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 py-3 border-y border-stone-100 text-[10px] text-neutral-500 font-semibold">
+                            <div class="flex items-center"><i class="fa-solid fa-gauge text-stone-400 mr-2"></i> Enjin 1.3L VVT-i</div>
+                            <div class="flex items-center"><i class="fa-solid fa-gas-pump text-stone-400 mr-2"></i> 22 KM/L (Tinggi)</div>
+                            <div class="flex items-center"><i class="fa-solid fa-briefcase text-stone-400 mr-2"></i> But Luas 508L</div>
+                            <div class="flex items-center"><i class="fa-solid fa-shield text-stone-400 mr-2"></i> 4 Bintang ASEAN NCAP</div>
+                        </div>
+                        <div class="flex items-baseline justify-between pt-1">
+                            <div>
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Ansuran Bulanan</span>
+                                <span class="text-base font-extrabold text-brand-goldDark">RM 435<span class="text-[10px] font-normal text-neutral-400"> /bln</span></span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Harga Atas Jalan</span>
+                                <span class="text-xs font-bold text-brand-dark">RM 43,980</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button onclick="selectCarForForm('Perodua Bezza 1.3 Premium', 43980, 435)" class="w-full bg-stone-100 hover:bg-brand-dark hover:text-white text-neutral-800 font-bold py-2.5 rounded transition duration-150 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider border border-brand-borderLight">
+                                <span>Kira Kelayakan Pinjaman</span>
+                                <i class="fa-solid fa-angle-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 2: Perodua Myvi -->
+                <div class="car-card sharp-card rounded-xl overflow-hidden bg-white hover:border-brand-bronze/40 transition-all duration-200 group" data-brand="perodua" data-type="suv">
+                    <div class="relative overflow-hidden aspect-[16/10] bg-stone-100 border-b border-stone-100">
+                        <img id="car-img-myvi" src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&q=80&w=600" alt="Perodua Myvi" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f4c81/ffffff?text=Perodua+Myvi'">
+                        <span class="absolute top-3 left-3 bg-brand-dark text-white text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider">IKONIK HATCHBACK</span>
+                        <span class="absolute top-3 right-3 bg-brand-goldDark text-white text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider">Stok Terhad</span>
+                    </div>
+                    <div class="p-5 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-sm font-bold text-brand-dark tracking-tight">Perodua Myvi 1.5 AV</h3>
+                                <p class="text-[9px] text-neutral-400 font-semibold uppercase tracking-wider">Hatchback Kegemaran Ramai</p>
+                            </div>
+                            <div class="flex space-x-1.5 pt-1">
+                                <span onclick="changeCarColor('myvi', 'red')" class="w-3.5 h-3.5 rounded-full bg-red-600 border border-slate-400 cursor-pointer hover:scale-110 transition" title="Cranberry Red"></span>
+                                <span onclick="changeCarColor('myvi', 'grey')" class="w-3.5 h-3.5 rounded-full bg-slate-500 border border-slate-400 cursor-pointer hover:scale-110 transition" title="Granite Grey"></span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 py-3 border-y border-stone-100 text-[10px] text-neutral-500 font-semibold">
+                            <div class="flex items-center"><i class="fa-solid fa-gauge text-stone-400 mr-2"></i> Enjin 1.5L Dual VVT-i</div>
+                            <div class="flex items-center"><i class="fa-solid fa-shield-cat text-stone-400 mr-2"></i> Perodua Smart Assist</div>
+                            <div class="flex items-center"><i class="fa-solid fa-mobile-screen text-stone-400 mr-2"></i> Apple CarPlay</div>
+                            <div class="flex items-center"><i class="fa-solid fa-shield text-stone-400 mr-2"></i> 5 Bintang ASEAN NCAP</div>
+                        </div>
+                        <div class="flex items-baseline justify-between pt-1">
+                            <div>
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Ansuran Bulanan</span>
+                                <span class="text-base font-extrabold text-brand-goldDark">RM 565<span class="text-[10px] font-normal text-neutral-400"> /bln</span></span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Harga Atas Jalan</span>
+                                <span class="text-xs font-bold text-brand-dark">RM 58,900</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button onclick="selectCarForForm('Perodua Myvi 1.5 AV', 58900, 565)" class="w-full bg-stone-100 hover:bg-brand-dark hover:text-white text-neutral-800 font-bold py-2.5 rounded transition duration-150 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider border border-brand-borderLight">
+                                <span>Kira Kelayakan Pinjaman</span>
+                                <i class="fa-solid fa-angle-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 3: Proton Saga -->
+                <div class="car-card sharp-card rounded-xl overflow-hidden bg-white hover:border-brand-bronze/40 transition-all duration-200 group" data-brand="proton" data-type="sedan">
+                    <div class="relative overflow-hidden aspect-[16/10] bg-stone-100 border-b border-stone-100">
+                        <img id="car-img-saga" src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=600" alt="Proton Saga" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f4c81/ffffff?text=Proton+Saga'">
+                        <span class="absolute top-3 left-3 bg-brand-goldDark text-neutral-900 text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider">NILAI PADU</span>
+                        <span class="absolute top-3 right-3 bg-brand-emerald text-white text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> Stok Sedia Ada
+                        </span>
+                    </div>
+                    <div class="p-5 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-sm font-bold text-brand-dark tracking-tight">Proton Saga 1.3 Premium S</h3>
+                                <p class="text-[9px] text-neutral-400 font-semibold uppercase tracking-wider">Sedan Rakyat Berprestasi Standard</p>
+                            </div>
+                            <div class="flex space-x-1.5 pt-1">
+                                <span onclick="changeCarColor('saga', 'rosewood')" class="w-3.5 h-3.5 rounded-full bg-amber-900 border border-slate-400 cursor-pointer hover:scale-110 transition" title="Rosewood Maroon"></span>
+                                <span onclick="changeCarColor('saga', 'white')" class="w-3.5 h-3.5 rounded-full bg-white border border-slate-400 cursor-pointer hover:scale-110 transition" title="Snow White"></span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 py-3 border-y border-stone-100 text-[10px] text-neutral-500 font-semibold">
+                            <div class="flex items-center"><i class="fa-solid fa-wrench text-stone-400 mr-2"></i> Penyenggaraan Rendah</div>
+                            <div class="flex items-center"><i class="fa-solid fa-display text-stone-400 mr-2"></i> Skrin Sentuh 7-Inci</div>
+                            <div class="flex items-center"><i class="fa-solid fa-gears text-stone-400 mr-2"></i> Transmisi 4AT</div>
+                            <div class="flex items-center"><i class="fa-solid fa-car text-stone-400 mr-2"></i> Pemanduan Mantap</div>
+                        </div>
+                        <div class="flex items-baseline justify-between pt-1">
+                            <div>
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Ansuran Bulanan</span>
+                                <span class="text-base font-extrabold text-brand-goldDark">RM 380<span class="text-[10px] font-normal text-neutral-400"> /bln</span></span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Harga Atas Jalan</span>
+                                <span class="text-xs font-bold text-brand-dark">RM 38,800</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button onclick="selectCarForForm('Proton Saga 1.3 Premium S', 38800, 380)" class="w-full bg-stone-100 hover:bg-brand-dark hover:text-white text-neutral-800 font-bold py-2.5 rounded transition duration-150 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider border border-brand-borderLight">
+                                <span>Kira Kelayakan Pinjaman</span>
+                                <i class="fa-solid fa-angle-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 4: Proton X50 -->
+                <div class="car-card sharp-card rounded-xl overflow-hidden bg-white hover:border-brand-bronze/40 transition-all duration-200 group" data-brand="proton" data-type="suv">
+                    <div class="relative overflow-hidden aspect-[16/10] bg-stone-100 border-b border-stone-100">
+                        <img id="car-img-x50" src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&q=80&w=600" alt="Proton X50" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f4c81/ffffff?text=Proton+X50'">
+                        <span class="absolute top-3 left-3 bg-brand-dark text-white text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider">SUV EKSEKUTIF</span>
+                        <span class="absolute top-3 right-3 bg-brand-goldDark text-neutral-900 text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider">Stok Terhad</span>
+                    </div>
+                    <div class="p-5 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-sm font-bold text-brand-dark tracking-tight">Proton X50 1.5 TGDi Flagship</h3>
+                                <p class="text-[9px] text-neutral-400 font-semibold uppercase tracking-wider">SUV Kompak Berprestasi Tinggi</p>
+                            </div>
+                            <div class="flex space-x-1.5 pt-1">
+                                <span onclick="changeCarColor('x50', 'orange')" class="w-3.5 h-3.5 rounded-full bg-orange-600 border border-slate-400 cursor-pointer hover:scale-110 transition" title="Citric Orange"></span>
+                                <span onclick="changeCarColor('x50', 'silver')" class="w-3.5 h-3.5 rounded-full bg-slate-400 border border-slate-400 cursor-pointer hover:scale-110 transition" title="Armour Silver"></span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 py-3 border-y border-stone-100 text-[10px] text-neutral-500 font-semibold">
+                            <div class="flex items-center"><i class="fa-solid fa-rocket text-stone-400 mr-2"></i> Enjin Turbo 1.5L</div>
+                            <div class="flex items-center"><i class="fa-solid fa-compass text-stone-400 mr-2"></i> Pemanduan Separa Autonomi</div>
+                            <div class="flex items-center"><i class="fa-solid fa-microphone text-stone-400 mr-2"></i> Voice Assistant "Hi Proton"</div>
+                            <div class="flex items-center"><i class="fa-solid fa-video text-stone-400 mr-2"></i> Kamera Monitor 360</div>
+                        </div>
+                        <div class="flex items-baseline justify-between pt-1">
+                            <div>
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Ansuran Bulanan</span>
+                                <span class="text-base font-extrabold text-brand-goldDark">RM 990<span class="text-[10px] font-normal text-neutral-400"> /bln</span></span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Harga Atas Jalan</span>
+                                <span class="text-xs font-bold text-brand-dark">RM 98,800</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button onclick="selectCarForForm('Proton X50 1.5 TGDi Flagship', 98800, 990)" class="w-full bg-stone-100 hover:bg-brand-dark hover:text-white text-neutral-800 font-bold py-2.5 rounded transition duration-150 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider border border-brand-borderLight">
+                                <span>Kira Kelayakan Pinjaman</span>
+                                <i class="fa-solid fa-angle-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 5: Perodua Alza -->
+                <div class="car-card sharp-card rounded-xl overflow-hidden bg-white hover:border-brand-bronze/40 transition-all duration-200 group" data-brand="perodua" data-type="suv">
+                    <div class="relative overflow-hidden aspect-[16/10] bg-stone-100 border-b border-stone-100">
+                        <img id="car-img-alza" src="https://images.unsplash.com/photo-1616422285623-13ff0162193c?auto=format&fit=crop&q=80&w=600" alt="Perodua Alza" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f4c81/ffffff?text=Perodua+Alza'">
+                        <span class="absolute top-3 left-3 bg-brand-goldDark text-neutral-900 text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider">7-SEATER MPV</span>
+                        <span class="absolute top-3 right-3 bg-brand-emerald text-white text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> Stok Sedia Ada
+                        </span>
+                    </div>
+                    <div class="p-5 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-sm font-bold text-brand-dark tracking-tight">Perodua Alza 1.5 AV</h3>
+                                <p class="text-[9px] text-neutral-400 font-semibold uppercase tracking-wider">Crossover Keluarga Optimum</p>
+                            </div>
+                            <div class="flex space-x-1.5 pt-1">
+                                <span onclick="changeCarColor('alza', 'bronze')" class="w-3.5 h-3.5 rounded-full bg-amber-800 border border-slate-400 cursor-pointer hover:scale-110 transition" title="Vintage Bronze"></span>
+                                <span onclick="changeCarColor('alza', 'silver')" class="w-3.5 h-3.5 rounded-full bg-slate-300 border border-slate-400 cursor-pointer hover:scale-110 transition" title="Glittering Silver"></span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 py-3 border-y border-stone-100 text-[10px] text-neutral-500 font-semibold">
+                            <div class="flex items-center"><i class="fa-solid fa-users text-stone-400 mr-2"></i> Kapasiti 7 Penumpang</div>
+                            <div class="flex items-center"><i class="fa-solid fa-sliders text-stone-400 mr-2"></i> Susunan Flat-Bed Luas</div>
+                            <div class="flex items-center"><i class="fa-solid fa-camera-retro text-stone-400 mr-2"></i> Dashcam Terbina AV</div>
+                            <div class="flex items-center"><i class="fa-solid fa-p text-stone-400 mr-2"></i> Electronic Parking Brake</div>
+                        </div>
+                        <div class="flex items-baseline justify-between pt-1">
+                            <div>
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Ansuran Bulanan</span>
+                                <span class="text-base font-extrabold text-brand-goldDark">RM 725<span class="text-[10px] font-normal text-neutral-400"> /bln</span></span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Harga Atas Jalan</span>
+                                <span class="text-xs font-bold text-brand-dark">RM 75,500</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button onclick="selectCarForForm('Perodua Alza 1.5 AV', 75500, 725)" class="w-full bg-stone-100 hover:bg-brand-dark hover:text-white text-neutral-800 font-bold py-2.5 rounded transition duration-150 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider border border-brand-borderLight">
+                                <span>Kira Kelayakan Pinjaman</span>
+                                <i class="fa-solid fa-angle-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 6: Proton Persona -->
+                <div class="car-card sharp-card rounded-xl overflow-hidden bg-white hover:border-brand-bronze/40 transition-all duration-200 group" data-brand="proton" data-type="sedan">
+                    <div class="relative overflow-hidden aspect-[16/10] bg-stone-100 border-b border-stone-100">
+                        <img id="car-img-persona" src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80&w=600" alt="Proton Persona" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f4c81/ffffff?text=Proton+Persona'">
+                        <span class="absolute top-3 left-3 bg-brand-dark text-white text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider">SEDAN SELESA</span>
+                        <span class="absolute top-3 right-3 bg-brand-emerald text-white text-[8px] font-bold uppercase px-2 py-1 rounded tracking-wider flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> Stok Sedia Ada
+                        </span>
+                    </div>
+                    <div class="p-5 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-sm font-bold text-brand-dark tracking-tight">Proton Persona 1.6 Premium</h3>
+                                <p class="text-[9px] text-neutral-400 font-semibold uppercase tracking-wider">Sedan Selesa Responsif Kelas B</p>
+                            </div>
+                            <div class="flex space-x-1.5 pt-1">
+                                <span onclick="changeCarColor('persona', 'silver')" class="w-3.5 h-3.5 rounded-full bg-slate-300 border border-slate-400 cursor-pointer hover:scale-110 transition" title="Alabaster Silver"></span>
+                                <span onclick="changeCarColor('persona', 'darkblue')" class="w-3.5 h-3.5 rounded-full bg-blue-950 border border-slate-400 cursor-pointer hover:scale-110 transition" title="Deep Space Blue"></span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 py-3 border-y border-stone-100 text-[10px] text-neutral-500 font-semibold">
+                            <div class="flex items-center"><i class="fa-solid fa-gauge text-stone-400 mr-2"></i> Enjin 1.6L VVT</div>
+                            <div class="flex items-center"><i class="fa-solid fa-couch text-stone-400 mr-2"></i> Kusyen Separa Kulit Premium</div>
+                            <div class="flex items-center"><i class="fa-solid fa-bolt text-stone-400 mr-2"></i> Mod Eco & Sport Dinamik</div>
+                            <div class="flex items-center"><i class="fa-solid fa-shield text-stone-400 mr-2"></i> 6 Beg Udara SRS Maksima</div>
+                        </div>
+                        <div class="flex items-baseline justify-between pt-1">
+                            <div>
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Ansuran Bulanan</span>
+                                <span class="text-base font-extrabold text-brand-goldDark">RM 530<span class="text-[10px] font-normal text-neutral-400"> /bln</span></span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[8px] text-neutral-400 block uppercase font-bold tracking-wider">Harga Atas Jalan</span>
+                                <span class="text-xs font-bold text-brand-dark">RM 54,600</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button onclick="selectCarForForm('Proton Persona 1.6 Premium', 54600, 530)" class="w-full bg-stone-100 hover:bg-brand-dark hover:text-white text-neutral-800 font-bold py-2.5 rounded transition duration-150 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider border border-brand-borderLight">
+                                <span>Kira Kelayakan Pinjaman</span>
+                                <i class="fa-solid fa-angle-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXCLUSIVE ELITE BENEFITS AREA -->
+    <section id="manfaat" class="py-16 lg:py-24 bg-brand-dark text-white relative">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,170,134,0.06),transparent_60%)]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-brand-gold font-bold uppercase text-xs tracking-widest">KHAS UNTUK PELANGGAN</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">Set Saguhati Aksesori Percuma 15-dalam-1</h2>
+                <p class="text-neutral-400 font-normal text-xs sm:text-sm">Tanda penghargaan kami terhadap pilihan peribadi anda bagi keselesaan pemanduan yang lengkap.</p>
+            </div>
+
+            <!-- Free Gifts Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="bg-[#1a1816] border border-[#2c241d] p-6 rounded-lg transition duration-200 hover:border-brand-bronze/60">
+                    <div class="w-10 h-10 rounded bg-brand-bronze/10 border border-brand-bronze/30 flex items-center justify-center text-lg text-brand-gold mb-5">
+                        <i class="fa-solid fa-gas-pump"></i>
+                    </div>
+                    <h4 class="text-sm font-bold mb-2">Minyak Tangki Penuh</h4>
+                    <p class="text-[11px] text-neutral-400 leading-relaxed font-normal">Diserahkan 100% penuh sebelum kenderaan dipandu keluar dari pusat pengedaran rasmi.</p>
+                </div>
+
+                <div class="bg-[#1a1816] border border-[#2c241d] p-6 rounded-lg transition duration-200 hover:border-brand-bronze/60">
+                    <div class="w-10 h-10 rounded bg-brand-bronze/10 border border-brand-bronze/30 flex items-center justify-center text-lg text-brand-gold mb-5">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+                    <h4 class="text-sm font-bold mb-2">Kredit RFID Sedia Pasang</h4>
+                    <p class="text-[11px] text-neutral-400 leading-relaxed font-normal">Saguhati kredit perjalanan tol Touch 'n Go RFID terus dipasang pada lampu kereta anda.</p>
+                </div>
+
+                <div class="bg-[#1a1816] border border-[#2c241d] p-6 rounded-lg transition duration-200 hover:border-brand-bronze/60">
+                    <div class="w-10 h-10 rounded bg-brand-bronze/10 border border-brand-bronze/30 flex items-center justify-center text-lg text-brand-gold mb-5">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <h4 class="text-sm font-bold mb-2">Dashcam HD Hadapan</h4>
+                    <p class="text-[11px] text-neutral-400 leading-relaxed font-normal">Perakam pemanduan digital definisi tinggi untuk perlindungan keselamatan peribadi anda di jalan raya.</p>
+                </div>
+
+                <div class="bg-[#1a1816] border border-[#2c241d] p-6 rounded-lg transition duration-200 hover:border-brand-bronze/60">
+                    <div class="w-10 h-10 rounded bg-brand-bronze/10 border border-brand-bronze/30 flex items-center justify-center text-lg text-brand-gold mb-5">
+                        <i class="fa-solid fa-gift"></i>
+                    </div>
+                    <h4 class="text-sm font-bold mb-2">Kelengkapan 15-in-1</h4>
+                    <p class="text-[11px] text-neutral-400 leading-relaxed font-normal">Pakej penuh termasuk payung korporat, pewangi eksklusif, plat pemegang nombor mewah, dan sebagainya.</p>
+                </div>
+
+            </div>
+
+            <!-- Integrity Compliance Box -->
+            <div class="mt-16 bg-[#1a1816] border border-[#2c241d] rounded-lg p-6 max-w-4xl mx-auto text-center space-y-3">
+                <h3 class="text-sm font-bold text-brand-gold flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-shield-halved"></i> JAMINAN INTEGRITI & ETIKA PEMBIAYAAN KENDERAAN MALAYSIA
+                </h3>
+                <p class="text-[11px] text-neutral-400 max-w-2xl mx-auto leading-relaxed font-normal">
+                    Polisi kami melarang keras sebarang kutipan komisen haram atau caj ejen tidak rasmi. Semua analisis profil gaji, rundingan kelayakan had hutang, dan persediaan pemfailan pinjaman bank diuruskan **secara percuma** tanpa deposit awal.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGH-PRECISION SECURE FINANCE CALCULATOR -->
+    <section id="kalkulator" class="py-16 lg:py-24 bg-stone-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-xl shadow-sharp-lg overflow-hidden border border-brand-borderLight">
+                <div class="p-6 sm:p-10 space-y-8">
+                    
+                    <div class="text-center space-y-2">
+                        <span class="bg-stone-100 border border-brand-borderLight text-brand-bronze text-[9px] font-bold px-3 py-1 rounded inline-block tracking-widest uppercase">REAL-TIME FINANCE CALCULATOR</span>
+                        <h2 class="text-xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">Kalkulator Kelayakan Ansuran Sewa Beli</h2>
+                        <p class="text-xs text-neutral-500 font-normal">Laraskan angka secara terus pada input atau seret bar gelongsor untuk melihat anggaran komitmen dengan pantas.</p>
+                    </div>
+
+                    <!-- Calculator Grid -->
+                    <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                        
+                        <!-- Inputs Panel -->
+                        <div class="space-y-6">
+                            
+                            <!-- Car Price Input Group -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Harga Anggaran Kereta (RM)</label>
+                                    <input type="number" id="calcPrice" value="45000" class="w-32 text-right font-bold bg-stone-50 border border-brand-borderLight rounded py-1 px-2.5 text-xs text-neutral-900 focus:outline-none focus:ring-1 focus:ring-brand-bronze focus:bg-white transition-all">
+                                </div>
+                                <input type="range" id="sliderPrice" min="20000" max="150000" step="500" value="45000" class="w-full accent-brand-bronze">
+                                <div class="flex justify-between text-[9px] text-neutral-400 font-semibold mt-1">
+                                    <span>RM 20,000</span>
+                                    <span>RM 150,000</span>
+                                </div>
+                            </div>
+
+                            <!-- Deposit Input Group -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Wang Muka / Deposit (RM)</label>
+                                    <input type="number" id="calcDeposit" value="4500" class="w-32 text-right font-bold bg-stone-50 border border-brand-borderLight rounded py-1 px-2.5 text-xs text-neutral-900 focus:outline-none focus:ring-1 focus:ring-brand-bronze focus:bg-white transition-all">
+                                </div>
+                                <input type="range" id="sliderDeposit" min="0" max="40500" step="500" value="4500" class="w-full accent-brand-bronze">
+                                <div class="flex justify-between text-[9px] text-neutral-400 font-semibold mt-1">
+                                    <span>Sifar Deposit (0%)</span>
+                                    <span id="maxDepositLabel">Maksima 90%</span>
+                                </div>
+                            </div>
+
+                            <!-- Tenure Options -->
+                            <div>
+                                <label class="text-[10px] font-bold text-neutral-500 block mb-2 uppercase tracking-wider">Tempoh Pembiayaan Sewa Beli</label>
+                                <div class="grid grid-cols-3 gap-2.5">
+                                    <button type="button" id="btnTenure5" onclick="setTenure(5)" class="tenure-btn border border-brand-borderLight hover:border-brand-bronze text-neutral-600 font-bold py-2.5 rounded text-xs transition duration-150">5 Tahun</button>
+                                    <button type="button" id="btnTenure7" onclick="setTenure(7)" class="tenure-btn border border-brand-borderLight hover:border-brand-bronze text-neutral-600 font-bold py-2.5 rounded text-xs transition duration-150">7 Tahun</button>
+                                    <button type="button" id="btnTenure9" onclick="setTenure(9)" class="tenure-btn border border-brand-bronze bg-brand-dark text-white font-bold py-2.5 rounded text-xs transition duration-150 shadow-sharp-sm">9 Tahun</button>
+                                </div>
+                            </div>
+
+                            <!-- Interest Rates -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Kadar Faedah Setahun</label>
+                                    <span class="text-xs font-bold text-brand-bronze bg-stone-100 px-2 py-0.5 rounded" id="interestValue">3.00%</span>
+                                </div>
+                                <input type="range" id="sliderInterest" min="2.2" max="4.5" step="0.1" value="3.0" class="w-full accent-brand-bronze">
+                                <div class="flex justify-between text-[9px] text-neutral-400 font-semibold mt-1">
+                                    <span>2.2% (Kadar Khas)</span>
+                                    <span>4.5%</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Result Dark Invoice Panel (Consistent Dark / Gold Theme) -->
+                        <div class="bg-brand-dark rounded-xl p-6 text-white flex flex-col justify-between h-full space-y-6 border border-[#2c241d] shadow-sharp-md relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-[#dec3a1]/5 to-transparent pointer-events-none"></div>
+                            
+                            <div class="relative z-10">
+                                <span class="text-[8px] font-bold text-[#bfa07a] block uppercase tracking-widest mb-1">ANGGARAN ANSURAN KASAR</span>
+                                <div class="text-white font-black text-3xl flex items-baseline leading-none">
+                                    <span class="text-xs font-bold text-[#bfa07a] mr-1">RM</span>
+                                    <span id="monthlyPayment" class="text-white font-mono">450</span>
+                                    <span class="text-xs font-normal text-stone-400 ml-1"> /bln</span>
+                                </div>
+                                <p class="text-[9px] text-stone-400 leading-relaxed mt-3">Kiraan ini adalah anggaran awal (Hire Purchase). Keputusan sebenar tertakluk kepada profil rekod CCRIS/CTOS & syarat pematuhan panel bank.</p>
+                            </div>
+
+                            <!-- Calculations Table -->
+                            <div class="space-y-3 text-xs border-t border-[#2c241d] pt-5 text-stone-300 relative z-10 font-medium">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-stone-400 text-[10px] uppercase tracking-wider">Jumlah Pinjaman:</span>
+                                    <span class="font-bold text-white" id="breakdownLoan">RM 40,500</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-stone-400 text-[10px] uppercase tracking-wider">Anggaran Kadar:</span>
+                                    <span class="font-bold text-white" id="breakdownInterest">3.00%</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-stone-400 text-[10px] uppercase tracking-wider">Tempoh Pinjaman:</span>
+                                    <span class="font-bold text-white" id="breakdownTenure">9 Tahun</span>
+                                </div>
+                            </div>
+
+                            <div class="relative z-10 pt-2">
+                                <button onclick="copyCalcToConsultation()" class="w-full bg-gradient-to-r from-[#dec3a1] via-[#c6aa86] to-[#b3926d] hover:brightness-105 active:scale-[0.99] text-neutral-900 font-extrabold py-3.5 rounded transition duration-150 text-xs uppercase tracking-wider flex items-center justify-center shadow-sharp-md">
+                                    <i class="fa-solid fa-paste text-xs mr-2"></i>
+                                    <span>Gunakan Kiraan Untuk Semak Kelayakan</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECURE ELIGIBILITY APPLICATION FORM -->
+    <section id="kelayakan" class="py-16 lg:py-24 bg-white border-t border-b border-brand-borderLight">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative bg-brand-dark text-white rounded-xl p-6 sm:p-10 shadow-sharp-lg overflow-hidden border border-[#2c241d]">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(198,170,134,0.08),transparent_50%)]"></div>
+                
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    
+                    <div class="text-center space-y-2 mb-10">
+                        <span class="bg-[#241d17] border border-[#d97706]/30 text-brand-gold px-3 py-1 rounded text-[9px] font-bold uppercase tracking-widest inline-block">SECURE GATEWAY</span>
+                        <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight">Sistem Penilaian Kelayakan Pinjaman</h2>
+                        <p class="text-xs text-stone-400 font-normal">
+                            Sila isi maklumat asas di bawah dengan tepat. Sistem kami akan menyediakan draf permohonan yang optimum sebelum dihantar secara selamat kepada WhatsApp perunding.
+                        </p>
+                    </div>
+
+                    <!-- Application Form -->
+                    <form id="eligibilityForm" onsubmit="submitToWhatsApp(event)" class="space-y-5 text-neutral-800">
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            
+                            <!-- Full Name -->
+                            <div>
+                                <label class="block text-[10px] font-bold text-stone-300 uppercase tracking-wider mb-2">Nama Penuh (Mengikut MyKad) <span class="text-red-400">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500">
+                                        <i class="fa-regular fa-user text-xs"></i>
+                                    </span>
+                                    <input type="text" id="formName" required placeholder="Sila masukkan nama penuh" class="w-full bg-[#1c1a17] border border-[#2c241d] rounded pl-10 pr-3 py-3 text-xs text-white placeholder-stone-600 focus:outline-none focus:ring-1 focus:ring-brand-bronze focus:border-brand-bronze transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div>
+                                <label class="block text-[10px] font-bold text-stone-300 uppercase tracking-wider mb-2">No. Telefon Bimbit <span class="text-red-400">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500">
+                                        <i class="fa-solid fa-mobile-screen text-xs"></i>
+                                    </span>
+                                    <input type="tel" id="formPhone" required placeholder="Contoh: 0123456789" class="w-full bg-[#1c1a17] border border-[#2c241d] rounded pl-10 pr-3 py-3 text-xs text-white placeholder-stone-600 focus:outline-none focus:ring-1 focus:ring-brand-bronze focus:border-brand-bronze transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Net Income Selection -->
+                            <div>
+                                <label class="block text-[10px] font-bold text-stone-300 uppercase tracking-wider mb-2">Gaji Bersih Bulanan <span class="text-red-400">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500">
+                                        <i class="fa-solid fa-wallet text-xs"></i>
+                                    </span>
+                                    <select id="formSalary" class="w-full bg-[#1c1a17] border border-[#2c241d] rounded pl-10 pr-10 py-3 text-xs text-white focus:outline-none focus:ring-1 focus:ring-brand-bronze focus:border-brand-bronze transition-all appearance-none">
+                                        <option value="Bawah RM1,999">Bawah RM1,999</option>
+                                        <option value="RM2,000 - RM2,499" selected>RM2,000 - RM2,499</option>
+                                        <option value="RM2,500 - RM3,499">RM2,500 - RM3,499</option>
+                                        <option value="RM3,500 - RM4,999">RM3,500 - RM4,999</option>
+                                        <option value="RM5,000 ke atas">RM5,000 ke atas</option>
+                                    </select>
+                                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-stone-500 pointer-events-none">
+                                        <i class="fa-solid fa-angle-down text-[10px]"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Job Sector Selection -->
+                            <div>
+                                <label class="block text-[10px] font-bold text-stone-300 uppercase tracking-wider mb-2">Sektor Pekerjaan <span class="text-red-400">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500">
+                                        <i class="fa-solid fa-briefcase text-xs"></i>
+                                    </span>
+                                    <select id="formJob" class="w-full bg-[#1c1a17] border border-[#2c241d] rounded pl-10 pr-10 py-3 text-xs text-white focus:outline-none focus:ring-1 focus:ring-brand-bronze focus:border-brand-bronze transition-all appearance-none">
+                                        <option value="Sektor Swasta / GLC" selected>Sektor Swasta / GLC</option>
+                                        <option value="Sektor Awam / Kerajaan">Sektor Awam / Kerajaan</option>
+                                        <option value="Perniagaan / Sendiri">Perniagaan / Bekerja Sendiri</option>
+                                        <option value="Graduan (Skim Graduan)">Graduan (Skim Graduan Baru Bekerja)</option>
+                                        <option value="Pelajar (Tiada Pendapatan Tetap)">Pelajar / Tiada Slip Gaji</option>
+                                    </select>
+                                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-stone-500 pointer-events-none">
+                                        <i class="fa-solid fa-angle-down text-[10px]"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Target Model Selection -->
+                            <div>
+                                <label class="block text-[10px] font-bold text-stone-300 uppercase tracking-wider mb-2">Model Sasaran Utama <span class="text-red-400">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500">
+                                        <i class="fa-solid fa-car text-xs"></i>
+                                    </span>
+                                    <select id="formCar" class="w-full bg-[#1c1a17] border border-[#2c241d] rounded pl-10 pr-10 py-3 text-xs text-white focus:outline-none focus:ring-1 focus:ring-brand-bronze focus:border-brand-bronze transition-all appearance-none">
+                                        <option value="Perodua Bezza">Perodua Bezza</option>
+                                        <option value="Perodua Myvi">Perodua Myvi</option>
+                                        <option value="Perodua Alza">Perodua Alza</option>
+                                        <option value="Proton Saga" selected>Proton Saga</option>
+                                        <option value="Proton X50">Proton X50</option>
+                                        <option value="Proton Persona">Proton Persona</option>
+                                        <option value="Jenama Lain / Rundingan Terbuka">Jenama Lain / Rundingan Terbuka</option>
+                                    </select>
+                                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-stone-500 pointer-events-none">
+                                        <i class="fa-solid fa-angle-down text-[10px]"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- License Status -->
+                            <div>
+                                <label class="block text-[10px] font-bold text-stone-300 uppercase tracking-wider mb-2">Status Lesen Memandu <span class="text-red-400">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500">
+                                        <i class="fa-solid fa-id-badge text-xs"></i>
+                                    </span>
+                                    <select id="formLicense" class="w-full bg-[#1c1a17] border border-[#2c241d] rounded pl-10 pr-10 py-3 text-xs text-white focus:outline-none focus:ring-1 focus:ring-brand-bronze focus:border-brand-bronze transition-all appearance-none">
+                                        <option value="Lesen Memandu Kelas D Sah" selected>Lesen Memandu Kelas D Sah</option>
+                                        <option value="Tiada Lesen Memandu (Sedia Penjamin)">Tiada Lesen Memandu (Sedia Penjamin)</option>
+                                        <option value="Lesen L / P Sah">Lesen L / P Sah</option>
+                                    </select>
+                                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-stone-500 pointer-events-none">
+                                        <i class="fa-solid fa-angle-down text-[10px]"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Special Notes -->
+                        <div>
+                            <label class="block text-[10px] font-bold text-stone-300 uppercase tracking-wider mb-2">Ulasan / Nota Sampingan Tambahan (Pilihan)</label>
+                            <textarea id="formNotes" rows="3" placeholder="Contoh: Saya ada kereta trade-in lama, ada masalah CCRIS ringan, mahukan pakej deposit 0%..." class="w-full bg-[#1c1a17] border border-[#2c241d] rounded px-3.5 py-3 text-xs text-white placeholder-stone-600 focus:outline-none focus:ring-1 focus:ring-brand-bronze focus:border-brand-bronze transition-all"></textarea>
+                        </div>
+
+                        <!-- PDPA Compliance Statement -->
+                        <div class="bg-[#1c1a17] p-4 rounded border border-[#2c241d] flex items-start space-x-3 text-xs text-stone-400 leading-relaxed">
+                            <i class="fa-solid fa-user-shield text-brand-bronze text-base mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <p class="font-bold text-stone-200">Kepatuhan Akta Perlindungan Data Peribadi (PDPA) 2010</p>
+                                <p class="mt-0.5 text-[10px] text-stone-400 font-normal">Data peribadi anda dijamin sulit dan hanya diproses untuk tujuan rasmi penapisan kelayakan pembiayaan pinjaman sewa beli bank automotif berdaftar sahaja.</p>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button (Consistent Gold Gradient) -->
+                        <div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-[#dec3a1] via-[#c6aa86] to-[#b3926d] hover:brightness-105 text-neutral-900 font-extrabold text-xs uppercase tracking-wider py-4 rounded transition duration-150 shadow-sharp-md flex items-center justify-center space-x-2">
+                                <i class="fab fa-whatsapp text-base text-neutral-900 mr-2"></i>
+                                <span>Hantar & Semak Kelayakan Sekarang</span>
+                            </button>
+                        </div>
+
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REAL CUSTOMER TESTIMONIALS -->
+    <section class="py-16 lg:py-24 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-brand-bronze text-xs font-bold uppercase tracking-widest block">TESTIMONI PEMBELI</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">Kisah Kelulusan Pembeli</h2>
+                <p class="text-neutral-500 font-normal text-xs sm:text-sm">Bantuan perundingan yang telus telah merealisasikan hasrat pemilikan kereta selamat untuk ramai pembeli.</p>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sharp-sm border border-brand-borderLight flex flex-col justify-between space-y-6">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-500 space-x-1 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-neutral-600 text-xs leading-relaxed italic font-normal">
+                            "Saya pada mulanya ragu-ragu sebab tidak mempunyai lesen memandu fizikal yang sah. Haris menasihati saya dengan sangat telus dan membimbing proses permohonan bersama penjamin bapa saya dengan lancar."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-stone-100">
+                        <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center font-bold text-neutral-700 text-xs">
+                            SF
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-brand-dark text-xs">Siti Fatihah</h4>
+                            <p class="text-[9px] text-neutral-400 font-bold uppercase tracking-wider">Perodua Bezza (Kuala Lumpur)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sharp-sm border border-brand-borderLight flex flex-col justify-between space-y-6">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-500 space-x-1 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-neutral-600 text-xs leading-relaxed italic font-normal">
+                            "Urusan terbaik di bawah Skim Graduan! Hanya bersandarkan offer letter pekerjaan minggu pertama saya, Haris berjaya menguruskan pinjaman penuh 100% tanpa sebarang wang muka. Kereta dihantar terus ke ofis!"
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-stone-100">
+                        <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center font-bold text-neutral-700 text-xs">
+                            AN
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-brand-dark text-xs">Ahmad Naufal</h4>
+                            <p class="text-[9px] text-neutral-400 font-bold uppercase tracking-wider">Skim Graduan Saga (Pulau Pinang)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sharp-sm border border-brand-borderLight flex flex-col justify-between space-y-6">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-500 space-x-1 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-neutral-600 text-xs leading-relaxed italic font-normal">
+                            "Proses trade-in kereta lama Myvi saya dinilai dengan harga pasaran tertinggi dan penyelesaian hutang baki bank lama diuruskan sepenuhnya oleh beliau. Sangat menjimatkan masa pemfailan."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-stone-100">
+                        <div class="w-9 h-9 rounded-full bg-stone-100 flex items-center justify-center font-bold text-neutral-700 text-xs">
+                            RD
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-brand-dark text-xs">Ravi Devan</h4>
+                            <p class="text-[9px] text-neutral-400 font-bold uppercase tracking-wider">Proton X50 (Johor Bahru)</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- THREE-STEP ACQUISITION PIPELINE -->
+    <section class="py-16 lg:py-24 bg-white border-t border-b border-brand-borderLight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-brand-bronze text-xs font-bold uppercase tracking-widest block">ALIRAN PROSES</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">3 Langkah Mudah Miliki Kereta</h2>
+                <p class="text-neutral-500 font-normal text-xs sm:text-sm">Kami meminimumkan beban birokrasi pembelian tradisional demi keselesaan anda.</p>
+            </div>
+
+            <!-- Steps Row -->
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                
+                <!-- Step 1 -->
+                <div class="text-center space-y-3">
+                    <div class="w-12 h-12 rounded bg-stone-50 border border-brand-borderLight shadow-sharp-sm mx-auto flex items-center justify-center text-sm text-brand-bronze font-extrabold">
+                        1
+                    </div>
+                    <h3 class="text-xs font-bold text-brand-dark uppercase tracking-wider">Hantar Profil Gaji</h3>
+                    <p class="text-[11px] text-neutral-500 max-w-xs mx-auto leading-relaxed font-normal">Lengkapkan borang kelayakan ringkas di atas untuk membolehkan analisis kelayakan dibuat mengikut bajet anda.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center space-y-3">
+                    <div class="w-12 h-12 rounded bg-stone-50 border border-brand-borderLight shadow-sharp-sm mx-auto flex items-center justify-center text-sm text-brand-bronze font-extrabold">
+                        2
+                    </div>
+                    <h3 class="text-xs font-bold text-brand-dark uppercase tracking-wider">Pemprosesan Pinjaman Bank</h3>
+                    <p class="text-[11px] text-neutral-500 max-w-xs mx-auto leading-relaxed font-normal">Hantarkan dokumen pengesahan ringkas melalui WhatsApp. Kami akan menguruskan pemfailan di bank-bank terbaik.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center space-y-3">
+                    <div class="w-12 h-12 rounded bg-stone-50 border border-brand-borderLight shadow-sharp-sm mx-auto flex items-center justify-center text-sm text-brand-bronze font-extrabold">
+                        3
+                    </div>
+                    <h3 class="text-xs font-bold text-brand-dark uppercase tracking-wider">Pendaftaran & Penyerahan</h3>
+                    <p class="text-[11px] text-neutral-500 max-w-xs mx-auto leading-relaxed font-normal">Selepas kelulusan rasmi bank dikeluarkan, urusan JPJ diselesaikan, kenderaan akan dihantar terus ke alamat anda.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ ACCORDION -->
+    <section id="faq" class="py-16 lg:py-24 bg-stone-50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-brand-bronze text-xs font-bold uppercase tracking-widest block">PERTANYAAN LAZIM</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">Soalan Lazim (FAQ)</h2>
+                <p class="text-neutral-500 font-normal text-xs sm:text-sm">Beberapa perkara dan jawapan rasmi berkaitan pembiayaan sewa beli di Malaysia.</p>
+            </div>
+
+            <!-- FAQ Items Group -->
+            <div class="space-y-3">
+                
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-lg border border-brand-borderLight overflow-hidden shadow-sharp-sm">
+                    <button class="faq-toggle w-full px-5 py-4 text-left font-bold text-neutral-900 flex justify-between items-center hover:bg-stone-50 transition-colors focus:outline-none">
+                        <span class="text-xs sm:text-sm tracking-tight">Bolehkah saya memohon pinjaman sekiranya tiada lesen memandu?</span>
+                        <i class="fa-solid fa-angle-down text-neutral-400 transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-[11px] sm:text-xs text-neutral-500 leading-relaxed border-t border-brand-borderLight pt-3 font-normal">
+                        Boleh. Sesetengah bank menawarkan skim kelayakan sewa beli tanpa lesen memandu dengan syarat anda perlu menyediakan penjamin keluarga terdekat (ibu bapa, suami/isteri, atau adik-beradik sah) yang memiliki lesen memandu fizikal yang sah.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-white rounded-lg border border-brand-borderLight overflow-hidden shadow-sharp-sm">
+                    <button class="faq-toggle w-full px-5 py-4 text-left font-bold text-neutral-900 flex justify-between items-center hover:bg-stone-50 transition-colors focus:outline-none">
+                        <span class="text-xs sm:text-sm tracking-tight">Berapakah kelayakan gaji bersih minimum untuk membeli sebuah Myvi atau Bezza?</span>
+                        <i class="fa-solid fa-angle-down text-neutral-400 transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-[11px] sm:text-xs text-neutral-500 leading-relaxed border-t border-brand-borderLight pt-3 font-normal">
+                        Gaji bersih minimum yang selamat disyorkan adalah bermula dari RM2,000 ke atas, bergantung kepada baki komitmen bulanan sedia ada anda di dalam rekod bank. Sekiranya di bawah paras tersebut, penyediaan penjamin adalah disyorkan demi kelulusan yang optimum.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-white rounded-lg border border-brand-borderLight overflow-hidden shadow-sharp-sm">
+                    <button class="faq-toggle w-full px-5 py-4 text-left font-bold text-neutral-900 flex justify-between items-center hover:bg-stone-50 transition-colors focus:outline-none">
+                        <span class="text-xs sm:text-sm tracking-tight">Apakah perbezaan Skim Graduan berbanding pinjaman biasa?</span>
+                        <i class="fa-solid fa-angle-down text-neutral-400 transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-[11px] sm:text-xs text-neutral-500 leading-relaxed border-t border-brand-borderLight pt-3 font-normal">
+                        Skim Graduan membolehkan pemohon (kelulusan Diploma/Ijazah ke atas) memohon pembiayaan penuh 100% tanpa sebarang bayaran wang muka walaupun baru mula bekerja sehari. Cukup dengan mengemukakan Surat Tawaran Kerja rasmi dan skrol pendidikan tanpa perlu menunggu slip gaji 3 bulan terkini.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-white rounded-lg border border-brand-borderLight overflow-hidden shadow-sharp-sm">
+                    <button class="faq-toggle w-full px-5 py-4 text-left font-bold text-neutral-900 flex justify-between items-center hover:bg-stone-50 transition-colors focus:outline-none">
+                        <span class="text-xs sm:text-sm tracking-tight">Adakah urusan trade-in kereta lama saya diselesaikan terus oleh pihak anda?</span>
+                        <i class="fa-solid fa-angle-down text-neutral-400 transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-[11px] sm:text-xs text-neutral-500 leading-relaxed border-t border-brand-borderLight pt-3 font-normal">
+                        Ya, kami menawarkan khidmat penilaian trade-in kenderaan lama terus di tempat anda dengan nilai bidaan pasaran tertinggi. Seterusnya, baki hutang lama di bank akan diuruskan dengan rapi oleh kami untuk dipadankan dengan pembiayaan kenderaan baharu anda.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EDITORIAL LUXURY FOOTER -->
+    <footer class="bg-brand-dark text-white pt-16 pb-24 sm:pb-12 border-t border-brand-borderDark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-10">
+                
+                <!-- Footer Bio -->
+                <div class="space-y-4 md:col-span-2">
+                    <span class="text-xl font-extrabold tracking-tight">HARIS<span class="text-brand-bronze font-medium">AUTO</span></span>
+                    <p class="text-xs text-stone-400 leading-relaxed max-w-sm font-normal">
+                        Penasihat Perunding Kewangan & Jualan Kenderaan Berdaftar. Komitmen kami adalah menyediakan bimbingan pembiayaan yang selamat, telus, berintegriti dan patuh etika jualan Malaysia.
+                    </p>
+                    <p class="text-[9px] text-brand-gold uppercase tracking-wider font-bold">
+                        PENGEDAR BERSEKUTU PROTON & PERODUA SEMENANJUNG MALAYSIA
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div class="space-y-3">
+                    <h4 class="text-[9px] font-bold uppercase tracking-widest text-brand-gold">Pautan Pantas</h4>
+                    <ul class="space-y-2 text-xs text-stone-400 font-normal">
+                        <li><a href="#katalog" class="hover:text-white transition-colors">Showroom Model</a></li>
+                        <li><a href="#manfaat" class="hover:text-white transition-colors">Pakej Hadiah Percuma</a></li>
+                        <li><a href="#kalkulator" class="hover:text-white transition-colors">Kalkulator Ansuran</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="space-y-3">
+                    <h4 class="text-[9px] font-bold uppercase tracking-widest text-brand-gold">Hubungi Kami</h4>
+                    <ul class="space-y-2.5 text-xs text-stone-400 font-normal">
+                        <li class="flex items-center"><i class="fa-solid fa-phone mr-2.5 text-brand-bronze"></i> +6012-345 6789</li>
+                        <li class="flex items-center"><i class="fa-solid fa-envelope mr-2.5 text-brand-bronze"></i> haris.auto.advisor@gmail.com</li>
+                        <li class="flex items-center"><i class="fa-solid fa-location-dot mr-2.5 text-brand-bronze"></i> Petaling Jaya, Selangor</li>
+                        <li class="pt-2">
+                            <div class="flex space-x-3 text-sm">
+                                <a href="#" class="text-stone-500 hover:text-white transition-colors"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="text-stone-500 hover:text-white transition-colors"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" class="text-stone-500 hover:text-white transition-colors"><i class="fab fa-indigo"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="mt-12 pt-8 border-t border-brand-borderDark text-center text-[9px] text-stone-500 space-y-2 leading-relaxed">
+                <p>&copy; 2026 Haris Auto. Semua Hak Cipta Terpelihara.</p>
+                <p class="max-w-2xl mx-auto">Penafian Rasmi: Portal jualan ini adalah portfolio simulasi digital bagi perniagaan peribadi jualan kenderaan persendirian. Laman ini tidak mewakili pihak Proton Holdings Bhd atau Perusahaan Otomobil Kedua Sdn Bhd (Perodua) secara korporat rasmi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MOBILE QUICK ACCESS ACTION BUTTONS -->
+    <div class="fixed bottom-0 left-0 w-full bg-white/95 border-t border-brand-borderLight px-4 py-3 z-40 block sm:hidden backdrop-blur-md shadow-sharp-lg">
+        <div class="flex space-x-2.5">
+            <a href="tel:+60123456789" class="flex-1 bg-stone-100 hover:bg-stone-200 text-neutral-700 text-center font-bold py-3 rounded text-xs flex items-center justify-center space-x-1.5 border border-brand-borderLight">
+                <i class="fa-solid fa-phone text-xs"></i>
+                <span>Talian Telefon</span>
+            </a>
+            <a href="https://wa.me/60123456789?text=Salam%20Haris%20Azizan,%20saya%20berminat%20untuk%20semak%20kelayakan%20pembiayaan%20kereta%20premium%20saya." target="_blank" class="flex-1 bg-brand-dark hover:bg-brand-goldDark hover:text-neutral-950 text-white text-center font-bold py-3 rounded text-xs flex items-center justify-center space-x-1.5 shadow-sharp-sm">
+                <i class="fab fa-whatsapp text-sm text-emerald-400"></i>
+                <span>WhatsApp Haris</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- CORE CLIENT JAVASCRIPT LOGIC -->
+    <script>
+        // Notification Modal helper instead of standard alert
+        const notifModal = document.getElementById('notificationModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const modalPrimaryBtn = document.getElementById('modalPrimaryBtn');
+
+        function triggerNotification(title, message, callback) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            notifModal.classList.remove('hidden');
+            
+            modalPrimaryBtn.onclick = function() {
+                notifModal.classList.add('hidden');
+                if (callback) callback();
+            };
+        }
+
+        function closeNotificationModal() {
+            notifModal.classList.add('hidden');
+        }
+
+        // Close demo top-banner and rearrange layout padding
+        function closeDemoBanner() {
+            const banner = document.getElementById('demoBanner');
+            const header = document.getElementById('mainHeader');
+            if (banner && header) {
+                banner.style.opacity = '0';
+                banner.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    banner.style.display = 'none';
+                    header.style.top = '0px';
+                }, 150);
+            }
+        }
+
+        // Toggle Responsive Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Hide mobile menu on anchor click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Model Showroom Filter Mechanics
+        function filterCars(category) {
+            const buttons = document.querySelectorAll('.car-filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-dark', 'text-white', 'shadow-sharp-sm');
+                btn.classList.add('bg-white', 'text-neutral-700', 'border-brand-borderLight');
+            });
+
+            // Make chosen category active
+            const clickedBtn = event.currentTarget;
+            clickedBtn.classList.remove('bg-white', 'text-neutral-700', 'border-brand-borderLight');
+            clickedBtn.classList.add('bg-brand-dark', 'text-white', 'shadow-sharp-sm');
+
+            const cards = document.querySelectorAll('.car-card');
+            cards.forEach(card => {
+                const brand = card.getAttribute('data-brand');
+                const type = card.getAttribute('data-type');
+                
+                if (category === 'all') {
+                    card.classList.remove('hidden');
+                } else if (category === 'perodua' || category === 'proton') {
+                    if (brand === category) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                } else if (category === 'sedan' || category === 'suv') {
+                    if (type === category) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        // Swatch preview color switcher representing specific local trims
+        function changeCarColor(carId, colorName) {
+            const targetImg = document.getElementById(`car-img-${carId}`);
+            if (!targetImg) return;
+
+            const swatchData = {
+                bezza: {
+                    silver: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&q=80&w=600",
+                    blue: "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&q=80&w=600"
+                },
+                myvi: {
+                    red: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&q=80&w=600",
+                    grey: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=600"
+                },
+                saga: {
+                    rosewood: "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=600",
+                    white: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=600"
+                },
+                x50: {
+                    orange: "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&q=80&w=600",
+                    silver: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=600"
+                },
+                alza: {
+                    bronze: "https://images.unsplash.com/photo-1616422285623-13ff0162193c?auto=format&fit=crop&q=80&w=600",
+                    silver: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80&w=600"
+                },
+                persona: {
+                    silver: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80&w=600",
+                    darkblue: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=600"
+                }
+            };
+
+            if (swatchData[carId] && swatchData[carId][colorName]) {
+                targetImg.src = swatchData[carId][colorName];
+            }
+        }
+
+        // Two-Way Sync Calculator Declarations
+        const calcPrice = document.getElementById('calcPrice');
+        const sliderPrice = document.getElementById('sliderPrice');
+        const calcDeposit = document.getElementById('calcDeposit');
+        const sliderDeposit = document.getElementById('sliderDeposit');
+        const sliderInterest = document.getElementById('sliderInterest');
+        const interestValue = document.getElementById('interestValue');
+        const maxDepositLabel = document.getElementById('maxDepositLabel');
+
+        const monthlyPaymentSpan = document.getElementById('monthlyPayment');
+        const breakdownLoan = document.getElementById('breakdownLoan');
+        const breakdownInterest = document.getElementById('breakdownInterest');
+        const breakdownTenure = document.getElementById('breakdownTenure');
+
+        let activeTenureYears = 9; // Malaysia maximum tenure limit standard
+
+        // Real-Time Price Dwi-Arah Sync
+        sliderPrice.addEventListener('input', (e) => {
+            calcPrice.value = e.target.value;
+            syncDepositLimits();
+            updateCalculations();
+        });
+
+        calcPrice.addEventListener('input', (e) => {
+            let val = parseInt(e.target.value) || 0;
+            if (val > 500000) val = 500000;
+            sliderPrice.max = val > 150000 ? val : 150000;
+            sliderPrice.value = val;
+            syncDepositLimits();
+            updateCalculations();
+        });
+
+        // Real-Time Deposit Dwi-Arah Sync
+        sliderDeposit.addEventListener('input', (e) => {
+            calcDeposit.value = e.target.value;
+            updateCalculations();
+        });
+
+        calcDeposit.addEventListener('input', (e) => {
+            let val = parseInt(e.target.value) || 0;
+            const price = parseInt(calcPrice.value) || 0;
+            const maxDep = Math.floor(price * 0.9);
+            if (val > maxDep) val = maxDep;
+            sliderDeposit.value = val;
+            updateCalculations();
+        });
+
+        // Sync Deposit limits when price adjusts
+        function syncDepositLimits() {
+            const price = parseInt(calcPrice.value) || 0;
+            const maxDep = Math.floor(price * 0.9);
+            sliderDeposit.max = maxDep;
+            if (parseInt(calcDeposit.value) > maxDep) {
+                calcDeposit.value = maxDep;
+                sliderDeposit.value = maxDep;
+            }
+        }
+
+        // Interest Rate Sync
+        sliderInterest.addEventListener('input', (e) => {
+            interestValue.textContent = parseFloat(e.target.value).toFixed(2) + '%';
+            updateCalculations();
+        });
+
+        // Tenure choice trigger
+        function setTenure(years) {
+            activeTenureYears = years;
+            const buttons = document.querySelectorAll('.tenure-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-dark', 'text-white', 'border-brand-dark', 'shadow-sharp-sm');
+                btn.classList.add('border-brand-borderLight', 'text-neutral-600');
+            });
+            
+            const selectedBtn = document.getElementById(`btnTenure${years}`);
+            if (selectedBtn) {
+                selectedBtn.classList.remove('border-brand-borderLight', 'text-neutral-600');
+                selectedBtn.classList.add('bg-brand-dark', 'text-white', 'border-brand-dark', 'shadow-sharp-sm');
+            }
+            updateCalculations();
+        }
+
+        // Calculation Algorithm for Fixed Rate Hire Purchase
+        function updateCalculations() {
+            const price = parseFloat(calcPrice.value) || 0;
+            const deposit = parseFloat(calcDeposit.value) || 0;
+            const interestRate = parseFloat(sliderInterest.value) || 3.0;
+            const tenureMonths = activeTenureYears * 12;
+
+            maxDepositLabel.textContent = "Maksima 90% (RM " + Math.floor(price * 0.9).toLocaleString('ms-MY') + ")";
+
+            const loanAmount = price - deposit;
+            const totalFlatInterest = loanAmount * (interestRate / 100) * activeTenureYears;
+            const totalPayable = loanAmount + totalFlatInterest;
+            const monthlyPayment = totalPayable / tenureMonths;
+
+            monthlyPaymentSpan.textContent = isNaN(monthlyPayment) || monthlyPayment <= 0 ? '0' : Math.round(monthlyPayment).toLocaleString('ms-MY');
+            breakdownLoan.textContent = "RM " + (loanAmount < 0 ? 0 : loanAmount).toLocaleString('ms-MY');
+            breakdownInterest.textContent = interestRate.toFixed(2) + "%";
+            breakdownTenure.textContent = activeTenureYears + " Tahun";
+        }
+
+        // Choose Car directly from card catalogs
+        function selectCarForForm(carName, carPrice, monthlyPaymentEst) {
+            calcPrice.value = carPrice;
+            sliderPrice.value = carPrice;
+            
+            const standardDeposit = Math.round(carPrice * 0.1);
+            calcDeposit.value = standardDeposit;
+            
+            syncDepositLimits();
+            sliderDeposit.value = standardDeposit;
+            
+            updateCalculations();
+
+            const dropdownCars = document.getElementById('formCar');
+            for (let i = 0; i < dropdownCars.options.length; i++) {
+                if (carName.includes(dropdownCars.options[i].value)) {
+                    dropdownCars.selectedIndex = i;
+                    break;
+                }
+            }
+
+            document.getElementById('kalkulator').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Copy calculations down to textarea notes
+        function copyCalcToConsultation() {
+            const price = calcPrice.value;
+            const dep = calcDeposit.value;
+            const tenure = activeTenureYears;
+            const interest = sliderInterest.value;
+            const monthly = monthlyPaymentSpan.textContent;
+
+            const textareaNotes = document.getElementById('formNotes');
+            textareaNotes.value = `Saya berminat menyemak kelayakan berdasarkan pengiraan kalkulator:\nHarga Anggaran: RM ${price}\nBayaran Muka: RM ${dep}\nTempoh: ${tenure} Tahun\nAnggaran Kadar: ${interest}%\nAnsuran Bulanan: RM ${monthly}/bln.`;
+            
+            document.getElementById('kelayakan').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle Secure Form Forwarding to WhatsApp
+        function submitToWhatsApp(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('formName').value;
+            const phone = document.getElementById('formPhone').value;
+            const salary = document.getElementById('formSalary').value;
+            const job = document.getElementById('formJob').value;
+            const car = document.getElementById('formCar').value;
+            const license = document.getElementById('formLicense').value;
+            const notes = document.getElementById('formNotes').value;
+
+            const textMessage = `Salam Haris Azizan, saya berminat membuat semakan kelayakan pembiayaan kereta melalui borang portal.\n\n` +
+                                 `👤 *NAMA PENUH*: ${name}\n` +
+                                 `📞 *NO. TELEFON*: ${phone}\n` +
+                                 `💰 *GAJI BULANAN*: ${salary}\n` +
+                                 `💼 *SEKTOR PEKERJAAN*: ${job}\n` +
+                                 `🚗 *MODEL SASARAN*: ${car}\n` +
+                                 `🪪 *STATUS LESEN*: ${license}\n` +
+                                 (notes ? `📝 *ULASAN KHAS*: ${notes}\n` : '') +
+                                 `\nSila bantu saya menganalisis kelayakan kredit bersama bank-bank panel. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(textMessage);
+            const consultantPhone = "60123456789"; 
+            const finalUrl = `https://wa.me/${consultantPhone}?text=${encodedMessage}`;
+
+            triggerNotification(
+                "Profil Kelayakan Dijana", 
+                "Maklumat anda telah sedia. Kami akan membimbing anda ke draf permohonan WhatsApp untuk perundingan sulit sekarang.", 
+                function() {
+                    window.open(finalUrl, '_blank');
+                }
+            );
+        }
+
+        // Handle Quick Hero Form (image_274244.png layout form)
+        function submitHeroForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('heroName').value;
+            const phone = document.getElementById('heroPhone').value;
+            const interest = document.getElementById('heroInterest').value;
+
+            const textMessage = `Salam Haris Azizan, saya berminat memulakan urusan pembelian kereta melalui borang pantas di bahagian utama.\n\n` +
+                                 `👤 *NAMA PENUH*: ${name}\n` +
+                                 `📞 *NO. WHATSAPP*: ${phone}\n` +
+                                 `🎯 *SAYA BERMINAT UNTUK*: ${interest}\n\n` +
+                                 `Sila hubungi saya segera untuk rundingan eksklusif. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(textMessage);
+            const consultantPhone = "60123456789"; 
+            const finalUrl = `https://wa.me/${consultantPhone}?text=${encodedMessage}`;
+
+            triggerNotification(
+                "Peti Rundingan Dijana", 
+                "Terima kasih atas minat anda. Sila hantar draf mesej WhatsApp yang telah kami sediakan untuk dianalisis oleh Haris sekarang.", 
+                function() {
+                    window.open(finalUrl, '_blank');
+                }
+            );
+        }
+
+        // Interactivity of FAQ Accordion
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                
+                if (content.classList.contains('hidden')) {
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Initialize setup on window load
+        window.onload = function() {
+            updateCalculations();
+        }
+    </script>
+</body>
+</html>
