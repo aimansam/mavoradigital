@@ -29,7 +29,7 @@ export const header = {
 
 export const hero = {
   kicker: "Website freelance untuk bisnes yang fokus pada jualan",
-  title: ["Website", "yang", "bantu", "bisnes", "jana", "jualan."],
+  title: ["Tukarkan", "clicks", "kepada", "revenue"],
   copy: "Website anda perlu buat tawaran mudah difahami, mudah dipercayai, dan mudah untuk pelanggan ambil tindakan. Mavora Digital membina halaman yang kemas supaya pelawat berminat menjadi pertanyaan sebenar.",
   proof: "Tawaran jelas / Kepercayaan pembeli / Paparan laju / Laluan pertanyaan terus",
   primaryCta: "Hantar Permintaan Projek",
@@ -46,7 +46,7 @@ export const motionBand = [
 
 export const studioStatement = {
   kicker: "Mavora Digital",
-  title: "Fokus studio kecil. Website dibina untuk menjual.",
+  title: "Studio kecil merealisasikan idea founder.",
   intro: "Mavora Digital bekerja dengan founder dan bisnes servis yang perlukan website yang orang boleh faham, percaya, dan terus bertindak tanpa proses agensi yang panjang.",
   principles: [
     {

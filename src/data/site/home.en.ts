@@ -47,7 +47,7 @@ export const motionBand = [
 
 export const studioStatement = {
   kicker: "Mavora Digital",
-  title: "Small studio focus. Websites built to sell.",
+  title: "Small Studio make founder ideas alive.",
   intro: "Mavora Digital builds for founders and local service businesses that need a site visitors understand, trust, and act on — without the overhead of a large agency.",
   principles: [
     {
