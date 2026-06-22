@@ -233,16 +233,16 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "";
           />
         </div>
         <ul class="pf-slider" id="pf-slider">
-          {portfolioDemos.map((demo) => (
-            <li class="pf-item" style={`background-image: url('${demo.image}')`} data-slug={demo.slug}>
-              <div class="pf-content">
-                <p class="pf-eyebrow">{demo.businessType}</p>
-                <h2 class="pf-title">{demo.name}</h2>
-                <p class="pf-desc">{demo.headline}</p>
-                <a href={`/portfolio/${demo.slug}/`} class="pf-cta">View demo</a>
-              </div>
-            </li>
-          ))}
+    {portfolioDemos.filter(demo => demo.slug!== 'kopi-jiran-2' && demo.slug!== 'kopi-jiran-3' && demo.slug!== 'kopi-jiran-4').map((demo) => (
+      <li class="pf-item" style={`background-image: url('${demo.image}')`} data-slug={demo.slug}>
+        <div class="pf-content">
+          <p class="pf-eyebrow">{demo.businessType}</p>
+          <h2 class="pf-title">{demo.name}</h2>
+          <p class="pf-desc">{demo.headline}</p>
+          <a href={`/portfolio/${demo.slug}/`} class="pf-cta">View demo</a>
+        </div>
+      </li>
+    ))}
         </ul>
         <nav class="pf-nav">
           <button class="pf-btn pf-prev" id="pf-prev" aria-label="Previous demo" type="button">
