@@ -1,0 +1,7 @@
+---
+import HtmlDemoFrame from "../../components/HtmlDemoFrame.astro";
+import type { PortfolioDemo } from "../../data/portfolioDemos";
+interface Props { demo: PortfolioDemo; }
+const { demo } = Astro.props;
+---
+<HtmlDemoFrame demo={demo} />

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopi Jiran | Sebuah Santuari Warisan di Kajang</title>
+    <meta name="description" content="Alami keanggunan ketenangan. Kopi Jiran menawarkan hidangan warisan, kopi bru manual, dan suasana klasik di Kajang.">
+    
+    <!-- Premium Google Fonts: Cormorant Garamond for high-end serif, Montserrat for elegant sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for refined Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'luxe-alabaster': '#FDFBF7', // Very light, warm ivory
+                        'luxe-onyx': '#111111',      // Almost black, deep charcoal
+                        'luxe-espresso': '#2A2522',  // Deep rich brown
+                        'luxe-gold': '#C5A059',      // Antique gold/brass
+                        'luxe-gold-light': '#E8D8B7',// Lighter gold for subtle backgrounds
+                        'luxe-stone': '#8A847C'      // Elegant mid-grey/brown
+                    },
+                    fontFamily: {
+                        'serif': ['"Cormorant Garamond"', 'serif'],
+                        'sans': ['Montserrat', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        'widest': '.25em',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #111111;
+        }
+        
+        /* Cinematic Dark Overlay */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(17, 17, 17, 0.4) 0%, rgba(17, 17, 17, 0.8) 100%);
+        }
+        
+        /* Elegant Gold Gradient Text */
+        .gold-text {
+            background: linear-gradient(135deg, #C5A059 0%, #E8D8B7 50%, #C5A059 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glassmorphism for Scrolled Nav */
+        .nav-scrolled {
+            background-color: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        /* Refined Image Hover Zoom */
+        .img-hover-zoom {
+            transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .group:hover .img-hover-zoom {
+            transform: scale(1.05);
+        }
+
+        /* Delicate Hairline border */
+        .hairline-border {
+            border: 1px solid rgba(197, 160, 89, 0.3);
+        }
+        
+        /* Custom noise texture for depth */
+        .noise-bg {
+            position: relative;
+        }
+        .noise-bg::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-luxe-onyx selection:bg-luxe-gold selection:text-white">
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent py-6">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex justify-between items-center h-12">
+                <!-- Brand Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <span class="font-serif text-3xl tracking-wide text-white group-hover:text-luxe-gold transition-colors duration-300" id="nav-logo">Kopi Jiran</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-12 items-center">
+                    <a href="#ethos" class="text-white hover:text-luxe-gold font-sans text-xs uppercase tracking-widest transition-colors duration-300" id="nav-link-1">Falsafah Kami</a>
+                    <a href="#curations" class="text-white hover:text-luxe-gold font-sans text-xs uppercase tracking-widest transition-colors duration-300" id="nav-link-2">Koleksi Sajian</a>
+                    <a href="#reservations" class="border border-white text-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-white hover:text-luxe-onyx transition-all duration-300" id="nav-cta">
+                        Kunjungi Kami
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-luxe-gold focus:outline-none transition-colors duration-300">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-luxe-alabaster w-full absolute left-0 top-full border-b border-luxe-gold/20 shadow-2xl">
+            <div class="px-6 py-8 space-y-6 text-center">
+                <a href="#ethos" class="block text-luxe-onyx font-serif text-2xl italic hover:text-luxe-gold transition-colors">Falsafah Kami</a>
+                <a href="#curations" class="block text-luxe-onyx font-serif text-2xl italic hover:text-luxe-gold transition-colors">Koleksi Sajian</a>
+                <a href="#reservations" class="inline-block mt-4 border border-luxe-onyx text-luxe-onyx px-8 py-3 text-xs uppercase tracking-widest hover:bg-luxe-onyx hover:text-white transition-colors">Kunjungi Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 w-full h-full">
+            <!-- High-end, moody coffee pouring image -->
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Elegant manual coffee brewing" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 animate-[pulse_30s_ease-in-out_infinite_alternate]" />
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center flex flex-col items-center mt-16">
+            <span class="text-luxe-gold text-xs font-semibold uppercase tracking-[0.3em] mb-6 block">Kajang, Selangor</span>
+            
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight font-light">
+                Sebuah Santuari <br/>
+                <span class="italic text-luxe-gold">Warisan.</span>
+            </h1>
+            
+            <p class="text-sm md:text-base text-gray-300 max-w-2xl font-sans tracking-wide leading-relaxed mb-12">
+                Mengangkat seni ketenangan. Alami kurasi sajian tempatan yang teliti dan kopi bru manual yang mahir di dalam keanggunan estet Melayu klasik.
+            </p>
+            
+            <a href="#curations" class="group flex items-center gap-4 text-white hover:text-luxe-gold transition-colors duration-300">
+                <span class="text-xs uppercase tracking-[0.2em]">Terokai Menu</span>
+                <span class="w-12 h-[1px] bg-luxe-gold group-hover:w-16 transition-all duration-300 block"></span>
+            </a>
+        </div>
+        
+        <!-- Elegant scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
+            <span class="w-[1px] h-12 bg-gradient-to-b from-luxe-gold to-transparent"></span>
+        </div>
+    </header>
+
+    <div class="bg-luxe-onyx py-8 border-b border-luxe-gold/20 relative z-20">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-10 md:gap-24 text-luxe-gold-light text-xs font-sans tracking-widest uppercase">
+            <div class="flex items-center gap-3">
+                <span class="text-luxe-gold">&diams;</span> Ketukangan Teliti
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-luxe-gold">&diams;</span> Resipi Warisan
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-luxe-gold">&diams;</span> Suasana Elegan
+            </div>
+        </div>
+    </div>
+
+    <section id="ethos" class="py-32 px-6 bg-luxe-alabaster relative noise-bg">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                
+                <!-- Editorial Image Collage -->
+                <div class="relative order-2 lg:order-1 h-[600px] flex items-center justify-center">
+                    <div class="absolute w-3/4 h-[80%] left-0 top-0 z-10">
+                        <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Premium cafe interior" class="w-full h-full object-cover shadow-2xl hairline-border" />
+                    </div>
+                    <div class="absolute w-2/3 h-[60%] right-0 bottom-0 z-20 transform translate-y-12 translate-x-8 bg-luxe-alabaster p-3 shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Manual coffee brewing" class="w-full h-full object-cover hairline-border" />
+                    </div>
+                </div>
+
+                <!-- Refined Copywriting -->
+                <div class="order-1 lg:order-2 lg:pl-10">
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="w-8 h-[1px] bg-luxe-gold block"></span>
+                        <span class="text-luxe-gold text-xs tracking-[0.2em] uppercase font-semibold">Falsafah Kami</span>
+                    </div>
+                    
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-luxe-onyx mb-8 leading-tight">
+                        Keanggunan dalam <br/> <i class="text-luxe-stone">Ketenangan.</i>
+                    </h2>
+                    
+                    <p class="text-luxe-espresso/80 text-lg md:text-xl font-serif leading-relaxed mb-6">
+                        Dalam era yang didorong oleh kelajuan, kemewahan sebenar terletak pada kemampuan meluangkan masa. Kopi Jiran adalah satu penghormatan kepada zaman keemasan warisan Melayu, di mana setiap butiran dititikberatkan dan setiap rasa dipelihara.
+                    </p>
+                    
+                    <p class="text-sm font-sans tracking-wide text-luxe-stone leading-loose mb-10">
+                        Kami telah mengubah estetika kampung klasik dengan teliti menjadi sebuah santuari tempat makan yang elegan. Daripada kopi bru manual kami, hinggalah kepada resipi tradisi keluarga yang dihargai, kami menjemput anda untuk berhenti sejenak, menghayati, dan menikmati kecemerlangan kulinari.
+                    </p>
+                    
+                    <a href="#reservations" class="inline-block border-b-2 border-luxe-gold text-luxe-onyx pb-1 uppercase tracking-widest text-xs font-semibold hover:text-luxe-gold transition-colors duration-300">
+                        Rancang Kunjungan Anda
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="curations" class="py-32 px-6 bg-white border-t border-luxe-gold/10">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center mb-20">
+                <span class="text-luxe-gold text-xs tracking-[0.2em] uppercase font-semibold block mb-4">Koleksi Terpilih</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-luxe-onyx mb-6">Hidangan Istimewa</h2>
+                <div class="w-1px h-16 bg-luxe-gold mx-auto mt-8"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                
+                <!-- Signature 1 -->
+                <div class="group cursor-pointer">
+                    <div class="overflow-hidden mb-6 aspect-[4/5] relative">
+                        <div class="absolute inset-0 bg-luxe-onyx/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Moka Pot Coffee" class="w-full h-full object-cover img-hover-zoom" />
+                    </div>
+                    <div class="text-center">
+                        <span class="text-luxe-gold text-[10px] tracking-widest uppercase mb-2 block">Seni Seduhan</span>
+                        <h3 class="font-serif text-2xl text-luxe-onyx mb-3">Moka Pot Artisan</h3>
+                        <p class="text-xs font-sans text-luxe-stone tracking-wide leading-relaxed px-4">
+                            Dibru secara manual dengan teliti menggunakan nyalaan api kecil, mengekstrak profil rasa yang sangat aromatik dan kaya.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Signature 2 -->
+                <div class="group cursor-pointer md:mt-12">
+                    <div class="overflow-hidden mb-6 aspect-[4/5] relative hairline-border p-2">
+                        <div class="absolute inset-2 bg-luxe-onyx/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <img src="https://images.unsplash.com/photo-1626804475297-41609ea0d4eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nasi Lemak" class="w-full h-full object-cover img-hover-zoom" />
+                        <!-- Subtle premium badge -->
+                        <div class="absolute top-6 right-6 z-20 bg-luxe-alabaster/90 backdrop-blur text-luxe-onyx text-[9px] uppercase tracking-widest px-3 py-1 shadow-sm border border-luxe-gold/30">
+                            Pilihan Chef
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-luxe-gold text-[10px] tracking-widest uppercase mb-2 block">Resipi Warisan</span>
+                        <h3 class="font-serif text-2xl text-luxe-onyx mb-3">Nasi Lemak Diraja</h3>
+                        <p class="text-xs font-sans text-luxe-stone tracking-wide leading-relaxed px-4">
+                            Beras basmati wangi dimasak bersama santan pekat, dipadankan dengan sambal pusaka kami yang dimasak perlahan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Signature 3 -->
+                <div class="group cursor-pointer">
+                    <div class="overflow-hidden mb-6 aspect-[4/5] relative">
+                        <div class="absolute inset-0 bg-luxe-onyx/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Traditional Pastries" class="w-full h-full object-cover img-hover-zoom" />
+                    </div>
+                    <div class="text-center">
+                        <span class="text-luxe-gold text-[10px] tracking-widest uppercase mb-2 block">Pelengkap Manis</span>
+                        <h3 class="font-serif text-2xl text-luxe-onyx mb-3">Keanggunan Kuih</h3>
+                        <p class="text-xs font-sans text-luxe-stone tracking-wide leading-relaxed px-4">
+                            Pilihan manisan tradisional Melayu yang diperhalusi, diolah segar setiap hari menggunakan pandan premium dan gula melaka.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-20">
+                 <a href="#reservations" class="inline-block border border-luxe-onyx text-luxe-onyx px-10 py-4 text-xs uppercase tracking-widest hover:bg-luxe-onyx hover:text-white transition-all duration-500">
+                    Terokai Menu Penuh di Lokasi
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-luxe-onyx relative overflow-hidden">
+        <!-- Subtle gold line pattern -->
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(45deg, #C5A059 0, #C5A059 1px, transparent 0, transparent 50%); background-size: 20px 20px;"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Gold_Star.svg" alt="Star" class="w-6 h-6 mx-auto mb-8 opacity-80" style="filter: sepia(1) hue-rotate(-30deg) saturate(2);" />
+            
+            <h3 class="font-serif text-3xl md:text-5xl text-luxe-alabaster leading-snug font-light italic mb-12">
+                "Satu kejayaan mutlak dalam menggabungkan nostalgia dan keanggunan. Kopi Jiran mengangkat hidangan kampung tradisional menjadi satu pengalaman deria yang luar biasa."
+            </h3>
+            
+            <div class="flex flex-col items-center justify-center gap-2">
+                <p class="text-luxe-gold text-xs uppercase tracking-widest font-semibold">Pengkritik Tempatan</p>
+                <p class="text-luxe-stone text-xs tracking-wide">Ulasan Kulinari Kajang</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservations" class="bg-luxe-espresso text-luxe-alabaster py-24 px-6 relative border-t-4 border-luxe-gold">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24">
+                
+                <!-- Brand & Vibe -->
+                <div class="md:col-span-5 lg:col-span-4">
+                    <h2 class="font-serif text-4xl mb-6 text-white tracking-wide">Kopi Jiran.</h2>
+                    <p class="text-luxe-stone font-serif text-lg italic mb-10 leading-relaxed">
+                        Memelihara masa lalu. Mengkurasi masa kini. <br/>Sebuah perniagaan warisan milik Muslim.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-luxe-stone hover:text-luxe-gold transition-colors duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-luxe-stone hover:text-luxe-gold transition-colors duration-300">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Logistics (Exclusive approach) -->
+                <div class="md:col-span-7 lg:col-span-4">
+                    <h4 class="text-luxe-gold text-xs font-semibold uppercase tracking-[0.2em] mb-8">Waktu Beroperasi</h4>
+                    <p class="text-sm text-luxe-stone mb-6 leading-relaxed">
+                        Bagi memastikan kualiti perkhidmatan dan kecemerlangan kulinari yang tertinggi, estet kami hanya menerima tetamu eksklusif empat hari seminggu.
+                    </p>
+                    <ul class="space-y-4 font-sans text-sm tracking-wide">
+                        <li class="flex justify-between items-center border-b border-luxe-stone/20 pb-3">
+                            <span class="text-white">Khamis &mdash; Ahad</span> 
+                            <span class="text-luxe-gold">11:00 PAGI &mdash; 5:00 PETANG</span>
+                        </li>
+                        <li class="flex justify-between items-center text-luxe-stone/50 italic pt-2">
+                            <span>Isnin &mdash; Rabu</span> 
+                            <span>Tutup untuk Persediaan</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Location -->
+                <div class="md:col-span-12 lg:col-span-4">
+                    <h4 class="text-luxe-gold text-xs font-semibold uppercase tracking-[0.2em] mb-8">Estet Kami</h4>
+                    <p class="font-serif text-xl leading-relaxed text-white mb-8">
+                        Lot 13637, Jalan Langat,<br/>
+                        Taman Sri Langat, 43000<br/>
+                        Kajang, Selangor, Malaysia
+                    </p>
+                    
+                    <a href="https://maps.google.com" target="_blank" class="group flex items-center gap-4 text-luxe-stone hover:text-luxe-gold transition-colors duration-300">
+                        <span class="w-8 h-[1px] bg-luxe-stone group-hover:bg-luxe-gold transition-colors duration-300"></span>
+                        <span class="text-xs uppercase tracking-[0.2em]">Dapatkan Arah</span>
+                    </a>
+                </div>
+
+            </div>
+            
+            <div class="mt-24 pt-8 border-t border-luxe-stone/20 flex flex-col md:flex-row justify-between items-center text-luxe-stone/60 text-xs uppercase tracking-widest font-sans">
+                <p>&copy; <span id="year"></span> Kopi Jiran Warisan. Hak cipta terpelihara.</p>
+                <p class="mt-4 md:mt-0 tracking-[0.3em]">Seni Ketenangan</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Elegant Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const logo = document.getElementById('nav-logo');
+        const link1 = document.getElementById('nav-link-1');
+        const link2 = document.getElementById('nav-link-2');
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navCta = document.getElementById('nav-cta');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                // Scrolled state - Glassmorphism & Dark Text
+                navbar.classList.add('nav-scrolled', 'py-4');
+                navbar.classList.remove('py-6', 'bg-transparent');
+                
+                logo.classList.replace('text-white', 'text-luxe-onyx');
+                
+                link1.classList.replace('text-white', 'text-luxe-onyx');
+                link2.classList.replace('text-white', 'text-luxe-onyx');
+                
+                navCta.classList.replace('border-white', 'border-luxe-onyx');
+                navCta.classList.replace('text-white', 'text-luxe-onyx');
+                navCta.classList.replace('hover:bg-white', 'hover:bg-luxe-onyx');
+                navCta.classList.replace('hover:text-luxe-onyx', 'hover:text-white');
+                
+                mobileBtn.classList.replace('text-white', 'text-luxe-onyx');
+                
+            } else {
+                // Top state - Transparent & White Text
+                navbar.classList.remove('nav-scrolled', 'py-4');
+                navbar.classList.add('py-6', 'bg-transparent');
+                
+                logo.classList.replace('text-luxe-onyx', 'text-white');
+                
+                link1.classList.replace('text-luxe-onyx', 'text-white');
+                link2.classList.replace('text-luxe-onyx', 'text-white');
+                
+                navCta.classList.replace('border-luxe-onyx', 'border-white');
+                navCta.classList.replace('text-luxe-onyx', 'text-white');
+                navCta.classList.replace('hover:bg-luxe-onyx', 'hover:bg-white');
+                navCta.classList.replace('hover:text-white', 'hover:text-luxe-onyx');
+                
+                mobileBtn.classList.replace('text-luxe-onyx', 'text-white');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

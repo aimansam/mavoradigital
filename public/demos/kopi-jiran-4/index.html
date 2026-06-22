@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopi Jiran | Santuari Warisan Melayu di Kajang</title>
+    <meta name="description" content="Kopi Jiran menawarkan pengalaman kulinari warisan Melayu, kopi bru manual, dan suasana klasik beranda Nusantara di Kajang.">
+    
+    <!-- Premium Fonts: Playfair Display untuk sentuhan klasik/sastera, Lora untuk teks bacaan yang elegan -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warisan-jati': '#2C1E16',    // Dark Teak Wood / Coklat Gelap
+                        'warisan-krim': '#FDFBF7',    // Kain Belacu / Warm Off-white
+                        'warisan-songket': '#C5A059', // Songket Gold / Emas Pudar
+                        'warisan-rimba': '#1E382B',   // Hijau Rimba / Deep Forest Green
+                        'warisan-merah': '#8B3A3A'    // Merah Bata / Terracotta Accent
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'body': ['"Lora"', 'serif'],
+                    },
+                    backgroundImage: {
+                        // Corak Anyaman Halus
+                        'anyaman-pattern': "url('data:image/svg+xml,%3Csvg width=\\'40\\' height=\\'40\\' viewBox=\\'0 0 40 40\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'%23C5A059\\' fill-opacity=\\'0.05\\' fill-rule=\\'evenodd\\'%3E%3Cpath d=\\'M0 40L40 0H20L0 20M40 40V20L20 40\\'/ %3E%3C/g%3E%3C/svg%3E')",
+                        // Motif Bunga Halus untuk pembahagi
+                        'motif-bunga': "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cpath d=\\'M30 0l10 20 20 10-20 10-10 20-10-20L0 30l20-10L30 0z\\' fill=\\'%23C5A059\\' fill-opacity=\\'0.1\\'/%3E%3C/svg%3E')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #2C1E16;
+        }
+
+        /* Bingkai Berukir (Simulasi Tingkap/Bingkai Kayu Tradisional) */
+        .bingkai-kayu {
+            position: relative;
+            padding: 8px;
+            background-color: #FDFBF7;
+            border: 1px solid #C5A059;
+            box-shadow: inset 0 0 0 4px #FDFBF7, inset 0 0 0 5px #2C1E16, 0 10px 25px -5px rgba(44, 30, 22, 0.15);
+        }
+        
+        .bingkai-gambar {
+            border: 4px double #C5A059;
+            padding: 4px;
+            background: #FDFBF7;
+        }
+
+        /* Nav Transition Styles */
+        .nav-transparent {
+            background-color: transparent;
+            border-bottom: 1px solid transparent;
+        }
+        .nav-solid {
+            background-color: rgba(253, 251, 247, 0.98);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            box-shadow: 0 4px 20px rgba(44, 30, 22, 0.05);
+        }
+
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Imej Hover Klasik (Sepia to Color) */
+        .img-warisan {
+            transition: all 1s ease;
+            filter: sepia(30%) contrast(110%);
+        }
+        .group:hover .img-warisan {
+            transform: scale(1.05);
+            filter: sepia(0%) contrast(100%);
+        }
+
+        ::selection {
+            background-color: #C5A059;
+            color: #2C1E16;
+        }
+
+        /* Pembahagi Motif Pucuk Rebung */
+        .pucuk-rebung-divider {
+            height: 15px;
+            background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, #C5A059 10px, #C5A059 11px), repeating-linear-gradient(45deg, transparent, transparent 10px, #C5A059 10px, #C5A059 11px);
+            background-size: 22px 15px;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body class="font-body antialiased bg-anyaman-pattern">
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-700 nav-transparent py-6">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex justify-between items-center h-12">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span id="nav-logo" class="font-serif text-2xl md:text-3xl font-bold tracking-wider text-warisan-jati transition-colors duration-300">
+                        KOPI JIRAN.
+                    </span>
+                </div>
+                
+                <!-- Desktop Links -->
+                <div class="hidden md:flex space-x-12 items-center">
+                    <a href="#kisah" class="text-warisan-jati hover:text-warisan-songket font-body text-xs font-semibold uppercase tracking-[0.25em] transition-colors duration-300">Riwayat</a>
+                    <a href="#menu" class="text-warisan-jati hover:text-warisan-songket font-body text-xs font-semibold uppercase tracking-[0.25em] transition-colors duration-300">Santapan</a>
+                    <a href="#lokasi" class="border border-warisan-jati text-warisan-jati px-7 py-2.5 text-xs font-semibold uppercase tracking-[0.25em] hover:bg-warisan-jati hover:text-warisan-krim transition-all duration-500">
+                        Singgah Sebentar
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-warisan-jati hover:text-warisan-songket focus:outline-none transition-colors duration-300">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-warisan-krim w-full absolute left-0 top-full border-b border-warisan-songket/30 shadow-2xl">
+            <div class="px-6 py-10 space-y-6 flex flex-col items-center bg-anyaman-pattern">
+                <a href="#kisah" class="text-warisan-jati font-serif text-2xl italic hover:text-warisan-songket transition-colors">Riwayat Kami</a>
+                <a href="#menu" class="text-warisan-jati font-serif text-2xl italic hover:text-warisan-songket transition-colors">Santapan Warisan</a>
+                <a href="#lokasi" class="mt-6 border border-warisan-jati text-warisan-jati px-10 py-3 text-xs uppercase tracking-[0.25em] hover:bg-warisan-jati hover:text-warisan-krim">Singgah Sebentar</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden bg-warisan-jati text-warisan-krim border-b-8 border-warisan-songket">
+        <div class="absolute inset-0 bg-motif-bunga opacity-5"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+                
+                <div class="order-2 lg:order-1 text-center lg:text-left reveal">
+                    <div class="flex items-center justify-center lg:justify-start gap-4 mb-8">
+                        <span class="w-16 h-[1px] bg-warisan-songket block"></span>
+                        <span class="text-warisan-songket text-xs font-bold uppercase tracking-[0.3em]">Santuari Estetika Melayu</span>
+                        <span class="w-16 h-[1px] bg-warisan-songket block lg:hidden"></span>
+                    </div>
+                    
+                    <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl mb-6 leading-[1.1] text-warisan-krim">
+                        Menjunjung Warisan, <br/>
+                        <span class="italic text-warisan-songket font-light">Menyantuni Rasa.</span>
+                    </h1>
+                    
+                    <p class="text-base md:text-lg text-warisan-krim/80 max-w-lg mx-auto lg:mx-0 font-body leading-relaxed mb-10 font-light">
+                        Tinggalkan hiruk-pikuk kota. Beristirehatlah di anjung kami—sebuah pelarian di mana setiap cangkir kopi artisan dan hidangan pusaka membangkitkan rindu pada memori halaman kampung yang damai.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
+                        <a href="#menu" class="bg-warisan-songket text-warisan-jati px-8 py-4 text-xs font-bold uppercase tracking-[0.25em] hover:bg-warisan-krim transition-colors duration-500 w-full sm:w-auto text-center border border-transparent">
+                            Singkap Menu
+                        </a>
+                        <a href="#lokasi" class="text-warisan-krim text-xs font-bold uppercase tracking-[0.25em] hover:text-warisan-songket transition-colors duration-300 flex items-center gap-2 group">
+                            <span>Susun Perjalanan</span>
+                            <i class="fas fa-long-arrow-alt-right transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gambar Hero Berbingkai Kayu -->
+                <div class="order-1 lg:order-2 relative flex justify-center lg:justify-end reveal">
+                    <div class="w-full max-w-md aspect-[3/4] bingkai-kayu">
+                        <div class="w-full h-full overflow-hidden relative">
+                            <div class="absolute inset-0 bg-warisan-jati/20 z-10 mix-blend-overlay"></div>
+                            <!-- Updated Unsplash ID for reliability -->
+                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/1000x1333/2C1E16/C5A059?text=Suasana+Anjung+Kopi+Jiran'" 
+                                 alt="Suasana Premium Kopi Jiran" 
+                                 class="w-full h-full object-cover img-warisan" />
+                        </div>
+                    </div>
+                    
+                    <!-- Lencana Tradisi -->
+                    <div class="absolute -bottom-6 -left-4 lg:left-8 w-32 h-32 rounded-full border-2 border-dashed border-warisan-songket flex items-center justify-center bg-warisan-krim p-2 shadow-2xl z-20">
+                        <div class="w-full h-full rounded-full border border-warisan-jati flex flex-col items-center justify-center bg-warisan-krim">
+                            <i class="fas fa-seedling text-warisan-rimba mb-1"></i>
+                            <span class="text-warisan-jati font-serif text-[10px] tracking-widest uppercase text-center leading-tight">Resipi<br/>Turun<br/>Temurun</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-warisan-krim py-12 border-b border-warisan-songket/20 reveal">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-8 md:gap-24 text-warisan-jati text-[10px] sm:text-xs font-body tracking-[0.25em] uppercase font-semibold">
+            <div class="flex items-center gap-4">
+                <i class="fas fa-leaf text-warisan-songket text-lg"></i>
+                <span>Bahan Kurasi Teliti</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <i class="fas fa-fire text-warisan-songket text-lg"></i>
+                <span>Seni Seduhan Perlahan</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <i class="fas fa-door-open text-warisan-songket text-lg"></i>
+                <span>Memori Halaman Terukir</span>
+            </div>
+        </div>
+    </div>
+
+    <section id="kisah" class="py-32 px-6 overflow-hidden relative">
+        <!-- Elemen Grafik Belakang -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-motif-bunga opacity-20 -mr-20 -mt-20 rounded-full"></div>
+        
+        <div class="max-w-7xl mx-auto relative">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                
+                <!-- Gambar Cerita Bertindih -->
+                <div class="relative reveal">
+                    <div class="pucuk-rebung-divider absolute -left-10 top-1/4 w-32 rotate-90 z-0"></div>
+                    <div class="grid grid-cols-2 gap-6 relative z-10">
+                        <div class="mt-16 bingkai-gambar group overflow-hidden bg-warisan-krim shadow-2xl h-64 sm:h-80">
+                            <!-- Updated Image -->
+                            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x1000/2C1E16/C5A059?text=Seduhan+Kopi+Tradisi'" 
+                                 alt="Seduhan Kopi" class="w-full h-full object-cover img-warisan" />
+                        </div>
+                        <div class="bingkai-gambar group overflow-hidden bg-warisan-krim shadow-2xl h-64 sm:h-80 -mt-8">
+                            <!-- Updated Image -->
+                            <img src="https://images.unsplash.com/photo-1626804475297-41607ea0ba4e?auto=format&fit=crop&w=800&q=80" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x1000/2C1E16/C5A059?text=Masakan+Dapur+Kayu'" 
+                                 alt="Masakan Tradisi" class="w-full h-full object-cover img-warisan" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teks Cerita -->
+                <div class="lg:pl-10 reveal">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-feather-alt text-warisan-songket"></i>
+                        <span class="text-warisan-songket text-xs font-bold uppercase tracking-[0.3em]">Coretan Permulaan</span>
+                    </div>
+                    
+                    <h2 class="font-serif text-4xl md:text-5xl text-warisan-jati mb-8 leading-tight">
+                        Dari Halaman Rumah Ke <br/> <i class="text-warisan-rimba font-light">Santuari Estetika.</i>
+                    </h2>
+                    
+                    <div class="border-l-2 border-warisan-songket pl-6 mb-8">
+                        <p class="text-warisan-jati/80 text-xl font-serif italic leading-relaxed">
+                            "Kopi Jiran bermula dengan nawaitu yang ringkas: menyajikan kopi yang ikhlas dari laman rumah. Kini, ia berevolusi menjadi ruang di mana warisan dihargai."
+                        </p>
+                    </div>
+                    
+                    <p class="text-base font-body text-warisan-jati/70 leading-loose mb-10 font-light">
+                        Kami percaya bahawa kemewahan sebenar terletak pada masa dan ketelitian. Ruang makan kami dihiasi perabot vintaj era 70-an yang dipelihara rapi. Daripada aroma kopi yang dibru menggunakan kaedah manual yang memakan masa, hinggalah kelazatan lauk-pauk resipi nenda yang dimasak perlahan di atas dapur, kami membawakan anda satu perjalanan deria yang menggamit memori nostalgia.
+                    </p>
+                    
+                    <a href="#lokasi" class="inline-flex items-center gap-4 text-warisan-jati font-bold text-xs uppercase tracking-[0.25em] hover:text-warisan-songket transition-colors duration-300 group">
+                        <span class="border-b border-warisan-jati group-hover:border-warisan-songket pb-1 transition-colors">Susur Galur Kami</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-32 px-6 bg-warisan-jati text-warisan-krim relative border-y border-warisan-songket/30">
+        <!-- Latar Belakang Pucuk Rebung Halus -->
+        <div class="absolute inset-0 bg-anyaman-pattern opacity-5 mix-blend-overlay"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            
+            <div class="text-center mb-20 reveal">
+                <span class="text-warisan-songket text-xs font-bold tracking-[0.3em] uppercase mb-4 block">Santapan Teras</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-warisan-krim">Pusaka Kulinari Melayu</h2>
+                <div class="w-24 h-[1px] bg-warisan-songket mx-auto mt-8"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                
+                <!-- Menu Item 1 -->
+                <div class="bg-warisan-krim text-warisan-jati p-3 shadow-xl reveal group cursor-pointer bingkai-gambar transform transition-transform hover:-translate-y-2 duration-500">
+                    <div class="overflow-hidden mb-6 aspect-[4/5] relative bg-warisan-jati/10 border border-warisan-songket/30">
+                        <img src="https://images.unsplash.com/photo-1495474472207-464a8d9cb9ce?auto=format&fit=crop&w=800&q=80" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x1000/2C1E16/C5A059?text=Kopi+Bru+Manual'" 
+                             alt="Kopi Artisan" class="w-full h-full object-cover img-warisan" />
+                        <div class="absolute top-4 right-4 bg-warisan-jati text-warisan-songket px-4 py-1.5 text-[9px] uppercase tracking-[0.2em] font-bold border border-warisan-songket/50 shadow-md">Tandatangan</div>
+                    </div>
+                    <div class="text-center px-4 pb-6">
+                        <h3 class="font-serif text-2xl text-warisan-rimba mb-3">Kopi Bru Manual</h3>
+                        <p class="text-sm font-body text-warisan-jati/80 leading-relaxed font-light">
+                            Nadi Kopi Jiran. Biji kopi tempatan terpilih diekstrak secara perlahan melalui teknik 'Moka Pot', menghasilkan profil rasa yang mendalam, berani, dan membelai jiwa.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2 -->
+                <div class="bg-warisan-krim text-warisan-jati p-3 shadow-xl reveal group cursor-pointer bingkai-gambar transform transition-transform hover:-translate-y-2 duration-500 md:translate-y-12">
+                    <div class="overflow-hidden mb-6 aspect-[4/5] relative bg-warisan-jati/10 border border-warisan-songket/30">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x1000/2C1E16/C5A059?text=Nasi+Lemak+Pusaka'" 
+                             alt="Nasi Lemak Diraja" class="w-full h-full object-cover img-warisan" />
+                        <div class="absolute top-4 right-4 bg-warisan-merah text-warisan-krim px-4 py-1.5 text-[9px] uppercase tracking-[0.2em] font-bold border border-warisan-krim/20 shadow-md">Resipi Bonda</div>
+                    </div>
+                    <div class="text-center px-4 pb-6">
+                        <h3 class="font-serif text-2xl text-warisan-rimba mb-3">Nasi Lemak Pusaka</h3>
+                        <p class="text-sm font-body text-warisan-jati/80 leading-relaxed font-light">
+                            Karya agung dapur kami. Beras wangi beraroma pandan dan santan asli, disajikan lengkap bersama sambal tumis warisan yang dimasak perlahan atas api kecil selama 6 jam.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3 -->
+                <div class="bg-warisan-krim text-warisan-jati p-3 shadow-xl reveal group cursor-pointer bingkai-gambar transform transition-transform hover:-translate-y-2 duration-500">
+                    <div class="overflow-hidden mb-6 aspect-[4/5] relative bg-warisan-jati/10 border border-warisan-songket/30">
+                        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800&q=80" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x1000/2C1E16/C5A059?text=Bingka+Manisan'" 
+                             alt="Pencuci Mulut" class="w-full h-full object-cover img-warisan" />
+                    </div>
+                    <div class="text-center px-4 pb-6">
+                        <h3 class="font-serif text-2xl text-warisan-rimba mb-3">Bingka & Manisan</h3>
+                        <p class="text-sm font-body text-warisan-jati/80 leading-relaxed font-light">
+                            Pelengkap santapan yang manis. Seleksi kuih-muih tradisional dan pastri artisan yang dibakar segar setiap subuh. Kudapan ringkas yang menjanjikan senyuman tulus.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-20 md:mt-32 reveal">
+                 <a href="#lokasi" class="inline-block border border-warisan-songket text-warisan-songket px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] hover:bg-warisan-songket hover:text-warisan-jati transition-all duration-500">
+                    Alami Sepenuhnya di Estet Kami
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-warisan-krim relative overflow-hidden text-center px-6">
+        <div class="pucuk-rebung-divider w-full absolute top-0 left-0"></div>
+        <div class="pucuk-rebung-divider w-full absolute bottom-0 left-0"></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10 reveal bingkai-kayu p-10 md:p-16">
+            <i class="fas fa-quote-left text-4xl text-warisan-songket/40 mb-8 block"></i>
+            
+            <h3 class="font-serif text-2xl md:text-4xl text-warisan-rimba leading-relaxed font-light italic mb-10">
+                "Setiap ukiran perabot dan setiap teguk kopi di sini menafsirkan erti nostalgia yang mendalam. Kopi Jiran bukan sekadar tempat makan, ia adalah sebuah manuskrip warisan Melayu yang dihidupkan semula."
+            </h3>
+            
+            <p class="text-warisan-jati text-xs uppercase tracking-[0.3em] font-bold">Warkah Tetamu Kehormat</p>
+        </div>
+    </section>
+
+    <footer id="lokasi" class="bg-warisan-jati text-warisan-krim pt-24 pb-12 px-6 border-t-[12px] border-warisan-songket relative">
+        <div class="absolute inset-0 bg-motif-bunga opacity-5"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10">
+                
+                <!-- Brand Info -->
+                <div class="lg:col-span-2 pr-0 lg:pr-16">
+                    <h2 class="font-serif text-4xl text-warisan-songket mb-6 font-bold tracking-wider">Kopi Jiran.</h2>
+                    <p class="text-warisan-krim/70 font-body text-sm leading-loose mb-8 font-light">
+                        Sebuah destinasi kulinari di mana ketenangan dirangkul dan warisan dipelihara rapi. Singgahlah di anjung kami, kerana di sini anda bukan sekadar tetamu, tetapi sebahagian daripada keluarga.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 border border-warisan-songket/50 flex items-center justify-center text-warisan-songket hover:bg-warisan-songket hover:text-warisan-jati transition-all duration-500">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 border border-warisan-songket/50 flex items-center justify-center text-warisan-songket hover:bg-warisan-songket hover:text-warisan-jati transition-all duration-500">
+                            <i class="fab fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 border border-warisan-songket/50 flex items-center justify-center text-warisan-songket hover:bg-warisan-songket hover:text-warisan-jati transition-all duration-500">
+                            <i class="fab fa-tiktok text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Operating Hours -->
+                <div>
+                    <h4 class="text-warisan-songket text-xs font-bold uppercase tracking-[0.3em] mb-8 border-b border-warisan-songket/20 pb-4">Waktu Singgahan</h4>
+                    <ul class="space-y-5 font-body text-sm text-warisan-krim/80 font-light">
+                        <li class="flex flex-col">
+                            <span class="font-medium text-white mb-2 uppercase tracking-widest text-[11px]">Khamis &mdash; Ahad</span> 
+                            <span class="text-warisan-songket">11:00 Pagi &mdash; 5:00 Petang</span>
+                        </li>
+                        <li class="flex flex-col pt-3 border-t border-warisan-krim/10">
+                            <span class="uppercase tracking-widest text-[11px] mb-1 text-warisan-krim/50">Isnin &mdash; Rabu</span> 
+                            <span class="text-xs italic text-warisan-krim/40">Ditutup untuk Persediaan Dapur</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Location -->
+                <div>
+                    <h4 class="text-warisan-songket text-xs font-bold uppercase tracking-[0.3em] mb-8 border-b border-warisan-songket/20 pb-4">Alamat Estet</h4>
+                    <address class="not-italic font-body text-sm leading-loose text-warisan-krim/80 mb-8 font-light">
+                        Lot 13637, Jalan Langat,<br/>
+                        Taman Sri Langat,<br/>
+                        43000 Kajang, Selangor.
+                    </address>
+                    <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-3 bg-warisan-songket text-warisan-jati px-6 py-3 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-warisan-krim transition-colors duration-300">
+                        <i class="fas fa-map-marker-alt"></i> Petunjuk Arah
+                    </a>
+                </div>
+
+            </div>
+            
+            <!-- Bottom Copyright -->
+            <div class="mt-24 pt-8 border-t border-warisan-krim/10 flex flex-col md:flex-row justify-between items-center text-warisan-krim/40 text-[10px] uppercase tracking-[0.3em] font-body">
+                <p>&copy; <span id="year"></span> Kopi Jiran Kajang. Hak Cipta Terpelihara.</p>
+                <p class="mt-4 md:mt-0">Direka Bersama Semangat Warisan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const logo = document.getElementById('nav-logo');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.remove('nav-transparent', 'py-6');
+                navbar.classList.add('nav-solid', 'py-4');
+            } else {
+                navbar.classList.add('nav-transparent', 'py-6');
+                navbar.classList.remove('nav-solid', 'py-4');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Scroll Reveal Animations
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.1, 
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+        
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>
