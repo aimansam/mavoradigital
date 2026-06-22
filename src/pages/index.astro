@@ -61,7 +61,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "";
         "name": "Malaysia"
       },
       "serviceType": ["Web Design", "Web Development", "Landing Page Design", "Business Website Design"],
-      "priceRange": "RM800–RM5500+",
+      "priceRange": "RM499–RM4999+",
       "availableLanguage": ["English", "Malay"],
       "sameAs": []
     }
@@ -863,11 +863,11 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "";
         const group = selectedOpt?.closest("optgroup") as HTMLOptGroupElement | null;
         const groupType = group?.dataset.websiteType;
         if (groupType) {
-          const groupToWebsiteType: Record<string, string> = {
-            "Starter Website": "Landing Page",
-            "Business Website": "Business Website",
-            "Custom Build": "Custom Website",
-          };
+        const groupToWebsiteType: Record<string, string> = {
+          "Landing Page": "Landing Page",
+          "Business Website": "Business Website",
+          "Custom Build": "Custom Website",
+        };
           const radioValue = groupToWebsiteType[groupType];
           const radio = document.querySelector<HTMLInputElement>(`input[name="websiteType"][value="${radioValue}"]`);
           if (radio && !radio.checked) {
@@ -879,7 +879,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "";
 
       // Map website type radio value → package optgroup label
       const websiteTypeToGroup: Record<string, string> = {
-        "Landing Page": "Starter Website",
+        "Landing Page": "Landing Page",
         "Business Website": "Business Website",
         "Custom Website": "Custom Build",
       };

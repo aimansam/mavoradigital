@@ -3,7 +3,26 @@ import "../../styles/global.css";
 import { ArrowLeft, ArrowRight, CircleCheck } from "@lucide/astro";
 import { portfolioDemos } from "../../features/portfolio/data/portfolioDemos";
 
-const packageFilters = ["All", "Starter Website", "Business Website", "Custom Build"];
+const packageFilters = ["All", "Landing Page", "Business Website", "Custom Build"];
+
+const landingPageDemos = portfolioDemos.filter((d) => d.packageFit === "Landing Page");
+const businessDemos = portfolioDemos.filter((d) => d.packageFit === "Business Website");
+const customDemos = portfolioDemos.filter((d) => d.packageFit === "Custom Build");
+
+const packageMeta: Record<string, { label: string; description: string }> = {
+  "Landing Page": {
+    label: "Landing Page",
+    description: "One focused page for one clear offer. Built to explain value fast and move visitors toward an inquiry.",
+  },
+  "Business Website": {
+    label: "Business Website",
+    description: "A conversion-minded site for service businesses that need credibility, proof, and steady inquiry paths.",
+  },
+  "Custom Build": {
+    label: "Custom Build",
+    description: "A tailored sales flow for offers that need richer content, integrations, or room to scale.",
+  },
+};
 ---
 
 <!doctype html>
@@ -57,7 +76,7 @@ const packageFilters = ["All", "Starter Website", "Business Website", "Custom Bu
         </div>
       </section>
 
-      <section class="px-5 pb-20 sm:px-6 lg:px-8">
+      <section class="px-5 pb-6 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-6xl">
           <div class="portfolio-filter-bar" aria-label="Filter portfolio demos by package">
             {packageFilters.map((filter) => (
@@ -66,42 +85,149 @@ const packageFilters = ["All", "Starter Website", "Business Website", "Custom Bu
               </button>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div class="portfolio-index-grid mt-8">
-          {portfolioDemos.map((demo) => (
-            <article class="portfolio-index-card overflow-hidden rounded-lg border border-line bg-white shadow-[0_10px_28px_rgba(17,24,39,0.06)]" data-package={demo.packageFit}>
-              <img src={demo.image} alt={`${demo.businessType} landing page concept`} class="h-56 w-full object-cover" width="900" height="600" loading="lazy" />
-              <div class="p-6">
-                <p class="topic-label topic-label--small text-ember">{demo.businessType}</p>
-                <h2 class="mt-3 text-2xl font-semibold text-ink">{demo.name}</h2>
-                <div class="portfolio-card__package portfolio-card__package--light mt-4" data-package={demo.packageFit}>
-                  <span>{demo.packageFit} - {demo.tier}</span>
-                  <strong>{demo.packagePrice}</strong>
-                </div>
-                <p class="mt-3 leading-7 text-ink/66">{demo.summary}</p>
-                <ul class="portfolio-index-value-list mt-5" aria-label={`${demo.name} package value proof`}>
-                  {demo.valueProof.slice(0, 3).map((proof) => (
-                    <li>
-                      <CircleCheck class="h-4 w-4 shrink-0 text-moss" aria-hidden="true" />
-                      <span>{proof}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={"externalHref" in demo ? (demo as {externalHref: string}).externalHref : `/portfolio/${demo.slug}/`}
-                  target={"externalHref" in demo ? "_blank" : undefined}
-                  rel={"externalHref" in demo ? "noreferrer noopener" : undefined}
-                  class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-moss"
-                >
-                  <span aria-hidden="true">{"externalHref" in demo ? "Visit live app" : "View demo"}</span>
-                  <span class="sr-only">{"externalHref" in demo ? `Visit ${demo.name}` : `View ${demo.name} demo`}</span>
-                  <ArrowRight class="h-4 w-4" aria-hidden="true" />
-                </a>
-              </div>
-            </article>
-          ))}
+      {/* Landing Page Group */}
+      {landingPageDemos.length > 0 && (
+        <section class="portfolio-group px-5 pb-12 sm:px-6 lg:px-8" data-package-group="Landing Page">
+          <div class="mx-auto max-w-6xl">
+            <div class="mb-8 border-b border-line/40 pb-6">
+              <p class="topic-label text-ember">{packageMeta["Landing Page"].label}</p>
+              <p class="mt-2 max-w-2xl leading-7" style="color:rgba(255,255,255,0.62);">{packageMeta["Landing Page"].description}</p>
+            </div>
+            <div class="portfolio-index-grid">
+              {landingPageDemos.map((demo) => (
+                <article class="portfolio-index-card overflow-hidden rounded-lg border border-line bg-white shadow-[0_10px_28px_rgba(17,24,39,0.06)]" data-package={demo.packageFit}>
+                  <img src={demo.image} alt={`${demo.businessType} landing page concept`} class="h-56 w-full object-cover" width="900" height="600" loading="lazy" />
+                  <div class="p-6">
+                    <p class="topic-label topic-label--small text-ember">{demo.businessType}</p>
+                    <h2 class="mt-3 text-2xl font-semibold text-ink">{demo.name}</h2>
+                    <div class="portfolio-card__package portfolio-card__package--light mt-4" data-package={demo.packageFit}>
+                      <span>{demo.packageFit} - {demo.tier}</span>
+                      <strong>{demo.packagePrice}</strong>
+                    </div>
+                    <p class="mt-3 leading-7 text-ink/66">{demo.summary}</p>
+                    <ul class="portfolio-index-value-list mt-5" aria-label={`${demo.name} package value proof`}>
+                      {demo.valueProof.slice(0, 3).map((proof) => (
+                        <li>
+                          <CircleCheck class="h-4 w-4 shrink-0 text-moss" aria-hidden="true" />
+                          <span>{proof}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={"externalHref" in demo ? (demo as { externalHref: string }).externalHref : `/portfolio/${demo.slug}/`}
+                      target={"externalHref" in demo ? "_blank" : undefined}
+                      rel={"externalHref" in demo ? "noreferrer noopener" : undefined}
+                      class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-moss"
+                    >
+                      <span aria-hidden="true">{"externalHref" in demo ? "Visit live app" : "View demo"}</span>
+                      <span class="sr-only">{"externalHref" in demo ? `Visit ${demo.name}` : `View ${demo.name} demo`}</span>
+                      <ArrowRight class="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
+        </section>
+      )}
 
+      {/* Business Website Group */}
+      {businessDemos.length > 0 && (
+        <section class="portfolio-group px-5 pb-12 sm:px-6 lg:px-8" data-package-group="Business Website">
+          <div class="mx-auto max-w-6xl">
+            <div class="mb-8 border-b border-line/40 pb-6">
+              <p class="topic-label text-ember">{packageMeta["Business Website"].label}</p>
+              <p class="mt-2 max-w-2xl leading-7" style="color:rgba(255,255,255,0.62);">{packageMeta["Business Website"].description}</p>
+            </div>
+            <div class="portfolio-index-grid">
+              {businessDemos.map((demo) => (
+                <article class="portfolio-index-card overflow-hidden rounded-lg border border-line bg-white shadow-[0_10px_28px_rgba(17,24,39,0.06)]" data-package={demo.packageFit}>
+                  <img src={demo.image} alt={`${demo.businessType} landing page concept`} class="h-56 w-full object-cover" width="900" height="600" loading="lazy" />
+                  <div class="p-6">
+                    <p class="topic-label topic-label--small text-ember">{demo.businessType}</p>
+                    <h2 class="mt-3 text-2xl font-semibold text-ink">{demo.name}</h2>
+                    <div class="portfolio-card__package portfolio-card__package--light mt-4" data-package={demo.packageFit}>
+                      <span>{demo.packageFit} - {demo.tier}</span>
+                      <strong>{demo.packagePrice}</strong>
+                    </div>
+                    <p class="mt-3 leading-7 text-ink/66">{demo.summary}</p>
+                    <ul class="portfolio-index-value-list mt-5" aria-label={`${demo.name} package value proof`}>
+                      {demo.valueProof.slice(0, 3).map((proof) => (
+                        <li>
+                          <CircleCheck class="h-4 w-4 shrink-0 text-moss" aria-hidden="true" />
+                          <span>{proof}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={"externalHref" in demo ? (demo as { externalHref: string }).externalHref : `/portfolio/${demo.slug}/`}
+                      target={"externalHref" in demo ? "_blank" : undefined}
+                      rel={"externalHref" in demo ? "noreferrer noopener" : undefined}
+                      class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-moss"
+                    >
+                      <span aria-hidden="true">{"externalHref" in demo ? "Visit live app" : "View demo"}</span>
+                      <span class="sr-only">{"externalHref" in demo ? `Visit ${demo.name}` : `View ${demo.name} demo`}</span>
+                      <ArrowRight class="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Custom Build Group */}
+      {customDemos.length > 0 && (
+        <section class="portfolio-group px-5 pb-12 sm:px-6 lg:px-8" data-package-group="Custom Build">
+          <div class="mx-auto max-w-6xl">
+            <div class="mb-8 border-b border-line/40 pb-6">
+              <p class="topic-label text-ember">{packageMeta["Custom Build"].label}</p>
+              <p class="mt-2 max-w-2xl leading-7" style="color:rgba(255,255,255,0.62);">{packageMeta["Custom Build"].description}</p>
+            </div>
+            <div class="portfolio-index-grid">
+              {customDemos.map((demo) => (
+                <article class="portfolio-index-card overflow-hidden rounded-lg border border-line bg-white shadow-[0_10px_28px_rgba(17,24,39,0.06)]" data-package={demo.packageFit}>
+                  <img src={demo.image} alt={`${demo.businessType} landing page concept`} class="h-56 w-full object-cover" width="900" height="600" loading="lazy" />
+                  <div class="p-6">
+                    <p class="topic-label topic-label--small text-ember">{demo.businessType}</p>
+                    <h2 class="mt-3 text-2xl font-semibold text-ink">{demo.name}</h2>
+                    <div class="portfolio-card__package portfolio-card__package--light mt-4" data-package={demo.packageFit}>
+                      <span>{demo.packageFit} - {demo.tier}</span>
+                      <strong>{demo.packagePrice}</strong>
+                    </div>
+                    <p class="mt-3 leading-7 text-ink/66">{demo.summary}</p>
+                    <ul class="portfolio-index-value-list mt-5" aria-label={`${demo.name} package value proof`}>
+                      {demo.valueProof.slice(0, 3).map((proof) => (
+                        <li>
+                          <CircleCheck class="h-4 w-4 shrink-0 text-moss" aria-hidden="true" />
+                          <span>{proof}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={"externalHref" in demo ? (demo as { externalHref: string }).externalHref : `/portfolio/${demo.slug}/`}
+                      target={"externalHref" in demo ? "_blank" : undefined}
+                      rel={"externalHref" in demo ? "noreferrer noopener" : undefined}
+                      class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-moss"
+                    >
+                      <span aria-hidden="true">{"externalHref" in demo ? "Visit live app" : "View demo"}</span>
+                      <span class="sr-only">{"externalHref" in demo ? `Visit ${demo.name}` : `View ${demo.name} demo`}</span>
+                      <ArrowRight class="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section class="px-5 pb-20 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-6xl">
           <div class="portfolio-empty-state mt-8 hidden rounded-lg border border-line bg-white p-8 text-center" aria-live="polite">
             <p class="topic-label topic-label--small text-ember">More examples coming soon</p>
             <h2 class="mt-3 text-2xl font-semibold text-ink">No demos match this package yet.</h2>
@@ -118,6 +244,7 @@ const packageFilters = ["All", "Starter Website", "Business Website", "Custom Bu
     <script>
       const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>(".portfolio-filter-button"));
       const portfolioCards = Array.from(document.querySelectorAll<HTMLElement>(".portfolio-index-card"));
+      const portfolioGroups = Array.from(document.querySelectorAll<HTMLElement>("[data-package-group]"));
       const emptyState = document.querySelector<HTMLElement>(".portfolio-empty-state");
 
       const applyPortfolioFilter = (filter: string) => {
@@ -127,6 +254,13 @@ const packageFilters = ["All", "Starter Website", "Business Website", "Custom Bu
           const isVisible = filter === "All" || card.dataset.package === filter;
           card.hidden = !isVisible;
           if (isVisible) visibleCount += 1;
+        });
+
+        // Hide/show entire group sections based on whether any card in them is visible
+        portfolioGroups.forEach((group) => {
+          const groupLabel = group.dataset.packageGroup || "";
+          const groupVisible = filter === "All" || groupLabel === filter;
+          group.hidden = !groupVisible;
         });
 
         filterButtons.forEach((button) => {
