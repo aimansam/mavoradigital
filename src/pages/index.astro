@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { ArrowRight, CircleCheck, MessageCircle, PanelsTopLeft, Sparkles, Wrench } from "@lucide/astro";
+import { ArrowRight, CircleCheck, MessageCircle } from "@lucide/astro";
 import FloatingLines from "../components/FloatingLines.jsx";
 import SiteHeader from "../components/SiteHeader.astro";
 import LightRays from "../components/LightRays.jsx";
@@ -9,110 +9,11 @@ import ScrollStack, { ScrollStackItem } from "../components/ScrollStack.jsx";
 import ProcessCardStack from "../components/ProcessCardStack.jsx";
 import { portfolioDemos } from "../features/portfolio/data/portfolioDemos";
 import { HeroParallax } from "../components/HeroParallax";
-import { bmSiteUrl, ctaHref, header, hero, metadata, navigation, siteUrl } from "../data/site/home.en";
+import { bmSiteUrl, businessTypes, contentReadinessOptions, ctaHref, domainOwnershipOptions, featureOptions, header, hero, metadata, navigation, packageTierOptions, packages, pageOptions, services, siteUrl, websiteTypes } from "../data/site/home.en";
 
 const pageTitle = metadata.title;
 const pageDescription = metadata.description;
 const socialPreview = metadata.socialPreview;
-
-const services = [
-  {
-    title: "Landing pages",
-    description: "A focused page for one offer, built to explain value fast and guide visitors toward an inquiry.",
-    points: ["Offer clarity", "CTA flow", "Mobile speed"],
-    icon: Sparkles,
-  },
-  {
-    title: "Business websites",
-    description: "A polished site that presents your services clearly, builds confidence, and makes contacting you easy.",
-    points: ["Service structure", "Trust signals", "Contact paths"],
-    icon: PanelsTopLeft,
-  },
-  {
-    title: "Systems and automation",
-    description: "Workflows, integrations, and automated processes that reduce manual work and keep your business running.",
-    points: ["Workflow automation", "Tool integrations", "Auto-reporting setup"],
-    icon: Wrench,
-  },
-];
-
-const packages = [
-  {
-    name: "Starter Website",
-    price: "From RM800",
-    detail: "A lean sales page for one clear offer, built to explain value fast and move visitors toward an inquiry.",
-    points: ["Sales-focused one-page build", "Mobile buying path", "SEO and speed basics"],
-    freeFeatures: ["WhatsApp CTA setup", "Basic on-page SEO", "Mobile responsive check"],
-    tiers: [
-      { name: "Basic", price: "RM800", scope: "One landing page, WhatsApp CTA, basic SEO", meta: "1 revision / 3-5 working days" },
-      { name: "Plus", price: "RM1,200", scope: "Stronger copy flow, basic motion, extra polish", meta: "2 revisions / 5-7 working days" },
-      { name: "Pro", price: "RM1,600", scope: "Premium landing page with deeper sections", meta: "3 revisions / 7-10 working days" },
-    ],
-    note: "Client provides logo, content, images, domain, and hosting access.",
-  },
-  {
-    name: "Business Website",
-    price: "From RM1,800",
-    detail: "A conversion-minded website for service businesses that need credibility, proof, and steady inquiry paths.",
-    points: ["Service sections that sell", "Trust-building copy", "Inquiry-ready handoff"],
-    freeFeatures: ["Contact path setup", "Basic analytics setup", "Launch checklist"],
-    tiers: [
-      { name: "Basic", price: "RM1,800", scope: "Five-page business website with service structure and clear contact paths", meta: "1 revision / 7-10 working days" },
-      { name: "Plus", price: "RM2,500", scope: "Seven-page site with stronger service sections, team, and proof", meta: "2 revisions / 10-14 working days", recommended: true },
-      { name: "Pro", price: "RM3,500", scope: "Up to ten pages with deep service detail, portfolio, and case studies", meta: "3 revisions / 14-18 working days" },
-    ],
-    note: "Client provides brand assets, service content, and images. Copywriting support available on request.",
-  },
-  {
-    name: "Custom Build",
-    price: "From RM4,000",
-    detail: "A tailored sales flow for offers that need richer content, integrations, or room to scale.",
-    points: ["Custom buyer journey", "Integration planning", "Post-launch sales notes"],
-    freeFeatures: ["Discovery call", "Integration plan", "Post-launch handoff notes"],
-    tiers: [
-      { name: "Basic", price: "RM4,000", scope: "Custom layout or special sales flow", meta: "2 revisions / 2-3 weeks" },
-      { name: "Plus", price: "RM5,500", scope: "Custom website with booking or integration planning", meta: "3 revisions / 3-4 weeks" },
-      { name: "Pro", price: "RM7,500+", scope: "Larger custom project with deeper launch support", meta: "Scoped after discovery" },
-    ],
-    note: "Final scope is confirmed after reviewing pages, features, integrations, and content readiness.",
-  },
-];
-
-const packageTierOptions = packages.flatMap((item) =>
-  item.tiers.map((tier) => ({
-    group: item.name,
-    value: `${item.name} - ${tier.name} (${tier.price})`,
-    label: `${tier.name} - ${tier.price}`,
-    summary: tier.scope,
-    meta: tier.meta,
-    freeFeatures: item.freeFeatures.join(", "),
-  })),
-);
-
-const websiteTypes = [
-  {
-    name: "Landing Page",
-    detail: "Best when one offer needs a sharper pitch, fast trust, and a direct path to inquiry.",
-  },
-  {
-    name: "Business Website",
-    detail: "Best when buyers need to understand your services before they reach out.",
-  },
-  {
-    name: "Custom Website",
-    detail: "Best for custom sales flows, richer content, integrations, or a bigger launch plan.",
-  },
-];
-
-const pageOptions = ["Home", "Services", "Portfolio", "About", "Contact", "Pricing", "Blog", "Privacy"];
-
-const featureOptions = ["Contact form", "Booking link", "Map/location", "Gallery", "Testimonials", "Analytics", "SEO setup", "Basic animations"];
-
-const businessTypes = ["Restaurant / cafe", "Beauty / personal care", "Automotive", "Retail / shop", "Professional service", "Freelancer / creator", "Other local business", "Online business"];
-
-const contentReadinessOptions = ["Logo, text, and images are ready", "I have logo only", "Need help with text", "Need help with images/content"];
-
-const domainOwnershipOptions = ["Yes, I already own a domain", "No, I need domain help"];
 
 const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "";
 ---
