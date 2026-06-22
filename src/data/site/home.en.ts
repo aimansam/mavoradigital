@@ -253,6 +253,11 @@ export const formLabels = {
 export const timelineOptions = ["As soon as possible", "1-2 weeks", "3-4 weeks", "1-2 months", "Flexible"];
 export const budgetOptions = ["Stay close to selected package", "Can add budget for stronger content or features", "Need guidance"];
 
+export const servicesSection = {
+  kicker: "Our services",
+  heading: "We solve business pipelines problem.",
+};
+
 export const footer = {
   body: "Sales-focused websites for founders and local businesses that need clear offers, buyer trust, and a direct inquiry path.",
   projectRequest: "Project request",

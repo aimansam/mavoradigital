@@ -252,6 +252,11 @@ export const formLabels = {
 export const timelineOptions = ["Secepat mungkin", "1-2 minggu", "3-4 minggu", "1-2 bulan", "Flexible"];
 export const budgetOptions = ["Kekal dekat dengan pakej dipilih", "Boleh tambah bajet untuk content atau ciri lebih kuat", "Perlukan panduan"];
 
+export const servicesSection = {
+  kicker: "Servis kami",
+  heading: "Servis yang bantu selesaikan masalah pipeline bisnes anda.",
+};
+
 export const footer = {
   body: "Landing page dan website bisnes yang fokus pada tawaran jelas, kepercayaan, dan inquiry.",
   projectRequest: "Permintaan projek",

@@ -22,7 +22,7 @@ import {
   header,
   hero,
   metadata,
-  motionBand,
+  servicesSection,
   navigation,
   packageTierOptions,
   packages,
@@ -144,25 +144,6 @@ const formCopy = {
         ]}
       />
 
-      <section class="motion-band border-y border-line bg-paper" aria-label="Highlight delivery projek">
-        <div class="motion-band__marquee py-5 sm:py-6">
-          {[0, 1].map((repeatIndex) => (
-            <div class="motion-band__group" aria-hidden={repeatIndex === 1 ? "true" : undefined}>
-              {motionBand.map((item) => <span>{item}</span>)}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section class="credibility-bar bg-ink text-white" aria-label="Studio sekilas">
-        <div class="credibility-bar__inner mx-auto max-w-6xl">
-          <div class="credibility-stat"><strong>7</strong><span>Konsep demo dibina</span></div>
-          <div class="credibility-stat"><strong>3</strong><span>Pakej tersedia</span></div>
-          <div class="credibility-stat"><strong>WhatsApp&#8209;first</strong><span>Tiada form panjang. Terus ke WhatsApp.</span></div>
-          <div class="credibility-stat"><strong>Fokus Malaysia</strong><span>Pasaran lokal, tawaran lokal</span></div>
-        </div>
-      </section>
-
       <section class="studio-statement story-section bg-ink px-5 py-20 text-white sm:px-6 lg:px-8">
         <div class="liquid-section-bg liquid-section-bg--statement" aria-hidden="true">
           <LiquidEther
@@ -202,8 +183,8 @@ const formCopy = {
       <section id="services" class="story-section bg-paper px-5 py-20 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-6xl">
           <div class="max-w-2xl">
-            <p class="topic-label text-ember">Servis kami</p>
-            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">Servis yang bantu website anda bina trust dan inquiry.</h2>
+            <p class="topic-label text-ember">{servicesSection.kicker}</p>
+            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">{servicesSection.heading}</h2>
           </div>
           <div class="svc3d-stage">
             <div class="svc3d-scene" id="svc3d-scene">

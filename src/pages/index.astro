@@ -9,7 +9,7 @@ import ScrollStack, { ScrollStackItem } from "../components/ScrollStack.jsx";
 import ProcessCardStack from "../components/ProcessCardStack.jsx";
 import { portfolioDemos } from "../features/portfolio/data/portfolioDemos";
 import { HeroParallax } from "../components/HeroParallax";
-import { bmSiteUrl, businessTypes, contentReadinessOptions, ctaHref, domainOwnershipOptions, featureOptions, footer, header, hero, metadata, navigation, packageTierOptions, packages, pageOptions, services, siteUrl, websiteTypes } from "../data/site/home.en";
+import { bmSiteUrl, businessTypes, contentReadinessOptions, ctaHref, domainOwnershipOptions, featureOptions, footer, header, hero, metadata, navigation, packageTierOptions, packages, packagesSection, pageOptions, services, servicesSection, siteUrl, studioStatement, websiteTypes } from "../data/site/home.en";
 
 const pageTitle = metadata.title;
 const pageDescription = metadata.description;
@@ -128,7 +128,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "";
         <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
           <div class="studio-motion studio-motion--headline">
             <p class="topic-label text-white/68">Mavora Digital</p>
-            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal sm:text-5xl">Small studio live with founder ideas.</h2>
+            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal sm:text-5xl">{studioStatement.title}</h2>
           </div>
           <div class="studio-statement__copy studio-motion studio-motion--copy">
             <p class="studio-statement__intro text-lg leading-8 text-white/74">
@@ -164,8 +164,8 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "";
       <section id="services" class="story-section bg-paper px-5 py-20 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-6xl">
           <div class="text-center">
-            <p class="topic-label text-ember">Our services</p>
-            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">We solve business pipelines problem.</h2>
+            <p class="topic-label text-ember">{servicesSection.kicker}</p>
+            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">{servicesSection.heading}</h2>
           </div>
           <div class="svc3d-stage">
             <div class="svc3d-scene" id="svc3d-scene">
@@ -254,7 +254,7 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "";
         <div class="mx-auto max-w-6xl">
           <div class="text-center">
             <p class="topic-label text-ember">Our packages</p>
-            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">Build your dream website with us</h2>
+            <h2 class="story-heading mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">{packagesSection.title}</h2>
           </div>
           <div class="pkg3d-stage">
             <div class="pkg3d-scene" id="pkg3d-scene">
