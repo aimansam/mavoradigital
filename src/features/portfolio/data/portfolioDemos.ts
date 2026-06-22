@@ -46,6 +46,12 @@ export const portfolioDemos = [
     includedScope: ["One landing page", "Coffee menu sections", "Atmosphere-first hero", "Offer and voucher path"],
     bestFor: "Cafe and beverage brands that need a premium online presence to attract nearby customers and regulars.",
     upgradePath: "Upgrade to Landing Page Pro for deeper menu pages, loyalty flow, and stronger campaign polish.",
+    variants: [
+      { slug: "kopi-jiran", label: "Dark", primary: "#C5A880", dark: "#09090B" },
+      { slug: "kopi-jiran-2", label: "Classic Gold", primary: "#C5A059", dark: "#111111" },
+      { slug: "kopi-jiran-3", label: "Nusantara Green", primary: "#1A3626", dark: "#0F1F16" },
+      { slug: "kopi-jiran-4", label: "Warisan Jati", primary: "#2C1E16", dark: "#1A120E" },
+    ],
   },
   {
     slug: "kopi-jiran-2",

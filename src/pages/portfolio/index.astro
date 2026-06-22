@@ -97,38 +97,73 @@ const packageMeta: Record<string, { label: string; description: string }> = {
               <p class="mt-2 max-w-2xl leading-7" style="color:rgba(255,255,255,0.62);">{packageMeta["Landing Page"].description}</p>
             </div>
             <div class="portfolio-index-grid">
-              {landingPageDemos.map((demo) => (
-                <article class="portfolio-index-card overflow-hidden rounded-lg border border-line bg-white shadow-[0_10px_28px_rgba(17,24,39,0.06)]" data-package={demo.packageFit}>
-                  <img src={demo.image} alt={`${demo.businessType} landing page concept`} class="h-56 w-full object-cover" width="900" height="600" loading="lazy" />
-                  <div class="p-6">
-                    <p class="topic-label topic-label--small text-ember">{demo.businessType}</p>
-                    <h2 class="mt-3 text-2xl font-semibold text-ink">{demo.name}</h2>
-                    <div class="portfolio-card__package portfolio-card__package--light mt-4" data-package={demo.packageFit}>
-                      <span>{demo.packageFit} - {demo.tier}</span>
-                      <strong>{demo.packagePrice}</strong>
-                    </div>
-                    <p class="mt-3 leading-7 text-ink/66">{demo.summary}</p>
-                    <ul class="portfolio-index-value-list mt-5" aria-label={`${demo.name} package value proof`}>
-                      {demo.valueProof.slice(0, 3).map((proof) => (
-                        <li>
-                          <CircleCheck class="h-4 w-4 shrink-0 text-moss" aria-hidden="true" />
-                          <span>{proof}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <a
-                      href={"externalHref" in demo ? (demo as { externalHref: string }).externalHref : `/portfolio/${demo.slug}/`}
-                      target={"externalHref" in demo ? "_blank" : undefined}
-                      rel={"externalHref" in demo ? "noreferrer noopener" : undefined}
-                      class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-moss"
+              {landingPageDemos
+                .filter((d) => !d.slug.startsWith("kopi-jiran-") || d.slug === "kopi-jiran")
+                .map((demo) => {
+                  const variants = (demo as any).variants;
+                  return (
+                    <article
+                      class={`portfolio-index-card overflow-hidden rounded-lg border border-line bg-white shadow-[0_10px_28px_rgba(17,24,39,0.06)]${variants ? " portfolio-card--with-variants" : ""}`}
+                      data-package={demo.packageFit}
+                      data-slug={demo.slug}
                     >
-                      <span aria-hidden="true">{"externalHref" in demo ? "Visit live app" : "View demo"}</span>
-                      <span class="sr-only">{"externalHref" in demo ? `Visit ${demo.name}` : `View ${demo.name} demo`}</span>
-                      <ArrowRight class="h-4 w-4" aria-hidden="true" />
-                    </a>
-                  </div>
-                </article>
-              ))}
+                      <div class="portfolio-card__media relative">
+                        <img
+                          src={demo.image}
+                          alt={`${demo.businessType} landing page concept`}
+                          class="portfolio-card__img h-56 w-full object-cover"
+                          width="900"
+                          height="600"
+                          loading="lazy"
+                        />
+                        {variants && (
+                          <div class="portfolio-card__variant-bar absolute bottom-0 left-0 right-0 flex items-center justify-center gap-2 bg-gradient-to-t from-black/70 to-transparent p-4 pt-8">
+                            {variants.map((v, i) => (
+                              <button
+                                type="button"
+                                class={`portfolio-variant-btn h-8 rounded-full border px-3 text-xs font-semibold transition${i === 0 ? " is-active" : ""}`}
+                                data-variant-slug={v.slug}
+                                data-variant-primary={v.primary}
+                                data-variant-dark={v.dark}
+                                aria-label={`View ${v.label} theme`}
+                              >
+                                <span class="portfolio-variant-swatch inline-block h-3 w-3 rounded-full" style={`background:${v.primary}`} />
+                                <span>{v.label}</span>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      <div class="p-6">
+                        <p class="topic-label topic-label--small text-ember">{demo.businessType}</p>
+                        <h2 class="mt-3 text-2xl font-semibold text-ink">{demo.name}</h2>
+                        <div class="portfolio-card__package portfolio-card__package--light mt-4" data-package={demo.packageFit}>
+                          <span>{demo.packageFit} - {demo.tier}</span>
+                          <strong>{demo.packagePrice}</strong>
+                        </div>
+                        <p class="mt-3 leading-7 text-ink/66">{demo.summary}</p>
+                        <ul class="portfolio-index-value-list mt-5" aria-label={`${demo.name} package value proof`}>
+                          {demo.valueProof.slice(0, 3).map((proof) => (
+                            <li>
+                              <CircleCheck class="h-4 w-4 shrink-0 text-moss" aria-hidden="true" />
+                              <span>{proof}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <a
+                          href={"externalHref" in demo ? (demo as { externalHref: string }).externalHref : `/portfolio/${demo.slug}/`}
+                          target={"externalHref" in demo ? "_blank" : undefined}
+                          rel={"externalHref" in demo ? "noreferrer noopener" : undefined}
+                          class="portfolio-card__cta mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-moss"
+                        >
+                          <span aria-hidden="true">{"externalHref" in demo ? "Visit live app" : "View demo"}</span>
+                          <span class="sr-only">{"externalHref" in demo ? `Visit ${demo.name}` : `View ${demo.name} demo`}</span>
+                          <ArrowRight class="h-4 w-4" aria-hidden="true" />
+                        </a>
+                      </div>
+                    </article>
+                  );
+                })}
             </div>
           </div>
         </section>
@@ -273,6 +308,32 @@ const packageMeta: Record<string, { label: string; description: string }> = {
       filterButtons.forEach((button) => {
         button.addEventListener("click", () => {
           applyPortfolioFilter(button.dataset.filter || "All");
+        });
+      });
+
+      // Variant theme switcher on portfolio cards
+      document.querySelectorAll<HTMLElement>(".portfolio-card--with-variants").forEach((card) => {
+        const img = card.querySelector<HTMLImageElement>(".portfolio-card__img");
+        const cta = card.querySelector<HTMLAnchorElement>(".portfolio-card__cta");
+        const variantButtons = Array.from(card.querySelectorAll<HTMLButtonElement>(".portfolio-variant-btn"));
+        if (!variantButtons.length) return;
+
+        const updateVariant = (activeBtn: HTMLButtonElement) => {
+          variantButtons.forEach((btn) => btn.classList.toggle("is-active", btn === activeBtn));
+          const slug = activeBtn.dataset.variantSlug;
+          const primary = activeBtn.dataset.variantPrimary;
+          const dark = activeBtn.dataset.variantDark;
+          if (slug && cta) {
+            cta.href = `/portfolio/${slug}/`;
+            cta.querySelector("span.sr-only")!.textContent = `View Kopi Jiran ${activeBtn.textContent?.trim() || ""} demo`;
+          }
+          // Optional: update card border accent
+          if (primary) card.style.borderColor = `${primary}33`;
+          if (dark) card.style.setProperty("--demo-accent", dark);
+        };
+
+        variantButtons.forEach((btn) => {
+          btn.addEventListener("click", () => updateVariant(btn));
         });
       });
     </script>
