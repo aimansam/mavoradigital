@@ -2,24 +2,6 @@
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  const initBurgerLoader = () => {
-    const loader = document.querySelector("[data-burger-loader]");
-    if (!(loader instanceof HTMLElement) || loader.dataset.burgerLoaderReady === "true") return;
-    loader.dataset.burgerLoaderReady = "true";
-
-    const hideLoader = () => {
-      window.setTimeout(() => {
-        loader.classList.add("is-leaving");
-        window.setTimeout(() => {
-          loader.hidden = true;
-        }, 520);
-      }, 560);
-    };
-
-    if (document.readyState === "complete") hideLoader();
-    else window.addEventListener("load", hideLoader, { once: true });
-  };
-
   const initBurgerAnimations = () => {
     const page = document.querySelector("[data-burger-demo-page]");
     if (!(page instanceof HTMLElement) || page.dataset.burgerAnimationReady === "true") return;
@@ -238,11 +220,9 @@
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
-      initBurgerLoader();
       initBurgerAnimations();
     }, { once: true });
   } else {
-    initBurgerLoader();
     initBurgerAnimations();
   }
 </script>

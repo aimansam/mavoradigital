@@ -20,20 +20,9 @@ const business = isBm ? burgerBusinessBm : burgerBusiness;
 const menu = isBm ? burgerMenuBm : burgerMenu;
 const slides = isBm ? burgerValueSlidesBm : burgerValueSlides;
 const reviews = isBm ? burgerReviewsBm : burgerReviews;
-const loaderText = isBm ? "Panaskan grill" : "Firing up the grill";
 const footerText = isBm ? "Privasi" : "Privacy";
 ---
 
-<div class="burger-loader" data-burger-loader role="status" aria-live="polite" aria-label="Loading Mavora Burgers demo">
-  <div class="burger-loader__mark" aria-hidden="true">
-    <img src="/images/portfolio/burger-shop/logo.png" alt="" width="2734" height="1536" loading="eager" decoding="async" />
-  </div>
-  <div class="burger-loader__copy">
-    <span>{loaderText}</span>
-    <strong>Mavora Burgers</strong>
-    <i class="burger-loader__progress" aria-hidden="true"></i>
-  </div>
-</div>
 <BurgerHeader lang={lang} />
 <main data-burger-demo-page>
   <BurgerLandingSections demo={demo} business={business} menu={menu} slides={slides} reviews={reviews} lang={lang} />
