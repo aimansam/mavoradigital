@@ -544,12 +544,36 @@ const formCopy = {
       })();
     </script>
 
-    <footer class="site-footer border-t border-line bg-paper px-5 py-8 sm:px-6 lg:px-8">
-      <div class="mx-auto grid max-w-6xl gap-6 text-sm text-ink/62 md:grid-cols-[1fr_auto] md:items-center">
-        <div class="site-footer__brand"><a href="#top" class="site-footer__logo" aria-label="Mavora Digital home"><img src="/logo-transparent.png" alt="Mavora Digital" class="h-auto w-full object-contain" width="980" height="313" loading="lazy" /></a><p>{footer.body}</p></div>
-        <div class="site-footer__actions"><nav class="site-footer__links" aria-label="Navigasi footer"><a href={ctaHref}>{footer.projectRequest}</a><a href="/privacy/">{footer.privacy}</a></nav><p>{footer.note}</p></div>
+    <footer style="background:#0c0c0e;" class="px-5 pt-16 pb-8 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-10 pb-12 lg:grid-cols-[1.2fr_0.9fr_0.9fr] lg:items-start" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+          <div>
+            <a href="#top" class="block w-36" aria-label="Mavora Digital home">
+              <img src="/logo-transparent.png" alt="Mavora Digital" class="h-auto w-full object-contain brightness-0 invert" width="980" height="313" loading="lazy" />
+            </a>
+            <p class="mt-5 max-w-xs text-sm leading-7" style="color:rgba(244,244,245,0.55);">{footer.body}</p>
+          </div>
+          <div>
+            <p class="mb-4 text-[10px] font-bold uppercase tracking-[0.2em]" style="color:rgba(244,244,245,0.35);">Navigasi</p>
+            <nav class="flex flex-col gap-3" aria-label="Navigasi footer">
+              <a href={ctaHref} class="text-sm font-medium transition hover:text-ember" style="color:rgba(244,244,245,0.7);">{footer.projectRequest}</a>
+              <a href="/portfolio/" class="text-sm font-medium transition hover:text-ember" style="color:rgba(244,244,245,0.7);">Portfolio</a>
+              <a href="/privacy/" class="text-sm font-medium transition hover:text-ember" style="color:rgba(244,244,245,0.7);">{footer.privacy}</a>
+            </nav>
+          </div>
+          <div>
+            <p class="mb-4 text-[10px] font-bold uppercase tracking-[0.2em]" style="color:rgba(244,244,245,0.35);">Hubungi kami</p>
+            <p class="mb-5 text-sm leading-6" style="color:rgba(244,244,245,0.55);">{footer.note}</p>
+            <a href={ctaHref} class="inline-flex items-center gap-2 rounded-full bg-ember px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#6f2119]">
+              {footer.projectRequest} <ArrowRight class="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-col items-center justify-between gap-3 pt-6 sm:flex-row" style="color:rgba(244,244,245,0.3);">
+          <p class="text-xs">&copy; 2026 Mavora Digital &middot; Hak Cipta Terpelihara.</p>
+          <p class="text-xs">No. SSM {footer.ssm} &middot; Tel: <a href="tel:+601111041179" class="transition hover:text-white" style="color:inherit;">{footer.phone}</a></p>
+        </div>
       </div>
-      <p class="mx-auto mt-4 max-w-6xl border-t border-line pt-3 text-xs text-ink/40 px-5 sm:px-6 lg:px-8">No. SSM {footer.ssm} · Tel: <a href="tel:+601111041179" class="transition hover:text-ember">{footer.phone}</a></p>
     </footer>
 
     <script>
