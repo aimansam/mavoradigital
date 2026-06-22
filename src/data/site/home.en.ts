@@ -34,7 +34,7 @@ export const hero = {
   copy: "Mavora Digital builds polished, fast-loading sites that earn trust, capture qualified inquiries, and guide visitors toward sales.",
   primaryCta: "Build your site",
   secondaryCta: "View Services",
-  proofLine: "Live in 2 weeks · Free analytics · Free Consultation · Malaysia-based",
+  proofLine: "Live in 2 weeks · Free SEO · Free Consultation · Malaysia-based",
 };
 
 export const motionBand = [
