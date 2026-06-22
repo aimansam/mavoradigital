@@ -258,6 +258,8 @@ export const footer = {
   projectRequest: "Project request",
   privacy: "Privacy",
   note: "WhatsApp is used for project requests and active support.",
+  ssm: "202603153565",
+  phone: "+60 11-1104 1179",
 };
 
 export const icons = { CircleCheck, FileText, MessageCircle };

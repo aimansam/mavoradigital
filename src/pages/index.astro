@@ -9,7 +9,7 @@ import ScrollStack, { ScrollStackItem } from "../components/ScrollStack.jsx";
 import ProcessCardStack from "../components/ProcessCardStack.jsx";
 import { portfolioDemos } from "../features/portfolio/data/portfolioDemos";
 import { HeroParallax } from "../components/HeroParallax";
-import { bmSiteUrl, businessTypes, contentReadinessOptions, ctaHref, domainOwnershipOptions, featureOptions, header, hero, metadata, navigation, packageTierOptions, packages, pageOptions, services, siteUrl, websiteTypes } from "../data/site/home.en";
+import { bmSiteUrl, businessTypes, contentReadinessOptions, ctaHref, domainOwnershipOptions, featureOptions, footer, header, hero, metadata, navigation, packageTierOptions, packages, pageOptions, services, siteUrl, websiteTypes } from "../data/site/home.en";
 
 const pageTitle = metadata.title;
 const pageDescription = metadata.description;
@@ -643,9 +643,10 @@ const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "";
             <a href={ctaHref}>Project request</a>
             <a href="/privacy/">Privacy</a>
           </nav>
-          <p>WhatsApp is used for project requests and active support.</p>
+          <p>{footer.note}</p>
         </div>
       </div>
+      <p class="mx-auto mt-4 max-w-6xl border-t border-line pt-3 text-xs text-ink/40 px-5 sm:px-6 lg:px-8">SSM No. {footer.ssm} · Tel: <a href="tel:+601111041179" class="transition hover:text-ember">{footer.phone}</a></p>
     </footer>
     <script>
       import { gsap } from "gsap";
