@@ -67,33 +67,22 @@ For validating resolvers to return authenticated data:
 2. Publish DS records at your registrar
 3. Verify with: `dig +dnssec mavoradigital.my`
 
-## Markdown for Agents
+## Markdown for Agents ✅
 
-To enable `Accept: text/markdown` responses:
+**Implemented:** Vercel Edge Middleware (`middleware.ts`)
 
-### Option A: Vercel Edge Middleware
+When a request includes `Accept: text/markdown`, the middleware:
+1. Fetches the HTML content
+2. Converts it to markdown
+3. Returns with `Content-Type: text/markdown; charset=utf-8`
 
-Create `middleware.ts`:
-
-```typescript
-import type { NextRequest } from 'next/server';
-
-export function middleware(request: NextRequest) {
-  const accept = request.headers.get('accept') || '';
-  if (accept.includes('text/markdown')) {
-    // Handle markdown conversion
-    // Note: Requires serverless function or edge function
-  }
-}
+**Test:**
+```bash
+curl -H "Accept: text/markdown" https://mavoradigital.my/
 ```
 
-### Option B: Cloudflare (if using Cloudflare Pages/Workers)
-
-Enable Cloudflare's "Markdown for Agents" feature in your dashboard.
-
-### Current Status
-
-⚠️ **Not implemented** - Requires serverless functions or edge middleware. The static site serves HTML only.
+**Files:**
+- `middleware.ts` - Edge middleware for markdown conversion
 
 ## Testing Agent Readiness
 
