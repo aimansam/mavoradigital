@@ -1,0 +1,26 @@
+{
+  "contentSignals": {
+    "canonical": {
+      "enabled": true,
+      "selector": "link[rel='canonical']",
+      "description": "Canonical URL signal for AI crawlers"
+    },
+    "lastModified": {
+      "enabled": true,
+      "selector": "meta[name='last-modified'], meta[property='article:modified_time']",
+      "description": "Last modified date signal"
+    },
+    "contentType": {
+      "enabled": true,
+      "selector": "meta[http-equiv='Content-Type']",
+      "description": "Content type signal"
+    },
+    "generator": {
+      "enabled": true,
+      "selector": "meta[name='generator']",
+      "description": "Site generator information"
+    }
+  },
+  "version": "1.0",
+  "specification": "https://www.ietf.org/archive/id/draft-ietf-ai-content-signals-00.html"
+}
