@@ -1,9 +1,10 @@
 User-agent: *
 Allow: /
 
+# Content-Signal directives for AI agent discovery (RFC Draft)
+# Specifies content signals for AI crawlers
 Sitemap: https://mavoradigital.my/sitemap.xml
-
-# Content-Signal directives for AI agent discovery
 Content-Signal: canonical
-Content-Signal: last-modified
+Content-Signal: last-modified  
 Content-Signal: content-type
+Content-Signal: generator
