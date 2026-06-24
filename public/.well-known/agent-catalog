@@ -1,0 +1,34 @@
+{
+  "name": "Mavora Digital",
+  "description": "Malaysian web design and development studio specializing in landing pages, business websites, and custom builds for local businesses.",
+  "url": "https://mavoradigital.my",
+  "version": "1.0.0",
+  "apiVersion": "1.0.0",
+  "contact": {
+    "url": "https://mavoradigital.my/#project-request"
+  },
+  "endpoints": [
+    {
+      "type": "website",
+      "url": "https://mavoradigital.my"
+    },
+    {
+      "type": "sitemap",
+      "url": "https://mavoradigital.my/sitemap.xml"
+    },
+    {
+      "type": "robots",
+      "url": "https://mavoradigital.my/robots.txt"
+    }
+  ],
+  "services": [
+    {
+      "type": "Web Design",
+      "description": "Landing pages and business websites"
+    },
+    {
+      "type": "Web Development",
+      "description": "Custom web applications and SaaS"
+    }
+  ]
+}
