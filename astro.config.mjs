@@ -4,7 +4,7 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://mavoralabs.com",
+  site: "https://mavoradigital.my",
   devToolbar: { enabled: false },
   integrations: [
     react(),

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "</.well-known/agent-catalog>; rel=\"api-catalog\", </sitemap.xml>; rel=\"sitemap\", </robots.txt>; rel=\"robots\""
+        }
+      ]
+    }
+  ],
+  "outputDirectory": "dist"
+}
