@@ -3,4 +3,8 @@ Allow: /
 
 Sitemap: https://mavoradigital.my/sitemap.xml
 
-# Content-Signals: See /.well-known/content-signals.json
+# AI Content Usage Preferences (Content-Signals)
+# ai-train=no - Do not use content for AI training
+# search=yes - Allow content in search results
+# ai-input=no - Do not use content as AI input
+Content-Signal: ai-train=no, search=yes, ai-input=no
