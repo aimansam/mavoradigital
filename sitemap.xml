@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="https://www.xml-sitemaps.com/css/sitemap.css"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:fo="http://www.w3.org/1999/XSL/Format"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+<url>
+  <loc>https://mavoradigital.my/</loc>
+  <lastmod>2026-06-23T06:21:31+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/bm/</loc>
+  <lastmod>2026-06-24T08:15:29+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/portfolio/burger-shop/</loc>
+  <lastmod>2026-06-24T08:15:29+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/portfolio/kopi-jiran/</loc>
+  <lastmod>2026-06-24T08:15:29+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/portfolio/salon/</loc>
+  <lastmod>2026-06-24T08:15:29+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/portfolio/car-wash/</loc>
+  <lastmod>2026-06-24T08:15:29+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/portfolio/</loc>
+  <lastmod>2026-06-24T08:15:30+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/portfolio/kopi-jiran-2/</loc>
+  <lastmod>2026-06-24T08:15:30+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/portfolio/kopi-jiran-3/</loc>
+  <lastmod>2026-06-24T08:15:30+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/portfolio/kopi-jiran-4/</loc>
+  <lastmod>2026-06-24T08:15:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/?package=Landing%20Page%20-%20Plus</loc>
+  <lastmod>2026-06-23T06:21:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/demos/kopi-jiran/index.html</loc>
+  <lastmod>2026-06-24T08:15:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/?package=Landing%20Page%20-%20Pro</loc>
+  <lastmod>2026-06-23T06:21:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/demos/salon/index.html</loc>
+  <lastmod>2026-06-24T08:15:32+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/demos/car-wash/index.html</loc>
+  <lastmod>2026-06-24T08:15:32+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/demos/kopi-jiran-2/index.html</loc>
+  <lastmod>2026-06-24T08:15:32+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/demos/kopi-jiran-3/index.html</loc>
+  <lastmod>2026-06-24T08:15:32+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://mavoradigital.my/demos/kopi-jiran-4/index.html</loc>
+  <lastmod>2026-06-24T08:15:32+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+</urlset>
